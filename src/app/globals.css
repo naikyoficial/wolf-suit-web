@@ -151,6 +151,23 @@ body {
   background: var(--color-text-4);
 }
 
+/* ─── Cinematic keyframe animations ─── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes breathe {
+  0%, 100% { opacity: 0.6; transform: scale(0.95); }
+  50%       { opacity: 1;   transform: scale(1.08); }
+}
+@keyframes orb1 {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(80px, -50px); }
+}
+@keyframes orb2 {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-60px, 40px); }
+}
+
 /* Reduced motion — accesibilidad obligatoria (OS Ch.6) */
 @media (prefers-reduced-motion: reduce) {
   *,
