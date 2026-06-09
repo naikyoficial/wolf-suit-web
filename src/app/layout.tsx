@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -81,9 +82,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-surface text-text antialiased">
-        <Navbar />
-        <div className="flex-1 pt-16">{children}</div>
-        <Footer />
+        <SmoothScroll>
+          <Navbar />
+          <div className="flex-1 pt-16">{children}</div>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { SplitWords } from "@/components/ui/SplitWords";
+import { Reveal } from "@/components/ui/Reveal";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
@@ -12,50 +14,55 @@ export function Philosophy() {
     >
       <div className="w-full max-w-[1440px] mx-auto">
 
+        {/* Tag */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: EASE }}
-          style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-gold)", marginBottom: 18 }}
+          style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-gold)", marginBottom: 28 }}
         >
           Filosofía
         </motion.p>
 
-        <motion.blockquote
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.14, ease: EASE }}
-          className="font-display font-light"
-          style={{ fontSize: "clamp(32px,5vw,72px)", lineHeight: 1.18, letterSpacing: "-.025em", maxWidth: 860, margin: "0 auto 28px" }}
-        >
-          "Las empresas son juzgadas<br />
-          antes de ser comprendidas."
-        </motion.blockquote>
+        {/* Big quote — word by word reveal */}
+        <div style={{ maxWidth: 860, margin: "0 auto 28px" }}>
+          <SplitWords
+            as="blockquote"
+            delay={0.1}
+            stagger={0.06}
+            style={{
+              fontSize: "clamp(32px,5vw,72px)",
+              lineHeight: 1.18,
+              letterSpacing: "-.025em",
+              fontFamily: "var(--font-display)",
+              fontWeight: 300,
+            }}
+          >
+            Las empresas son juzgadas antes de ser comprendidas.
+          </SplitWords>
+        </div>
 
+        {/* Gold bar — draws in */}
         <motion.div
-          initial={{ scaleX: 0, originX: "center" }}
+          initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.28, ease: EASE }}
-          style={{ width: 36, height: 1, background: "var(--color-gold)", margin: "0 auto 28px" }}
+          transition={{ duration: 1, delay: 0.6, ease: EASE }}
+          style={{ width: 36, height: 1, background: "var(--color-gold)", margin: "0 auto 28px", transformOrigin: "center" }}
         />
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, delay: 0.42, ease: EASE }}
-          style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 1.95, maxWidth: 460, margin: "0 auto" }}
-        >
-          La percepción precede a la confianza.<br />
-          La confianza precede a la decisión.<br />
-          La decisión precede al crecimiento.<br /><br />
-          Todo lo que construimos existe para potenciar<br />
-          una única cosa: la percepción de valor<br />
-          que tu empresa merece.
-        </motion.p>
+        {/* Body — blurs in */}
+        <Reveal delay={0.7} y={24} blur={6}>
+          <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 1.95, maxWidth: 460, margin: "0 auto" }}>
+            La percepción precede a la confianza.<br />
+            La confianza precede a la decisión.<br />
+            La decisión precede al crecimiento.<br /><br />
+            Todo lo que construimos existe para potenciar<br />
+            una única cosa: la percepción de valor<br />
+            que tu empresa merece.
+          </p>
+        </Reveal>
 
       </div>
     </section>

@@ -2,12 +2,14 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Reveal } from "@/components/ui/Reveal";
+import { SplitWords } from "@/components/ui/SplitWords";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
 const PROJECTS = [
-  { industry: "Tecnología B2B",        year: "2026", title: "Caso de Estudio A" },
-  { industry: "Consultoría Estratégica", year: "2026", title: "Caso de Estudio B" },
+  { industry: "Tecnología B2B",          year: "2026", title: "Caso de Estudio A" },
+  { industry: "Consultoría Estratégica",  year: "2026", title: "Caso de Estudio B" },
 ];
 
 export function Work() {
@@ -20,35 +22,36 @@ export function Work() {
     >
       <div className="w-full max-w-[1440px] mx-auto">
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: EASE }}
-          style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-gold)", marginBottom: 18 }}
-        >
-          Trabajo
-        </motion.p>
+        <Reveal y={24} blur={4}>
+          <p style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-gold)", marginBottom: 18 }}>
+            Trabajo
+          </p>
+        </Reveal>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, delay: 0.1, ease: EASE }}
-          className="font-display font-light"
-          style={{ fontSize: "clamp(36px,4.5vw,60px)", lineHeight: 1.08, letterSpacing: "-.02em", marginBottom: 56 }}
-        >
-          Proyectos seleccionados.
-        </motion.h2>
+        <Reveal delay={0.1} y={32} style={{ marginBottom: 56 }}>
+          <SplitWords
+            as="h2"
+            stagger={0.07}
+            style={{
+              fontSize: "clamp(36px,4.5vw,60px)",
+              lineHeight: 1.08,
+              letterSpacing: "-.02em",
+              fontFamily: "var(--font-display)",
+              fontWeight: 300,
+            }}
+          >
+            Proyectos seleccionados.
+          </SplitWords>
+        </Reveal>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "rgba(201,164,90,.06)" }}>
           {PROJECTS.map((p, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 40, scale: 0.96, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: i * 0.1, ease: EASE }}
+              transition={{ duration: 1.1, delay: 0.1 + i * 0.15, ease: EASE }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
               style={{
@@ -65,47 +68,16 @@ export function Work() {
                 transition: "border-color .5s",
               }}
             >
-              {/* Hover gradient overlay */}
-              <div style={{
-                position: "absolute",
-                inset: 0,
-                background: "linear-gradient(135deg, rgba(201,164,90,.06) 0%, transparent 50%)",
-                opacity: hovered === i ? 1 : 0,
-                transition: "opacity .5s",
-                pointerEvents: "none",
-              }} />
-
-              <div style={{
-                display: "flex",
-                justifyContent: "space-between",
-                fontSize: 11,
-                letterSpacing: ".15em",
-                textTransform: "uppercase",
-                color: "rgba(201,164,90,.5)",
-                position: "relative",
-              }}>
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(201,164,90,.06) 0%, transparent 50%)", opacity: hovered === i ? 1 : 0, transition: "opacity .5s", pointerEvents: "none" }} />
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, letterSpacing: ".15em", textTransform: "uppercase", color: "rgba(201,164,90,.5)", position: "relative" }}>
                 <span>{p.industry}</span>
                 <span>{p.year}</span>
               </div>
-
               <div style={{ position: "relative" }}>
-                <p
-                  className="font-display font-light"
-                  style={{
-                    fontSize: "clamp(24px,3vw,38px)",
-                    color: hovered === i ? "var(--color-text)" : "rgba(236,232,223,.45)",
-                    transition: "color .4s",
-                  }}
-                >
+                <p className="font-display font-light" style={{ fontSize: "clamp(24px,3vw,38px)", color: hovered === i ? "var(--color-text)" : "rgba(236,232,223,.45)", transition: "color .4s" }}>
                   {p.title}
                 </p>
-                <div style={{
-                  width: hovered === i ? 50 : 0,
-                  height: 1,
-                  background: "var(--color-gold)",
-                  marginTop: 12,
-                  transition: "width .7s cubic-bezier(.16,1,.3,1)",
-                }} />
+                <div style={{ width: hovered === i ? 50 : 0, height: 1, background: "var(--color-gold)", marginTop: 12, transition: "width .7s cubic-bezier(.16,1,.3,1)" }} />
               </div>
             </motion.div>
           ))}

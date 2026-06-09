@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
+import { SplitWords } from "@/components/ui/SplitWords";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
@@ -21,31 +23,36 @@ export function Process() {
     >
       <div className="w-full max-w-[1440px] mx-auto">
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: EASE }}
-          style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-gold)", marginBottom: 18 }}
-        >
-          Proceso
-        </motion.p>
+        <Reveal y={24} blur={4}>
+          <p style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-gold)", marginBottom: 18 }}>
+            Proceso
+          </p>
+        </Reveal>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, delay: 0.1, ease: EASE }}
-          className="font-display font-light"
-          style={{ fontSize: "clamp(36px,4.5vw,60px)", lineHeight: 1.08, letterSpacing: "-.02em", marginBottom: 64 }}
-        >
-          Un proceso obsesionado<br />por el detalle.
-        </motion.h2>
+        <Reveal delay={0.1} y={32} style={{ marginBottom: 64 }}>
+          <SplitWords
+            as="h2"
+            stagger={0.07}
+            style={{
+              fontSize: "clamp(36px,4.5vw,60px)",
+              lineHeight: 1.08,
+              letterSpacing: "-.02em",
+              fontFamily: "var(--font-display)",
+              fontWeight: 300,
+            }}
+          >
+            Un proceso obsesionado por el detalle.
+          </SplitWords>
+        </Reveal>
 
         {/* Timeline */}
         <div style={{ position: "relative", display: "flex" }}>
-          {/* Horizontal line */}
-          <div
+          {/* Line draws in from left */}
+          <motion.div
+            initial={{ scaleX: 0, originX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.6, delay: 0.2, ease: EASE }}
             aria-hidden
             style={{
               position: "absolute",
@@ -60,23 +67,20 @@ export function Process() {
           {STEPS.map((step, i) => (
             <motion.div
               key={step.num}
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 48, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: i * 0.1, ease: EASE }}
+              transition={{ duration: 0.9, delay: 0.3 + i * 0.12, ease: EASE }}
               style={{ flex: 1, paddingTop: 56, paddingRight: 20, position: "relative" }}
             >
-              {/* Dot */}
-              <div style={{
-                position: "absolute",
-                top: 24,
-                left: 0,
-                width: 8,
-                height: 8,
-                border: "1px solid var(--color-gold)",
-                borderRadius: "50%",
-                background: "#050505",
-              }} />
+              {/* Dot pulses in */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 + i * 0.12, ease: EASE }}
+                style={{ position: "absolute", top: 24, left: 0, width: 8, height: 8, border: "1px solid var(--color-gold)", borderRadius: "50%", background: "#050505" }}
+              />
               <p style={{ fontSize: 10, color: "var(--color-gold)", letterSpacing: ".25em", marginBottom: 12 }}>{step.num}</p>
               <p className="font-display" style={{ fontSize: 21, fontWeight: 500, marginBottom: 8 }}>{step.name}</p>
               <p style={{ fontSize: 12, color: "var(--color-text-3)", lineHeight: 1.75 }}>{step.desc}</p>
