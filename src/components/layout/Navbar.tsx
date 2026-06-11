@@ -55,7 +55,7 @@ export function Navbar() {
       </nav>
 
       <Link
-        href="#contact"
+        href="/aplicar"
         className="hidden md:inline-flex items-center transition-all duration-300 hover:bg-gold hover:text-[#111]"
         style={{
           padding: "10px 22px",

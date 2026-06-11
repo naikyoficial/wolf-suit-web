@@ -7,6 +7,7 @@ import { Preloader }      from "@/components/ui/Preloader";
 import { Cursor }         from "@/components/ui/Cursor";
 import { Grain }          from "@/components/ui/Grain";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { AtmosphericBg }  from "@/components/sections/AtmosphericBg";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -86,6 +87,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-surface text-text antialiased">
+        <AtmosphericBg />
         <Preloader />
         <Cursor />
         <Grain />
