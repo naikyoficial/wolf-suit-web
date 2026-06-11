@@ -167,6 +167,14 @@ body {
   0%, 100% { transform: translate(0, 0); }
   50%      { transform: translate(-60px, 40px); }
 }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── Custom cursor — hide native ─── */
+html, body, * { cursor: none !important; }
+input, textarea, select { cursor: text !important; }
 
 /* Reduced motion — accesibilidad obligatoria (OS Ch.6) */
 @media (prefers-reduced-motion: reduce) {
