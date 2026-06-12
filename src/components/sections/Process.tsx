@@ -7,11 +7,11 @@ import { SplitWords } from "@/components/ui/SplitWords";
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
 const STEPS = [
-  { num: "01", name: "Descubrir",    desc: "Diagnóstico estratégico: cómo te perciben hoy vs. cómo deberías ser percibido." },
-  { num: "02", name: "Definir",      desc: "Arquitectura de percepción: relato, identidad visual, experiencia de usuario." },
-  { num: "03", name: "Diseñar",      desc: "Sistema visual y de experiencia construido desde cero. Sin templates." },
-  { num: "04", name: "Construir",    desc: "Desarrollo con estándares de clase mundial. Cada detalle es intencional." },
-  { num: "05", name: "Perfeccionar", desc: "Iteración continua hasta alcanzar el estándar Wolf Suit de excelencia." },
+  { num: "01", name: "Descubrir",    desc: "Diagnóstico profundo: quién sos, a quién le hablás y qué distancia existe entre cómo te perciben hoy y el lugar al que pertenecés." },
+  { num: "02", name: "Definir",      desc: "Arquitectura de percepción: el relato, la identidad y la experiencia que van a representar a tu empresa exactamente como merece." },
+  { num: "03", name: "Diseñar",      desc: "Sistema visual creado exclusivamente para tu empresa. Cada elemento tiene una razón de existir. Nada genérico, nada reutilizado." },
+  { num: "04", name: "Construir",    desc: "Desarrollo técnico de alto estándar. El código es tan cuidadoso como el diseño. La precisión no tiene componentes opcionales." },
+  { num: "05", name: "Perfeccionar", desc: "No entregamos cuando está listo. Entregamos cuando está bien. Iteramos hasta que cada detalle responde al estándar que tu empresa merece." },
 ];
 
 export function Process() {

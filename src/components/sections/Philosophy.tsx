@@ -55,12 +55,12 @@ export function Philosophy() {
         {/* Body — blurs in */}
         <Reveal delay={0.7} y={24} blur={6}>
           <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 1.95, maxWidth: 460, margin: "0 auto" }}>
-            La percepción precede a la confianza.<br />
-            La confianza precede a la decisión.<br />
-            La decisión precede al crecimiento.<br /><br />
-            Todo lo que construimos existe para potenciar<br />
-            una única cosa: la percepción de valor<br />
-            que tu empresa merece.
+            Un template no puede contar tu historia.<br />
+            Un diseño genérico no puede justificar un precio premium.<br />
+            Una presencia mediocre no puede representar una empresa extraordinaria.<br /><br />
+            Todo lo que construimos existe para resolver un único problema:
+            que tu empresa sea percibida exactamente como lo que es —
+            o exactamente como lo que quiere llegar a ser.
           </p>
         </Reveal>
 

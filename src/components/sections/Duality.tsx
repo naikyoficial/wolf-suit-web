@@ -6,8 +6,8 @@ import { SplitWords } from "@/components/ui/SplitWords";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
-const WOLF_TRAITS = ["Agudeza instintiva", "Visión de largo plazo", "Ferocidad controlada", "Liderazgo natural"];
-const SUIT_TRAITS = ["Elegancia calculada", "Criterio impecable", "Presencia inevitable", "Confianza absoluta"];
+const WOLF_TRAITS = ["Ambición genuina", "Historia que merece atención", "Producto o servicio real", "Visión de largo plazo"];
+const SUIT_TRAITS = ["Identidad que diferencia", "Presencia que genera respeto", "Diseño que justifica el precio", "Percepción que abre puertas"];
 
 export function Duality() {
   return (
@@ -45,7 +45,7 @@ export function Duality() {
                 fontWeight: 300,
               }}
             >
-              Instinto. Estrategia. Poder.
+              Lo que tu empresa ya tiene.
             </SplitWords>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
               {WOLF_TRAITS.map((t, i) => (
@@ -97,7 +97,7 @@ export function Duality() {
                 fontWeight: 300,
               }}
             >
-              Precisión. Autoridad. Criterio.
+              Lo que Wolf Suit construye sobre eso.
             </SplitWords>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10, alignItems: "flex-end" }}>
               {SUIT_TRAITS.map((t, i) => (
@@ -124,7 +124,7 @@ export function Duality() {
             className="font-display font-light"
             style={{ fontSize: "clamp(18px,2.2vw,26px)", color: "rgba(236,232,223,.55)", letterSpacing: ".04em" }}
           >
-            La combinación que transforma cómo el mercado percibe tu empresa.
+            Tu empresa no necesita ser la número uno para verse como tal. Solo necesita el traje correcto.
           </p>
         </Reveal>
 

@@ -65,16 +65,17 @@ export function Contact() {
                   fontWeight: 300,
                 }}
               >
-                Seleccionamos los proyectos en los que creemos.
+                El primer paso hacia una presencia que diferencia.
               </SplitWords>
             </Reveal>
             <Reveal delay={0.25} y={24} blur={6}>
               <p style={{ fontSize: 13, color: "var(--color-text-3)", lineHeight: 1.95, maxWidth: 400 }}>
-                No buscamos clientes. Buscamos empresas que comprendan
-                que la percepción es el activo más valioso que pueden construir.
+                No buscamos clientes. Buscamos empresas que entiendan
+                que su presencia digital es el argumento más poderoso
+                que hacen antes de que alguien las conozca.
                 <br /><br />
-                Si tu empresa está lista para jugar en otra categoría,
-                comenzá el proceso.
+                Contanos quién sos y qué querés construir.
+                Si hay alineación, te respondemos en 72 horas.
               </p>
             </Reveal>
           </div>

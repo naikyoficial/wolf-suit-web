@@ -35,17 +35,24 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Wolf Suit — Experiencias Digitales de Alto Nivel",
+    default: "Wolf Suit — Diseño Web Premium y Estrategia de Percepción",
     template: "%s — Wolf Suit",
   },
   description:
-    "Firma estratégica especializada en construir percepción de valor para empresas ambiciosas.",
+    "Wolf Suit es una firma de diseño estratégico que construye identidades digitales premium para empresas ambiciosas. Sin templates. Todo desde cero. Diseño web, branding y estrategia de percepción.",
   keywords: [
-    "experiencias digitales",
     "diseño web premium",
-    "estrategia digital",
-    "branding",
-    "percepción de valor",
+    "agencia de diseño sin templates",
+    "branding premium",
+    "identidad de marca a medida",
+    "diseño web personalizado",
+    "estrategia de percepción",
+    "agencia digital elite",
+    "experiencias digitales de alto nivel",
+    "diseño web desde cero",
+    "agencia de branding",
+    "percepción de valor empresas",
+    "diseño web profesional",
   ],
   authors: [{ name: "Wolf Suit" }],
   creator: "Wolf Suit",
@@ -54,15 +61,15 @@ export const metadata: Metadata = {
     locale: "es_419",
     url: "https://wolfsuit.com",
     siteName: "Wolf Suit",
-    title: "Wolf Suit — Experiencias Digitales de Alto Nivel",
+    title: "Wolf Suit — Diseño Web Premium y Estrategia de Percepción",
     description:
-      "Firma estratégica especializada en construir percepción de valor para empresas ambiciosas.",
+      "Sin templates. Sin atajos. Identidades digitales construidas desde cero para empresas que quieren verse en la categoría donde pertenecen.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wolf Suit — Experiencias Digitales de Alto Nivel",
+    title: "Wolf Suit — Diseño Web Premium y Estrategia de Percepción",
     description:
-      "Firma estratégica especializada en construir percepción de valor para empresas ambiciosas.",
+      "Sin templates. Sin atajos. Identidades digitales construidas desde cero para empresas que quieren verse en la categoría donde pertenecen.",
   },
   robots: {
     index: true,
@@ -72,6 +79,9 @@ export const metadata: Metadata = {
       follow: true,
       "max-image-preview": "large",
     },
+  },
+  alternates: {
+    canonical: "https://wolfsuit.com",
   },
 };
 
@@ -87,6 +97,32 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-surface text-text antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Wolf Suit",
+              url: "https://wolfsuit.com",
+              description:
+                "Firma de diseño estratégico especializada en identidades digitales premium para empresas ambiciosas. Sin templates — todo construido desde cero.",
+              knowsAbout: [
+                "Diseño web premium",
+                "Branding a medida",
+                "Estrategia de percepción",
+                "Identidad visual",
+                "Desarrollo web de alto estándar",
+              ],
+              serviceType: [
+                "Diseño de identidad corporativa",
+                "Desarrollo web personalizado",
+                "Estrategia de marca",
+                "Branding premium",
+              ],
+            }),
+          }}
+        />
         <AtmosphericBg />
         <Preloader />
         <Cursor />

@@ -32,6 +32,7 @@ export function Hero() {
 
   return (
     <section className="relative" style={{ minHeight: "calc(100dvh - 4rem)" }}>
+      <h1 className="sr-only">Wolf Suit — Diseño Web Premium, Branding y Estrategia Digital sin Templates</h1>
 
       {/* ── Main centered content ── */}
       <div className="flex flex-col items-center justify-center text-center" style={{ minHeight: "calc(100dvh - 4rem)", padding: "80px 5vw" }}>
@@ -101,7 +102,7 @@ export function Hero() {
 
           {/* Tag */}
           <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.8 }} style={{ fontSize: 11, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--color-text-3)", marginBottom: 56 }}>
-            Diseño · Estrategia · Tecnología
+            Identidad · Percepción · Excelencia
           </motion.p>
 
           {/* Scroll cue */}

@@ -11,17 +11,17 @@ const PILLARS = [
   {
     num: "01",
     title: "Estrategia",
-    body: "La percepción precede a la confianza. Antes de diseñar una pantalla, entendemos qué brecha existe entre cómo te perciben hoy y cómo deberías ser percibido.",
+    body: "Antes de diseñar un solo elemento, entendemos quién sos, a quién le hablás y qué brecha existe entre cómo te perciben hoy y el lugar donde merecés estar. La estrategia no es opcional — es la base de todo lo que viene.",
   },
   {
     num: "02",
     title: "Diseño",
-    body: "La elegancia siempre vence al exceso. Cada elemento justifica su existencia. El espacio negativo es una herramienta. La precisión es la única métrica válida.",
+    body: "Cada proyecto se diseña desde cero. Sin templates. Sin reutilizar estructuras de trabajos anteriores. Tu empresa tiene una historia única — su identidad visual debe serlo también. La excelencia es la consecuencia de resolver bien cada detalle.",
   },
   {
     num: "03",
     title: "Tecnología",
-    body: "Invisible cuando está bien ejecutada. El código más elegante es el que el usuario nunca nota porque simplemente funciona con absoluta perfección.",
+    body: "El código que escribimos es tan cuidadoso como el diseño que lo viste. La tecnología debe ser invisible: el usuario no nota el código, nota que todo funciona con la velocidad y precisión que una empresa de su nivel merece.",
   },
 ];
 
@@ -54,7 +54,7 @@ export function Pillars() {
               fontWeight: 300,
             }}
           >
-            Tres disciplinas. Un único resultado.
+            Desde cero. Para vos. Sin excepciones.
           </SplitWords>
         </Reveal>
 

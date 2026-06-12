@@ -7,8 +7,8 @@ import { SplitWords } from "@/components/ui/SplitWords";
 
 const STEPS = [
   { num: "01", label: "Aplicación",   desc: "Completás el formulario. Nos contás quién sos y qué quiere construir tu empresa." },
-  { num: "02", label: "Evaluación",   desc: "Analizamos si hay alineación real entre tu proyecto y la forma en que trabajamos." },
-  { num: "03", label: "Conversación", desc: "Si el proyecto tiene potencial, te contactamos para una llamada estratégica." },
+  { num: "02", label: "Evaluación",   desc: "Analizamos si hay una oportunidad real de transformación. Solo aceptamos proyectos donde podemos generar impacto significativo." },
+  { num: "03", label: "Conversación", desc: "Si hay alineación genuina, agendamos una llamada estratégica. Sin presentaciones genéricas — una conversación real sobre tu empresa." },
 ];
 
 export function Apply() {
@@ -56,10 +56,14 @@ export function Apply() {
 
       {/* Body copy */}
       <Reveal delay={0.3} y={24} blur={6} style={{ marginBottom: 80 }}>
-        <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 1.95, maxWidth: 480 }}>
-          Seleccionamos cada proyecto con criterio. Buscamos empresas que
-          entiendan que la percepción es el activo más valioso que pueden
-          construir — y que estén listas para jugar en otra categoría.
+        <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 1.95, maxWidth: 520 }}>
+          Si buscás una agencia que tome tu brief y entregue
+          un template con tu logo encima, no somos lo que buscás.
+          <br /><br />
+          Si entendés que tu presencia digital es el argumento
+          más poderoso que tu empresa hace antes de que alguien
+          te conozca — y querés que ese argumento sea impecable —
+          entonces hablemos.
         </p>
       </Reveal>
 
