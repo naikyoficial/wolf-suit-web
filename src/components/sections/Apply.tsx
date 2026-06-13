@@ -109,9 +109,9 @@ export function Apply() {
               paddingLeft: 20,
             }}
           >
-            <p style={{ fontSize: 9, letterSpacing: ".5em", color: "var(--color-silver)", opacity: 0.5, marginBottom: 10 }}>
+            <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".5em", marginBottom: 10 }}>
               {s.num}
-            </p>
+            </ShimmerLabel>
             <p style={{ fontSize: 11, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--color-text-2)", marginBottom: 9 }}>
               {s.label}
             </p>
@@ -124,29 +124,35 @@ export function Apply() {
 
       {/* ── CTA ── */}
       <Reveal delay={0.6} y={20} blur={4}>
-        <Link
-          href="/aplicar"
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 22,
-            padding: "18px 48px",
-            border: "1px solid rgba(178,192,204,.45)",
-            background: hovered ? "var(--color-silver)" : "transparent",
-            color: hovered ? "#111" : "var(--color-text)",
-            fontFamily: "var(--font-body)",
-            fontSize: 11,
-            letterSpacing: ".3em",
-            textTransform: "uppercase",
-            textDecoration: "none",
-            transition: "background .35s, color .35s",
-          }}
-        >
-          Iniciar proceso
-          <span
+        {/* Shimmer gradient border wrapper */}
+        <div style={{
+          display: "inline-block",
+          padding: "1px",
+          background: "linear-gradient(90deg, #3A4A5A 0%, #7A8E9E 22%, #C8D8E8 46%, #EEF4FA 52%, #C8D8E8 58%, #7A8E9E 78%, #3A4A5A 100%)",
+          backgroundSize: "280% 100%",
+          animation: "metalShimmer 4s ease-in-out infinite",
+        }}>
+          <Link
+            href="/aplicar"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
             style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 22,
+              padding: "18px 48px",
+              background: hovered ? "var(--color-silver)" : "#060606",
+              color: hovered ? "#111" : "var(--color-text)",
+              fontFamily: "var(--font-body)",
+              fontSize: 11,
+              letterSpacing: ".3em",
+              textTransform: "uppercase",
+              textDecoration: "none",
+              transition: "background .35s, color .35s",
+            }}
+          >
+            Iniciar proceso
+            <span style={{
               position: "relative",
               display: "inline-flex",
               alignItems: "center",
@@ -155,22 +161,18 @@ export function Apply() {
               background: "currentColor",
               flexShrink: 0,
               transition: "width .3s",
-            }}
-          >
-            <span
-              style={{
+            }}>
+              <span style={{
                 position: "absolute",
-                right: -1,
-                top: -3,
-                width: 7,
-                height: 7,
+                right: -1, top: -3,
+                width: 7, height: 7,
                 borderRight: "1px solid currentColor",
                 borderTop: "1px solid currentColor",
                 transform: "rotate(45deg)",
-              }}
-            />
-          </span>
-        </Link>
+              }} />
+            </span>
+          </Link>
+        </div>
       </Reveal>
 
       <Reveal delay={0.8} y={10} blur={2}>
