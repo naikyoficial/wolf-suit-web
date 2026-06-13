@@ -185,6 +185,10 @@ body { scrollbar-width: none; }
   from { background-position: 100% center; }
   to   { background-position: -100% center; }
 }
+@keyframes traceContour {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -1150; }
+}
 @keyframes mist1 {
   0%, 100% { transform: translate(0, 0) scale(1);    opacity: .04; }
   33%       { transform: translate(60px, -40px) scale(1.08); opacity: .06; }

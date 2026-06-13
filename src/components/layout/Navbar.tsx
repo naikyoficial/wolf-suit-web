@@ -4,9 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { NAV_LINKS, SITE } from "@/config/site";
+import { useLenis } from "@/contexts/LenisContext";
 
 export function Navbar() {
   const [ctaHovered, setCtaHovered] = useState(false);
+  const lenis = useLenis();
+
+  function scrollTo(href: string) {
+    const el = document.querySelector(href);
+    if (!el) return;
+    if (lenis) {
+      lenis.scrollTo(el as HTMLElement, { offset: -80 });
+    } else {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  }
 
   return (
     <header
@@ -45,13 +57,24 @@ export function Navbar() {
         <ul className="hidden md:flex items-center gap-7">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
-              <Link
-                href={link.href}
-                className="text-text-3 transition-colors duration-300 hover:text-text"
-                style={{ fontSize: 11, letterSpacing: ".22em", textTransform: "uppercase" }}
-              >
-                {link.label}
-              </Link>
+              {link.href.startsWith("#") ? (
+                <a
+                  href={link.href}
+                  onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
+                  className="text-text-3 transition-colors duration-300 hover:text-text cursor-pointer"
+                  style={{ fontSize: 11, letterSpacing: ".22em", textTransform: "uppercase" }}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  href={link.href}
+                  className="text-text-3 transition-colors duration-300 hover:text-text"
+                  style={{ fontSize: 11, letterSpacing: ".22em", textTransform: "uppercase" }}
+                >
+                  {link.label}
+                </Link>
+              )}
             </li>
           ))}
         </ul>
