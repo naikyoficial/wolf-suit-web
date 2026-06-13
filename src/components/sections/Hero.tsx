@@ -118,9 +118,9 @@ export function Hero() {
             >
               <defs>
                 <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%"   stopColor="#D0D8E4" />
+                  <stop offset="0%"   stopColor="#E8ECF0" />
                   <stop offset="50%"  stopColor="#B2C0CC" />
-                  <stop offset="100%" stopColor="#8a6828" />
+                  <stop offset="100%" stopColor="#4A5A6A" />
                 </linearGradient>
               </defs>
               <g style={{ animation: "spin 28s linear infinite", transformOrigin: "236px 236px" }}>
