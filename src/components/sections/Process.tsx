@@ -61,7 +61,9 @@ export function Process() {
               left: 0,
               right: 0,
               height: 1,
-              background: "linear-gradient(90deg, rgba(178,192,204,.5), rgba(178,192,204,.1))",
+              background: "linear-gradient(90deg, #3A4A5A 0%, #7A8E9E 22%, #C8D8E8 46%, #EEF4FA 52%, #C8D8E8 58%, #7A8E9E 78%, #3A4A5A 100%)",
+              backgroundSize: "280% 100%",
+              animation: "metalShimmer 6s ease-in-out infinite",
             }}
           />
 

@@ -68,6 +68,13 @@ export function AtmosphericBg() {
         }}
       />
 
+      {/* Mist layer 1 — drifts bottom-left */}
+      <div aria-hidden className="fixed pointer-events-none" style={{ zIndex: 2, width: 700, height: 500, background: "radial-gradient(ellipse at center, rgba(178,192,204,.07) 0%, transparent 70%)", filter: "blur(90px)", bottom: "10%", left: "5%", animation: "mist1 45s ease-in-out infinite" }} />
+      {/* Mist layer 2 — drifts top-right */}
+      <div aria-hidden className="fixed pointer-events-none" style={{ zIndex: 2, width: 600, height: 400, background: "radial-gradient(ellipse at center, rgba(178,192,204,.05) 0%, transparent 70%)", filter: "blur(110px)", top: "20%", right: "10%", animation: "mist2 55s ease-in-out infinite 5s" }} />
+      {/* Mist layer 3 — drifts center */}
+      <div aria-hidden className="fixed pointer-events-none" style={{ zIndex: 2, width: 800, height: 320, background: "radial-gradient(ellipse at center, rgba(178,192,204,.04) 0%, transparent 70%)", filter: "blur(130px)", top: "50%", left: "30%", animation: "mist3 65s ease-in-out infinite 12s" }} />
+
       {/* Orb 1 */}
       <div aria-hidden className="fixed rounded-full pointer-events-none" style={{ zIndex: 3, width: 440, height: 440, background: "rgba(178,192,204,.1)", filter: "blur(90px)", mixBlendMode: "screen", top: -80, left: -120, animation: "orb1 22s ease-in-out infinite" }} />
       {/* Orb 2 */}

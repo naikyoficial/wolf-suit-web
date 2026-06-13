@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
 import { Reveal } from "@/components/ui/Reveal";
 import { SplitWords } from "@/components/ui/SplitWords";
 
@@ -48,9 +49,9 @@ export function Contact() {
           {/* ── Left: Copy ── */}
           <div>
             <Reveal y={20} blur={4}>
-              <p style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-silver)", marginBottom: 18 }}>
+              <ShimmerLabel style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", marginBottom: 18 }}>
                 Aplicación
-              </p>
+              </ShimmerLabel>
             </Reveal>
             <Reveal delay={0.1} y={32} style={{ marginBottom: 24 }}>
               <SplitWords

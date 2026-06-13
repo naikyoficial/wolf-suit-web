@@ -175,6 +175,21 @@ body { scrollbar-width: none; }
   0%, 100% { background-position: 200% center; }
   50%       { background-position: -100% center; }
 }
+/* Very slow mist/smoke drift — extremely subtle background movement */
+@keyframes mist1 {
+  0%, 100% { transform: translate(0, 0) scale(1);    opacity: .04; }
+  33%       { transform: translate(60px, -40px) scale(1.08); opacity: .06; }
+  66%       { transform: translate(-40px, 30px) scale(.96);  opacity: .03; }
+}
+@keyframes mist2 {
+  0%, 100% { transform: translate(0, 0) scale(1);    opacity: .05; }
+  40%       { transform: translate(-80px, 60px) scale(1.1); opacity: .03; }
+  70%       { transform: translate(50px, -25px) scale(.93); opacity: .06; }
+}
+@keyframes mist3 {
+  0%, 100% { transform: translate(0, 0) scale(1);    opacity: .03; }
+  50%       { transform: translate(30px, 80px) scale(1.14); opacity: .05; }
+}
 /* ─── Custom cursor — hide native ─── */
 html, body, * { cursor: none !important; }
 input, textarea, select { cursor: text !important; }
