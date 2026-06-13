@@ -37,7 +37,7 @@ export function Pillars() {
       <div className="w-full max-w-[1440px] mx-auto">
 
         <Reveal y={24} blur={4}>
-          <p style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-gold)", marginBottom: 18 }}>
+          <p style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-silver)", marginBottom: 18 }}>
             Enfoque
           </p>
         </Reveal>
@@ -58,7 +58,7 @@ export function Pillars() {
           </SplitWords>
         </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 1, background: "rgba(201,164,90,.1)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 1, background: "rgba(178,192,204,.1)" }}>
           {PILLARS.map((p, i) => (
             <motion.div
               key={p.num}
@@ -71,20 +71,20 @@ export function Pillars() {
               style={{
                 padding: 44,
                 background: hovered === i ? "#0d0d0d" : "#070707",
-                border: `1px solid ${hovered === i ? "rgba(201,164,90,.28)" : "transparent"}`,
+                border: `1px solid ${hovered === i ? "rgba(178,192,204,.28)" : "transparent"}`,
                 transform: `translateY(${hovered === i ? -6 : 0}px)`,
                 transition: "background .4s, border-color .4s, transform .4s",
                 cursor: "default",
               }}
             >
-              <p style={{ fontSize: 10, color: "var(--color-gold)", letterSpacing: ".3em", marginBottom: 22 }}>{p.num}</p>
+              <p style={{ fontSize: 10, color: "var(--color-silver)", letterSpacing: ".3em", marginBottom: 22 }}>{p.num}</p>
               <h3 className="font-display" style={{ fontSize: 30, fontWeight: 400, marginBottom: 14 }}>{p.title}</h3>
               <p style={{ fontSize: 13, lineHeight: 1.85, color: "var(--color-text-3)" }}>{p.body}</p>
               <div style={{
                 marginTop: 28,
                 width: hovered === i ? 44 : 24,
                 height: 1,
-                background: "var(--color-gold)",
+                background: "var(--color-silver)",
                 opacity: hovered === i ? .8 : .4,
                 transition: "width .4s, opacity .4s",
               }} />

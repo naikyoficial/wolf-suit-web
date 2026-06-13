@@ -42,7 +42,7 @@ export function Hero() {
 
   return (
     <section className="relative" style={{ minHeight: "calc(100dvh - 4rem)" }}>
-      <h1 className="sr-only">Wolf Suit — Diseño Web Premium, Branding y Estrategia Digital sin Templates</h1>
+      <h1 className="sr-only">Suitwolf — Diseño Web Premium, Branding y Estrategia Digital sin Templates</h1>
 
       {/* ── Main centered content ── */}
       <div className="flex flex-col items-center justify-center text-center" style={{ minHeight: "calc(100dvh - 4rem)", padding: "80px 5vw" }}>
@@ -69,7 +69,7 @@ export function Hero() {
               position: "absolute",
               inset: -100,
               borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(201,164,90,.3) 0%, rgba(201,164,90,.1) 38%, rgba(201,164,90,.03) 60%, transparent 72%)",
+              background: "radial-gradient(circle, rgba(178,192,204,.3) 0%, rgba(178,192,204,.1) 38%, rgba(178,192,204,.03) 60%, transparent 72%)",
               animation: "breathe 5s ease-in-out infinite",
             }}
           />
@@ -81,7 +81,7 @@ export function Hero() {
               position: "absolute",
               inset: -36,
               borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(201,164,90,.18) 0%, rgba(201,164,90,.06) 45%, transparent 68%)",
+              background: "radial-gradient(circle, rgba(178,192,204,.18) 0%, rgba(178,192,204,.06) 45%, transparent 68%)",
               animation: "breathe 4s ease-in-out infinite 1.2s",
             }}
           />
@@ -93,7 +93,7 @@ export function Hero() {
               position: "absolute",
               inset: -8,
               borderRadius: "50%",
-              background: "conic-gradient(from 0deg, transparent 0deg, rgba(201,164,90,.05) 20deg, rgba(201,164,90,.14) 42deg, rgba(201,164,90,.05) 64deg, transparent 80deg, transparent 360deg)",
+              background: "conic-gradient(from 0deg, transparent 0deg, rgba(178,192,204,.05) 20deg, rgba(178,192,204,.14) 42deg, rgba(178,192,204,.05) 64deg, transparent 80deg, transparent 360deg)",
               animation: "spin 18s linear infinite",
               mixBlendMode: "screen",
             }}
@@ -118,17 +118,17 @@ export function Hero() {
             >
               <defs>
                 <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%"   stopColor="#e2c070" />
-                  <stop offset="50%"  stopColor="#c9a45a" />
+                  <stop offset="0%"   stopColor="#D0D8E4" />
+                  <stop offset="50%"  stopColor="#B2C0CC" />
                   <stop offset="100%" stopColor="#8a6828" />
                 </linearGradient>
               </defs>
               <g style={{ animation: "spin 28s linear infinite", transformOrigin: "236px 236px" }}>
                 <circle cx="236" cy="236" r="228" stroke="url(#rg)" strokeWidth="1" opacity=".35" />
-                <polygon points="236,6 240,17 236,28 232,17" fill="#c9a45a" opacity=".9" />
-                <line x1="236" y1="446" x2="236" y2="466" stroke="#c9a45a" strokeWidth="1" opacity=".5" />
-                <line x1="8"   y1="236" x2="24"  y2="236" stroke="#c9a45a" strokeWidth="1" opacity=".4" />
-                <line x1="448" y1="236" x2="464" y2="236" stroke="#c9a45a" strokeWidth="1" opacity=".4" />
+                <polygon points="236,6 240,17 236,28 232,17" fill="#B2C0CC" opacity=".9" />
+                <line x1="236" y1="446" x2="236" y2="466" stroke="#B2C0CC" strokeWidth="1" opacity=".5" />
+                <line x1="8"   y1="236" x2="24"  y2="236" stroke="#B2C0CC" strokeWidth="1" opacity=".4" />
+                <line x1="448" y1="236" x2="464" y2="236" stroke="#B2C0CC" strokeWidth="1" opacity=".4" />
               </g>
               <g style={{ animation: "spin 42s linear infinite reverse", transformOrigin: "236px 236px" }}>
                 <circle cx="236" cy="236" r="206" stroke="url(#rg)" strokeWidth=".7" strokeDasharray="4 18" opacity=".22" />
@@ -138,7 +138,7 @@ export function Hero() {
             {/* Logo image — 3-layer drop shadow for depth */}
             <Image
               src="/isotipo.png"
-              alt="Wolf Suit"
+              alt="Suitwolf"
               width={460}
               height={460}
               quality={100}
@@ -150,9 +150,9 @@ export function Hero() {
                 height: "100%",
                 objectFit: "contain",
                 filter:
-                  "drop-shadow(0 0 80px rgba(201,164,90,.42))" +
-                  " drop-shadow(0 0 28px rgba(201,164,90,.65))" +
-                  " drop-shadow(0 0 6px rgba(201,164,90,.9))",
+                  "drop-shadow(0 0 80px rgba(178,192,204,.42))" +
+                  " drop-shadow(0 0 28px rgba(178,192,204,.65))" +
+                  " drop-shadow(0 0 6px rgba(178,192,204,.9))",
               }}
             />
 
@@ -177,7 +177,7 @@ export function Hero() {
                     marginTop: -s.size / 2,
                     borderRadius: "50%",
                     background: "rgba(226,192,112,.95)",
-                    boxShadow: `0 0 ${s.size * 3}px rgba(201,164,90,.8)`,
+                    boxShadow: `0 0 ${s.size * 3}px rgba(178,192,204,.8)`,
                     animation: `twinkle ${s.dur}s ease-in-out infinite ${s.delay}s`,
                   }}
                 />
@@ -196,14 +196,14 @@ export function Hero() {
             transition={{ duration: 1.5, delay: 1.1, ease: EASE }}
           >
             <ScrambleText
-              text="WOLF SUIT"
+              text="SUITWOLF"
               delay={1.1}
               duration={1200}
               className="font-display font-semibold"
               style={{
                 fontSize: "clamp(36px, 5.5vw, 68px)",
                 letterSpacing: ".38em",
-                background: "linear-gradient(135deg, #e2c070 0%, #c9a45a 45%, #9a7a3a 75%, #c9a45a 100%)",
+                background: "linear-gradient(135deg, #D0D8E4 0%, #B2C0CC 45%, #5A6A7C 75%, #B2C0CC 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -217,7 +217,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 1.6 }}
-            style={{ width: 5, height: 5, background: "var(--color-gold)", transform: "rotate(45deg)", margin: "14px auto" }}
+            style={{ width: 5, height: 5, background: "var(--color-silver)", transform: "rotate(45deg)", margin: "14px auto" }}
           />
 
           {/* Tag */}
@@ -235,9 +235,9 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 2.3 }}
-            style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, color: "rgba(201,164,90,.45)", fontSize: 10, letterSpacing: ".25em", textTransform: "uppercase" }}
+            style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, color: "rgba(178,192,204,.45)", fontSize: 10, letterSpacing: ".25em", textTransform: "uppercase" }}
           >
-            <div style={{ width: 1, height: 44, background: "linear-gradient(to bottom, rgba(201,164,90,.45), transparent)" }} />
+            <div style={{ width: 1, height: 44, background: "linear-gradient(to bottom, rgba(178,192,204,.45), transparent)" }} />
             <span>Continuar</span>
           </motion.div>
         </motion.div>

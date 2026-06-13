@@ -10,7 +10,7 @@ const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 const inputStyle: React.CSSProperties = {
   background: "transparent",
   border: "none",
-  borderBottom: "1px solid rgba(201,164,90,.18)",
+  borderBottom: "1px solid rgba(178,192,204,.18)",
   padding: "12px 0",
   fontSize: 14,
   color: "var(--color-text)",
@@ -48,7 +48,7 @@ export function Contact() {
           {/* ── Left: Copy ── */}
           <div>
             <Reveal y={20} blur={4}>
-              <p style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-gold)", marginBottom: 18 }}>
+              <p style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-silver)", marginBottom: 18 }}>
                 Aplicación
               </p>
             </Reveal>
@@ -130,8 +130,8 @@ export function Contact() {
                   alignItems: "center",
                   gap: 16,
                   padding: "15px 30px",
-                  border: "1px solid rgba(201,164,90,.4)",
-                  background: btnHovered ? "var(--color-gold)" : "transparent",
+                  border: "1px solid rgba(178,192,204,.4)",
+                  background: btnHovered ? "var(--color-silver)" : "transparent",
                   color: btnHovered ? "#111" : "var(--color-text)",
                   fontFamily: "var(--font-body)",
                   fontSize: 11,

@@ -40,7 +40,7 @@ export function Duality() {
             transition={{ duration: 1.2, ease: EASE }}
             style={{ padding: "48px 64px 48px 0" }}
           >
-            <p style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase", color: "var(--color-gold)", marginBottom: 20, opacity: 0.7 }}>
+            <p style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase", color: "var(--color-silver)", marginBottom: 20, opacity: 0.7 }}>
               El lobo
             </p>
 
@@ -76,7 +76,7 @@ export function Duality() {
                   transition={{ duration: 0.7, delay: 0.35 + i * 0.09, ease: EASE }}
                   style={{ display: "flex", alignItems: "flex-start", gap: 18 }}
                 >
-                  <span style={{ width: 22, height: 1, background: "var(--color-gold)", opacity: .4, flexShrink: 0, marginTop: 8 }} />
+                  <span style={{ width: 22, height: 1, background: "var(--color-silver)", opacity: .4, flexShrink: 0, marginTop: 8 }} />
                   <div>
                     <p style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--color-text-2)", marginBottom: 5 }}>
                       {item.label}
@@ -99,7 +99,7 @@ export function Duality() {
             style={{
               width: 1,
               alignSelf: "stretch",
-              background: "linear-gradient(to bottom, transparent 5%, rgba(201,164,90,.2) 25%, rgba(201,164,90,.2) 75%, transparent 95%)",
+              background: "linear-gradient(to bottom, transparent 5%, rgba(178,192,204,.2) 25%, rgba(178,192,204,.2) 75%, transparent 95%)",
               transformOrigin: "top",
             }}
           />
@@ -112,7 +112,7 @@ export function Duality() {
             transition={{ duration: 1.2, ease: EASE }}
             style={{ padding: "48px 0 48px 64px", textAlign: "right" }}
           >
-            <p style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase", color: "var(--color-gold)", marginBottom: 20, opacity: 0.7 }}>
+            <p style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase", color: "var(--color-silver)", marginBottom: 20, opacity: 0.7 }}>
               El traje
             </p>
 
@@ -148,7 +148,7 @@ export function Duality() {
                   transition={{ duration: 0.7, delay: 0.35 + i * 0.09, ease: EASE }}
                   style={{ display: "flex", alignItems: "flex-start", gap: 18, flexDirection: "row-reverse" }}
                 >
-                  <span style={{ width: 22, height: 1, background: "var(--color-gold)", opacity: .4, flexShrink: 0, marginTop: 8 }} />
+                  <span style={{ width: 22, height: 1, background: "var(--color-silver)", opacity: .4, flexShrink: 0, marginTop: 8 }} />
                   <div style={{ textAlign: "right" }}>
                     <p style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--color-text-2)", marginBottom: 5 }}>
                       {item.label}
@@ -172,10 +172,10 @@ export function Duality() {
             textAlign: "center",
             marginTop: 80,
             paddingTop: 72,
-            borderTop: "1px solid rgba(201,164,90,.07)",
+            borderTop: "1px solid rgba(178,192,204,.07)",
           }}
         >
-          <div style={{ width: 1, height: 52, background: "linear-gradient(to bottom, transparent, rgba(201,164,90,.38))", margin: "0 auto 32px" }} />
+          <div style={{ width: 1, height: 52, background: "linear-gradient(to bottom, transparent, rgba(178,192,204,.38))", margin: "0 auto 32px" }} />
           <SplitWords
             as="p"
             delay={0.3}

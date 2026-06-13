@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
 /* ══════════════════════════════════════════════════════════
-   WOLF SUIT — DESIGN SYSTEM FOUNDATION
-   Capítulo 6 del Wolf Suit OS v2.1
+   SUITWOLF — DESIGN SYSTEM FOUNDATION
    ══════════════════════════════════════════════════════════ */
 
 /* ─── Fuentes (referenciadas desde next/font) ─── */
@@ -26,8 +25,8 @@
   --color-text-4: #555452;
 
   /* Acento */
-  --color-gold:     #C9A45A;
-  --color-gold-dim: #9A7A42;
+  --color-silver:     #B2C0CC;
+  --color-silver-dim: #7A8A98;
 
   /* Bordes (opacos — para usar como Tailwind utility) */
   --color-line:   #1F1F1E;
@@ -37,7 +36,7 @@
   --shadow-sm:   0 1px 3px rgba(0, 0, 0, 0.4);
   --shadow-md:   0 4px 16px rgba(0, 0, 0, 0.5);
   --shadow-lg:   0 12px 40px rgba(0, 0, 0, 0.6);
-  --shadow-gold: 0 0 40px rgba(201, 164, 90, 0.15);
+  --shadow-silver: 0 0 40px rgba(178, 192, 204, 0.15);
 }
 
 /* ─── Tokens para uso directo en CSS (no Tailwind utilities) ─── */
@@ -86,9 +85,9 @@
   --border-medium:  rgba(255, 255, 255, 0.12);
   --border-strong:  rgba(255, 255, 255, 0.22);
 
-  /* Dorado semi-transparente */
-  --gold-glow:   rgba(201, 164, 90, 0.15);
-  --gold-subtle: rgba(201, 164, 90, 0.08);
+  /* Acento semi-transparente */
+  --silver-glow:   rgba(178, 192, 204, 0.15);
+  --silver-subtle: rgba(178, 192, 204, 0.08);
 
   /* Layout */
   --section-py: clamp(5rem, 10vh, 12rem);
@@ -125,13 +124,13 @@ body {
 
 /* Selección de texto */
 ::selection {
-  background-color: var(--color-gold);
+  background-color: var(--color-silver);
   color: #080808;
 }
 
 /* Focus accesible y elegante */
 :focus-visible {
-  outline: 1.5px solid var(--color-gold-dim);
+  outline: 1.5px solid var(--color-silver-dim);
   outline-offset: 3px;
   border-radius: 2px;
 }

@@ -1,5 +1,5 @@
 export const SITE = {
-  name: "Wolf Suit",
+  name: "Suitwolf",
   tagline: "Experiencias Digitales de Alto Nivel",
   description:
     "Firma estratégica especializada en construir percepción de valor para empresas ambiciosas.",

@@ -35,11 +35,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Wolf Suit — Diseño Web Premium y Estrategia de Percepción",
-    template: "%s — Wolf Suit",
+    default: "Suitwolf — Diseño Web Premium y Estrategia de Percepción",
+    template: "%s — Suitwolf",
   },
   description:
-    "Wolf Suit es una firma de diseño estratégico que construye identidades digitales premium para empresas ambiciosas. Sin templates. Todo desde cero. Diseño web, branding y estrategia de percepción.",
+    "Suitwolf es una firma de diseño estratégico que construye identidades digitales premium para empresas ambiciosas. Sin templates. Todo desde cero. Diseño web, branding y estrategia de percepción.",
   keywords: [
     "diseño web premium",
     "agencia de diseño sin templates",
@@ -54,20 +54,20 @@ export const metadata: Metadata = {
     "percepción de valor empresas",
     "diseño web profesional",
   ],
-  authors: [{ name: "Wolf Suit" }],
-  creator: "Wolf Suit",
+  authors: [{ name: "Suitwolf" }],
+  creator: "Suitwolf",
   openGraph: {
     type: "website",
     locale: "es_419",
     url: "https://wolfsuit.com",
-    siteName: "Wolf Suit",
-    title: "Wolf Suit — Diseño Web Premium y Estrategia de Percepción",
+    siteName: "Suitwolf",
+    title: "Suitwolf — Diseño Web Premium y Estrategia de Percepción",
     description:
       "Sin templates. Sin atajos. Identidades digitales construidas desde cero para empresas que quieren verse en la categoría donde pertenecen.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wolf Suit — Diseño Web Premium y Estrategia de Percepción",
+    title: "Suitwolf — Diseño Web Premium y Estrategia de Percepción",
     description:
       "Sin templates. Sin atajos. Identidades digitales construidas desde cero para empresas que quieren verse en la categoría donde pertenecen.",
   },
@@ -103,7 +103,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Wolf Suit",
+              name: "Suitwolf",
               url: "https://wolfsuit.com",
               description:
                 "Firma de diseño estratégico especializada en identidades digitales premium para empresas ambiciosas. Sin templates — todo construido desde cero.",

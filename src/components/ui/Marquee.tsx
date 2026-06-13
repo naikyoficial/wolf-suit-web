@@ -9,8 +9,8 @@ export function Marquee() {
       aria-hidden
       style={{
         overflow: "hidden",
-        borderTop: "1px solid rgba(201,164,90,.08)",
-        borderBottom: "1px solid rgba(201,164,90,.08)",
+        borderTop: "1px solid rgba(178,192,204,.08)",
+        borderBottom: "1px solid rgba(178,192,204,.08)",
         padding: "14px 0",
         position: "relative",
         zIndex: 10,
@@ -31,7 +31,7 @@ export function Marquee() {
               fontSize: 10,
               letterSpacing: ".42em",
               textTransform: "uppercase",
-              color: "rgba(201,164,90,.35)",
+              color: "rgba(178,192,204,.35)",
               whiteSpace: "nowrap",
               fontFamily: "var(--font-body)",
             }}

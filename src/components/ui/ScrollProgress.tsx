@@ -24,7 +24,7 @@ export function ScrollProgress() {
           transform: "translateX(-50%)",
           width: 5,
           height: 1,
-          background: "rgba(201,164,90,.35)",
+          background: "rgba(178,192,204,.35)",
         }}
       />
 
@@ -37,7 +37,7 @@ export function ScrollProgress() {
           transform: "translateX(-50%)",
           width: 5,
           height: 1,
-          background: "rgba(201,164,90,.15)",
+          background: "rgba(178,192,204,.15)",
         }}
       />
 
@@ -52,7 +52,7 @@ export function ScrollProgress() {
           scaleY,
           originY: 0,
           background:
-            "linear-gradient(to bottom, #e8cc7a 0%, #c9a45a 55%, rgba(201,164,90,.22) 100%)",
+            "linear-gradient(to bottom, #C4CED8 0%, #B2C0CC 55%, rgba(178,192,204,.22) 100%)",
         }}
       />
 
@@ -73,7 +73,7 @@ export function ScrollProgress() {
             inset: -10,
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(201,164,90,.25) 0%, rgba(201,164,90,.06) 55%, transparent 75%)",
+              "radial-gradient(circle, rgba(178,192,204,.25) 0%, rgba(178,192,204,.06) 55%, transparent 75%)",
             animation: "breathe 2.2s ease-in-out infinite",
           }}
         />
@@ -83,12 +83,12 @@ export function ScrollProgress() {
             width: 5,
             height: 5,
             borderRadius: "50%",
-            background: "#f8e8b4",
+            background: "#E4EAEF",
             boxShadow:
-              "0 0 5px rgba(201,164,90,1)," +
-              "0 0 12px rgba(201,164,90,.8)," +
-              "0 0 24px rgba(201,164,90,.4)," +
-              "0 0 40px rgba(201,164,90,.15)",
+              "0 0 5px rgba(178,192,204,1)," +
+              "0 0 12px rgba(178,192,204,.8)," +
+              "0 0 24px rgba(178,192,204,.4)," +
+              "0 0 40px rgba(178,192,204,.15)",
           }}
         />
       </motion.div>

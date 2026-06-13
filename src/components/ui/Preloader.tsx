@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const LETTERS = "WOLF SUIT".split("");
+const LETTERS = "SUITWOLF".split("");
 const EASE    = [0.16, 1.0, 0.3, 1.0] as const;
 const CURTAIN = [0.77, 0.0, 0.18, 1.0] as const;
 
@@ -66,7 +66,7 @@ export function Preloader() {
               ))}
             </div>
 
-            {/* Gold line sweeps in */}
+            {/* Silver line sweeps in */}
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
@@ -75,7 +75,7 @@ export function Preloader() {
                 height: 1,
                 width: "100%",
                 maxWidth: 480,
-                background: "linear-gradient(90deg, transparent, #c9a45a, transparent)",
+                background: "linear-gradient(90deg, transparent, #B2C0CC, transparent)",
                 marginTop: 18,
                 transformOrigin: "center",
               }}
@@ -91,7 +91,7 @@ export function Preloader() {
                 fontSize: 10,
                 letterSpacing: ".38em",
                 textTransform: "uppercase",
-                color: "rgba(201,164,90,.5)",
+                color: "rgba(178,192,204,.5)",
               }}
             >
               Diseño · Estrategia · Tecnología

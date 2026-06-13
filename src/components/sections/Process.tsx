@@ -24,7 +24,7 @@ export function Process() {
       <div className="w-full max-w-[1440px] mx-auto">
 
         <Reveal y={24} blur={4}>
-          <p style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-gold)", marginBottom: 18 }}>
+          <p style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-silver)", marginBottom: 18 }}>
             Proceso
           </p>
         </Reveal>
@@ -60,7 +60,7 @@ export function Process() {
               left: 0,
               right: 0,
               height: 1,
-              background: "linear-gradient(90deg, rgba(201,164,90,.5), rgba(201,164,90,.1))",
+              background: "linear-gradient(90deg, rgba(178,192,204,.5), rgba(178,192,204,.1))",
             }}
           />
 
@@ -79,9 +79,9 @@ export function Process() {
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.5 + i * 0.12, ease: EASE }}
-                style={{ position: "absolute", top: 24, left: 0, width: 8, height: 8, border: "1px solid var(--color-gold)", borderRadius: "50%", background: "#050505" }}
+                style={{ position: "absolute", top: 24, left: 0, width: 8, height: 8, border: "1px solid var(--color-silver)", borderRadius: "50%", background: "#050505" }}
               />
-              <p style={{ fontSize: 10, color: "var(--color-gold)", letterSpacing: ".25em", marginBottom: 12 }}>{step.num}</p>
+              <p style={{ fontSize: 10, color: "var(--color-silver)", letterSpacing: ".25em", marginBottom: 12 }}>{step.num}</p>
               <p className="font-display" style={{ fontSize: 21, fontWeight: 500, marginBottom: 8 }}>{step.name}</p>
               <p style={{ fontSize: 12, color: "var(--color-text-3)", lineHeight: 1.75 }}>{step.desc}</p>
             </motion.div>

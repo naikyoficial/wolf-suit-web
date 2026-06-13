@@ -10,7 +10,7 @@ function Divider() {
       aria-hidden
       style={{
         height: 1,
-        background: "linear-gradient(90deg, transparent, rgba(201,164,90,.2), transparent)",
+        background: "linear-gradient(90deg, transparent, rgba(178,192,204,.2), transparent)",
         margin: "0 8vw",
         position: "relative",
         zIndex: 10,

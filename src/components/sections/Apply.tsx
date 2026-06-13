@@ -48,11 +48,11 @@ export function Apply() {
       {/* ── Eyebrow ── */}
       <Reveal>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 40 }}>
-          <div style={{ width: 48, height: 1, background: "linear-gradient(to right, transparent, rgba(201,164,90,.4))" }} />
-          <p style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase", color: "var(--color-gold)" }}>
+          <div style={{ width: 48, height: 1, background: "linear-gradient(to right, transparent, rgba(178,192,204,.4))" }} />
+          <p style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase", color: "var(--color-silver)" }}>
             Proceso de Selección
           </p>
-          <div style={{ width: 48, height: 1, background: "linear-gradient(to left, transparent, rgba(201,164,90,.4))" }} />
+          <div style={{ width: 48, height: 1, background: "linear-gradient(to left, transparent, rgba(178,192,204,.4))" }} />
         </div>
       </Reveal>
 
@@ -104,11 +104,11 @@ export function Apply() {
             style={{
               maxWidth: 200,
               textAlign: "left",
-              borderLeft: "1px solid rgba(201,164,90,.14)",
+              borderLeft: "1px solid rgba(178,192,204,.14)",
               paddingLeft: 20,
             }}
           >
-            <p style={{ fontSize: 9, letterSpacing: ".5em", color: "var(--color-gold)", opacity: 0.5, marginBottom: 10 }}>
+            <p style={{ fontSize: 9, letterSpacing: ".5em", color: "var(--color-silver)", opacity: 0.5, marginBottom: 10 }}>
               {s.num}
             </p>
             <p style={{ fontSize: 11, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--color-text-2)", marginBottom: 9 }}>
@@ -132,8 +132,8 @@ export function Apply() {
             alignItems: "center",
             gap: 22,
             padding: "18px 48px",
-            border: "1px solid rgba(201,164,90,.45)",
-            background: hovered ? "var(--color-gold)" : "transparent",
+            border: "1px solid rgba(178,192,204,.45)",
+            background: hovered ? "var(--color-silver)" : "transparent",
             color: hovered ? "#111" : "var(--color-text)",
             fontFamily: "var(--font-body)",
             fontSize: 11,

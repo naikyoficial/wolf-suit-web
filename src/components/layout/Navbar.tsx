@@ -13,7 +13,7 @@ export function Navbar() {
         background: "rgba(4,4,4,.6)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
-        borderBottom: "1px solid rgba(201,164,90,.07)",
+        borderBottom: "1px solid rgba(178,192,204,.07)",
       }}
     >
       <Link
@@ -23,7 +23,7 @@ export function Navbar() {
       >
         <Image
           src="/isotipo.png"
-          alt="Wolf Suit mark"
+          alt="Suitwolf mark"
           width={28}
           height={28}
           className="opacity-90"
@@ -59,7 +59,7 @@ export function Navbar() {
         className="hidden md:inline-flex items-center transition-all duration-300 hover:bg-gold hover:text-[#111]"
         style={{
           padding: "10px 22px",
-          border: "1px solid rgba(201,164,90,.45)",
+          border: "1px solid rgba(178,192,204,.45)",
           fontSize: 11,
           letterSpacing: ".18em",
           textTransform: "uppercase",

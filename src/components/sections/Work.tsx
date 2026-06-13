@@ -23,7 +23,7 @@ export function Work() {
       <div className="w-full max-w-[1440px] mx-auto">
 
         <Reveal y={24} blur={4}>
-          <p style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-gold)", marginBottom: 18 }}>
+          <p style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-silver)", marginBottom: 18 }}>
             Trabajo
           </p>
         </Reveal>
@@ -44,7 +44,7 @@ export function Work() {
           </SplitWords>
         </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "rgba(201,164,90,.06)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "rgba(178,192,204,.06)" }}>
           {PROJECTS.map((p, i) => (
             <motion.div
               key={i}
@@ -64,12 +64,12 @@ export function Work() {
                 cursor: "pointer",
                 position: "relative",
                 overflow: "hidden",
-                border: `1px solid ${hovered === i ? "rgba(201,164,90,.18)" : "rgba(255,255,255,.03)"}`,
+                border: `1px solid ${hovered === i ? "rgba(178,192,204,.18)" : "rgba(255,255,255,.03)"}`,
                 transition: "border-color .5s",
               }}
             >
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(201,164,90,.06) 0%, transparent 50%)", opacity: hovered === i ? 1 : 0, transition: "opacity .5s", pointerEvents: "none" }} />
-              <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, letterSpacing: ".15em", textTransform: "uppercase", color: "rgba(201,164,90,.5)", position: "relative" }}>
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(178,192,204,.06) 0%, transparent 50%)", opacity: hovered === i ? 1 : 0, transition: "opacity .5s", pointerEvents: "none" }} />
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, letterSpacing: ".15em", textTransform: "uppercase", color: "rgba(178,192,204,.5)", position: "relative" }}>
                 <span>{p.industry}</span>
                 <span>{p.year}</span>
               </div>
@@ -77,7 +77,7 @@ export function Work() {
                 <p className="font-display font-light" style={{ fontSize: "clamp(24px,3vw,38px)", color: hovered === i ? "var(--color-text)" : "rgba(236,232,223,.45)", transition: "color .4s" }}>
                   {p.title}
                 </p>
-                <div style={{ width: hovered === i ? 50 : 0, height: 1, background: "var(--color-gold)", marginTop: 12, transition: "width .7s cubic-bezier(.16,1,.3,1)" }} />
+                <div style={{ width: hovered === i ? 50 : 0, height: 1, background: "var(--color-silver)", marginTop: 12, transition: "width .7s cubic-bezier(.16,1,.3,1)" }} />
               </div>
             </motion.div>
           ))}
