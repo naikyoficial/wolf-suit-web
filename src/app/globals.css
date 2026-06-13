@@ -136,20 +136,9 @@ body {
   border-radius: 2px;
 }
 
-/* Scrollbar personalizado */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-line-2);
-  border-radius: 2px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-4);
-}
+/* Ocultar scrollbar nativo — se usa el ScrollProgress personalizado */
+::-webkit-scrollbar { display: none; }
+body { scrollbar-width: none; }
 
 /* ─── Cinematic keyframe animations ─── */
 @keyframes spin {
