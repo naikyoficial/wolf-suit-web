@@ -13,7 +13,7 @@ export function ScrollProgress() {
     <div
       aria-hidden
       className="fixed right-0 top-0 pointer-events-none"
-      style={{ width: 2, height: "100vh", zIndex: 9993 }}
+      style={{ width: 2, height: "100vh", zIndex: 9993, background: "transparent" }}
     >
       {/* Top cap */}
       <div
