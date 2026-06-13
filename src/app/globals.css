@@ -163,6 +163,10 @@ body { scrollbar-width: none; }
   0%, 100% { opacity: 0;   transform: scale(0); }
   40%, 60%  { opacity: 0.9; transform: scale(1); }
 }
+@keyframes chromeSheen {
+  0%, 78%, 100% { transform: translateX(-160%) rotate(12deg); }
+  88%            { transform: translateX(160%)  rotate(12deg); }
+}
 /* ─── Custom cursor — hide native ─── */
 html, body, * { cursor: none !important; }
 input, textarea, select { cursor: text !important; }

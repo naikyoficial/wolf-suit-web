@@ -8,14 +8,19 @@ import { Marquee }      from "@/components/ui/Marquee";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
-/* Gold sparks — positioned relative to logo center (logo radius ~230px) */
-const SPARKS = [
-  { x:  270, y:  72,  delay: 0,   dur: 3.6, size: 2.5 },
-  { x:   59, y:  279, delay: 1.3, dur: 4.1, size: 2   },
-  { x: -212, y:  191, delay: 2.6, dur: 3.3, size: 3   },
-  { x: -253, y:  -92, delay: 0.7, dur: 4.4, size: 2   },
-  { x:  -38, y: -267, delay: 3.2, dur: 3.8, size: 2.5 },
-  { x:  244, y: -114, delay: 1.9, dur: 3.5, size: 2   },
+/* ─── Diamond / crystal sparks — orbit around the logo ─────────
+   star=true adds 4-pointed cross beams (lens-flare / diamond facet)
+────────────────────────────────────────────────────────────────── */
+const SPARKS: { x: number; y: number; delay: number; dur: number; size: number; star: boolean }[] = [
+  { x:  270, y:   72, delay: 0,   dur: 3.6, size: 3.0, star: true  },
+  { x: -212, y:  191, delay: 2.6, dur: 3.3, size: 3.5, star: true  },
+  { x:  -38, y: -267, delay: 3.2, dur: 3.8, size: 2.8, star: true  },
+  { x:   59, y:  279, delay: 1.3, dur: 4.1, size: 2.0, star: false },
+  { x: -253, y:  -92, delay: 0.7, dur: 4.4, size: 1.8, star: false },
+  { x:  244, y: -114, delay: 1.9, dur: 3.5, size: 2.0, star: false },
+  { x:  158, y:  220, delay: 0.5, dur: 4.7, size: 1.0, star: false },
+  { x: -152, y:  238, delay: 2.2, dur: 3.9, size: 1.0, star: false },
+  { x:  118, y: -220, delay: 3.7, dur: 4.3, size: 1.1, star: false },
 ];
 
 export function Hero() {
@@ -69,7 +74,7 @@ export function Hero() {
               position: "absolute",
               inset: -100,
               borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(178,192,204,.3) 0%, rgba(178,192,204,.1) 38%, rgba(178,192,204,.03) 60%, transparent 72%)",
+              background: "radial-gradient(circle, rgba(178,192,204,.48) 0%, rgba(178,192,204,.18) 38%, rgba(178,192,204,.05) 60%, transparent 72%)",
               animation: "breathe 5s ease-in-out infinite",
             }}
           />
@@ -81,28 +86,28 @@ export function Hero() {
               position: "absolute",
               inset: -36,
               borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(178,192,204,.18) 0%, rgba(178,192,204,.06) 45%, transparent 68%)",
+              background: "radial-gradient(circle, rgba(200,218,235,.28) 0%, rgba(178,192,204,.10) 45%, transparent 68%)",
               animation: "breathe 4s ease-in-out infinite 1.2s",
             }}
           />
 
-          {/* Rotating gold arc — sweeps around the logo */}
+          {/* Rotating chrome arc */}
           <div
             aria-hidden
             style={{
               position: "absolute",
               inset: -8,
               borderRadius: "50%",
-              background: "conic-gradient(from 0deg, transparent 0deg, rgba(178,192,204,.05) 20deg, rgba(178,192,204,.14) 42deg, rgba(178,192,204,.05) 64deg, transparent 80deg, transparent 360deg)",
+              background: "conic-gradient(from 0deg, transparent 0deg, rgba(200,218,240,.08) 20deg, rgba(220,235,255,.26) 42deg, rgba(200,218,240,.08) 64deg, transparent 80deg, transparent 360deg)",
               animation: "spin 18s linear infinite",
               mixBlendMode: "screen",
             }}
           />
 
-          {/* Parallax tilt — contains SVG rings, logo, sparks */}
+          {/* Parallax tilt — contains SVG rings, logo, sparks, sweep */}
           <div ref={isoRef} style={{ position: "relative", width: "100%", height: "100%", willChange: "transform" }}>
 
-            {/* Orbital rings */}
+            {/* ── A: Chrome orbital rings ── */}
             <svg
               viewBox="0 0 472 472"
               fill="none"
@@ -117,25 +122,29 @@ export function Hero() {
               }}
             >
               <defs>
+                {/* 5-stop chrome gradient: bright → steel → deep shadow → steel → bright */}
                 <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%"   stopColor="#E8ECF0" />
-                  <stop offset="50%"  stopColor="#B2C0CC" />
-                  <stop offset="100%" stopColor="#4A5A6A" />
+                  <stop offset="0%"   stopColor="#F2F5F8" />
+                  <stop offset="22%"  stopColor="#C0CEDC" />
+                  <stop offset="50%"  stopColor="#1E2E3C" />
+                  <stop offset="78%"  stopColor="#8A9EAE" />
+                  <stop offset="100%" stopColor="#EEF2F5" />
                 </linearGradient>
               </defs>
               <g style={{ animation: "spin 28s linear infinite", transformOrigin: "236px 236px" }}>
-                <circle cx="236" cy="236" r="228" stroke="url(#rg)" strokeWidth="1" opacity=".35" />
-                <polygon points="236,6 240,17 236,28 232,17" fill="#B2C0CC" opacity=".9" />
-                <line x1="236" y1="446" x2="236" y2="466" stroke="#B2C0CC" strokeWidth="1" opacity=".5" />
-                <line x1="8"   y1="236" x2="24"  y2="236" stroke="#B2C0CC" strokeWidth="1" opacity=".4" />
-                <line x1="448" y1="236" x2="464" y2="236" stroke="#B2C0CC" strokeWidth="1" opacity=".4" />
+                <circle cx="236" cy="236" r="228" stroke="url(#rg)" strokeWidth="1.2" opacity=".45" />
+                {/* Chrome marker — bright white tip */}
+                <polygon points="236,6 240,17 236,28 232,17" fill="#F2F5F8" opacity="1" />
+                <line x1="236" y1="446" x2="236" y2="466" stroke="#C0CEDC" strokeWidth="1" opacity=".6" />
+                <line x1="8"   y1="236" x2="24"  y2="236" stroke="#C0CEDC" strokeWidth="1" opacity=".5" />
+                <line x1="448" y1="236" x2="464" y2="236" stroke="#C0CEDC" strokeWidth="1" opacity=".5" />
               </g>
               <g style={{ animation: "spin 42s linear infinite reverse", transformOrigin: "236px 236px" }}>
-                <circle cx="236" cy="236" r="206" stroke="url(#rg)" strokeWidth=".7" strokeDasharray="4 18" opacity=".22" />
+                <circle cx="236" cy="236" r="206" stroke="url(#rg)" strokeWidth=".8" strokeDasharray="4 18" opacity=".28" />
               </g>
             </svg>
 
-            {/* Logo image — 3-layer drop shadow for depth */}
+            {/* Logo image — chrome drop shadow */}
             <Image
               src="/isotipo.png"
               alt="Suitwolf"
@@ -150,13 +159,34 @@ export function Hero() {
                 height: "100%",
                 objectFit: "contain",
                 filter:
-                  "drop-shadow(0 0 80px rgba(178,192,204,.42))" +
-                  " drop-shadow(0 0 28px rgba(178,192,204,.65))" +
-                  " drop-shadow(0 0 6px rgba(178,192,204,.9))",
+                  "drop-shadow(0 0 70px rgba(178,192,204,.55))" +
+                  " drop-shadow(0 0 24px rgba(210,225,240,.82))" +
+                  " drop-shadow(0 0 8px rgba(235,245,255,.96))",
               }}
             />
 
-            {/* Gold spark particles */}
+            {/* ── C: Chrome sheen sweep — periodic light across logo ── */}
+            <div
+              aria-hidden
+              style={{
+                position: "absolute",
+                inset: 0,
+                zIndex: 4,
+                pointerEvents: "none",
+                overflow: "hidden",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  inset: "-60%",
+                  background: "linear-gradient(110deg, transparent 18%, rgba(255,255,255,.03) 34%, rgba(255,255,255,.22) 50%, rgba(255,255,255,.03) 66%, transparent 82%)",
+                  animation: "chromeSheen 9s ease-in-out infinite 2s",
+                }}
+              />
+            </div>
+
+            {/* ── B: Diamond / crystal spark particles ── */}
             {SPARKS.map((s, i) => (
               <div
                 key={i}
@@ -169,6 +199,32 @@ export function Hero() {
                   pointerEvents: "none",
                 }}
               >
+                {/* 4-pointed star beams on large sparks */}
+                {s.star && (
+                  <>
+                    <div style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: `${-s.size * 9}px`,
+                      width: `${s.size * 18}px`,
+                      height: "1px",
+                      transform: "translateY(-50%)",
+                      background: "linear-gradient(to right, transparent, rgba(210,230,255,.6), rgba(255,255,255,.95), rgba(210,230,255,.6), transparent)",
+                      animation: `twinkle ${s.dur}s ease-in-out infinite ${s.delay}s`,
+                    }} />
+                    <div style={{
+                      position: "absolute",
+                      left: "50%",
+                      top: `${-s.size * 9}px`,
+                      height: `${s.size * 18}px`,
+                      width: "1px",
+                      transform: "translateX(-50%)",
+                      background: "linear-gradient(to bottom, transparent, rgba(210,230,255,.6), rgba(255,255,255,.95), rgba(210,230,255,.6), transparent)",
+                      animation: `twinkle ${s.dur}s ease-in-out infinite ${s.delay}s`,
+                    }} />
+                  </>
+                )}
+                {/* Core crystal dot */}
                 <div
                   style={{
                     width: s.size,
@@ -176,8 +232,11 @@ export function Hero() {
                     marginLeft: -s.size / 2,
                     marginTop: -s.size / 2,
                     borderRadius: "50%",
-                    background: "rgba(226,192,112,.95)",
-                    boxShadow: `0 0 ${s.size * 3}px rgba(178,192,204,.8)`,
+                    background: "rgba(255,255,255,.98)",
+                    boxShadow:
+                      `0 0 ${s.size * 2}px rgba(220,235,255,1),` +
+                      `0 0 ${s.size * 5}px rgba(180,215,255,.75),` +
+                      `0 0 ${s.size * 11}px rgba(160,200,255,.35)`,
                     animation: `twinkle ${s.dur}s ease-in-out infinite ${s.delay}s`,
                   }}
                 />
@@ -189,7 +248,7 @@ export function Hero() {
         {/* Text block exits on scroll */}
         <motion.div style={{ y: contentY, opacity: contentOp, display: "flex", flexDirection: "column", alignItems: "center" }}>
 
-          {/* Wordmark — scramble reveal */}
+          {/* Wordmark — scramble reveal, 5-stop chrome gradient */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -203,7 +262,7 @@ export function Hero() {
               style={{
                 fontSize: "clamp(36px, 5.5vw, 68px)",
                 letterSpacing: ".38em",
-                background: "linear-gradient(135deg, #D0D8E4 0%, #B2C0CC 45%, #5A6A7C 75%, #B2C0CC 100%)",
+                background: "linear-gradient(135deg, #EEF2F5 0%, #B2C0CC 30%, #2A3A4A 55%, #9AAAB8 78%, #EEF2F5 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
