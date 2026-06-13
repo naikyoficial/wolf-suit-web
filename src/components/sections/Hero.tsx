@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { ScrambleText } from "@/components/ui/ScrambleText";
-import { Marquee }      from "@/components/ui/Marquee";
+import { ScrambleText }   from "@/components/ui/ScrambleText";
+import { Marquee }        from "@/components/ui/Marquee";
+import { ParticleField }  from "@/components/ui/ParticleField";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
@@ -30,6 +31,7 @@ export function Hero() {
 
   return (
     <section className="relative" style={{ minHeight: "calc(100dvh - 4rem)" }}>
+      <ParticleField />
       <h1 className="sr-only">Suitwolf — Diseño Web Premium, Branding y Estrategia Digital sin Templates</h1>
 
       <div className="flex flex-col items-center justify-center text-center" style={{ minHeight: "calc(100dvh - 4rem)", padding: "80px 5vw" }}>

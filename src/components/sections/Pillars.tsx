@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Reveal }       from "@/components/ui/Reveal";
 import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
-import { SplitWords } from "@/components/ui/SplitWords";
+import { SplitWords }   from "@/components/ui/SplitWords";
+import { TiltCard }     from "@/components/ui/TiltCard";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
@@ -67,28 +68,31 @@ export function Pillars() {
               whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true }}
               transition={{ duration: 1.1, delay: 0.15 + i * 0.15, ease: EASE }}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
-              style={{
-                padding: 44,
-                background: hovered === i ? "#0d0d0d" : "#070707",
-                border: `1px solid ${hovered === i ? "rgba(178,192,204,.28)" : "transparent"}`,
-                transform: `translateY(${hovered === i ? -6 : 0}px)`,
-                transition: "background .4s, border-color .4s, transform .4s",
-                cursor: "default",
-              }}
             >
-              <p style={{ fontSize: 10, letterSpacing: ".3em", marginBottom: 22, color: "var(--color-text-4)" }}>{p.num}</p>
-              <h3 className="font-display" style={{ fontSize: 30, fontWeight: 400, marginBottom: 14 }}>{p.title}</h3>
-              <p style={{ fontSize: 13, lineHeight: 1.85, color: "var(--color-text-3)" }}>{p.body}</p>
-              <div style={{
-                marginTop: 28,
-                width: hovered === i ? 44 : 24,
-                height: 1,
-                background: "var(--color-silver)",
-                opacity: hovered === i ? .8 : .4,
-                transition: "width .4s, opacity .4s",
-              }} />
+              <TiltCard
+                onMouseEnter={() => setHovered(i)}
+                onMouseLeave={() => setHovered(null)}
+                style={{
+                  padding: 44,
+                  height: "100%",
+                  background: hovered === i ? "#0d0d0d" : "#070707",
+                  border: `1px solid ${hovered === i ? "rgba(178,192,204,.28)" : "transparent"}`,
+                  transition: "background .4s, border-color .4s",
+                  cursor: "default",
+                }}
+              >
+                <p style={{ fontSize: 10, letterSpacing: ".3em", marginBottom: 22, color: "var(--color-text-4)" }}>{p.num}</p>
+                <h3 className="font-display" style={{ fontSize: 30, fontWeight: 400, marginBottom: 14 }}>{p.title}</h3>
+                <p style={{ fontSize: 13, lineHeight: 1.85, color: "var(--color-text-3)" }}>{p.body}</p>
+                <div style={{
+                  marginTop: 28,
+                  width: hovered === i ? 44 : 24,
+                  height: 1,
+                  background: "var(--color-silver)",
+                  opacity: hovered === i ? .8 : .4,
+                  transition: "width .4s, opacity .4s",
+                }} />
+              </TiltCard>
             </motion.div>
           ))}
         </div>
