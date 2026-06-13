@@ -78,7 +78,7 @@ export function Pillars() {
                 cursor: "default",
               }}
             >
-              <ShimmerLabel style={{ fontSize: 10, letterSpacing: ".3em", marginBottom: 22 }}>{p.num}</ShimmerLabel>
+              <p style={{ fontSize: 10, letterSpacing: ".3em", marginBottom: 22, color: "var(--color-text-4)" }}>{p.num}</p>
               <h3 className="font-display" style={{ fontSize: 30, fontWeight: 400, marginBottom: 14 }}>{p.title}</h3>
               <p style={{ fontSize: 13, lineHeight: 1.85, color: "var(--color-text-3)" }}>{p.body}</p>
               <div style={{

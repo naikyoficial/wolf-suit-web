@@ -109,9 +109,7 @@ export function Apply() {
               paddingLeft: 20,
             }}
           >
-            <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".5em", marginBottom: 10 }}>
-              {s.num}
-            </ShimmerLabel>
+            <p style={{ fontSize: 9, letterSpacing: ".5em", marginBottom: 10, color: "var(--color-text-4)" }}>{s.num}</p>
             <p style={{ fontSize: 11, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--color-text-2)", marginBottom: 9 }}>
               {s.label}
             </p>

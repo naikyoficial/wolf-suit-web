@@ -8,18 +8,6 @@ import { Marquee }      from "@/components/ui/Marquee";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
-const SPARKS: { x: number; y: number; delay: number; dur: number; size: number; star: boolean }[] = [
-  { x:  270, y:   72, delay: 0,   dur: 3.6, size: 3.0, star: true  },
-  { x: -212, y:  191, delay: 2.6, dur: 3.3, size: 3.5, star: true  },
-  { x:  -38, y: -267, delay: 3.2, dur: 3.8, size: 2.8, star: true  },
-  { x:   59, y:  279, delay: 1.3, dur: 4.1, size: 2.0, star: false },
-  { x: -253, y:  -92, delay: 0.7, dur: 4.4, size: 1.8, star: false },
-  { x:  244, y: -114, delay: 1.9, dur: 3.5, size: 2.0, star: false },
-  { x:  158, y:  220, delay: 0.5, dur: 4.7, size: 1.0, star: false },
-  { x: -152, y:  238, delay: 2.2, dur: 3.9, size: 1.0, star: false },
-  { x:  118, y: -220, delay: 3.7, dur: 4.3, size: 1.1, star: false },
-];
-
 export function Hero() {
   const isoRef = useRef<HTMLDivElement>(null);
 
@@ -129,61 +117,6 @@ export function Hero() {
               }}
             />
 
-            {/* ── Lens flare — soft radial glow sweeps diagonally ── */}
-            <div aria-hidden style={{
-              position: "absolute",
-              zIndex: 4,
-              pointerEvents: "none",
-              width: 150,
-              height: 150,
-              top: "50%",
-              left: "50%",
-              marginTop: -75,
-              marginLeft: -75,
-              borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(255,255,255,.22) 0%, rgba(220,235,255,.12) 40%, transparent 72%)",
-              animation: "lensFlare 10s ease-in-out infinite 3s",
-            }} />
-
-            {/* ── Diamond spark particles ── */}
-            {SPARKS.map((s, i) => (
-              <div key={i} aria-hidden style={{
-                position: "absolute",
-                top: `calc(50% + ${s.y}px)`,
-                left: `calc(50% + ${s.x}px)`,
-                zIndex: 3, pointerEvents: "none",
-              }}>
-                {s.star && (
-                  <>
-                    <div style={{
-                      position: "absolute", top: "50%",
-                      left: `${-s.size * 9}px`, width: `${s.size * 18}px`, height: "1px",
-                      transform: "translateY(-50%)",
-                      background: "linear-gradient(to right, transparent, rgba(210,230,255,.6), rgba(255,255,255,.95), rgba(210,230,255,.6), transparent)",
-                      animation: `twinkle ${s.dur}s ease-in-out infinite ${s.delay}s`,
-                    }} />
-                    <div style={{
-                      position: "absolute", left: "50%",
-                      top: `${-s.size * 9}px`, height: `${s.size * 18}px`, width: "1px",
-                      transform: "translateX(-50%)",
-                      background: "linear-gradient(to bottom, transparent, rgba(210,230,255,.6), rgba(255,255,255,.95), rgba(210,230,255,.6), transparent)",
-                      animation: `twinkle ${s.dur}s ease-in-out infinite ${s.delay}s`,
-                    }} />
-                  </>
-                )}
-                <div style={{
-                  width: s.size, height: s.size,
-                  marginLeft: -s.size / 2, marginTop: -s.size / 2,
-                  borderRadius: "50%",
-                  background: "rgba(255,255,255,.98)",
-                  boxShadow:
-                    `0 0 ${s.size * 2}px rgba(220,235,255,1),` +
-                    `0 0 ${s.size * 5}px rgba(180,215,255,.75),` +
-                    `0 0 ${s.size * 11}px rgba(160,200,255,.35)`,
-                  animation: `twinkle ${s.dur}s ease-in-out infinite ${s.delay}s`,
-                }} />
-              </div>
-            ))}
           </div>
         </motion.div>
 
