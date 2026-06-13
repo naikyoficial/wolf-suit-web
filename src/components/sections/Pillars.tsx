@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Reveal } from "@/components/ui/Reveal";
+import { Reveal }       from "@/components/ui/Reveal";
+import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
 import { SplitWords } from "@/components/ui/SplitWords";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
@@ -37,9 +38,9 @@ export function Pillars() {
       <div className="w-full max-w-[1440px] mx-auto">
 
         <Reveal y={24} blur={4}>
-          <p style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-silver)", marginBottom: 18 }}>
+          <ShimmerLabel style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", marginBottom: 18 }}>
             Enfoque
-          </p>
+          </ShimmerLabel>
         </Reveal>
 
         <Reveal delay={0.1} y={32} style={{ marginBottom: 56 }}>
@@ -77,7 +78,7 @@ export function Pillars() {
                 cursor: "default",
               }}
             >
-              <p style={{ fontSize: 10, color: "var(--color-silver)", letterSpacing: ".3em", marginBottom: 22 }}>{p.num}</p>
+              <ShimmerLabel style={{ fontSize: 10, letterSpacing: ".3em", marginBottom: 22 }}>{p.num}</ShimmerLabel>
               <h3 className="font-display" style={{ fontSize: 30, fontWeight: 400, marginBottom: 14 }}>{p.title}</h3>
               <p style={{ fontSize: 13, lineHeight: 1.85, color: "var(--color-text-3)" }}>{p.body}</p>
               <div style={{

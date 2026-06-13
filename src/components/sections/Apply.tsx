@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
 import { Reveal } from "@/components/ui/Reveal";
 import { SplitWords } from "@/components/ui/SplitWords";
 
@@ -49,9 +50,9 @@ export function Apply() {
       <Reveal>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 40 }}>
           <div style={{ width: 48, height: 1, background: "linear-gradient(to right, transparent, rgba(178,192,204,.4))" }} />
-          <p style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase", color: "var(--color-silver)" }}>
+          <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase" }}>
             Proceso de Selección
-          </p>
+          </ShimmerLabel>
           <div style={{ width: 48, height: 1, background: "linear-gradient(to left, transparent, rgba(178,192,204,.4))" }} />
         </div>
       </Reveal>

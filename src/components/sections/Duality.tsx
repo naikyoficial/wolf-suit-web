@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Reveal } from "@/components/ui/Reveal";
-import { SplitWords } from "@/components/ui/SplitWords";
+import { Reveal }       from "@/components/ui/Reveal";
+import { SplitWords }   from "@/components/ui/SplitWords";
+import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
@@ -40,9 +41,9 @@ export function Duality() {
             transition={{ duration: 1.2, ease: EASE }}
             style={{ padding: "48px 64px 48px 0" }}
           >
-            <p style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase", color: "var(--color-silver)", marginBottom: 20, opacity: 0.7 }}>
+            <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase", marginBottom: 20 }}>
               El lobo
-            </p>
+            </ShimmerLabel>
 
             <SplitWords
               as="h2"
@@ -112,9 +113,9 @@ export function Duality() {
             transition={{ duration: 1.2, ease: EASE }}
             style={{ padding: "48px 0 48px 64px", textAlign: "right" }}
           >
-            <p style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase", color: "var(--color-silver)", marginBottom: 20, opacity: 0.7 }}>
+            <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase", marginBottom: 20 }}>
               El traje
-            </p>
+            </ShimmerLabel>
 
             <SplitWords
               as="h2"

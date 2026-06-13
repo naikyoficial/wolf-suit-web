@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SplitWords } from "@/components/ui/SplitWords";
-import { Reveal } from "@/components/ui/Reveal";
+import { SplitWords }   from "@/components/ui/SplitWords";
+import { Reveal }       from "@/components/ui/Reveal";
+import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
@@ -15,15 +16,16 @@ export function Philosophy() {
       <div className="w-full max-w-[1440px] mx-auto">
 
         {/* Tag */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: EASE }}
-          style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-silver)", marginBottom: 28 }}
         >
-          Filosofía
-        </motion.p>
+          <ShimmerLabel style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", marginBottom: 28 }}>
+            Filosofía
+          </ShimmerLabel>
+        </motion.div>
 
         {/* Big quote — word by word reveal */}
         <div style={{ maxWidth: 860, margin: "0 auto 28px" }}>

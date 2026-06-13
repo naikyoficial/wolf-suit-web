@@ -163,9 +163,17 @@ body { scrollbar-width: none; }
   0%, 100% { opacity: 0;   transform: scale(0); }
   40%, 60%  { opacity: 0.9; transform: scale(1); }
 }
-@keyframes chromeSheen {
-  0%, 78%, 100% { transform: translateX(-160%) rotate(12deg); }
-  88%            { transform: translateX(160%)  rotate(12deg); }
+/* Radial glow that sweeps diagonally across the logo — no rectangular edges */
+@keyframes lensFlare {
+  0%, 77%, 100% { opacity: 0; transform: translate(-120px, -110px); }
+  80%            { opacity: 0; transform: translate(-120px, -110px); }
+  87%            { opacity: 1; transform: translate(60px,   40px);   }
+  93%            { opacity: 0; transform: translate(160px,  140px);  }
+}
+/* Continuous metal sheen — animates background-position on gradient text */
+@keyframes metalShimmer {
+  0%, 100% { background-position: 200% center; }
+  50%       { background-position: -100% center; }
 }
 /* ─── Custom cursor — hide native ─── */
 html, body, * { cursor: none !important; }

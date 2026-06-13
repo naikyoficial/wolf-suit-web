@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Reveal } from "@/components/ui/Reveal";
-import { SplitWords } from "@/components/ui/SplitWords";
+import { Reveal }       from "@/components/ui/Reveal";
+import { SplitWords }   from "@/components/ui/SplitWords";
+import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
@@ -24,9 +25,9 @@ export function Process() {
       <div className="w-full max-w-[1440px] mx-auto">
 
         <Reveal y={24} blur={4}>
-          <p style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", color: "var(--color-silver)", marginBottom: 18 }}>
+          <ShimmerLabel style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", marginBottom: 18 }}>
             Proceso
-          </p>
+          </ShimmerLabel>
         </Reveal>
 
         <Reveal delay={0.1} y={32} style={{ marginBottom: 64 }}>
@@ -81,7 +82,7 @@ export function Process() {
                 transition={{ duration: 0.5, delay: 0.5 + i * 0.12, ease: EASE }}
                 style={{ position: "absolute", top: 24, left: 0, width: 8, height: 8, border: "1px solid var(--color-silver)", borderRadius: "50%", background: "#050505" }}
               />
-              <p style={{ fontSize: 10, color: "var(--color-silver)", letterSpacing: ".25em", marginBottom: 12 }}>{step.num}</p>
+              <ShimmerLabel style={{ fontSize: 10, letterSpacing: ".25em", marginBottom: 12 }}>{step.num}</ShimmerLabel>
               <p className="font-display" style={{ fontSize: 21, fontWeight: 500, marginBottom: 8 }}>{step.name}</p>
               <p style={{ fontSize: 12, color: "var(--color-text-3)", lineHeight: 1.75 }}>{step.desc}</p>
             </motion.div>
