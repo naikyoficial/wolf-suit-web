@@ -2,9 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { NAV_LINKS, SITE } from "@/config/site";
 
 export function Navbar() {
+  const [ctaHovered, setCtaHovered] = useState(false);
+
   return (
     <header
       className="fixed top-0 left-0 right-0 flex items-center justify-between h-16 z-[--z-sticky]"
@@ -54,20 +57,32 @@ export function Navbar() {
         </ul>
       </nav>
 
-      <Link
-        href="/aplicar"
-        className="hidden md:inline-flex items-center transition-all duration-300 hover:bg-gold hover:text-[#111]"
-        style={{
-          padding: "10px 22px",
-          border: "1px solid rgba(178,192,204,.45)",
-          fontSize: 11,
-          letterSpacing: ".18em",
-          textTransform: "uppercase",
-          color: "var(--color-text)",
-        }}
-      >
-        Iniciar proyecto
-      </Link>
+      <div className="hidden md:inline-block" style={{
+        padding: "1px",
+        background: "linear-gradient(90deg, #3A4A5A 0%, #7A8E9E 22%, #C8D8E8 46%, #EEF4FA 52%, #C8D8E8 58%, #7A8E9E 78%, #3A4A5A 100%)",
+        backgroundSize: "280% 100%",
+        animation: "metalShimmer 4s ease-in-out infinite",
+      }}>
+        <Link
+          href="/aplicar"
+          onMouseEnter={() => setCtaHovered(true)}
+          onMouseLeave={() => setCtaHovered(false)}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            padding: "9px 20px",
+            background: ctaHovered ? "var(--color-silver)" : "#060606",
+            color: ctaHovered ? "#111" : "var(--color-text)",
+            fontSize: 11,
+            letterSpacing: ".18em",
+            textTransform: "uppercase",
+            textDecoration: "none",
+            transition: "background .3s, color .3s",
+          }}
+        >
+          Iniciar proceso
+        </Link>
+      </div>
     </header>
   );
 }

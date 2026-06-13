@@ -51,102 +51,41 @@ export function Hero() {
             flexShrink: 0,
           }}
         >
-          {/* Outer ambient glow */}
+          {/* Subtle ambient glow */}
           <div aria-hidden style={{
-            position: "absolute", inset: -100, borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(178,192,204,.48) 0%, rgba(178,192,204,.18) 38%, rgba(178,192,204,.05) 60%, transparent 72%)",
-            animation: "breathe 5s ease-in-out infinite",
-          }} />
-
-          {/* Inner tight glow */}
-          <div aria-hidden style={{
-            position: "absolute", inset: -36, borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(200,218,235,.28) 0%, rgba(178,192,204,.10) 45%, transparent 68%)",
-            animation: "breathe 4s ease-in-out infinite 1.2s",
+            position: "absolute", inset: -80, borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(178,192,204,.09) 0%, rgba(178,192,204,.03) 55%, transparent 75%)",
+            animation: "breathe 7s ease-in-out infinite",
           }} />
 
           {/* Parallax tilt container */}
           <div ref={isoRef} style={{ position: "relative", width: "100%", height: "100%", willChange: "transform" }}>
 
-            {/* ── Crystal fragment constellation ── */}
-            <svg viewBox="0 0 620 620" fill="none" aria-hidden style={{
-              position: "absolute",
-              inset: -80,
-              width: "calc(100% + 160px)",
-              height: "calc(100% + 160px)",
-              zIndex: 1,
-              pointerEvents: "none",
-            }}>
-              <defs>
-                <linearGradient id="cfA" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%"   stopColor="#EEF4FA" stopOpacity="0.85" />
-                  <stop offset="50%"  stopColor="#8AACBC" stopOpacity="0.60" />
-                  <stop offset="100%" stopColor="#C0D8EC" stopOpacity="0.80" />
-                </linearGradient>
-                <linearGradient id="cfB" x1="100%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%"   stopColor="#C8DCF0" stopOpacity="0.80" />
-                  <stop offset="100%" stopColor="#EEF4FA" stopOpacity="0.90" />
-                </linearGradient>
-              </defs>
-              {/* Octagonal wireframe connecting fragment centers */}
-              <polygon points="448,172 510,310 448,448 310,510 172,448 110,310 172,172 310,110"
-                fill="none" stroke="rgba(178,200,220,.07)" strokeWidth="0.7" />
-              {/* Fragment 1 — top-right, triangle, 22s CW */}
-              <g style={{ animation: "spin 22s linear infinite", transformOrigin: "448px 172px" }}>
-                <polygon points="448,154 468,184 426,184" fill="rgba(178,200,220,.09)" stroke="url(#cfA)" strokeWidth="0.9" />
-                <line x1="448" y1="154" x2="448" y2="184" stroke="rgba(220,235,250,.20)" strokeWidth="0.5" />
-              </g>
-              {/* Fragment 2 — right, diamond, 35s CCW */}
-              <g style={{ animation: "spin 35s linear infinite reverse", transformOrigin: "510px 310px" }}>
-                <polygon points="510,292 528,310 510,328 492,310" fill="rgba(178,200,220,.10)" stroke="url(#cfB)" strokeWidth="0.9" />
-              </g>
-              {/* Fragment 3 — bottom-right, triangle, 19s CW */}
-              <g style={{ animation: "spin 19s linear infinite", transformOrigin: "448px 448px" }}>
-                <polygon points="428,436 466,436 448,466" fill="rgba(178,200,220,.08)" stroke="url(#cfA)" strokeWidth="0.85" />
-                <line x1="448" y1="466" x2="448" y2="436" stroke="rgba(220,235,250,.18)" strokeWidth="0.5" />
-              </g>
-              {/* Fragment 4 — bottom, diamond, 28s CCW */}
-              <g style={{ animation: "spin 28s linear infinite reverse", transformOrigin: "310px 510px" }}>
-                <polygon points="310,492 328,510 310,528 292,510" fill="rgba(178,200,220,.10)" stroke="url(#cfB)" strokeWidth="0.9" />
-              </g>
-              {/* Fragment 5 — bottom-left, triangle, 25s CW */}
-              <g style={{ animation: "spin 25s linear infinite", transformOrigin: "172px 448px" }}>
-                <polygon points="172,430 192,462 150,462" fill="rgba(178,200,220,.08)" stroke="url(#cfA)" strokeWidth="0.85" />
-                <line x1="172" y1="430" x2="172" y2="462" stroke="rgba(220,235,250,.18)" strokeWidth="0.5" />
-              </g>
-              {/* Fragment 6 — left, thin diamond, 40s CCW */}
-              <g style={{ animation: "spin 40s linear infinite reverse", transformOrigin: "110px 310px" }}>
-                <polygon points="110,292 128,310 110,328 92,310" fill="rgba(178,200,220,.10)" stroke="url(#cfB)" strokeWidth="0.9" />
-              </g>
-              {/* Fragment 7 — top-left, triangle, 30s CW */}
-              <g style={{ animation: "spin 30s linear infinite", transformOrigin: "172px 172px" }}>
-                <polygon points="150,158 192,158 172,190" fill="rgba(178,200,220,.08)" stroke="url(#cfA)" strokeWidth="0.85" />
-                <line x1="172" y1="190" x2="172" y2="158" stroke="rgba(220,235,250,.18)" strokeWidth="0.5" />
-              </g>
-              {/* Fragment 8 — top, small triangle, 16s CCW */}
-              <g style={{ animation: "spin 16s linear infinite reverse", transformOrigin: "310px 110px" }}>
-                <polygon points="310,92 330,122 290,122" fill="rgba(178,200,220,.09)" stroke="url(#cfB)" strokeWidth="0.9" />
-                <line x1="310" y1="92" x2="310" y2="122" stroke="rgba(220,235,250,.20)" strokeWidth="0.5" />
-              </g>
-            </svg>
-
-            {/* Logo */}
-            <Image
-              src="/isotipo.png"
-              alt="Suitwolf"
-              width={460}
-              height={460}
-              quality={100}
-              priority
-              style={{
-                position: "relative", zIndex: 2,
-                width: "100%", height: "100%", objectFit: "contain",
-                filter:
-                  "drop-shadow(0 0 70px rgba(178,192,204,.55))" +
-                  " drop-shadow(0 0 24px rgba(210,225,240,.82))" +
-                  " drop-shadow(0 0 8px rgba(235,245,255,.96))",
-              }}
-            />
+            {/* Logo + contour shimmer */}
+            <div style={{ position: "relative", width: "100%", height: "100%" }}>
+              <Image
+                src="/isotipo.png"
+                alt="Suitwolf"
+                width={460}
+                height={460}
+                quality={100}
+                priority
+                style={{
+                  width: "100%", height: "100%", objectFit: "contain",
+                  filter:
+                    "drop-shadow(0 0 20px rgba(178,192,204,.16))" +
+                    " drop-shadow(0 0 6px rgba(210,225,240,.26))",
+                }}
+              />
+              {/* Sweeping chrome reflection — bright arc travels around logo contour */}
+              <div aria-hidden style={{
+                position: "absolute", inset: 0,
+                background: "conic-gradient(from 0deg, transparent 0deg, transparent 338deg, rgba(180,215,255,.18) 347deg, rgba(255,255,255,.52) 353deg, rgba(180,215,255,.18) 359deg, transparent 360deg)",
+                animation: "spin 5s linear infinite",
+                mixBlendMode: "overlay",
+                pointerEvents: "none",
+              }} />
+            </div>
 
           </div>
         </motion.div>
