@@ -17,7 +17,7 @@ export function ShimmerLabel({
       style={{
         ...style,
         background:
-          "linear-gradient(90deg, #4A5A6A 0%, #7A8E9E 20%, #B8CCD8 44%, #E8F0F6 52%, #B8CCD8 60%, #7A8E9E 80%, #4A5A6A 100%)",
+          "linear-gradient(90deg, #7A8E9E 0%, #9BB5C4 25%, #C8DCE8 44%, #EDF5FA 52%, #C8DCE8 60%, #9BB5C4 75%, #7A8E9E 100%)",
         backgroundSize: "280% 100%",
         WebkitBackgroundClip: "text",
         WebkitTextFillColor: "transparent",
