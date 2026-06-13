@@ -94,8 +94,7 @@ export function Apply() {
               letterSpacing: "-.01em",
             }}
           >
-            Si buscás una agencia que tome tu brief y entregue
-            un template con tu logo encima, no somos lo que buscás.
+            Si buscás que tu empresa se vea como una más, sin distinción real, sin criterio detrás — no somos para vos.
           </p>
           <p
             style={{
@@ -105,10 +104,7 @@ export function Apply() {
               letterSpacing: "-.01em",
             }}
           >
-            Si entendés que tu presencia digital es el argumento
-            más poderoso que tu empresa hace antes de que alguien
-            te conozca — y querés que ese argumento sea impecable —
-            entonces hablemos.
+            Pero si llegaste hasta acá, ya sabemos algo muy importante: no querés ser uno más.
           </p>
         </Reveal>
 
