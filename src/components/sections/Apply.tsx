@@ -24,7 +24,7 @@ const STEPS = [
   {
     num: "03",
     label: "Conversación",
-    desc: "Si hay alineación genuina, agendamos una llamada estratégica. Sin presentaciones genéricas — una conversación real sobre tu empresa.",
+    desc: "Si hay alineación genuina, confirmamos la solicitud del proyecto y pasamos a enviar nuestra propuesta de colaboración.",
   },
 ];
 
