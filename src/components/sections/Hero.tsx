@@ -8,6 +8,16 @@ import { Marquee }      from "@/components/ui/Marquee";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
+/* Gold sparks — positioned relative to logo center (logo radius ~230px) */
+const SPARKS = [
+  { x:  270, y:  72,  delay: 0,   dur: 3.6, size: 2.5 },
+  { x:   59, y:  279, delay: 1.3, dur: 4.1, size: 2   },
+  { x: -212, y:  191, delay: 2.6, dur: 3.3, size: 3   },
+  { x: -253, y:  -92, delay: 0.7, dur: 4.4, size: 2   },
+  { x:  -38, y: -267, delay: 3.2, dur: 3.8, size: 2.5 },
+  { x:  244, y: -114, delay: 1.9, dur: 3.5, size: 2   },
+];
+
 export function Hero() {
   const isoRef = useRef<HTMLDivElement>(null);
 
@@ -37,37 +47,142 @@ export function Hero() {
       {/* ── Main centered content ── */}
       <div className="flex flex-col items-center justify-center text-center" style={{ minHeight: "calc(100dvh - 4rem)", padding: "80px 5vw" }}>
 
-        {/* Isotipo */}
+        {/* ── Isotipo ── */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 2, delay: 0.4, ease: EASE }}
-          style={{ position: "relative", width: 360, height: 360, marginBottom: 44, scale: logoScale, opacity: logoOpacity }}
+          style={{
+            position: "relative",
+            width: 460,
+            height: 460,
+            marginBottom: 44,
+            scale: logoScale,
+            opacity: logoOpacity,
+            flexShrink: 0,
+          }}
         >
-          {/* Breathing glow */}
-          <div aria-hidden style={{ position: "absolute", inset: -80, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,164,90,.28) 0%, rgba(201,164,90,.06) 45%, transparent 70%)", animation: "breathe 5s ease-in-out infinite" }} />
+          {/* Outer ambient glow — breathes slowly */}
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: -100,
+              borderRadius: "50%",
+              background: "radial-gradient(circle, rgba(201,164,90,.3) 0%, rgba(201,164,90,.1) 38%, rgba(201,164,90,.03) 60%, transparent 72%)",
+              animation: "breathe 5s ease-in-out infinite",
+            }}
+          />
 
-          {/* Parallax tilt */}
-          <div ref={isoRef} style={{ position: "relative", width: "100%", height: "100%" }}>
+          {/* Inner tight glow — offset phase */}
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: -36,
+              borderRadius: "50%",
+              background: "radial-gradient(circle, rgba(201,164,90,.18) 0%, rgba(201,164,90,.06) 45%, transparent 68%)",
+              animation: "breathe 4s ease-in-out infinite 1.2s",
+            }}
+          />
+
+          {/* Rotating gold arc — sweeps around the logo */}
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: -8,
+              borderRadius: "50%",
+              background: "conic-gradient(from 0deg, transparent 0deg, rgba(201,164,90,.05) 20deg, rgba(201,164,90,.14) 42deg, rgba(201,164,90,.05) 64deg, transparent 80deg, transparent 360deg)",
+              animation: "spin 18s linear infinite",
+              mixBlendMode: "screen",
+            }}
+          />
+
+          {/* Parallax tilt — contains SVG rings, logo, sparks */}
+          <div ref={isoRef} style={{ position: "relative", width: "100%", height: "100%", willChange: "transform" }}>
+
             {/* Orbital rings */}
-            <svg viewBox="0 0 472 472" fill="none" aria-hidden style={{ position: "absolute", inset: -56, width: "calc(100% + 112px)", height: "calc(100% + 112px)", zIndex: 1, pointerEvents: "none" }}>
+            <svg
+              viewBox="0 0 472 472"
+              fill="none"
+              aria-hidden
+              style={{
+                position: "absolute",
+                inset: -56,
+                width: "calc(100% + 112px)",
+                height: "calc(100% + 112px)",
+                zIndex: 1,
+                pointerEvents: "none",
+              }}
+            >
               <defs>
                 <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#e2c070" /><stop offset="50%" stopColor="#c9a45a" /><stop offset="100%" stopColor="#8a6828" />
+                  <stop offset="0%"   stopColor="#e2c070" />
+                  <stop offset="50%"  stopColor="#c9a45a" />
+                  <stop offset="100%" stopColor="#8a6828" />
                 </linearGradient>
               </defs>
               <g style={{ animation: "spin 28s linear infinite", transformOrigin: "236px 236px" }}>
-                <circle cx="236" cy="236" r="228" stroke="url(#rg)" strokeWidth="1" opacity=".28" />
-                <polygon points="236,6 240,17 236,28 232,17" fill="#c9a45a" opacity=".75" />
-                <line x1="236" y1="446" x2="236" y2="466" stroke="#c9a45a" strokeWidth="1" opacity=".45" />
-                <line x1="8" y1="236" x2="24" y2="236" stroke="#c9a45a" strokeWidth="1" opacity=".35" />
-                <line x1="448" y1="236" x2="464" y2="236" stroke="#c9a45a" strokeWidth="1" opacity=".35" />
+                <circle cx="236" cy="236" r="228" stroke="url(#rg)" strokeWidth="1" opacity=".35" />
+                <polygon points="236,6 240,17 236,28 232,17" fill="#c9a45a" opacity=".9" />
+                <line x1="236" y1="446" x2="236" y2="466" stroke="#c9a45a" strokeWidth="1" opacity=".5" />
+                <line x1="8"   y1="236" x2="24"  y2="236" stroke="#c9a45a" strokeWidth="1" opacity=".4" />
+                <line x1="448" y1="236" x2="464" y2="236" stroke="#c9a45a" strokeWidth="1" opacity=".4" />
               </g>
               <g style={{ animation: "spin 42s linear infinite reverse", transformOrigin: "236px 236px" }}>
-                <circle cx="236" cy="236" r="206" stroke="url(#rg)" strokeWidth=".6" strokeDasharray="4 18" opacity=".18" />
+                <circle cx="236" cy="236" r="206" stroke="url(#rg)" strokeWidth=".7" strokeDasharray="4 18" opacity=".22" />
               </g>
             </svg>
-            <Image src="/isotipo.png" alt="Wolf Suit" width={360} height={360} priority style={{ position: "relative", zIndex: 2, filter: "drop-shadow(0 0 32px rgba(201,164,90,.35)) drop-shadow(0 0 8px rgba(201,164,90,.2))" }} />
+
+            {/* Logo image — 3-layer drop shadow for depth */}
+            <Image
+              src="/isotipo.png"
+              alt="Wolf Suit"
+              width={460}
+              height={460}
+              quality={100}
+              priority
+              style={{
+                position: "relative",
+                zIndex: 2,
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+                filter:
+                  "drop-shadow(0 0 80px rgba(201,164,90,.42))" +
+                  " drop-shadow(0 0 28px rgba(201,164,90,.65))" +
+                  " drop-shadow(0 0 6px rgba(201,164,90,.9))",
+              }}
+            />
+
+            {/* Gold spark particles */}
+            {SPARKS.map((s, i) => (
+              <div
+                key={i}
+                aria-hidden
+                style={{
+                  position: "absolute",
+                  top: `calc(50% + ${s.y}px)`,
+                  left: `calc(50% + ${s.x}px)`,
+                  zIndex: 3,
+                  pointerEvents: "none",
+                }}
+              >
+                <div
+                  style={{
+                    width: s.size,
+                    height: s.size,
+                    marginLeft: -s.size / 2,
+                    marginTop: -s.size / 2,
+                    borderRadius: "50%",
+                    background: "rgba(226,192,112,.95)",
+                    boxShadow: `0 0 ${s.size * 3}px rgba(201,164,90,.8)`,
+                    animation: `twinkle ${s.dur}s ease-in-out infinite ${s.delay}s`,
+                  }}
+                />
+              </div>
+            ))}
           </div>
         </motion.div>
 
@@ -98,22 +213,37 @@ export function Hero() {
           </motion.div>
 
           {/* Diamond */}
-          <motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 1.6 }} style={{ width: 5, height: 5, background: "var(--color-gold)", transform: "rotate(45deg)", margin: "14px auto" }} />
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 1.6 }}
+            style={{ width: 5, height: 5, background: "var(--color-gold)", transform: "rotate(45deg)", margin: "14px auto" }}
+          />
 
           {/* Tag */}
-          <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.8 }} style={{ fontSize: 11, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--color-text-3)", marginBottom: 56 }}>
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.8 }}
+            style={{ fontSize: 11, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--color-text-3)", marginBottom: 56 }}
+          >
             Identidad · Percepción · Excelencia
           </motion.p>
 
           {/* Scroll cue */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 2.3 }} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, color: "rgba(201,164,90,.45)", fontSize: 10, letterSpacing: ".25em", textTransform: "uppercase" }}>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 2.3 }}
+            style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, color: "rgba(201,164,90,.45)", fontSize: 10, letterSpacing: ".25em", textTransform: "uppercase" }}
+          >
             <div style={{ width: 1, height: 44, background: "linear-gradient(to bottom, rgba(201,164,90,.45), transparent)" }} />
             <span>Continuar</span>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* ── Marquee strip at bottom of hero ── */}
+      {/* ── Marquee strip ── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

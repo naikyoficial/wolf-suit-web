@@ -171,6 +171,10 @@ body {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
+@keyframes twinkle {
+  0%, 100% { opacity: 0;   transform: scale(0); }
+  40%, 60%  { opacity: 0.9; transform: scale(1); }
+}
 
 /* ─── Custom cursor — hide native ─── */
 html, body, * { cursor: none !important; }
