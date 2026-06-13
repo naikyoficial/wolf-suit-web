@@ -15,16 +15,6 @@ export function ScrollProgress() {
       className="fixed right-0 top-0 pointer-events-none"
       style={{ width: 2, height: "100vh", zIndex: 9993 }}
     >
-      {/* Track — subtle, fades at both ends */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,.06) 10%, rgba(255,255,255,.06) 90%, transparent 100%)",
-        }}
-      />
-
       {/* Top cap */}
       <div
         style={{
