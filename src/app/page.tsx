@@ -1,9 +1,10 @@
-import { Hero }       from "@/components/sections/Hero";
-import { Duality }    from "@/components/sections/Duality";
-import { Philosophy } from "@/components/sections/Philosophy";
-import { Pillars }    from "@/components/sections/Pillars";
-import { Process }    from "@/components/sections/Process";
-import { Apply }      from "@/components/sections/Apply";
+import { Hero }        from "@/components/sections/Hero";
+import { Duality }     from "@/components/sections/Duality";
+import { Philosophy }  from "@/components/sections/Philosophy";
+import { Pillars }     from "@/components/sections/Pillars";
+import { Process }     from "@/components/sections/Process";
+import { Apply }       from "@/components/sections/Apply";
+import { WolfShadows } from "@/components/ui/WolfShadows";
 
 function Divider() {
   return (
@@ -23,6 +24,7 @@ function Divider() {
 export default function HomePage() {
   return (
     <main className="relative">
+      <WolfShadows />
       <Hero />
       <Divider />
       <Duality />
