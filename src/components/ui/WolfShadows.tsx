@@ -65,8 +65,9 @@ export function WolfShadows() {
     const handle = () => {
       const sy = window.scrollY;
       wolfRefs.forEach((ref, i) => {
-        if (!ref.current) return;
-        const offset = sy * WOLVES[i].parallax;
+        const wolf = WOLVES[i];
+        if (!ref.current || !wolf) return;
+        const offset = sy * wolf.parallax;
         ref.current.style.transform = `translateY(calc(-50% + ${offset}px))`;
       });
     };
