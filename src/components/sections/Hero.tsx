@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ScrambleText }   from "@/components/ui/ScrambleText";
 import { Marquee }        from "@/components/ui/Marquee";
 import { ParticleField }  from "@/components/ui/ParticleField";
@@ -11,6 +12,7 @@ const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
 export function Hero() {
   const isoRef = useRef<HTMLDivElement>(null);
+  const [ctaHovered, setCtaHovered] = useState(false);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -32,7 +34,7 @@ export function Hero() {
   return (
     <section className="relative" style={{ minHeight: "calc(100dvh - 4rem)" }}>
       <ParticleField />
-      <h1 className="sr-only">Suitwolf — Diseño Web Premium, Branding y Estrategia Digital sin Templates</h1>
+      <h1 className="sr-only">Agencia de Diseño y Desarrollo Web Premium para Empresas que Buscan Liderar su Mercado</h1>
 
       <div className="flex flex-col items-center justify-center text-center" style={{ minHeight: "calc(100dvh - 4rem)", padding: "80px 5vw" }}>
 
@@ -139,27 +141,81 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 1.6 }}
-            style={{ width: 5, height: 5, background: "var(--color-silver)", transform: "rotate(45deg)", margin: "14px auto" }}
+            style={{ width: 5, height: 5, background: "var(--color-silver)", transform: "rotate(45deg)", margin: "18px auto 32px" }}
           />
 
-          {/* Tag */}
+          {/* Main visible headline */}
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.8, ease: EASE }}
+            style={{
+              fontSize: "clamp(22px, 2.8vw, 38px)",
+              fontFamily: "var(--font-display)",
+              fontWeight: 300,
+              letterSpacing: "-.02em",
+              lineHeight: 1.18,
+              maxWidth: 580,
+              marginBottom: 20,
+              color: "var(--color-text)",
+            }}
+          >
+            Las empresas extraordinarias no deberían parecer comunes.
+          </motion.h2>
+
+          {/* Subtitle */}
           <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 2.1 }}
+            style={{ fontSize: 13, color: "var(--color-text-3)", lineHeight: 1.85, maxWidth: 480, marginBottom: 40, letterSpacing: "-.01em" }}
+          >
+            Diseñamos y desarrollamos experiencias digitales exclusivas para empresas que entienden que la percepción es una ventaja competitiva.
+          </motion.p>
+
+          {/* CTA */}
+          <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.8 }}
-            style={{ fontSize: 11, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--color-text-3)", marginBottom: 56 }}
+            transition={{ duration: 0.8, delay: 2.4 }}
+            style={{ marginBottom: 52 }}
           >
-            Identidad · Percepción · Excelencia
-          </motion.p>
+            <div style={{
+              display: "inline-block",
+              padding: "1px",
+              background: "linear-gradient(90deg, #3A4A5A 0%, #7A8E9E 22%, #C8D8E8 46%, #EEF4FA 52%, #C8D8E8 58%, #7A8E9E 78%, #3A4A5A 100%)",
+              backgroundSize: "280% 100%",
+              animation: "metalShimmer 4s ease-in-out infinite",
+            }}>
+              <Link
+                href="/aplicar"
+                onMouseEnter={() => setCtaHovered(true)}
+                onMouseLeave={() => setCtaHovered(false)}
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 18,
+                  padding: "14px 36px",
+                  background: ctaHovered ? "var(--color-silver)" : "#060606",
+                  color: ctaHovered ? "#111" : "var(--color-text)",
+                  fontSize: 10,
+                  letterSpacing: ".3em",
+                  textTransform: "uppercase",
+                  textDecoration: "none",
+                  transition: "background .3s, color .3s",
+                }}
+              >
+                Iniciar proceso
+              </Link>
+            </div>
+          </motion.div>
 
           {/* Scroll cue */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 2.3 }}
-            style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, color: "rgba(178,192,204,.45)", fontSize: 10, letterSpacing: ".25em", textTransform: "uppercase" }}
+            transition={{ duration: 0.8, delay: 2.8 }}
+            style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, color: "rgba(178,192,204,.35)", fontSize: 10, letterSpacing: ".25em", textTransform: "uppercase" }}
           >
-            <div style={{ width: 1, height: 44, background: "linear-gradient(to bottom, rgba(178,192,204,.45), transparent)" }} />
+            <div style={{ width: 1, height: 36, background: "linear-gradient(to bottom, rgba(178,192,204,.35), transparent)" }} />
             <span>Continuar</span>
           </motion.div>
         </motion.div>

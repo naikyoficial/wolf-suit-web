@@ -13,17 +13,17 @@ const PILLARS = [
   {
     num: "01",
     title: "Estrategia",
-    body: "Antes de diseñar un solo elemento, entendemos quién sos, a quién le hablás y qué brecha existe entre cómo te perciben hoy y el lugar donde merecés estar. La estrategia no es opcional — es la base de todo lo que viene.",
+    body: "Antes de diseñar una sola pantalla entendemos quién sos, a quién le hablás, cómo te percibe el mercado y cuál es el lugar que querés ocupar.\n\nNo diseñamos páginas.\nDiseñamos posicionamiento.",
   },
   {
     num: "02",
     title: "Diseño",
-    body: "Cada proyecto se diseña desde cero. Sin templates. Sin reutilizar estructuras de trabajos anteriores. Tu empresa tiene una historia única — su identidad visual debe serlo también. La excelencia es la consecuencia de resolver bien cada detalle.",
+    body: "Cada sitio web es creado desde cero. No reutilizamos estructuras. No adaptamos plantillas.\n\nTu empresa tiene una historia única y merece una identidad visual construida exclusivamente para representarla.",
   },
   {
     num: "03",
     title: "Tecnología",
-    body: "El código que escribimos es tan cuidadoso como el diseño que lo viste. La tecnología debe ser invisible: el usuario no nota el código, nota que todo funciona con la velocidad y precisión que una empresa de su nivel merece.",
+    body: "El desarrollo web debe ser invisible. El usuario no debería notar el código. Debería notar la velocidad, la precisión, la claridad y la confianza que transmite una experiencia impecable.",
   },
 ];
 
@@ -83,7 +83,7 @@ export function Pillars() {
               >
                 <p style={{ fontSize: 10, letterSpacing: ".3em", marginBottom: 22, color: "var(--color-text-4)" }}>{p.num}</p>
                 <h3 className="font-display" style={{ fontSize: 30, fontWeight: 400, marginBottom: 14 }}>{p.title}</h3>
-                <p style={{ fontSize: 13, lineHeight: 1.85, color: "var(--color-text-3)" }}>{p.body}</p>
+                <p style={{ fontSize: 13, lineHeight: 1.85, color: "var(--color-text-3)", whiteSpace: "pre-line" }}>{p.body}</p>
                 <div style={{
                   marginTop: 28,
                   width: hovered === i ? 44 : 24,

@@ -8,17 +8,17 @@ import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
 const LEFT = [
-  { label: "Ambición genuina",     sub: "Tenés algo real que ofrecer al mercado." },
-  { label: "Historia propia",       sub: "Un recorrido que merece ser contado bien." },
-  { label: "Producto de valor",     sub: "Lo que vendés resuelve un problema real." },
-  { label: "Visión de largo plazo", sub: "Sabés exactamente adónde querés llegar." },
+  { label: "Ambición genuina",     sub: "Tenés algo real para ofrecer al mercado." },
+  { label: "Historia propia",       sub: "Una trayectoria que merece ser contada con precisión." },
+  { label: "Producto de valor",     sub: "Lo que ofrecés resuelve problemas reales." },
+  { label: "Visión de largo plazo", sub: "Sabés hacia dónde querés crecer." },
 ];
 
 const RIGHT = [
-  { label: "Identidad irrepetible",    sub: "Diseñada desde cero, solo para tu empresa." },
-  { label: "Presencia con autoridad",  sub: "La primera impresión que vas a generar." },
-  { label: "Diseño que diferencia",    sub: "Que justifica tu precio antes de una sola palabra." },
-  { label: "Percepción que abre puertas", sub: "El activo más valioso que podés construir." },
+  { label: "Identidad irrepetible",      sub: "Diseñada exclusivamente para tu empresa." },
+  { label: "Autoridad inmediata",        sub: "Una presencia digital que inspira confianza desde el primer segundo." },
+  { label: "Diseño que justifica valor", sub: "La calidad se comunica antes de una reunión o una propuesta." },
+  { label: "Posicionamiento estratégico", sub: "Porque la percepción correcta abre oportunidades que el precio nunca consigue." },
 ];
 
 export function Duality() {
@@ -135,7 +135,7 @@ export function Duality() {
 
             <Reveal delay={0.25} y={12} blur={4} style={{ display: "flex", justifyContent: "flex-end" }}>
               <p style={{ fontSize: 13, color: "var(--color-text-3)", lineHeight: 1.75, maxWidth: 300, marginBottom: 52 }}>
-                La identidad que construimos sobre eso. Desde cero, sin templates, solo para vos.
+                La identidad que construimos sobre ese potencial.
               </p>
             </Reveal>
 

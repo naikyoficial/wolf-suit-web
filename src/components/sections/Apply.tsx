@@ -72,17 +72,20 @@ export function Apply() {
             fontWeight: 300,
           }}
         >
-          Si llegaste hasta acá, ya sabés que esto no es para cualquiera.
+          Si llegaste hasta acá, probablemente ya entendiste que esto no es para cualquiera.
         </SplitWords>
       </Reveal>
 
       {/* ── Body copy — centered ── */}
-      <Reveal delay={0.25} y={24} blur={6} style={{ maxWidth: 560, marginBottom: 72 }}>
-        <p style={{ fontSize: 15, color: "var(--color-text-2)", lineHeight: 1.95, marginBottom: 24, letterSpacing: "-.01em" }}>
-          Si buscás que tu empresa se vea como una más, sin distinción real, sin criterio detrás — no somos para vos.
+      <Reveal delay={0.25} y={24} blur={6} style={{ maxWidth: 580, marginBottom: 72 }}>
+        <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 2, letterSpacing: "-.01em", marginBottom: 20 }}>
+          Si buscás una página rápida, genérica o construida sobre una plantilla, probablemente existan muchas opciones.
         </p>
-        <p style={{ fontSize: 15, color: "var(--color-text-3)", lineHeight: 1.95, letterSpacing: "-.01em" }}>
-          Si estás acá es porque querés algo diferente. Eso es suficiente para empezar.
+        <p style={{ fontSize: 14, color: "var(--color-text-2)", lineHeight: 2, letterSpacing: "-.01em", marginBottom: 20 }}>
+          Si buscás una presencia digital capaz de representar el verdadero nivel de tu empresa, estamos dispuestos a conversar.
+        </p>
+        <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 2, letterSpacing: "-.01em" }}>
+          Trabajamos con una cantidad limitada de proyectos porque creemos que la excelencia necesita tiempo, criterio y atención. Cada colaboración comienza con una evaluación estratégica para determinar si realmente podemos generar un impacto significativo.
         </p>
       </Reveal>
 
@@ -179,7 +182,7 @@ export function Apply() {
 
       <Reveal delay={0.8} y={10} blur={2}>
         <p style={{ marginTop: 28, fontSize: 11, letterSpacing: ".15em", color: "var(--color-text-4)" }}>
-          Respondemos toda aplicación en un máximo de 72 horas.
+          Respondemos cada solicitud en un plazo máximo de 72 horas.
         </p>
       </Reveal>
     </section>

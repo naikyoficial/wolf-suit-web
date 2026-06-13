@@ -8,11 +8,11 @@ import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
 const STEPS = [
-  { num: "01", name: "Descubrir",    desc: "Diagnóstico profundo: quién sos, a quién le hablás y qué distancia existe entre cómo te perciben hoy y el lugar al que pertenecés." },
-  { num: "02", name: "Definir",      desc: "Arquitectura de percepción: el relato, la identidad y la experiencia que van a representar a tu empresa exactamente como merece." },
-  { num: "03", name: "Diseñar",      desc: "Sistema visual creado exclusivamente para tu empresa. Cada elemento tiene una razón de existir. Nada genérico, nada reutilizado." },
-  { num: "04", name: "Construir",    desc: "Desarrollo técnico de alto estándar. El código es tan cuidadoso como el diseño. La precisión no tiene componentes opcionales." },
-  { num: "05", name: "Perfeccionar", desc: "No entregamos cuando está listo. Entregamos cuando está bien. Iteramos hasta que cada detalle responde al estándar que tu empresa merece." },
+  { num: "01", name: "Descubrir",    desc: "Analizamos tu empresa, tu industria, tus objetivos y la diferencia entre cómo te perciben hoy y cómo deberías ser percibido." },
+  { num: "02", name: "Definir",      desc: "Construimos la arquitectura estratégica del proyecto: narrativa, identidad, experiencia y estructura. Todo debe tener una razón." },
+  { num: "03", name: "Diseñar",      desc: "Creamos un sistema visual exclusivo donde cada decisión responde a una estrategia y no a una tendencia pasajera." },
+  { num: "04", name: "Construir",    desc: "Desarrollamos una plataforma rápida, escalable y optimizada para SEO, rendimiento y experiencia de usuario. La tecnología no es un agregado. Es parte del estándar." },
+  { num: "05", name: "Perfeccionar", desc: "No entregamos cuando funciona. Entregamos cuando cada detalle representa el nivel de excelencia que buscamos." },
 ];
 
 export function Process() {
