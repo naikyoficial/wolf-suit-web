@@ -170,12 +170,21 @@ body { scrollbar-width: none; }
   87%            { opacity: 1; transform: translate(60px,   40px);   }
   93%            { opacity: 0; transform: translate(160px,  140px);  }
 }
-/* Continuous metal sheen — animates background-position on gradient text */
+/* Very slow mist/smoke drift — extremely subtle background movement */
+/*
+  metalShimmer — wordmark & borders (back-and-forth, larger text)
+  labelShimmer — eyebrow labels (one-directional seamless loop:
+    two bright peaks spaced 1×element-width apart inside a 200%-wide
+    gradient guarantee the bright is ALWAYS visible, never off-screen)
+*/
 @keyframes metalShimmer {
   0%, 100% { background-position: 200% center; }
   50%       { background-position: -100% center; }
 }
-/* Very slow mist/smoke drift — extremely subtle background movement */
+@keyframes labelShimmer {
+  from { background-position: 100% center; }
+  to   { background-position: -100% center; }
+}
 @keyframes mist1 {
   0%, 100% { transform: translate(0, 0) scale(1);    opacity: .04; }
   33%       { transform: translate(60px, -40px) scale(1.08); opacity: .06; }
