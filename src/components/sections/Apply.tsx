@@ -4,8 +4,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
-import { Reveal } from "@/components/ui/Reveal";
-import { SplitWords } from "@/components/ui/SplitWords";
+import { Reveal }      from "@/components/ui/Reveal";
+import { SplitWords }  from "@/components/ui/SplitWords";
+import { TiltCard }    from "@/components/ui/TiltCard";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
@@ -102,20 +103,23 @@ export function Apply() {
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.3 + i * 0.13, ease: EASE }}
-            style={{
-              maxWidth: 200,
-              textAlign: "left",
-              borderLeft: "1px solid rgba(178,192,204,.14)",
-              paddingLeft: 20,
-            }}
           >
-            <p style={{ fontSize: 9, letterSpacing: ".5em", marginBottom: 10, color: "var(--color-text-4)" }}>{s.num}</p>
-            <p style={{ fontSize: 11, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--color-text-2)", marginBottom: 9 }}>
-              {s.label}
-            </p>
-            <p style={{ fontSize: 12, color: "var(--color-text-4)", lineHeight: 1.85 }}>
-              {s.desc}
-            </p>
+            <TiltCard
+              style={{
+                maxWidth: 200,
+                textAlign: "left",
+                borderLeft: "1px solid rgba(178,192,204,.14)",
+                paddingLeft: 20,
+              }}
+            >
+              <p style={{ fontSize: 9, letterSpacing: ".5em", marginBottom: 10, color: "var(--color-text-4)" }}>{s.num}</p>
+              <p style={{ fontSize: 11, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--color-text-2)", marginBottom: 9 }}>
+                {s.label}
+              </p>
+              <p style={{ fontSize: 12, color: "var(--color-text-4)", lineHeight: 1.85 }}>
+                {s.desc}
+              </p>
+            </TiltCard>
           </motion.div>
         ))}
       </div>
