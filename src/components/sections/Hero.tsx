@@ -109,19 +109,14 @@ export function Hero() {
           style={{ marginBottom: "clamp(16px, 2.6vw, 32px)" }}
         >
           <span style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(46px, 6.2vw, 94px)",
-            fontWeight: 400,
-            letterSpacing: ".36em",
+            fontFamily: "var(--font-body)",
+            fontSize: "clamp(28px, 4.2vw, 64px)",
+            fontWeight: 300,
+            letterSpacing: ".52em",
             textTransform: "uppercase",
             display: "block",
-            background: GOLD,
-            backgroundSize: "260% 100%",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            animation: "metalShimmer 13s ease-in-out infinite",
-            filter: "drop-shadow(0 2px 32px rgba(212,160,32,.22))",
+            color: "var(--color-text)",
+            textShadow: "0 0 60px rgba(212,160,32,.45), 0 2px 30px rgba(0,0,0,.9)",
           }}>
             Suitwolf
           </span>

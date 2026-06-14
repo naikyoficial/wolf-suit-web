@@ -10,8 +10,8 @@ const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 export function Philosophy() {
   return (
     <section
-      className="relative flex items-center justify-center text-center"
-      style={{ minHeight: "100vh", padding: "100px 8vw", zIndex: 10, background: "rgba(5,5,8,.75)" }}
+      className="relative text-center"
+      style={{ padding: "clamp(80px, 11vh, 120px) 8vw", zIndex: 10, background: "rgba(5,5,8,.75)" }}
     >
       {/* Atmosphere — cool blue-gray glow top-right, warm gold at bottom */}
       <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none",
