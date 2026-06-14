@@ -228,7 +228,11 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 1.32, ease: EASE }}
           style={{ marginBottom: "clamp(28px, 4vw, 48px)" }}
         >
-          <span style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--color-text-4)" }}>
+          <span style={{
+            fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase",
+            color: "rgba(200,188,168,.6)",
+            textShadow: "0 1px 12px rgba(0,0,0,.95)",
+          }}>
             Agencia digital de{" "}
           </span>
           <span style={{

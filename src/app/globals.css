@@ -184,12 +184,6 @@ body { scrollbar-width: none; }
     two bright peaks spaced 1×element-width apart inside a 200%-wide
     gradient guarantee the bright is ALWAYS visible, never off-screen)
 */
-@keyframes spinCW  { to { transform: rotate( 360deg); } }
-@keyframes spinCCW { to { transform: rotate(-360deg); } }
-@keyframes pulseDot {
-  0%, 100% { opacity: .3; transform: scale(1);   }
-  50%       { opacity: 1;   transform: scale(1.6); }
-}
 @keyframes metalShimmer {
   0%, 100% { background-position: 200% center; }
   50%       { background-position: -100% center; }
