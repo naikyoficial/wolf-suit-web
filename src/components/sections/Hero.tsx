@@ -101,27 +101,6 @@ export function Hero() {
         }}
       >
 
-        {/* SUITWOLF — large brand anchor above headlines */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.38, ease: EASE }}
-          style={{ marginBottom: "clamp(16px, 2.6vw, 32px)" }}
-        >
-          <span style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "clamp(28px, 4.2vw, 64px)",
-            fontWeight: 300,
-            letterSpacing: ".52em",
-            textTransform: "uppercase",
-            display: "block",
-            color: "var(--color-text)",
-            textShadow: "0 0 60px rgba(212,160,32,.45), 0 2px 30px rgba(0,0,0,.9)",
-          }}>
-            Suitwolf
-          </span>
-        </motion.div>
-
         {/* Headline line 1 — white serif */}
         <motion.p
           initial={{ opacity: 0, y: 24 }}
