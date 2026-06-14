@@ -1,20 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useState } from "react";
 import { HeroFx } from "@/components/sections/HeroFx";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
-const GOLD        = "linear-gradient(90deg, #5A3C0A 0%, #9A6E12 22%, #D4A020 44%, #F0C840 52%, #D4A020 60%, #9A6E12 78%, #5A3C0A 100%)";
-const GOLD_BORDER = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
+const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #9A6E12 22%, #D4A020 44%, #F0C840 52%, #D4A020 60%, #9A6E12 78%, #5A3C0A 100%)";
 
 const TAGS = ["Estrategia", "Diseño", "Tecnología", "Resultados"];
 
 export function Hero() {
-  const [ctaHovered, setCtaHovered] = useState(false);
   const { scrollY } = useScroll();
   const contentOp = useTransform(scrollY, [0, 400], [1, 0]);
   const contentY  = useTransform(scrollY, [0, 500], [0, -52]);
@@ -249,60 +245,28 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* CTA */}
+        {/* Continuar scroll cue */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.5, ease: EASE }}
-          style={{ marginBottom: "clamp(32px, 4.5vw, 52px)" }}
+          transition={{ duration: 1.2, delay: 1.55 }}
+          style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}
         >
-          <div style={{
-            display: "inline-block", padding: "1px",
-            background: GOLD_BORDER, backgroundSize: "280% 100%",
-            animation: "metalShimmer 4s ease-in-out infinite",
+          <div style={{ width: 1, height: 30, background: "linear-gradient(to bottom, rgba(212,160,32,.28), transparent)" }} />
+          <span style={{
+            fontSize: 9,
+            letterSpacing: ".52em",
+            textTransform: "uppercase",
+            color: "rgba(212,160,32,.32)",
+            textShadow: "0 0 18px rgba(212,160,32,.2)",
           }}>
-            <Link
-              href="/evaluacion"
-              onMouseEnter={() => setCtaHovered(true)}
-              onMouseLeave={() => setCtaHovered(false)}
-              style={{
-                display: "inline-flex", alignItems: "center", gap: 22,
-                padding: "15px 44px",
-                background: ctaHovered ? "var(--color-gold)" : "rgba(4,4,4,.82)",
-                color: ctaHovered ? "#080808" : "var(--color-text)",
-                fontFamily: "var(--font-body)", fontSize: 10,
-                letterSpacing: ".35em", textTransform: "uppercase",
-                textDecoration: "none",
-                backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
-                transition: "background .35s, color .35s",
-              }}
-            >
-              Iniciar proceso
-              <span style={{
-                position: "relative", display: "inline-flex", alignItems: "center",
-                width: ctaHovered ? 34 : 22, height: 1,
-                background: "currentColor", flexShrink: 0, transition: "width .3s",
-              }}>
-                <span style={{
-                  position: "absolute", right: -1, top: -3,
-                  width: 6, height: 6,
-                  borderRight: "1px solid currentColor", borderTop: "1px solid currentColor",
-                  transform: "rotate(45deg)",
-                }} />
-              </span>
-            </Link>
-          </div>
-        </motion.div>
-
-        {/* Scroll cue */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.9 }}
-          style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 7 }}
-        >
-          <div style={{ width: 1, height: 26, background: "linear-gradient(to bottom, rgba(212,160,32,.45), transparent)" }} />
-          <div style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(212,160,32,.55)", boxShadow: "0 0 8px rgba(212,160,32,.5)" }} />
+            Continuar
+          </span>
+          <motion.div
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+            style={{ width: 1, height: 16, background: "linear-gradient(to bottom, rgba(212,160,32,.18), transparent)" }}
+          />
         </motion.div>
 
       </motion.div>
