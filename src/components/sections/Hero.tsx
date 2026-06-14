@@ -165,16 +165,15 @@ export function Hero() {
                 fontSize: 10,
                 letterSpacing: ".38em",
                 textTransform: "uppercase",
-                color: "rgba(240,200,64,.88)",
-                textShadow: "0 0 24px rgba(212,160,32,.7), 0 1px 16px rgba(0,0,0,.9)",
+                color: "rgba(180,176,168,.65)",
+                textShadow: "0 1px 12px rgba(0,0,0,.9)",
               }}>
                 {tag}
               </span>
               {i < TAGS.length - 1 && (
                 <span style={{
                   width: 3, height: 3, borderRadius: "50%",
-                  background: "rgba(212,160,32,.55)",
-                  boxShadow: "0 0 6px rgba(212,160,32,.6)",
+                  background: "rgba(180,176,168,.35)",
                   display: "inline-block",
                   flexShrink: 0,
                 }} />
