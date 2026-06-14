@@ -62,10 +62,10 @@ export function Hero() {
         background: "radial-gradient(ellipse 90% 80% at 50% 36%, rgba(4,4,4,.04) 0%, rgba(4,4,4,.48) 62%, rgba(4,4,4,.97) 100%)",
       }} />
 
-      {/* Content backdrop — darkens the text area specifically */}
+      {/* Content backdrop — darkens text area + fully black at bottom edge */}
       <div aria-hidden style={{
-        position: "absolute", inset: "40% 0 0 0",
-        background: "linear-gradient(to top, rgba(4,4,4,.99) 0%, rgba(4,4,4,.75) 38%, transparent 100%)",
+        position: "absolute", inset: "35% 0 0 0",
+        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, rgba(4,4,4,.85) 30%, rgba(4,4,4,.4) 60%, transparent 100%)",
       }} />
 
       {/* Top gradient — blends into navbar */}
@@ -77,25 +77,7 @@ export function Hero() {
       {/* ── 3D animated FX layer ── */}
       <HeroFx />
 
-      {/* ── Isotipo — top center ── */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, delay: 0.3, ease: EASE }}
-        style={{ position: "absolute", top: "clamp(68px, 9vh, 96px)", zIndex: 10, pointerEvents: "none" }}
-      >
-        <Image
-          src="/isotipo.png"
-          alt="Suitwolf"
-          width={36}
-          height={36}
-          priority
-          style={{
-            objectFit: "contain",
-            filter: "sepia(0.85) saturate(2.5) hue-rotate(-20deg) brightness(1.1) drop-shadow(0 0 18px rgba(212,160,32,.7))",
-          }}
-        />
-      </motion.div>
+
 
       {/* ── Content — anchored bottom ── */}
       <motion.div
