@@ -44,7 +44,7 @@ export function Hero() {
         }}
       >
         <Image
-          src="/wolf-hero.jpg"
+          src="/wolf-hero.png"
           alt=""
           fill
           priority
