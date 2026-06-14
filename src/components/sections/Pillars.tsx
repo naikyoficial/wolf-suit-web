@@ -34,8 +34,22 @@ export function Pillars() {
     <section
       id="pillars"
       className="relative flex items-center"
-      style={{ minHeight: "100vh", padding: "100px 8vw", background: "rgba(7,7,7,.7)", zIndex: 10 }}
+      style={{ minHeight: "100vh", padding: "100px 8vw", background: "rgba(6,5,3,.82)", zIndex: 10 }}
     >
+      {/* Atmosphere — warm amber radial + micro dot grid */}
+      <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse 55% 50% at 50% 60%, rgba(160,95,5,.09) 0%, transparent 70%), radial-gradient(ellipse 30% 25% at 80% 10%, rgba(212,160,32,.05) 0%, transparent 65%)",
+      }} />
+      <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.5,
+        backgroundImage: "radial-gradient(circle, rgba(212,160,32,.07) 1px, transparent 1px)",
+        backgroundSize: "28px 28px",
+      }} />
+      {/* Top fade */}
+      <div aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 140,
+        background: "linear-gradient(to bottom, rgba(4,4,4,1) 0%, transparent 100%)", pointerEvents: "none", zIndex: 20 }} />
+      {/* Bottom fade */}
+      <div aria-hidden style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 140,
+        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, transparent 100%)", pointerEvents: "none", zIndex: 20 }} />
       <div className="w-full max-w-[1440px] mx-auto">
 
         <Reveal y={24} blur={4}>
@@ -60,7 +74,7 @@ export function Pillars() {
           </SplitWords>
         </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 1, background: "rgba(178,192,204,.1)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "clamp(16px, 2vw, 28px)" }}>
           {PILLARS.map((p, i) => (
             <motion.div
               key={p.num}

@@ -20,8 +20,18 @@ export function Process() {
     <section
       id="process"
       className="relative flex items-center"
-      style={{ minHeight: "100vh", padding: "100px 8vw", zIndex: 10 }}
+      style={{ minHeight: "100vh", padding: "100px 8vw", zIndex: 10, background: "rgba(4,5,7,.85)" }}
     >
+      {/* Atmosphere — cool steel-blue from top-left */}
+      <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse 50% 40% at 0% 20%, rgba(20,30,55,.18) 0%, transparent 70%), radial-gradient(ellipse 35% 30% at 100% 80%, rgba(100,65,5,.08) 0%, transparent 65%)",
+      }} />
+      {/* Top fade */}
+      <div aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 140,
+        background: "linear-gradient(to bottom, rgba(4,4,4,1) 0%, transparent 100%)", pointerEvents: "none", zIndex: 20 }} />
+      {/* Bottom fade */}
+      <div aria-hidden style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 140,
+        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, transparent 100%)", pointerEvents: "none", zIndex: 20 }} />
       <div className="w-full max-w-[1440px] mx-auto">
 
         <Reveal y={24} blur={4}>

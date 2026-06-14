@@ -11,8 +11,8 @@ export function Preloader() {
   const [phase, setPhase] = useState<"show" | "exit" | "gone">("show");
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase("exit"), 2300);
-    const t2 = setTimeout(() => setPhase("gone"), 3700);
+    const t1 = setTimeout(() => setPhase("exit"), 2400);
+    const t2 = setTimeout(() => setPhase("gone"), 3800);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
@@ -39,7 +39,7 @@ export function Preloader() {
       <AnimatePresence>
         {phase === "show" && (
           <motion.div
-            exit={{ opacity: 0, transition: { duration: 0.25 } }}
+            exit={{ opacity: 0, transition: { duration: 0.3 } }}
             className="absolute inset-0 flex flex-col items-center justify-center"
             style={{ zIndex: 1 }}
           >
@@ -61,12 +61,12 @@ export function Preloader() {
                     minWidth: letter === " " ? ".4em" : undefined,
                   }}
                 >
-                  {letter === " " ? " " : letter}
+                  {letter}
                 </motion.span>
               ))}
             </div>
 
-            {/* Silver line sweeps in */}
+            {/* Gold line sweeps in */}
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
@@ -75,7 +75,7 @@ export function Preloader() {
                 height: 1,
                 width: "100%",
                 maxWidth: 480,
-                background: "linear-gradient(90deg, transparent, #B2C0CC, transparent)",
+                background: "linear-gradient(90deg, transparent, rgba(212,160,32,.7), transparent)",
                 marginTop: 18,
                 transformOrigin: "center",
               }}
@@ -91,7 +91,7 @@ export function Preloader() {
                 fontSize: 10,
                 letterSpacing: ".38em",
                 textTransform: "uppercase",
-                color: "rgba(178,192,204,.5)",
+                color: "rgba(212,160,32,.45)",
               }}
             >
               Diseño · Estrategia · Tecnología

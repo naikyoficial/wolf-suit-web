@@ -26,8 +26,18 @@ export function Duality() {
     <section
       id="duality"
       className="relative"
-      style={{ padding: "clamp(80px,10vh,120px) 8vw", zIndex: 10 }}
+      style={{ padding: "clamp(80px,10vh,120px) 8vw", zIndex: 10, background: "rgba(7,6,4,.8)" }}
     >
+      {/* Atmosphere — warm amber from center */}
+      <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(140,85,5,.07) 0%, transparent 72%)",
+      }} />
+      {/* Top fade */}
+      <div aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 140,
+        background: "linear-gradient(to bottom, rgba(4,4,4,1) 0%, transparent 100%)", pointerEvents: "none", zIndex: 20 }} />
+      {/* Bottom fade */}
+      <div aria-hidden style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 140,
+        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, transparent 100%)", pointerEvents: "none", zIndex: 20 }} />
       <div className="w-full max-w-[1440px] mx-auto">
 
         {/* Two-column grid */}
@@ -172,11 +182,10 @@ export function Duality() {
           style={{
             textAlign: "center",
             marginTop: 80,
-            paddingTop: 72,
-            borderTop: "1px solid rgba(178,192,204,.07)",
+            paddingTop: 40,
           }}
         >
-          <div style={{ width: 1, height: 52, background: "linear-gradient(to bottom, transparent, rgba(178,192,204,.38))", margin: "0 auto 32px" }} />
+          <div style={{ width: 1, height: 40, background: "linear-gradient(to bottom, transparent, rgba(212,160,32,.25))", margin: "0 auto 32px" }} />
           <SplitWords
             as="p"
             delay={0.3}

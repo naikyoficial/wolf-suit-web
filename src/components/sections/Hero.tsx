@@ -252,20 +252,24 @@ export function Hero() {
           transition={{ duration: 1.2, delay: 1.55 }}
           style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}
         >
-          <div style={{ width: 1, height: 30, background: "linear-gradient(to bottom, rgba(212,160,32,.28), transparent)" }} />
+          <div style={{ width: 1, height: 30, background: "linear-gradient(to bottom, rgba(212,160,32,.5), transparent)" }} />
           <span style={{
             fontSize: 9,
             letterSpacing: ".52em",
             textTransform: "uppercase",
-            color: "rgba(212,160,32,.32)",
-            textShadow: "0 0 18px rgba(212,160,32,.2)",
+            background: "linear-gradient(90deg, #5A3C0A 0%, #9A6E12 22%, #D4A020 44%, #F0C840 52%, #D4A020 60%, #9A6E12 78%, #5A3C0A 100%)",
+            backgroundSize: "260% 100%",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            animation: "metalShimmer 5s ease-in-out infinite",
           }}>
             Continuar
           </span>
           <motion.div
             animate={{ y: [0, 5, 0] }}
             transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-            style={{ width: 1, height: 16, background: "linear-gradient(to bottom, rgba(212,160,32,.18), transparent)" }}
+            style={{ width: 1, height: 18, background: "linear-gradient(to bottom, rgba(212,160,32,.35), transparent)" }}
           />
         </motion.div>
 

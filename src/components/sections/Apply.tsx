@@ -47,6 +47,13 @@ export function Apply() {
         textAlign: "center",
       }}
     >
+      {/* Atmosphere — gold glow from center-top */}
+      <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(168,108,5,.12) 0%, transparent 70%)",
+      }} />
+      {/* Top fade */}
+      <div aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 140,
+        background: "linear-gradient(to bottom, rgba(4,4,4,1) 0%, transparent 100%)", pointerEvents: "none", zIndex: 20 }} />
       {/* ── Eyebrow ── */}
       <Reveal>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 40 }}>

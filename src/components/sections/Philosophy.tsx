@@ -11,8 +11,18 @@ export function Philosophy() {
   return (
     <section
       className="relative flex items-center justify-center text-center"
-      style={{ minHeight: "100vh", padding: "100px 8vw", background: "rgba(6,6,6,.6)", zIndex: 10 }}
+      style={{ minHeight: "100vh", padding: "100px 8vw", zIndex: 10, background: "rgba(5,5,8,.75)" }}
     >
+      {/* Atmosphere — cool blue-gray glow top-right, warm gold at bottom */}
+      <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse 55% 45% at 85% 5%, rgba(30,40,70,.18) 0%, transparent 70%), radial-gradient(ellipse 40% 30% at 15% 100%, rgba(120,75,5,.10) 0%, transparent 70%)",
+      }} />
+      {/* Top fade — dissolves into previous section */}
+      <div aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 140,
+        background: "linear-gradient(to bottom, rgba(4,4,4,1) 0%, transparent 100%)", pointerEvents: "none", zIndex: 20 }} />
+      {/* Bottom fade */}
+      <div aria-hidden style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 140,
+        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, transparent 100%)", pointerEvents: "none", zIndex: 20 }} />
       <div className="w-full max-w-[1440px] mx-auto">
 
         {/* Tag */}
