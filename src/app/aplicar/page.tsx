@@ -1,16 +1,5 @@
-import type { Metadata } from "next";
-import { Contact } from "@/components/sections/Contact";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Aplicar",
-  description:
-    "Iniciá el proceso de selección para trabajar con Suitwolf. Diseño web personalizado, branding a medida y estrategia de percepción para empresas ambiciosas.",
-};
-
-export default function AplicarPage() {
-  return (
-    <main className="relative">
-      <Contact />
-    </main>
-  );
+export default function AplicarRedirect() {
+  redirect("/evaluacion");
 }

@@ -87,7 +87,7 @@ export function Navbar() {
         animation: "metalShimmer 4s ease-in-out infinite",
       }}>
         <Link
-          href="/aplicar"
+          href="/evaluacion"
           onMouseEnter={() => setCtaHovered(true)}
           onMouseLeave={() => setCtaHovered(false)}
           style={{

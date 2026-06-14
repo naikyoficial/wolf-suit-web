@@ -138,7 +138,7 @@ export function Apply() {
           animation: "metalShimmer 4s ease-in-out infinite",
         }}>
           <Link
-            href="/aplicar"
+            href="/evaluacion"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
             style={{
