@@ -93,10 +93,11 @@ export function Apply() {
       <div
         style={{
           display: "flex",
-          gap: "clamp(32px, 5vw, 72px)",
+          gap: "clamp(32px, 5vw, 64px)",
           marginBottom: 80,
           flexWrap: "wrap",
           justifyContent: "center",
+          alignItems: "stretch",
         }}
       >
         {STEPS.map((s, i) => (
@@ -106,13 +107,15 @@ export function Apply() {
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.3 + i * 0.13, ease: EASE }}
+            style={{ display: "flex" }}
           >
             <TiltCard
               style={{
-                maxWidth: 200,
+                width: 200,
                 textAlign: "left",
                 borderLeft: "1px solid rgba(178,192,204,.14)",
                 paddingLeft: 20,
+                paddingBottom: 24,
               }}
             >
               <p style={{ fontSize: 9, letterSpacing: ".5em", marginBottom: 10, color: "var(--color-text-4)" }}>{s.num}</p>
