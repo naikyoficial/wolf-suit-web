@@ -62,10 +62,16 @@ export function Hero() {
         background: "radial-gradient(ellipse 90% 80% at 50% 36%, rgba(4,4,4,.04) 0%, rgba(4,4,4,.48) 62%, rgba(4,4,4,.97) 100%)",
       }} />
 
-      {/* Content backdrop — darkens text area + fully black at bottom edge */}
+      {/* Content backdrop — darkens lower section behind text */}
       <div aria-hidden style={{
-        position: "absolute", inset: "35% 0 0 0",
-        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, rgba(4,4,4,.85) 30%, rgba(4,4,4,.4) 60%, transparent 100%)",
+        position: "absolute", inset: "18% 0 0 0",
+        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, rgba(4,4,4,.90) 22%, rgba(4,4,4,.52) 50%, transparent 100%)",
+      }} />
+
+      {/* Bottom seal — guarantees solid black at the very bottom edge for seamless section transition */}
+      <div aria-hidden style={{
+        position: "absolute", bottom: 0, left: 0, right: 0, height: "38%",
+        background: "linear-gradient(to bottom, transparent 0%, rgba(4,4,4,.85) 40%, rgba(4,4,4,1) 70%, rgba(4,4,4,1) 100%)",
       }} />
 
       {/* Top gradient — blends into navbar */}
@@ -76,8 +82,6 @@ export function Hero() {
 
       {/* ── 3D animated FX layer ── */}
       <HeroFx />
-
-
 
       {/* ── Content — anchored bottom ── */}
       <motion.div
@@ -97,14 +101,40 @@ export function Hero() {
         }}
       >
 
+        {/* SUITWOLF — large brand anchor above headlines */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.38, ease: EASE }}
+          style={{ marginBottom: "clamp(16px, 2.6vw, 32px)" }}
+        >
+          <span style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(46px, 6.2vw, 94px)",
+            fontWeight: 400,
+            letterSpacing: ".36em",
+            textTransform: "uppercase",
+            display: "block",
+            background: GOLD,
+            backgroundSize: "260% 100%",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            animation: "metalShimmer 13s ease-in-out infinite",
+            filter: "drop-shadow(0 2px 32px rgba(212,160,32,.22))",
+          }}>
+            Suitwolf
+          </span>
+        </motion.div>
+
         {/* Headline line 1 — white serif */}
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.55, ease: EASE }}
+          transition={{ duration: 1.1, delay: 0.58, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(32px, 5.4vw, 78px)",
+            fontSize: "clamp(22px, 3.4vw, 50px)",
             fontWeight: 400,
             letterSpacing: "-.01em",
             lineHeight: 1.0,
@@ -121,22 +151,23 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.72, ease: EASE }}
+          transition={{ duration: 1.1, delay: 0.74, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(32px, 5.4vw, 78px)",
+            fontSize: "clamp(22px, 3.4vw, 50px)",
             fontWeight: 600,
             letterSpacing: "-.01em",
             lineHeight: 1.0,
             textTransform: "uppercase",
-            marginBottom: "clamp(18px, 2.5vw, 32px)",
+            marginBottom: "clamp(16px, 2.2vw, 28px)",
             background: GOLD,
             backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
-            animation: "metalShimmer 6s ease-in-out infinite",
-            filter: "drop-shadow(0 2px 20px rgba(212,160,32,.35))",
+            animation: "metalShimmer 13s ease-in-out infinite",
+            animationDelay: "-5s",
+            filter: "drop-shadow(0 2px 20px rgba(212,160,32,.32))",
           }}
         >
           Construimos legado.
@@ -146,12 +177,12 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.98, ease: EASE }}
+          transition={{ duration: 0.9, delay: 1.0, ease: EASE }}
           style={{
             display: "flex",
             alignItems: "center",
             gap: 10,
-            marginBottom: "clamp(20px, 3vw, 34px)",
+            marginBottom: "clamp(18px, 2.8vw, 32px)",
           }}
         >
           {TAGS.map((tag, i) => (
@@ -178,33 +209,12 @@ export function Hero() {
           ))}
         </motion.div>
 
-        {/* SUITWOLF wordmark */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.18, ease: EASE }}
-          style={{ marginBottom: 8 }}
-        >
-          <span style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(15px, 1.8vw, 23px)",
-            fontWeight: 400,
-            letterSpacing: ".58em",
-            color: "var(--color-text)",
-            textTransform: "uppercase",
-            display: "block",
-            textShadow: "0 0 30px rgba(212,160,32,.2)",
-          }}>
-            Suitwolf
-          </span>
-        </motion.div>
-
         {/* Sub — AGENCIA DIGITAL DE ALTO NIVEL */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.32, ease: EASE }}
-          style={{ marginBottom: "clamp(28px, 4vw, 48px)" }}
+          transition={{ duration: 0.9, delay: 1.2, ease: EASE }}
+          style={{ marginBottom: "clamp(24px, 3.5vw, 44px)" }}
         >
           <span style={{
             fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase",
@@ -220,8 +230,8 @@ export function Hero() {
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
-            animation: "metalShimmer 7s ease-in-out infinite",
-            animationDelay: "-3s",
+            animation: "metalShimmer 14s ease-in-out infinite",
+            animationDelay: "-7s",
           }}>
             alto nivel
           </span>
@@ -231,7 +241,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 1.55 }}
+          transition={{ duration: 1.2, delay: 1.45 }}
           style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}
         >
           <div style={{ width: 1, height: 30, background: "linear-gradient(to bottom, rgba(212,160,32,.5), transparent)" }} />
@@ -239,12 +249,12 @@ export function Hero() {
             fontSize: 9,
             letterSpacing: ".52em",
             textTransform: "uppercase",
-            background: "linear-gradient(90deg, #5A3C0A 0%, #9A6E12 22%, #D4A020 44%, #F0C840 52%, #D4A020 60%, #9A6E12 78%, #5A3C0A 100%)",
+            background: GOLD,
             backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
-            animation: "metalShimmer 5s ease-in-out infinite",
+            animation: "metalShimmer 11s ease-in-out infinite",
           }}>
             Continuar
           </span>
