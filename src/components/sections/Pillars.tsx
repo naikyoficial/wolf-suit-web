@@ -76,7 +76,7 @@ export function Pillars() {
                   padding: 44,
                   height: "100%",
                   background: hovered === i ? "#0d0d0d" : "#070707",
-                  border: `1px solid ${hovered === i ? "rgba(178,192,204,.28)" : "transparent"}`,
+                  border: `1px solid ${hovered === i ? "rgba(212,160,32,.28)" : "transparent"}`,
                   transition: "background .4s, border-color .4s",
                   cursor: "default",
                 }}
@@ -88,7 +88,7 @@ export function Pillars() {
                   marginTop: 28,
                   width: hovered === i ? 44 : 24,
                   height: 1,
-                  background: "var(--color-silver)",
+                  background: "var(--color-gold)",
                   opacity: hovered === i ? .8 : .4,
                   transition: "width .4s, opacity .4s",
                 }} />

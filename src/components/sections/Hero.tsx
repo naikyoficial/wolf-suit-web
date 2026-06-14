@@ -1,141 +1,249 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
-import { ScrambleText } from "@/components/ui/ScrambleText";
+import { useState } from "react";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
+const GOLD_GRADIENT = "linear-gradient(90deg, #5A3C0A 0%, #9A6E12 22%, #D4A020 44%, #F0C840 52%, #D4A020 60%, #9A6E12 78%, #5A3C0A 100%)";
+const GOLD_BORDER   = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
+
+const goldText: CSSProperties = {
+  display: "block",
+  background: GOLD_GRADIENT,
+  backgroundSize: "260% 100%",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  backgroundClip: "text",
+  animation: "metalShimmer 6s ease-in-out infinite",
+};
+
+const STATS = [
+  { num: "100%", label: "Personalizado" },
+  { num: "0",    label: "Templates" },
+  { num: "∞",    label: "Criterio" },
+];
+
 export function Hero() {
-  const isoRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (!isoRef.current) return;
-      const x = (e.clientX / window.innerWidth  - 0.5) * 7;
-      const y = (e.clientY / window.innerHeight - 0.5) * -7;
-      isoRef.current.style.transform = `perspective(900px) rotateY(${x}deg) rotateX(${y}deg)`;
-    };
-    window.addEventListener("mousemove", handler);
-    return () => window.removeEventListener("mousemove", handler);
-  }, []);
-
+  const [ctaHovered, setCtaHovered] = useState(false);
   const { scrollY } = useScroll();
-  const logoOpacity = useTransform(scrollY, [0, 380], [1, 0]);
-  const contentY    = useTransform(scrollY, [0, 500], [0, -60]);
-  const contentOp   = useTransform(scrollY, [0, 340], [1, 0]);
+  const wrapOp = useTransform(scrollY, [0, 420], [1, 0]);
+  const wrapY  = useTransform(scrollY, [0, 500], [0, -48]);
+  const imgScale = useTransform(scrollY, [0, 600], [1, 1.08]);
 
   return (
-    <section className="relative" style={{ minHeight: "calc(100dvh - 4rem)" }}>
-      <h1 className="sr-only">Agencia de Diseño y Desarrollo Web Premium para Empresas que Buscan Liderar su Mercado</h1>
+    <section
+      className="relative flex items-center"
+      style={{ minHeight: "calc(100dvh - 4rem)", padding: "clamp(60px,8vh,100px) 8vw" }}
+    >
+      <h1 className="sr-only">Agencia de Diseño y Desarrollo Web Premium — Suitwolf</h1>
 
-      <div
-        className="flex flex-col items-center justify-center text-center"
-        style={{ minHeight: "calc(100dvh - 4rem)", padding: "80px 5vw" }}
+      <motion.div
+        style={{ opacity: wrapOp, y: wrapY, width: "100%" }}
+        className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-20"
       >
 
-        {/* ── Logo ── */}
+        {/* ── Left column — text ── */}
+        <div className="flex-1 w-full lg:max-w-[58%]">
+
+          {/* Eyebrow */}
+          <motion.div
+            initial={{ opacity: 0, x: -18 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: EASE }}
+            style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 28 }}
+          >
+            <div style={{ width: 28, height: 1, background: "var(--color-gold)", flexShrink: 0 }} />
+            <span style={{ fontSize: 10, letterSpacing: ".42em", textTransform: "uppercase", color: "var(--color-gold)" }}>
+              Identidades digitales premium
+            </span>
+          </motion.div>
+
+          {/* Headline */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.5, ease: EASE }}
+            style={{ marginBottom: 28 }}
+          >
+            <h2
+              aria-label="Diseñamos identidades. Construimos percepción."
+              style={{
+                fontSize: "clamp(40px, 5.8vw, 86px)",
+                lineHeight: 1.02,
+                letterSpacing: "-.03em",
+                fontFamily: "var(--font-display)",
+                fontWeight: 600,
+                textTransform: "uppercase",
+                margin: 0,
+              }}
+            >
+              <span style={{ display: "block" }}>Diseñamos</span>
+              <span style={{ ...goldText }}>identidades.</span>
+              <span style={{ display: "block", marginTop: "0.05em" }}>Construimos</span>
+              <span style={{ ...goldText, animationDelay: "-3s" }}>percepción.</span>
+            </h2>
+          </motion.div>
+
+          {/* Body */}
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.9, ease: EASE }}
+            style={{
+              fontSize: 13,
+              color: "var(--color-text-3)",
+              lineHeight: 1.9,
+              maxWidth: 460,
+              marginBottom: 44,
+              letterSpacing: "-.005em",
+            }}
+          >
+            Experiencias digitales exclusivas para empresas que entienden que la percepción es una ventaja competitiva. Sin templates. Todo desde cero.
+          </motion.p>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 1.1, ease: EASE }}
+            style={{ display: "flex", gap: "clamp(20px, 4vw, 52px)", marginBottom: 50 }}
+          >
+            {STATS.map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 1.22 + i * 0.1, ease: EASE }}
+                style={{ borderLeft: "1px solid rgba(212,160,32,.3)", paddingLeft: 16 }}
+              >
+                <p style={{
+                  fontSize: "clamp(20px, 2.4vw, 30px)",
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 500,
+                  margin: 0,
+                  background: GOLD_GRADIENT,
+                  backgroundSize: "260% 100%",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  animation: "metalShimmer 6s ease-in-out infinite",
+                  animationDelay: `${-i * 2}s`,
+                }}>{s.num}</p>
+                <p style={{
+                  fontSize: 10,
+                  letterSpacing: ".2em",
+                  textTransform: "uppercase",
+                  color: "var(--color-text-4)",
+                  marginTop: 4,
+                }}>{s.label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.4, ease: EASE }}
+          >
+            <div style={{
+              display: "inline-block",
+              padding: "1px",
+              background: GOLD_BORDER,
+              backgroundSize: "280% 100%",
+              animation: "metalShimmer 4s ease-in-out infinite",
+            }}>
+              <Link
+                href="/evaluacion"
+                onMouseEnter={() => setCtaHovered(true)}
+                onMouseLeave={() => setCtaHovered(false)}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 22,
+                  padding: "17px 44px",
+                  background: ctaHovered ? "var(--color-gold)" : "#060606",
+                  color: ctaHovered ? "#080808" : "var(--color-text)",
+                  fontFamily: "var(--font-body)",
+                  fontSize: 11,
+                  letterSpacing: ".3em",
+                  textTransform: "uppercase",
+                  textDecoration: "none",
+                  transition: "background .35s, color .35s",
+                }}
+              >
+                Iniciar proceso
+                <span style={{
+                  position: "relative",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  width: ctaHovered ? 36 : 24,
+                  height: 1,
+                  background: "currentColor",
+                  flexShrink: 0,
+                  transition: "width .3s",
+                }}>
+                  <span style={{
+                    position: "absolute",
+                    right: -1, top: -3,
+                    width: 7, height: 7,
+                    borderRight: "1px solid currentColor",
+                    borderTop: "1px solid currentColor",
+                    transform: "rotate(45deg)",
+                  }} />
+                </span>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* ── Right column — wolf ── */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.8, delay: 0.3, ease: EASE }}
-          style={{ position: "relative", width: 168, height: 168, marginBottom: 32, opacity: logoOpacity, flexShrink: 0 }}
+          className="flex-1 flex justify-center items-center lg:max-w-[42%] w-full relative"
+          initial={{ opacity: 0, scale: 0.88 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2, delay: 0.15, ease: EASE }}
         >
-          <div ref={isoRef} style={{ width: "100%", height: "100%", willChange: "transform" }}>
+          {/* Radial gold ambient */}
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: "-20%",
+              background: "radial-gradient(ellipse 70% 70% at 50% 50%, rgba(212,160,32,.18) 0%, rgba(168,114,20,.07) 55%, transparent 72%)",
+              pointerEvents: "none",
+            }}
+          />
+          <motion.div style={{ scale: imgScale, position: "relative", zIndex: 1 }}>
             <Image
               src="/isotipo.png"
               alt="Suitwolf"
-              width={168}
-              height={168}
+              width={460}
+              height={460}
               quality={100}
               priority
               style={{
-                width: "100%", height: "100%", objectFit: "contain",
-                filter: "drop-shadow(0 0 20px rgba(178,192,204,.20)) drop-shadow(0 0 6px rgba(210,225,240,.28))",
-              }}
-            />
-          </div>
-        </motion.div>
-
-        {/* ── Text block ── */}
-        <motion.div style={{ y: contentY, opacity: contentOp, display: "flex", flexDirection: "column", alignItems: "center" }}>
-
-          {/* Wordmark */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.4, delay: 0.9, ease: EASE }}
-          >
-            <ScrambleText
-              text="SUITWOLF"
-              delay={0.9}
-              duration={1200}
-              className="font-display font-semibold"
-              style={{
-                fontSize: "clamp(30px, 4.2vw, 58px)",
-                letterSpacing: ".38em",
-                background: "linear-gradient(90deg, #566070 0%, #8A9EAE 22%, #C4D4E4 44%, #F0F5FA 52%, #C4D4E4 60%, #8A9EAE 78%, #566070 100%)",
-                backgroundSize: "260% 100%",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                animation: "metalShimmer 6s ease-in-out infinite",
-                display: "block",
+                width: "clamp(200px, 28vw, 460px)",
+                height: "auto",
+                objectFit: "contain",
+                filter: [
+                  "sepia(0.85)",
+                  "saturate(2.6)",
+                  "hue-rotate(-20deg)",
+                  "brightness(1.05)",
+                  "drop-shadow(0 0 70px rgba(212,160,32,.55))",
+                  "drop-shadow(0 0 28px rgba(240,200,64,.35))",
+                ].join(" "),
               }}
             />
           </motion.div>
-
-          {/* Separator */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.7, delay: 1.5 }}
-            style={{ width: 28, height: 1, background: "rgba(178,192,204,.22)", margin: "22px auto 26px", transformOrigin: "center" }}
-          />
-
-          {/* Headline */}
-          <motion.h2
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.6, ease: EASE }}
-            style={{
-              fontSize: "clamp(18px, 2.2vw, 30px)",
-              fontFamily: "var(--font-display)",
-              fontWeight: 300,
-              letterSpacing: "-.02em",
-              lineHeight: 1.22,
-              maxWidth: 500,
-              marginBottom: 16,
-              color: "var(--color-text)",
-            }}
-          >
-            Las empresas extraordinarias no deberían parecer comunes.
-          </motion.h2>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 1.95 }}
-            style={{ fontSize: 12, color: "var(--color-text-4)", lineHeight: 1.9, maxWidth: 380, marginBottom: 56, letterSpacing: "-.005em" }}
-          >
-            Diseñamos y desarrollamos experiencias digitales exclusivas para empresas que entienden que la percepción es una ventaja competitiva.
-          </motion.p>
-
-          {/* Scroll cue */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 2.4 }}
-            style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, color: "rgba(178,192,204,.28)", fontSize: 10, letterSpacing: ".25em", textTransform: "uppercase" }}
-          >
-            <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, rgba(178,192,204,.28), transparent)" }} />
-            <span>Continuar</span>
-          </motion.div>
-
         </motion.div>
-      </div>
+
+      </motion.div>
     </section>
   );
 }

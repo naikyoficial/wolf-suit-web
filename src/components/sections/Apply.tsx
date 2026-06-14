@@ -50,11 +50,11 @@ export function Apply() {
       {/* ── Eyebrow ── */}
       <Reveal>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 40 }}>
-          <div style={{ width: 48, height: 1, background: "linear-gradient(to right, transparent, rgba(178,192,204,.4))" }} />
+          <div style={{ width: 48, height: 1, background: "linear-gradient(to right, transparent, rgba(212,160,32,.35))" }} />
           <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase" }}>
             Proceso de Selección
           </ShimmerLabel>
-          <div style={{ width: 48, height: 1, background: "linear-gradient(to left, transparent, rgba(178,192,204,.4))" }} />
+          <div style={{ width: 48, height: 1, background: "linear-gradient(to left, transparent, rgba(212,160,32,.35))" }} />
         </div>
       </Reveal>
 
@@ -113,7 +113,7 @@ export function Apply() {
               style={{
                 width: 200,
                 textAlign: "left",
-                borderLeft: "1px solid rgba(178,192,204,.14)",
+                borderLeft: "1px solid rgba(212,160,32,.2)",
                 paddingLeft: 20,
                 paddingBottom: 24,
               }}
@@ -136,7 +136,7 @@ export function Apply() {
         <div style={{
           display: "inline-block",
           padding: "1px",
-          background: "linear-gradient(90deg, #3A4A5A 0%, #7A8E9E 22%, #C8D8E8 46%, #EEF4FA 52%, #C8D8E8 58%, #7A8E9E 78%, #3A4A5A 100%)",
+          background: "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)",
           backgroundSize: "280% 100%",
           animation: "metalShimmer 4s ease-in-out infinite",
         }}>
@@ -149,8 +149,8 @@ export function Apply() {
               alignItems: "center",
               gap: 22,
               padding: "18px 48px",
-              background: hovered ? "var(--color-silver)" : "#060606",
-              color: hovered ? "#111" : "var(--color-text)",
+              background: hovered ? "var(--color-gold)" : "#060606",
+              color: hovered ? "#080808" : "var(--color-text)",
               fontFamily: "var(--font-body)",
               fontSize: 11,
               letterSpacing: ".3em",

@@ -80,7 +80,7 @@ export function Work() {
                   <p className="font-display font-light" style={{ fontSize: "clamp(24px,3vw,38px)", color: hovered === i ? "var(--color-text)" : "rgba(236,232,223,.45)", transition: "color .4s" }}>
                     {p.title}
                   </p>
-                  <div style={{ width: hovered === i ? 50 : 0, height: 1, background: "var(--color-silver)", marginTop: 12, transition: "width .7s cubic-bezier(.16,1,.3,1)" }} />
+                  <div style={{ width: hovered === i ? 50 : 0, height: 1, background: "var(--color-gold)", marginTop: 12, transition: "width .7s cubic-bezier(.16,1,.3,1)" }} />
                 </div>
               </TiltCard>
             </motion.div>

@@ -77,7 +77,7 @@ export function Duality() {
                   transition={{ duration: 0.7, delay: 0.35 + i * 0.09, ease: EASE }}
                   style={{ display: "flex", alignItems: "flex-start", gap: 18 }}
                 >
-                  <span style={{ width: 22, height: 1, background: "var(--color-silver)", opacity: .4, flexShrink: 0, marginTop: 8 }} />
+                  <span style={{ width: 22, height: 1, background: "var(--color-gold)", opacity: .35, flexShrink: 0, marginTop: 8 }} />
                   <div>
                     <p style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--color-text-2)", marginBottom: 5 }}>
                       {item.label}
@@ -100,7 +100,7 @@ export function Duality() {
             style={{
               width: 1,
               alignSelf: "stretch",
-              background: "linear-gradient(to bottom, transparent 5%, rgba(178,192,204,.2) 25%, rgba(178,192,204,.2) 75%, transparent 95%)",
+              background: "linear-gradient(to bottom, transparent 5%, rgba(212,160,32,.18) 25%, rgba(212,160,32,.18) 75%, transparent 95%)",
               transformOrigin: "top",
             }}
           />
@@ -149,7 +149,7 @@ export function Duality() {
                   transition={{ duration: 0.7, delay: 0.35 + i * 0.09, ease: EASE }}
                   style={{ display: "flex", alignItems: "flex-start", gap: 18, flexDirection: "row-reverse" }}
                 >
-                  <span style={{ width: 22, height: 1, background: "var(--color-silver)", opacity: .4, flexShrink: 0, marginTop: 8 }} />
+                  <span style={{ width: 22, height: 1, background: "var(--color-gold)", opacity: .35, flexShrink: 0, marginTop: 8 }} />
                   <div style={{ textAlign: "right" }}>
                     <p style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--color-text-2)", marginBottom: 5 }}>
                       {item.label}

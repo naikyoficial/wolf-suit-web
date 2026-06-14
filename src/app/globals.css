@@ -24,9 +24,14 @@
   --color-text-3: #8A8886;
   --color-text-4: #555452;
 
-  /* Acento */
+  /* Acento — plata */
   --color-silver:     #B2C0CC;
   --color-silver-dim: #7A8A98;
+
+  /* Acento — oro */
+  --color-gold:      #D4A020;
+  --color-gold-dim:  #A87214;
+  --color-gold-peak: #F0C840;
 
   /* Bordes (opacos — para usar como Tailwind utility) */
   --color-line:   #1F1F1E;
@@ -88,6 +93,8 @@
   /* Acento semi-transparente */
   --silver-glow:   rgba(178, 192, 204, 0.15);
   --silver-subtle: rgba(178, 192, 204, 0.08);
+  --gold-glow:     rgba(212, 160, 32, 0.18);
+  --gold-subtle:   rgba(212, 160, 32, 0.08);
 
   /* Layout */
   --section-py: clamp(5rem, 10vh, 12rem);
@@ -124,13 +131,13 @@ body {
 
 /* Selección de texto */
 ::selection {
-  background-color: var(--color-silver);
+  background-color: var(--color-gold);
   color: #080808;
 }
 
 /* Focus accesible y elegante */
 :focus-visible {
-  outline: 1.5px solid var(--color-silver-dim);
+  outline: 1.5px solid var(--color-gold-dim);
   outline-offset: 3px;
   border-radius: 2px;
 }

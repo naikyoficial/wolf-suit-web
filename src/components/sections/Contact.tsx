@@ -159,12 +159,12 @@ export function Contact() {
               Este proceso toma menos de dos minutos y nos permite evaluar si existe una oportunidad real de generar impacto.
             </p>
 
-            <div style={{ display: "inline-block", padding: "1px", background: "linear-gradient(90deg, #3A4A5A 0%, #7A8E9E 22%, #C8D8E8 46%, #EEF4FA 52%, #C8D8E8 58%, #7A8E9E 78%, #3A4A5A 100%)", backgroundSize: "280% 100%", animation: "metalShimmer 4s ease-in-out infinite" }}>
+            <div style={{ display: "inline-block", padding: "1px", background: "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)", backgroundSize: "280% 100%", animation: "metalShimmer 4s ease-in-out infinite" }}>
               <button
                 onClick={() => goTo("q1")}
                 onMouseEnter={() => setStartHovered(true)}
                 onMouseLeave={() => setStartHovered(false)}
-                style={{ display: "inline-flex", alignItems: "center", gap: 20, padding: "16px 42px", background: startHovered ? "var(--color-silver)" : "#060606", color: startHovered ? "#111" : "var(--color-text)", fontSize: 10, letterSpacing: ".32em", textTransform: "uppercase", border: "none", cursor: "pointer", fontFamily: "var(--font-body)", transition: "background .3s, color .3s" }}
+                style={{ display: "inline-flex", alignItems: "center", gap: 20, padding: "16px 42px", background: startHovered ? "var(--color-gold)" : "#060606", color: startHovered ? "#080808" : "var(--color-text)", fontSize: 10, letterSpacing: ".32em", textTransform: "uppercase", border: "none", cursor: "pointer", fontFamily: "var(--font-body)", transition: "background .3s, color .3s" }}
               >
                 Comenzar proceso de selección
               </button>
@@ -202,7 +202,7 @@ export function Contact() {
                       width: "100%", padding: "18px 0 18px 22px",
                       background: isSel ? "rgba(178,192,204,.05)" : isHov ? "rgba(178,192,204,.025)" : "transparent",
                       border: "none", borderBottom: "1px solid rgba(178,192,204,.07)",
-                      borderLeft: isSel ? "2px solid rgba(200,220,244,.55)" : isHov ? "2px solid rgba(178,192,204,.2)" : "2px solid transparent",
+                      borderLeft: isSel ? "2px solid rgba(212,160,32,.65)" : isHov ? "2px solid rgba(212,160,32,.28)" : "2px solid transparent",
                       textAlign: "left", cursor: selected ? "default" : "pointer",
                       color: isSel ? "var(--color-text)" : isHov ? "var(--color-text-2)" : "var(--color-text-3)",
                       fontSize: 14, fontFamily: "var(--font-body)", letterSpacing: "-.01em", lineHeight: 1.4,
@@ -264,12 +264,12 @@ export function Contact() {
               </div>
 
               <div style={{ paddingTop: 6 }}>
-                <div style={{ display: "inline-block", padding: "1px", background: "linear-gradient(90deg, #3A4A5A 0%, #7A8E9E 22%, #C8D8E8 46%, #EEF4FA 52%, #C8D8E8 58%, #7A8E9E 78%, #3A4A5A 100%)", backgroundSize: "280% 100%", animation: "metalShimmer 4s ease-in-out infinite" }}>
+                <div style={{ display: "inline-block", padding: "1px", background: "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)", backgroundSize: "280% 100%", animation: "metalShimmer 4s ease-in-out infinite" }}>
                   <button
                     type="submit"
                     onMouseEnter={() => setSubmitHovered(true)}
                     onMouseLeave={() => setSubmitHovered(false)}
-                    style={{ display: "inline-flex", alignItems: "center", gap: 18, padding: "15px 36px", background: submitHovered ? "var(--color-silver)" : "#060606", color: submitHovered ? "#111" : "var(--color-text)", fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase", border: "none", cursor: "pointer", fontFamily: "var(--font-body)", transition: "background .3s, color .3s" }}
+                    style={{ display: "inline-flex", alignItems: "center", gap: 18, padding: "15px 36px", background: submitHovered ? "var(--color-gold)" : "#060606", color: submitHovered ? "#080808" : "var(--color-text)", fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase", border: "none", cursor: "pointer", fontFamily: "var(--font-body)", transition: "background .3s, color .3s" }}
                   >
                     Solicitar evaluación
                     <span style={{ display: "inline-flex", alignItems: "center", position: "relative", width: submitHovered ? 30 : 20, height: 1, background: "currentColor", transition: "width .3s", flexShrink: 0 }}>

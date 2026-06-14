@@ -61,7 +61,7 @@ export function Process() {
               left: 0,
               right: 0,
               height: 1,
-              background: "linear-gradient(90deg, #3A4A5A 0%, #7A8E9E 22%, #C8D8E8 46%, #EEF4FA 52%, #C8D8E8 58%, #7A8E9E 78%, #3A4A5A 100%)",
+              background: "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)",
               backgroundSize: "280% 100%",
               animation: "metalShimmer 6s ease-in-out infinite",
             }}
@@ -82,7 +82,7 @@ export function Process() {
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.5 + i * 0.12, ease: EASE }}
-                style={{ position: "absolute", top: 24, left: 0, width: 8, height: 8, border: "1px solid var(--color-silver)", borderRadius: "50%", background: "#050505" }}
+                style={{ position: "absolute", top: 24, left: 0, width: 8, height: 8, border: "1px solid var(--color-gold)", borderRadius: "50%", background: "#050505" }}
               />
               <p style={{ fontSize: 10, letterSpacing: ".25em", marginBottom: 12, color: "var(--color-text-4)" }}>{step.num}</p>
               <p className="font-display" style={{ fontSize: 21, fontWeight: 500, marginBottom: 8 }}>{step.name}</p>

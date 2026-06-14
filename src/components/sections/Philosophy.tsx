@@ -51,7 +51,7 @@ export function Philosophy() {
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.6, ease: EASE }}
-          style={{ width: 36, height: 1, background: "var(--color-silver)", margin: "0 auto 28px", transformOrigin: "center" }}
+          style={{ width: 36, height: 1, background: "var(--color-gold)", margin: "0 auto 28px", transformOrigin: "center" }}
         />
 
         {/* Body — blurs in */}

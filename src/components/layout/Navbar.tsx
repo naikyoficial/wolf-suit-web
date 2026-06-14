@@ -82,7 +82,7 @@ export function Navbar() {
 
       <div className="hidden md:inline-block" style={{
         padding: "1px",
-        background: "linear-gradient(90deg, #3A4A5A 0%, #7A8E9E 22%, #C8D8E8 46%, #EEF4FA 52%, #C8D8E8 58%, #7A8E9E 78%, #3A4A5A 100%)",
+        background: "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)",
         backgroundSize: "280% 100%",
         animation: "metalShimmer 4s ease-in-out infinite",
       }}>
@@ -94,8 +94,8 @@ export function Navbar() {
             display: "inline-flex",
             alignItems: "center",
             padding: "9px 20px",
-            background: ctaHovered ? "var(--color-silver)" : "#060606",
-            color: ctaHovered ? "#111" : "var(--color-text)",
+            background: ctaHovered ? "var(--color-gold)" : "#060606",
+            color: ctaHovered ? "#080808" : "var(--color-text)",
             fontSize: 11,
             letterSpacing: ".18em",
             textTransform: "uppercase",
