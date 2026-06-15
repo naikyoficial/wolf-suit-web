@@ -43,7 +43,7 @@ export function Hero() {
           sizes="100vw"
           style={{
             objectFit: "cover",
-            objectPosition: "50% 10%",
+            objectPosition: "50% 70%",
           }}
         />
       </div>
