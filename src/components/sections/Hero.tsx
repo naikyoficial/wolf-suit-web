@@ -29,10 +29,10 @@ export function Hero() {
     >
       <h1 className="sr-only">Agencia de Diseño y Desarrollo Web Premium — Suitwolf</h1>
 
-      {/* ── Background image ── */}
+      {/* ── Background image — shifted up ── */}
       <div
         aria-hidden
-        style={{ position: "absolute", inset: 0 }}
+        style={{ position: "absolute", top: "-22%", left: 0, right: 0, bottom: 0 }}
       >
         <Image
           src="/wolf-hero.png"
@@ -43,15 +43,15 @@ export function Hero() {
           sizes="100vw"
           style={{
             objectFit: "contain",
-            objectPosition: "50% 80%",
+            objectPosition: "50% 50%",
           }}
         />
       </div>
 
-      {/* Side fades — blend image edges into dark bg */}
+      {/* Side fades — aggressive blend of image edges into dark bg */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        background: "linear-gradient(to right, rgba(4,4,4,1) 0%, rgba(4,4,4,.6) 14%, transparent 30%, transparent 70%, rgba(4,4,4,.6) 86%, rgba(4,4,4,1) 100%)",
+        background: "linear-gradient(to right, rgba(4,4,4,1) 0%, rgba(4,4,4,.92) 18%, rgba(4,4,4,.5) 32%, transparent 46%, transparent 54%, rgba(4,4,4,.5) 68%, rgba(4,4,4,.92) 82%, rgba(4,4,4,1) 100%)",
       }} />
 
       {/* ── Overlays ── */}

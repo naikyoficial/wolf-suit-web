@@ -77,15 +77,6 @@ const SERVICES = [
     tags: ["Software", "Automatización", "Integraciones"],
     accent: "rgba(100,60,180,.05)",
   },
-  {
-    num: "08",
-    category: "Branding",
-    title: ["Identidad Visual", "& Marca"],
-    subtitle: "Branding & Identidad Corporativa",
-    desc: "Sistema visual completo que diferencia tu marca en cada punto de contacto. Logo, paleta, tipografía y guía de uso — coherencia visual que construye reputación y reconocimiento a largo plazo.",
-    tags: ["Logo", "Branding", "Guía de Marca"],
-    accent: "rgba(160,100,180,.05)",
-  },
 ];
 
 type Service = typeof SERVICES[0];
@@ -103,7 +94,7 @@ function ServiceCard({ service, isActive }: { service: Service; isActive: boolea
         : "linear-gradient(160deg, rgba(12,11,9,.98) 0%, rgba(8,7,5,.98) 100%)",
       display: "flex",
       flexDirection: "column",
-      overflow: "hidden",
+      overflow: "visible",
       transition: "border-color .5s, background .5s",
     }}>
       {/* Top shimmer line */}
@@ -127,8 +118,8 @@ function ServiceCard({ service, isActive }: { service: Service; isActive: boolea
       {/* Ghost number */}
       <div aria-hidden style={{
         position: "absolute",
-        bottom: -16,
-        right: -4,
+        bottom: 0,
+        right: 8,
         fontFamily: "var(--font-display)",
         fontSize: 172,
         fontWeight: 700,
