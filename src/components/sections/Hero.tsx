@@ -32,7 +32,7 @@ export function Hero() {
       {/* ── Background image ── */}
       <div
         aria-hidden
-        style={{ position: "absolute", inset: "-4%", transform: "scale(0.92)", transformOrigin: "center top" }}
+        style={{ position: "absolute", inset: 0 }}
       >
         <Image
           src="/wolf-hero.png"
@@ -42,8 +42,8 @@ export function Hero() {
           unoptimized
           sizes="100vw"
           style={{
-            objectFit: "cover",
-            objectPosition: "50% 70%",
+            objectFit: "contain",
+            objectPosition: "50% 100%",
           }}
         />
       </div>
