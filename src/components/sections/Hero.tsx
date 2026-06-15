@@ -44,7 +44,6 @@ export function Hero() {
           style={{
             objectFit: "cover",
             objectPosition: "50% 50%",
-            filter: "contrast(1.08) saturate(1.05) brightness(1.0)",
           }}
         />
       </div>
