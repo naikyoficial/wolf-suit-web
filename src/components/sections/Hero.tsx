@@ -14,7 +14,6 @@ export function Hero() {
   const { scrollY } = useScroll();
   const contentOp = useTransform(scrollY, [0, 400], [1, 0]);
   const contentY  = useTransform(scrollY, [0, 500], [0, -52]);
-  const bgScale   = useTransform(scrollY, [0, 700], [1, 1.1]);
 
   return (
     <section
@@ -30,14 +29,10 @@ export function Hero() {
     >
       <h1 className="sr-only">Agencia de Diseño y Desarrollo Web Premium — Suitwolf</h1>
 
-      {/* ── Background wolf image ── */}
-      <motion.div
+      {/* ── Background image ── */}
+      <div
         aria-hidden
-        style={{
-          position: "absolute", inset: 0,
-          scale: bgScale,
-          willChange: "transform",
-        }}
+        style={{ position: "absolute", inset: 0 }}
       >
         <Image
           src="/wolf-hero.png"
@@ -48,11 +43,11 @@ export function Hero() {
           sizes="100vw"
           style={{
             objectFit: "cover",
-            objectPosition: "50% 32%",
-            filter: "contrast(1.14) saturate(1.1) brightness(1.02)",
+            objectPosition: "50% 50%",
+            filter: "contrast(1.08) saturate(1.05) brightness(1.0)",
           }}
         />
-      </motion.div>
+      </div>
 
       {/* ── Overlays ── */}
 
