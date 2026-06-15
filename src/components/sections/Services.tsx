@@ -1,40 +1,41 @@
 "use client";
 
-import { useRef, useState, useEffect, useCallback } from "react";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Reveal }       from "@/components/ui/Reveal";
 import { SplitWords }   from "@/components/ui/SplitWords";
 import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
 
-const EASE = [0.16, 1.0, 0.3, 1.0] as const;
-const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
-const CARD_W = 320;
-const CARD_GAP = 20;
-const STEP = CARD_W + CARD_GAP;
+const EASE  = [0.16, 1.0, 0.3, 1.0] as const;
+const SPRING = { type: "spring", stiffness: 72, damping: 18, mass: 1.1 } as const;
+const GOLD  = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
+
+const CARD_W = 460;
+const STEP   = 524; // card + 64px gap
 
 const SERVICES = [
   {
     num: "01",
     category: "Web Corporativa",
-    title: "Sitio Web\nCorporativo",
+    title: ["Sitio Web", "Corporativo"],
     subtitle: "Diseño & Desarrollo a Medida",
-    desc: "Creamos presencias digitales que posicionan tu empresa como referente en su industria. Arquitectura estratégica, rendimiento técnico de primer nivel y experiencias que transforman visitantes en clientes.",
+    desc: "Creamos presencias digitales que posicionan tu empresa como referente en su industria. Arquitectura estratégica, rendimiento técnico de primer nivel y experiencias que transforman visitantes en clientes reales.",
     tags: ["Diseño Web", "SEO Técnico", "Performance"],
-    accent: "rgba(212,160,32,.06)",
+    accent: "rgba(212,160,32,.07)",
   },
   {
     num: "02",
     category: "Conversión",
-    title: "Landing Page\nde Impacto",
+    title: ["Landing Page", "de Impacto"],
     subtitle: "Páginas de Alta Conversión",
-    desc: "Páginas de aterrizaje diseñadas para captar leads y acelerar tus resultados de venta. Estructura persuasiva, carga ultrarrápida y optimización basada en el comportamiento real del usuario.",
+    desc: "Páginas de aterrizaje diseñadas para captar leads y acelerar tus resultados de venta. Estructura persuasiva, carga ultrarrápida y copy estratégico orientado al comportamiento real del usuario.",
     tags: ["Lead Generation", "CRO", "Copy Estratégico"],
-    accent: "rgba(180,140,20,.05)",
+    accent: "rgba(190,140,20,.06)",
   },
   {
     num: "03",
     category: "Branding",
-    title: "Identidad\nVisual & Marca",
+    title: ["Identidad Visual", "& Marca"],
     subtitle: "Branding & Identidad Corporativa",
     desc: "Sistema visual completo que diferencia tu marca en cada punto de contacto. Logo, paleta, tipografía y guía de uso — coherencia visual que construye reputación y reconocimiento a largo plazo.",
     tags: ["Logo", "Branding", "Guía de Marca"],
@@ -43,16 +44,16 @@ const SERVICES = [
   {
     num: "04",
     category: "E-commerce",
-    title: "Tienda Online\nPremium",
+    title: ["Tienda Online", "Premium"],
     subtitle: "E-commerce de Alto Nivel",
     desc: "Plataformas de venta online con experiencia de compra de lujo. Integración de medios de pago, catálogo optimizado y flujos diseñados para maximizar la conversión y el ticket promedio.",
     tags: ["E-commerce", "Pagos Online", "UX de Compra"],
-    accent: "rgba(40,160,120,.04)",
+    accent: "rgba(40,160,100,.04)",
   },
   {
     num: "05",
     category: "Personal Brand",
-    title: "Presencia\nPersonal",
+    title: ["Presencia", "Personal"],
     subtitle: "Portfolio & Personal Branding",
     desc: "Sitio web personal para ejecutivos, consultores y figuras públicas. Tu imagen digital como activo estratégico: credibilidad, autoridad y distinción que abren puertas antes de que hables.",
     tags: ["Portfolio", "Ejecutivos", "Autoridad Digital"],
@@ -61,118 +62,103 @@ const SERVICES = [
   {
     num: "06",
     category: "App & Plataforma",
-    title: "Aplicación\nWeb a Medida",
+    title: ["Aplicación Web", "a Medida"],
     subtitle: "Plataformas, SaaS & Dashboards",
-    desc: "Interfaces complejas diseñadas con rigor de producto premium. Dashboards, herramientas internas y plataformas SaaS que combinan máxima funcionalidad con experiencia de usuario de primer nivel.",
+    desc: "Interfaces complejas diseñadas con rigor de producto premium. Dashboards, herramientas internas y plataformas SaaS que combinan máxima funcionalidad técnica con diseño de experiencia de usuario de primer nivel.",
     tags: ["SaaS", "Dashboard", "UX/UI"],
     accent: "rgba(40,80,180,.05)",
   },
 ];
 
-function ServiceCard({ service, index, active }: {
-  service: typeof SERVICES[0];
-  index: number;
-  active: boolean;
-}) {
-  const [hovered, setHovered] = useState(false);
-  const lines = service.title.split("\n");
+type Service = typeof SERVICES[0];
 
+function ServiceCard({ service, isActive }: { service: Service; isActive: boolean }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 48, filter: "blur(10px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: true, margin: "-8%" }}
-      transition={{ duration: 1.0, delay: 0.05 + index * 0.07, ease: EASE }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        width: CARD_W,
-        flexShrink: 0,
-        position: "relative",
-        padding: "36px 28px 32px",
-        border: `1px solid ${hovered || active ? "rgba(212,160,32,.22)" : "rgba(255,255,255,.055)"}`,
-        background: hovered
-          ? `linear-gradient(160deg, rgba(22,18,8,.98) 0%, rgba(14,12,6,.98) 100%)`
-          : `linear-gradient(160deg, rgba(12,11,9,.97) 0%, rgba(8,7,5,.97) 100%)`,
-        transition: "border-color .45s, background .45s",
-        display: "flex",
-        flexDirection: "column",
-        minHeight: 520,
-        cursor: "grab",
-        userSelect: "none",
-        overflow: "hidden",
-      }}
-    >
-      {/* Top gold line — always present, glows on hover */}
+    <div style={{
+      width: CARD_W,
+      minHeight: 540,
+      padding: "40px 36px 36px",
+      position: "relative",
+      border: `1px solid ${isActive ? "rgba(212,160,32,.24)" : "rgba(255,255,255,.06)"}`,
+      background: isActive
+        ? "linear-gradient(160deg, rgba(22,17,7,.99) 0%, rgba(12,10,4,.99) 100%)"
+        : "linear-gradient(160deg, rgba(12,11,9,.98) 0%, rgba(8,7,5,.98) 100%)",
+      display: "flex",
+      flexDirection: "column",
+      overflow: "hidden",
+      transition: "border-color .5s, background .5s",
+    }}>
+      {/* Top shimmer line */}
       <div aria-hidden style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 1,
         background: GOLD,
         backgroundSize: "260% 100%",
         animation: "metalShimmer 7s ease-in-out infinite",
-        opacity: hovered || active ? 0.9 : 0.25,
-        transition: "opacity .45s",
+        opacity: isActive ? 0.85 : 0.2,
+        transition: "opacity .6s",
       }} />
 
-      {/* Atmospheric glow per card */}
+      {/* Per-card atmospheric tint */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        background: `radial-gradient(ellipse 80% 60% at 50% 0%, ${service.accent} 0%, transparent 70%)`,
-        opacity: hovered ? 1 : 0.5,
-        transition: "opacity .5s",
+        background: `radial-gradient(ellipse 90% 55% at 50% 0%, ${service.accent} 0%, transparent 70%)`,
+        opacity: isActive ? 1 : 0.4,
+        transition: "opacity .6s",
       }} />
 
-      {/* Ghost number — visual texture */}
+      {/* Ghost number */}
       <div aria-hidden style={{
         position: "absolute",
-        bottom: -10,
-        right: -8,
+        bottom: -16,
+        right: -4,
         fontFamily: "var(--font-display)",
-        fontSize: 160,
+        fontSize: 172,
         fontWeight: 700,
         lineHeight: 1,
+        letterSpacing: "-.06em",
         color: "transparent",
-        WebkitTextStroke: `1px rgba(212,160,32,${hovered ? ".10" : ".04"})`,
-        transition: "WebkitTextStroke .45s, opacity .45s",
+        WebkitTextStroke: `1px rgba(212,160,32,${isActive ? ".10" : ".03"})`,
         pointerEvents: "none",
-        letterSpacing: "-.05em",
-        transform: hovered ? "translateY(-4px)" : "translateY(0)",
-        transitionProperty: "transform, opacity, -webkit-text-stroke",
+        transition: "-webkit-text-stroke .6s",
+        userSelect: "none",
       }}>
         {service.num}
       </div>
 
-      {/* Category + number row */}
+      {/* Category + number */}
       <div style={{
-        display: "flex", alignItems: "center",
-        justifyContent: "space-between", marginBottom: 40,
+        display: "flex", justifyContent: "space-between",
+        alignItems: "center", marginBottom: 44,
         position: "relative", zIndex: 1,
       }}>
         <span style={{
-          fontSize: 8, letterSpacing: ".45em", textTransform: "uppercase",
-          color: "rgba(212,160,32,.5)",
+          fontSize: 8, letterSpacing: ".48em", textTransform: "uppercase",
+          color: isActive ? "rgba(212,160,32,.55)" : "rgba(212,160,32,.2)",
+          transition: "color .5s",
         }}>
           {service.category}
         </span>
         <span style={{
-          fontSize: 9, letterSpacing: ".3em",
-          color: "rgba(180,176,168,.2)",
+          fontSize: 9, letterSpacing: ".28em",
+          color: isActive ? "rgba(180,176,168,.18)" : "rgba(180,176,168,.08)",
+          transition: "color .5s",
         }}>
           {service.num}
         </span>
       </div>
 
-      {/* Title — display font, multiline */}
-      <div style={{ position: "relative", zIndex: 1, marginBottom: 6 }}>
-        {lines.map((line, li) => (
+      {/* Title — 2 lines in display font */}
+      <div style={{ position: "relative", zIndex: 1, marginBottom: 10 }}>
+        {service.title.map((line, li) => (
           <p key={li} style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(26px, 2.2vw, 32px)",
+            fontSize: "clamp(28px, 2.5vw, 36px)",
             fontWeight: 300,
-            letterSpacing: "-.02em",
-            lineHeight: 1.12,
-            color: hovered ? "var(--color-text)" : "var(--color-text-2)",
+            letterSpacing: "-.022em",
+            lineHeight: 1.1,
+            color: isActive ? "var(--color-text)" : "rgba(200,195,185,.35)",
             margin: 0,
-            transition: "color .35s",
+            transition: "color .5s",
           }}>
             {line}
           </p>
@@ -181,113 +167,81 @@ function ServiceCard({ service, index, active }: {
 
       {/* Subtitle */}
       <p style={{
-        fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase",
-        color: "rgba(212,160,32,.45)",
-        marginBottom: 24,
+        fontSize: 9, letterSpacing: ".24em", textTransform: "uppercase",
+        color: isActive ? "rgba(212,160,32,.48)" : "rgba(212,160,32,.15)",
+        marginBottom: 28,
         position: "relative", zIndex: 1,
-        transition: "color .35s",
+        transition: "color .5s",
       }}>
         {service.subtitle}
       </p>
 
       {/* Divider */}
       <div aria-hidden style={{
-        height: 1, marginBottom: 20,
-        background: `linear-gradient(to right, rgba(212,160,32,${hovered ? ".25" : ".1"}), transparent)`,
-        transition: "background .4s",
+        height: 1, marginBottom: 22,
+        background: `linear-gradient(to right, rgba(212,160,32,${isActive ? ".22" : ".06"}), transparent)`,
         position: "relative", zIndex: 1,
+        transition: "background .5s",
       }} />
 
       {/* Description */}
       <p style={{
-        fontSize: 12.5,
-        color: hovered ? "var(--color-text-3)" : "var(--color-text-4)",
+        fontSize: 13,
+        color: isActive ? "var(--color-text-3)" : "rgba(140,135,125,.3)",
         lineHeight: 1.9,
         flex: 1,
         position: "relative", zIndex: 1,
-        transition: "color .35s",
+        transition: "color .5s",
       }}>
         {service.desc}
       </p>
 
       {/* Tags */}
       <div style={{
-        display: "flex", flexWrap: "wrap", gap: 6,
-        marginTop: 24, marginBottom: 24,
+        display: "flex", flexWrap: "wrap", gap: 7,
+        marginTop: 28, marginBottom: 28,
         position: "relative", zIndex: 1,
       }}>
         {service.tags.map(tag => (
           <span key={tag} style={{
-            fontSize: 8, letterSpacing: ".3em", textTransform: "uppercase",
-            padding: "4px 10px",
-            border: `1px solid rgba(212,160,32,${hovered ? ".2" : ".09"})`,
-            color: `rgba(212,160,32,${hovered ? ".65" : ".35"})`,
-            transition: "border-color .4s, color .4s",
+            fontSize: 8, letterSpacing: ".32em", textTransform: "uppercase",
+            padding: "5px 11px",
+            border: `1px solid rgba(212,160,32,${isActive ? ".18" : ".06"})`,
+            color: `rgba(212,160,32,${isActive ? ".6" : ".2"})`,
+            transition: "border-color .5s, color .5s",
           }}>
             {tag}
           </span>
         ))}
       </div>
 
-      {/* Arrow cue */}
-      <motion.div
-        animate={{ x: hovered ? 6 : 0, opacity: hovered ? 1 : 0.35 }}
-        transition={{ duration: 0.35 }}
-        style={{
-          display: "flex", alignItems: "center", gap: 10,
-          position: "relative", zIndex: 1,
-        }}
-      >
-        <div style={{ width: 28, height: 1, background: "rgba(212,160,32,.6)" }} />
+      {/* Arrow */}
+      <div style={{
+        display: "flex", alignItems: "center", gap: 10,
+        position: "relative", zIndex: 1,
+        opacity: isActive ? 0.7 : 0,
+        transform: isActive ? "translateX(0)" : "translateX(-8px)",
+        transition: "opacity .55s, transform .55s",
+      }}>
+        <div style={{ width: 24, height: 1, background: "rgba(212,160,32,.6)" }} />
         <div style={{
           width: 5, height: 5,
           borderRight: "1px solid rgba(212,160,32,.7)",
           borderTop: "1px solid rgba(212,160,32,.7)",
           transform: "rotate(45deg)",
         }} />
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
 export function Services() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const trackRef     = useRef<HTMLDivElement>(null);
-  const x            = useMotionValue(0);
-  const [maxDrag, setMaxDrag] = useState(0);
-  const [activeIdx, setActiveIdx] = useState(0);
+  const [active, setActive] = useState(0);
+  const total = SERVICES.length;
 
-  const recompute = useCallback(() => {
-    if (!trackRef.current || !containerRef.current) return;
-    const drag = trackRef.current.scrollWidth - containerRef.current.clientWidth;
-    setMaxDrag(Math.max(0, drag));
-  }, []);
-
-  useEffect(() => {
-    recompute();
-    const ro = new ResizeObserver(recompute);
-    if (trackRef.current)   ro.observe(trackRef.current);
-    if (containerRef.current) ro.observe(containerRef.current);
-    return () => ro.disconnect();
-  }, [recompute]);
-
-  // Keep activeIdx in sync with x position
-  useEffect(() => {
-    const unsub = x.on("change", (v) => {
-      const idx = Math.round(-v / STEP);
-      setActiveIdx(Math.max(0, Math.min(SERVICES.length - 1, idx)));
-    });
-    return unsub;
-  }, [x]);
-
-  const goTo = useCallback((dir: 1 | -1) => {
-    const next = Math.max(-maxDrag, Math.min(0, x.get() - dir * STEP));
-    animate(x, next, { type: "spring", stiffness: 90, damping: 20, mass: 0.9 });
-  }, [maxDrag, x]);
-
-  // Progress bar width
-  const progress = useTransform(x, () => maxDrag === 0 ? 0 : Math.abs(x.get()) / maxDrag);
-  const barWidth = useTransform(progress, [0, 1], ["0%", "100%"]);
+  const go = (dir: 1 | -1) => {
+    setActive(prev => Math.max(0, Math.min(total - 1, prev + dir)));
+  };
 
   return (
     <section
@@ -303,7 +257,7 @@ export function Services() {
       {/* Atmosphere */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(168,108,5,.08) 0%, transparent 70%)",
+        background: "radial-gradient(ellipse 55% 50% at 50% 45%, rgba(168,108,5,.08) 0%, transparent 70%)",
       }} />
       {/* Top fade */}
       <div aria-hidden style={{
@@ -317,16 +271,22 @@ export function Services() {
         background: "linear-gradient(to top, rgba(4,4,4,1) 0%, transparent 100%)",
         pointerEvents: "none", zIndex: 20,
       }} />
-      {/* Right edge fade — shows more content ahead */}
+      {/* Left vignette — shows there's more */}
       <div aria-hidden style={{
-        position: "absolute", top: 0, right: 0, bottom: 0, width: "12vw",
-        background: "linear-gradient(to left, rgba(4,4,4,.95) 0%, transparent 100%)",
-        pointerEvents: "none", zIndex: 5,
+        position: "absolute", top: 0, left: 0, bottom: 0, width: "18vw",
+        background: "linear-gradient(to right, rgba(4,4,4,.92) 0%, rgba(4,4,4,.3) 60%, transparent 100%)",
+        pointerEvents: "none", zIndex: 6,
+      }} />
+      {/* Right vignette */}
+      <div aria-hidden style={{
+        position: "absolute", top: 0, right: 0, bottom: 0, width: "18vw",
+        background: "linear-gradient(to left, rgba(4,4,4,.92) 0%, rgba(4,4,4,.3) 60%, transparent 100%)",
+        pointerEvents: "none", zIndex: 6,
       }} />
 
       {/* ── Header ── */}
-      <div style={{ padding: "0 8vw", marginBottom: 56, position: "relative", zIndex: 2 }}>
-        <Reveal y={20} blur={4} style={{ marginBottom: 16 }}>
+      <div style={{ padding: "0 8vw", marginBottom: 60, position: "relative", zIndex: 10 }}>
+        <Reveal y={20} blur={4} style={{ marginBottom: 14 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
             <div style={{ width: 28, height: 1, background: "linear-gradient(to right, transparent, rgba(212,160,32,.4))" }} />
             <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".52em", textTransform: "uppercase" }}>
@@ -335,134 +295,165 @@ export function Services() {
           </div>
         </Reveal>
 
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 40, flexWrap: "wrap" }}>
-          <Reveal delay={0.08} y={36} style={{ maxWidth: 620 }}>
-            <SplitWords
-              as="h2"
-              stagger={0.05}
+        <Reveal delay={0.08} y={36}>
+          <SplitWords
+            as="h2"
+            stagger={0.05}
+            style={{
+              fontSize: "clamp(30px, 3.8vw, 52px)",
+              lineHeight: 1.08,
+              letterSpacing: "-.025em",
+              fontFamily: "var(--font-display)",
+              fontWeight: 300,
+            }}
+          >
+            ¿Qué podemos construir para tu empresa?
+          </SplitWords>
+        </Reveal>
+      </div>
+
+      {/* ── Carousel track ── */}
+      <div style={{
+        position: "relative",
+        height: 580,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 5,
+      }}>
+        {SERVICES.map((service, i) => {
+          const offset    = i - active;
+          const absOffset = Math.abs(offset);
+          if (absOffset > 2) return null;
+
+          const scale   = 1 - absOffset * 0.08;
+          const opacity = absOffset === 0 ? 1 : absOffset === 1 ? 0.28 : 0.08;
+          const blur    = absOffset === 0 ? 0 : absOffset === 1 ? 2.5 : 5;
+          const zIdx    = 10 - absOffset;
+          const isActive = absOffset === 0;
+
+          return (
+            <motion.div
+              key={service.num}
+              onClick={() => !isActive && setActive(i)}
+              animate={{
+                x: offset * STEP,
+                scale,
+                opacity,
+                filter: `blur(${blur}px)`,
+                zIndex: zIdx,
+              }}
+              transition={SPRING}
               style={{
-                fontSize: "clamp(32px, 4vw, 56px)",
-                lineHeight: 1.08,
-                letterSpacing: "-.025em",
-                fontFamily: "var(--font-display)",
-                fontWeight: 300,
+                position: "absolute",
+                cursor: isActive ? "default" : "pointer",
+                transformOrigin: "center center",
               }}
             >
-              ¿Qué podemos construir para tu empresa?
-            </SplitWords>
-          </Reveal>
-
-          {/* Navigation arrows */}
-          <Reveal delay={0.22} y={16} blur={4} style={{ display: "flex", gap: 12, flexShrink: 0 }}>
-            {([[-1, "←"], [1, "→"]] as const).map(([dir, arrow]) => (
-              <button
-                key={dir}
-                onClick={() => goTo(dir)}
-                data-cursor-hover
-                style={{
-                  width: 48, height: 48,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  border: "1px solid rgba(255,255,255,.1)",
-                  background: "transparent",
-                  color: "var(--color-text-3)",
-                  fontSize: 16,
-                  transition: "border-color .3s, color .3s, background .3s",
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(212,160,32,.4)";
-                  (e.currentTarget as HTMLButtonElement).style.color = "rgba(212,160,32,.9)";
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,.1)";
-                  (e.currentTarget as HTMLButtonElement).style.color = "var(--color-text-3)";
-                }}
-                aria-label={dir === -1 ? "Anterior" : "Siguiente"}
-              >
-                {arrow}
-              </button>
-            ))}
-          </Reveal>
-        </div>
+              <ServiceCard service={service} isActive={isActive} />
+            </motion.div>
+          );
+        })}
       </div>
 
-      {/* ── Carousel ── */}
-      <div
-        ref={containerRef}
-        style={{ overflow: "hidden", paddingLeft: "8vw", position: "relative", zIndex: 2 }}
-      >
-        <motion.div
-          ref={trackRef}
-          drag="x"
-          dragConstraints={{ left: -maxDrag, right: 0 }}
-          dragTransition={{ power: 0.2, timeConstant: 280 }}
-          style={{ x, display: "flex", gap: CARD_GAP, width: "max-content", paddingRight: "8vw" }}
-        >
-          {SERVICES.map((service, i) => (
-            <ServiceCard key={service.num} service={service} index={i} active={activeIdx === i} />
-          ))}
-        </motion.div>
-      </div>
-
-      {/* ── Progress + counter ── */}
-      <Reveal delay={0.4} y={12} blur={4} style={{ padding: "32px 8vw 0", position: "relative", zIndex: 2 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          {/* Track */}
-          <div style={{
-            flex: 1, maxWidth: 240, height: 1,
-            background: "rgba(255,255,255,.07)",
-            position: "relative",
-            overflow: "hidden",
-          }}>
-            <motion.div style={{
-              position: "absolute", left: 0, top: 0, bottom: 0,
-              width: barWidth,
-              background: GOLD,
-              backgroundSize: "260% 100%",
-              animation: "metalShimmer 5s ease-in-out infinite",
-            }} />
-          </div>
+      {/* ── Navigation + counter + dots ── */}
+      <Reveal delay={0.3} y={16} blur={4} style={{
+        padding: "36px 8vw 0",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 28,
+        position: "relative",
+        zIndex: 10,
+      }}>
+        {/* Arrows */}
+        <div style={{ display: "flex", alignItems: "center", gap: 40 }}>
+          {/* Prev */}
+          <button
+            onClick={() => go(-1)}
+            disabled={active === 0}
+            data-cursor-hover
+            style={{
+              display: "flex", alignItems: "center", gap: 12,
+              background: "none", border: "none", padding: 0,
+              opacity: active === 0 ? 0.2 : 1,
+              transition: "opacity .3s",
+            }}
+            aria-label="Servicio anterior"
+          >
+            <span style={{ fontSize: 10, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--color-text-4)" }}>
+              Anterior
+            </span>
+            <div style={{ width: 20, height: 1, background: "rgba(180,176,168,.35)" }} />
+          </button>
 
           {/* Counter */}
-          <span style={{
-            fontSize: 9, letterSpacing: ".3em",
-            color: "rgba(180,176,168,.3)",
-          }}>
-            <span style={{ color: "rgba(212,160,32,.6)" }}>
-              {String(activeIdx + 1).padStart(2, "0")}
+          <span style={{ fontSize: 11, letterSpacing: ".28em", color: "rgba(180,176,168,.25)" }}>
+            <span style={{
+              fontFamily: "var(--font-display)",
+              fontSize: 18,
+              fontWeight: 300,
+              letterSpacing: "-.01em",
+              background: GOLD,
+              backgroundSize: "260% 100%",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              animation: "metalShimmer 8s ease-in-out infinite",
+              marginRight: 6,
+            }}>
+              {String(active + 1).padStart(2, "0")}
             </span>
-            {" / "}
-            {String(SERVICES.length).padStart(2, "0")}
+            / {String(total).padStart(2, "0")}
           </span>
 
-          {/* Dot indicators */}
-          <div style={{ display: "flex", gap: 6 }}>
-            {SERVICES.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => {
-                  const target = Math.max(-maxDrag, -i * STEP);
-                  animate(x, target, { type: "spring", stiffness: 90, damping: 20, mass: 0.9 });
-                }}
-                data-cursor-hover
-                aria-label={`Ir al servicio ${i + 1}`}
-                style={{
-                  width: activeIdx === i ? 16 : 4,
-                  height: 4,
-                  border: "none",
-                  borderRadius: 2,
-                  background: activeIdx === i ? "rgba(212,160,32,.7)" : "rgba(255,255,255,.12)",
-                  padding: 0,
-                  transition: "width .45s cubic-bezier(.16,1,.3,1), background .35s",
-                }}
-              />
-            ))}
-          </div>
+          {/* Next */}
+          <button
+            onClick={() => go(1)}
+            disabled={active === total - 1}
+            data-cursor-hover
+            style={{
+              display: "flex", alignItems: "center", gap: 12,
+              background: "none", border: "none", padding: 0,
+              opacity: active === total - 1 ? 0.2 : 1,
+              transition: "opacity .3s",
+            }}
+            aria-label="Siguiente servicio"
+          >
+            <div style={{ width: 20, height: 1, background: "rgba(180,176,168,.35)" }} />
+            <span style={{ fontSize: 10, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--color-text-4)" }}>
+              Siguiente
+            </span>
+          </button>
+        </div>
+
+        {/* Dot indicators */}
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          {SERVICES.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              data-cursor-hover
+              aria-label={`Servicio ${i + 1}`}
+              style={{
+                width: active === i ? 22 : 5,
+                height: 5,
+                border: "none",
+                borderRadius: 3,
+                padding: 0,
+                background: active === i
+                  ? "rgba(212,160,32,.75)"
+                  : "rgba(255,255,255,.1)",
+                transition: "width .5s cubic-bezier(.16,1,.3,1), background .35s",
+              }}
+            />
+          ))}
         </div>
 
         <p style={{
-          marginTop: 28,
-          fontSize: 11, letterSpacing: ".15em", textTransform: "uppercase",
+          fontSize: 11, letterSpacing: ".16em", textTransform: "uppercase",
           color: "var(--color-text-4)",
+          marginTop: 4,
         }}>
           Cada proyecto es único — adaptamos el alcance a tu situación específica.
         </p>
