@@ -39,10 +39,9 @@ export function Navbar() {
         <Image
           src="/isotipo.png"
           alt="Suitwolf mark"
-          width={28}
-          height={28}
-          className="opacity-90"
-          style={{ objectFit: "contain" }}
+          width={34}
+          height={34}
+          style={{ objectFit: "contain", filter: "drop-shadow(0 0 8px rgba(212,160,32,.45)) brightness(1.12)" }}
           priority
         />
         <span

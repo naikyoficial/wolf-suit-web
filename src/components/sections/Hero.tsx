@@ -43,10 +43,16 @@ export function Hero() {
           sizes="100vw"
           style={{
             objectFit: "contain",
-            objectPosition: "50% 100%",
+            objectPosition: "50% 80%",
           }}
         />
       </div>
+
+      {/* Side fades — blend image edges into dark bg */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "linear-gradient(to right, rgba(4,4,4,1) 0%, rgba(4,4,4,.6) 14%, transparent 30%, transparent 70%, rgba(4,4,4,.6) 86%, rgba(4,4,4,1) 100%)",
+      }} />
 
       {/* ── Overlays ── */}
 
