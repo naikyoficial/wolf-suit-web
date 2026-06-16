@@ -61,23 +61,36 @@ export function Philosophy() {
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.6, ease: EASE }}
-          style={{ width: 36, height: 1, background: "var(--color-gold)", margin: "0 auto 28px", transformOrigin: "center" }}
+          style={{ width: 36, height: 1, background: "var(--color-gold)", margin: "0 auto 36px", transformOrigin: "center" }}
         />
 
-        {/* Body — blurs in */}
-        <Reveal delay={0.7} y={24} blur={6}>
-          <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 2, maxWidth: 520, margin: "0 auto" }}>
-            Un sitio web no es una decoración.<br />
-            Es la primera conversación entre tu empresa y quien está evaluando confiar en ella.<br /><br />
-            Un diseño genérico no puede representar una empresa extraordinaria.<br />
-            Un template no puede transmitir una historia única.<br />
-            Una presencia mediocre no puede justificar una propuesta premium.<br /><br />
-            Por eso en SuitWolf diseñamos y desarrollamos sitios web corporativos exclusivos,
-            creados para empresas que buscan autoridad, diferenciación y crecimiento sostenido.<br /><br />
-            Nuestro trabajo existe para resolver una sola distancia:<br />
-            la que separa lo que tu empresa realmente es de lo que hoy el mercado percibe.
-          </p>
-        </Reveal>
+        {/* Body — structured paragraphs for SEO + readability */}
+        <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center" }}>
+          <Reveal delay={0.65} y={20} blur={5}>
+            <p style={{ fontSize: 15, color: "var(--color-text-2)", lineHeight: 1.95, marginBottom: 24, letterSpacing: "-.01em" }}>
+              Cada vez que alguien llega a tu sitio web, en menos de tres segundos ya tiene una opinión formada sobre tu empresa. Esa opinión decide si te contactan, si te ignoran o si eligen a tu competencia.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.8} y={20} blur={5}>
+            <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 2, marginBottom: 24 }}>
+              En SuitWolf somos una <strong style={{ color: "var(--color-text-2)", fontWeight: 500 }}>agencia de diseño y desarrollo web premium</strong> especializada en empresas que entienden que su presencia digital es un activo estratégico, no un gasto. Creamos sitios web corporativos, landing pages de alta conversión, e-commerce y aplicaciones web construidos sobre una arquitectura pensada para cada cliente.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.95} y={20} blur={5}>
+            <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 2, marginBottom: 32 }}>
+              No usamos plantillas. No seguimos tendencias pasajeras. Cada decisión de diseño, tecnología y contenido responde a un objetivo concreto: <em style={{ color: "var(--color-text-2)", fontStyle: "normal" }}>representar el verdadero nivel de tu empresa y posicionarte como referente en tu industria.</em>
+            </p>
+          </Reveal>
+
+          <Reveal delay={1.1} y={16} blur={4}>
+            <p style={{ fontSize: 13, color: "var(--color-text-4)", lineHeight: 1.9, letterSpacing: ".005em" }}>
+              Si hoy tu presencia digital no refleja lo que tu empresa realmente es,
+              ese es exactamente el problema que existimos para resolver.
+            </p>
+          </Reveal>
+        </div>
 
       </div>
     </section>
