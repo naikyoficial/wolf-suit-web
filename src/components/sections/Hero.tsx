@@ -32,7 +32,7 @@ export function Hero() {
       {/* ── Background image — shifted up ── */}
       <div
         aria-hidden
-        style={{ position: "absolute", top: "-22%", left: 0, right: 0, bottom: 0 }}
+        style={{ position: "absolute", top: "-10%", left: 0, right: 0, bottom: 0 }}
       >
         <Image
           src="/wolf-hero.png"
