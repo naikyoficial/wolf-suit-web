@@ -74,7 +74,7 @@ export function Philosophy() {
 
           <Reveal delay={0.8} y={20} blur={5}>
             <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 2, marginBottom: 24 }}>
-              En SuitWolf somos una <strong style={{ color: "var(--color-text-2)", fontWeight: 500 }}>agencia de diseño y desarrollo web premium</strong> especializada en empresas que entienden que su presencia digital es un activo estratégico, no un gasto. Creamos sitios web corporativos, landing pages de alta conversión, e-commerce y aplicaciones web construidos sobre una arquitectura pensada para cada cliente.
+              SuitWolf es una <strong style={{ color: "var(--color-text-2)", fontWeight: 500 }}>agencia de diseño y desarrollo web premium</strong> especializada en empresas que entienden que su presencia digital es un activo estratégico, no un gasto. Creamos sitios web corporativos, landing pages de alta conversión,{" "}<span style={{ whiteSpace: "nowrap" }}>e-commerce</span>{" "}y aplicaciones web construidos sobre una arquitectura pensada para cada cliente.
             </p>
           </Reveal>
 
@@ -86,8 +86,7 @@ export function Philosophy() {
 
           <Reveal delay={1.1} y={16} blur={4}>
             <p style={{ fontSize: 13, color: "var(--color-text-4)", lineHeight: 1.9, letterSpacing: ".005em" }}>
-              Si hoy tu presencia digital no refleja lo que tu empresa realmente es,
-              ese es exactamente el problema que existimos para resolver.
+              Nuestro trabajo existe para cerrar una sola brecha: la distancia entre lo que tu empresa realmente es y lo que el mundo percibe hoy.
             </p>
           </Reveal>
         </div>
