@@ -70,7 +70,7 @@ export function Pillars() {
               fontWeight: 300,
             }}
           >
-            Desde cero. Para vos. Sin excepciones.
+            La excelencia no es un objetivo. Es el punto de partida.
           </SplitWords>
         </Reveal>
 
