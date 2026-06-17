@@ -11,7 +11,7 @@ const SPRING = { type: "spring", stiffness: 72, damping: 18, mass: 1.1 } as cons
 const GOLD  = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
 
 const CARD_W = 460;
-const STEP   = 524; // card + 64px gap
+const STEP   = 490; // card + 30px gap — tighter to show more peek
 
 const SERVICES = [
   {
@@ -94,7 +94,7 @@ function ServiceCard({ service, isActive }: { service: Service; isActive: boolea
         : "linear-gradient(160deg, rgba(12,11,9,.98) 0%, rgba(8,7,5,.98) 100%)",
       display: "flex",
       flexDirection: "column",
-      overflow: "visible",
+      overflow: "hidden",
       transition: "border-color .5s, background .5s",
     }}>
       {/* Top shimmer line */}
@@ -118,10 +118,10 @@ function ServiceCard({ service, isActive }: { service: Service; isActive: boolea
       {/* Ghost number */}
       <div aria-hidden style={{
         position: "absolute",
-        bottom: 0,
-        right: 8,
+        bottom: -8,
+        right: 12,
         fontFamily: "var(--font-display)",
-        fontSize: 172,
+        fontSize: 128,
         fontWeight: 700,
         lineHeight: 1,
         letterSpacing: "-.06em",
@@ -259,8 +259,8 @@ function NavArrow({ dir, onClick, disabled }: { dir: -1 | 1; onClick: () => void
       aria-label={isLeft ? "Servicio anterior" : "Siguiente servicio"}
       style={{
         width: 56, height: 56,
-        border: `1px solid ${hov ? "rgba(212,160,32,.4)" : "rgba(255,255,255,.07)"}`,
-        background: hov ? "rgba(212,160,32,.05)" : "rgba(5,4,2,.75)",
+        border: `1px solid ${hov ? "rgba(212,160,32,.7)" : "rgba(212,160,32,.28)"}`,
+        background: hov ? "rgba(212,160,32,.12)" : "rgba(212,160,32,.04)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
         display: "flex", alignItems: "center", justifyContent: "center",
@@ -385,21 +385,14 @@ export function Services() {
         justifyContent: "center",
         zIndex: 5,
       }}>
-        {/* Side arrows — float over the vignettes */}
-        <div style={{ position: "absolute", left: "4vw", top: "50%", transform: "translateY(-50%)", zIndex: 15 }}>
-          <NavArrow dir={-1} onClick={() => go(-1)} disabled={active === 0} />
-        </div>
-        <div style={{ position: "absolute", right: "4vw", top: "50%", transform: "translateY(-50%)", zIndex: 15 }}>
-          <NavArrow dir={1} onClick={() => go(1)} disabled={active === total - 1} />
-        </div>
         {SERVICES.map((service, i) => {
           const offset    = i - active;
           const absOffset = Math.abs(offset);
           if (absOffset > 2) return null;
 
-          const scale   = 1 - absOffset * 0.08;
-          const opacity = absOffset === 0 ? 1 : absOffset === 1 ? 0.28 : 0.08;
-          const blur    = absOffset === 0 ? 0 : absOffset === 1 ? 2.5 : 5;
+          const scale   = 1 - absOffset * 0.07;
+          const opacity = absOffset === 0 ? 1 : absOffset === 1 ? 0.45 : 0.1;
+          const blur    = absOffset === 0 ? 0 : absOffset === 1 ? 1 : 4;
           const zIdx    = 10 - absOffset;
           const isActive = absOffset === 0;
 
@@ -437,20 +430,26 @@ export function Services() {
         position: "relative",
         zIndex: 10,
       }}>
-        {/* Counter */}
-        <span style={{ fontSize: 11, letterSpacing: ".28em", color: "rgba(180,176,168,.25)" }}>
-          <span style={{
-            fontFamily: "var(--font-display)",
-            fontSize: 18, fontWeight: 300, letterSpacing: "-.01em",
-            background: GOLD, backgroundSize: "260% 100%",
-            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-            backgroundClip: "text", animation: "metalShimmer 8s ease-in-out infinite",
-            marginRight: 6,
-          }}>
-            {String(active + 1).padStart(2, "0")}
+        {/* Arrows + counter row */}
+        <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
+          <NavArrow dir={-1} onClick={() => go(-1)} disabled={active === 0} />
+
+          <span style={{ fontSize: 11, letterSpacing: ".28em", color: "rgba(180,176,168,.25)", minWidth: 64, textAlign: "center" }}>
+            <span style={{
+              fontFamily: "var(--font-display)",
+              fontSize: 18, fontWeight: 300, letterSpacing: "-.01em",
+              background: GOLD, backgroundSize: "260% 100%",
+              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+              backgroundClip: "text", animation: "metalShimmer 8s ease-in-out infinite",
+              marginRight: 6,
+            }}>
+              {String(active + 1).padStart(2, "0")}
+            </span>
+            / {String(total).padStart(2, "0")}
           </span>
-          / {String(total).padStart(2, "0")}
-        </span>
+
+          <NavArrow dir={1} onClick={() => go(1)} disabled={active === total - 1} />
+        </div>
 
         {/* Dot indicators */}
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
