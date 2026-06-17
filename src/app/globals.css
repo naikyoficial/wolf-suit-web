@@ -210,9 +210,11 @@ body { scrollbar-width: none; }
   0%, 100% { transform: translate(0, 0) scale(1);    opacity: .03; }
   50%       { transform: translate(30px, 80px) scale(1.14); opacity: .05; }
 }
-/* ─── Custom cursor — hide native ─── */
-html, body, * { cursor: none !important; }
-input, textarea, select { cursor: text !important; }
+/* ─── Custom cursor — hide native (mouse only) ─── */
+@media (pointer: fine) {
+  html, body, * { cursor: none !important; }
+  input, textarea, select { cursor: text !important; }
+}
 
 /* Reduced motion — accesibilidad obligatoria (OS Ch.6) */
 @media (prefers-reduced-motion: reduce) {

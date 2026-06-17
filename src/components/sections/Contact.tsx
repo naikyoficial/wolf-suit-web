@@ -344,7 +344,7 @@ export function Contact() {
             </p>
 
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 20 }}>
                 <div>
                   <label style={labelStyle}>Nombre completo</label>
                   <input required value={name} onChange={e => setName(e.target.value)} placeholder="Tu nombre" style={inputStyle} />
@@ -355,7 +355,7 @@ export function Contact() {
                 </div>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 20 }}>
                 <div>
                   <label style={labelStyle}>Empresa</label>
                   <input required value={company} onChange={e => setCompany(e.target.value)} placeholder="Nombre de tu empresa" style={inputStyle} />

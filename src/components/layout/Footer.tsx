@@ -5,12 +5,9 @@ export function Footer() {
 
   return (
     <footer
-      className="relative"
+      className="relative flex flex-col md:flex-row items-center justify-between gap-3 md:gap-0"
       style={{
-        padding: "52px 8vw",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
+        padding: "clamp(36px, 5vh, 52px) 8vw",
         borderTop: "1px solid rgba(178,192,204,.07)",
         zIndex: 10,
       }}

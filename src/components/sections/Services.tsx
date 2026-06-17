@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { Reveal }       from "@/components/ui/Reveal";
 import { SplitWords }   from "@/components/ui/SplitWords";
 import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
@@ -10,8 +10,8 @@ const EASE  = [0.16, 1.0, 0.3, 1.0] as const;
 const SPRING = { type: "spring", stiffness: 72, damping: 18, mass: 1.1 } as const;
 const GOLD  = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
 
-const CARD_W = 460;
-const STEP   = 490; // card + 30px gap — tighter to show more peek
+const CARD_W_MAX = 460;
+const GAP = 30;
 
 const SERVICES = [
   {
@@ -81,11 +81,11 @@ const SERVICES = [
 
 type Service = typeof SERVICES[0];
 
-function ServiceCard({ service, isActive }: { service: Service; isActive: boolean }) {
+function ServiceCard({ service, isActive, cardW }: { service: Service; isActive: boolean; cardW: number }) {
   return (
     <div style={{
-      width: CARD_W,
-      minHeight: 540,
+      width: cardW,
+      minHeight: 520,
       padding: "40px 36px 36px",
       position: "relative",
       border: `1px solid ${isActive ? "rgba(212,160,32,.24)" : "rgba(255,255,255,.06)"}`,
@@ -302,7 +302,17 @@ function NavArrow({ dir, onClick, disabled }: { dir: -1 | 1; onClick: () => void
 
 export function Services() {
   const [active, setActive] = useState(0);
+  const [cardW, setCardW] = useState(CARD_W_MAX);
+  const touchStart = useRef<number | null>(null);
   const total = SERVICES.length;
+  const step = cardW + GAP;
+
+  useEffect(() => {
+    const update = () => setCardW(Math.min(CARD_W_MAX, window.innerWidth - 32));
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const go = (dir: 1 | -1) => {
     setActive(prev => Math.max(0, Math.min(total - 1, prev + dir)));
@@ -377,23 +387,32 @@ export function Services() {
       </div>
 
       {/* ── Carousel track ── */}
-      <div style={{
-        position: "relative",
-        height: 580,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 5,
-      }}>
+      <div
+        style={{
+          position: "relative",
+          height: 580,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 5,
+        }}
+        onTouchStart={(e) => { touchStart.current = e.touches[0]!.clientX; }}
+        onTouchEnd={(e) => {
+          if (touchStart.current === null) return;
+          const delta = e.changedTouches[0]!.clientX - touchStart.current;
+          if (Math.abs(delta) > 44) go(delta < 0 ? 1 : -1);
+          touchStart.current = null;
+        }}
+      >
         {SERVICES.map((service, i) => {
           const offset    = i - active;
           const absOffset = Math.abs(offset);
           if (absOffset > 2) return null;
 
-          const scale   = 1 - absOffset * 0.07;
-          const opacity = absOffset === 0 ? 1 : absOffset === 1 ? 0.45 : 0.1;
-          const blur    = absOffset === 0 ? 0 : absOffset === 1 ? 1 : 4;
-          const zIdx    = 10 - absOffset;
+          const scale    = 1 - absOffset * 0.07;
+          const opacity  = absOffset === 0 ? 1 : absOffset === 1 ? 0.45 : 0.1;
+          const blur     = absOffset === 0 ? 0 : absOffset === 1 ? 1 : 4;
+          const zIdx     = 10 - absOffset;
           const isActive = absOffset === 0;
 
           return (
@@ -401,7 +420,7 @@ export function Services() {
               key={service.num}
               onClick={() => !isActive && setActive(i)}
               animate={{
-                x: offset * STEP,
+                x: offset * step,
                 scale,
                 opacity,
                 filter: `blur(${blur}px)`,
@@ -414,7 +433,7 @@ export function Services() {
                 transformOrigin: "center center",
               }}
             >
-              <ServiceCard service={service} isActive={isActive} />
+              <ServiceCard service={service} isActive={isActive} cardW={cardW} />
             </motion.div>
           );
         })}

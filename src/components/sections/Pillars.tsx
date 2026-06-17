@@ -76,7 +76,7 @@ export function Pillars() {
           </h2>
         </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "clamp(16px, 2vw, 28px)" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "clamp(16px, 2vw, 28px)" }}>
           {PILLARS.map((p, i) => (
             <motion.div
               key={p.num}

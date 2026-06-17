@@ -12,12 +12,18 @@ export function Cursor() {
 
   const [hovered, setHovered] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
 
   useEffect(() => {
     hoveredRef.current = hovered;
   }, [hovered]);
 
   useEffect(() => {
+    if (isTouch) return;
     const onMove = (e: MouseEvent) => {
       mouse.current = { x: e.clientX, y: e.clientY };
       if (!visible) setVisible(true);
@@ -56,7 +62,9 @@ export function Cursor() {
       cancelAnimationFrame(rafRef.current);
       observer.disconnect();
     };
-  }, [visible]);
+  }, [visible, isTouch]);
+
+  if (isTouch) return null;
 
   return (
     <>

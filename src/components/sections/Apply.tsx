@@ -85,13 +85,13 @@ export function Apply() {
 
       {/* ── Body copy — centered ── */}
       <Reveal delay={0.25} y={24} blur={6} style={{ maxWidth: 580, marginBottom: 72 }}>
-        <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 2, letterSpacing: "-.01em", marginBottom: 20 }}>
+        <p style={{ fontSize: 16, color: "var(--color-text-3)", lineHeight: 1.85, letterSpacing: "-.01em", marginBottom: 22 }}>
           Si buscás una página rápida, genérica o construida sobre una plantilla, probablemente existan muchas opciones.
         </p>
-        <p style={{ fontSize: 14, color: "var(--color-text-2)", lineHeight: 2, letterSpacing: "-.01em", marginBottom: 20 }}>
+        <p style={{ fontSize: 17, color: "var(--color-text-2)", lineHeight: 1.8, letterSpacing: "-.01em", marginBottom: 22 }}>
           Si buscás una presencia digital capaz de representar el verdadero nivel de tu empresa, estamos dispuestos a conversar.
         </p>
-        <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 2, letterSpacing: "-.01em" }}>
+        <p style={{ fontSize: 16, color: "var(--color-text-3)", lineHeight: 1.85, letterSpacing: "-.01em" }}>
           Trabajamos con una cantidad limitada de proyectos porque creemos que la excelencia necesita tiempo, criterio y atención. Cada colaboración comienza con una evaluación estratégica para determinar si realmente podemos generar un impacto significativo.
         </p>
       </Reveal>
