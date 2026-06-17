@@ -108,14 +108,14 @@ export function Hero() {
           transition={{ duration: 1.1, delay: 0.58, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(22px, 3.4vw, 50px)",
+            fontSize: "clamp(40px, 6vw, 84px)",
             fontWeight: 400,
-            letterSpacing: "-.01em",
+            letterSpacing: "-.02em",
             lineHeight: 1.0,
             color: "var(--color-text)",
             textTransform: "uppercase",
             margin: 0,
-            textShadow: "0 2px 40px rgba(0,0,0,.8)",
+            textShadow: "0 2px 60px rgba(0,0,0,.9)",
           }}
         >
           Diseñamos experiencias.
@@ -128,12 +128,12 @@ export function Hero() {
           transition={{ duration: 1.1, delay: 0.74, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(22px, 3.4vw, 50px)",
+            fontSize: "clamp(40px, 6vw, 84px)",
             fontWeight: 600,
-            letterSpacing: "-.01em",
+            letterSpacing: "-.02em",
             lineHeight: 1.0,
             textTransform: "uppercase",
-            marginBottom: "clamp(16px, 2.2vw, 28px)",
+            marginBottom: "clamp(20px, 2.8vw, 36px)",
             background: GOLD,
             backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
