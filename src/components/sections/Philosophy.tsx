@@ -67,25 +67,25 @@ export function Philosophy() {
         {/* Body — structured paragraphs for SEO + readability */}
         <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center" }}>
           <Reveal delay={0.65} y={20} blur={5}>
-            <p style={{ fontSize: 15, color: "var(--color-text-2)", lineHeight: 1.95, marginBottom: 24, letterSpacing: "-.01em" }}>
+            <p style={{ fontSize: 17, color: "var(--color-text-2)", lineHeight: 1.85, marginBottom: 28, letterSpacing: "-.01em" }}>
               Cada vez que alguien llega a tu sitio web, en menos de tres segundos ya tiene una opinión formada sobre tu empresa. Esa opinión decide si te contactan, si te ignoran o si eligen a tu competencia.
             </p>
           </Reveal>
 
           <Reveal delay={0.8} y={20} blur={5}>
-            <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 2, marginBottom: 24 }}>
+            <p style={{ fontSize: 16, color: "var(--color-text-3)", lineHeight: 1.9, marginBottom: 28 }}>
               SuitWolf es una <strong style={{ color: "var(--color-text-2)", fontWeight: 500 }}>agencia de diseño y desarrollo web premium</strong> especializada en empresas que entienden que su presencia digital es un activo estratégico, no un gasto. Creamos sitios web corporativos, landing pages de alta conversión,{" "}<span style={{ whiteSpace: "nowrap" }}>e-commerce</span>{" "}y aplicaciones web construidos sobre una arquitectura pensada para cada cliente.
             </p>
           </Reveal>
 
           <Reveal delay={0.95} y={20} blur={5}>
-            <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 2, marginBottom: 32 }}>
+            <p style={{ fontSize: 16, color: "var(--color-text-3)", lineHeight: 1.9, marginBottom: 36 }}>
               No usamos plantillas. No seguimos tendencias pasajeras. Cada decisión de diseño, tecnología y contenido responde a un objetivo concreto: <em style={{ color: "var(--color-text-2)", fontStyle: "normal" }}>representar el verdadero nivel de tu empresa y posicionarte como referente en tu industria.</em>
             </p>
           </Reveal>
 
           <Reveal delay={1.1} y={16} blur={4}>
-            <p style={{ fontSize: 13, color: "var(--color-text-4)", lineHeight: 1.9, letterSpacing: ".005em" }}>
+            <p style={{ fontSize: 15, color: "var(--color-text-4)", lineHeight: 1.85, letterSpacing: ".005em" }}>
               Nuestro trabajo existe para cerrar una sola brecha: la distancia entre lo que tu empresa realmente es y lo que el mundo percibe hoy.
             </p>
           </Reveal>

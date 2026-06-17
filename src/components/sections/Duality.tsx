@@ -110,9 +110,9 @@ export function Duality() {
         {/* Narrative paragraph */}
         <Reveal delay={0.75} y={24} blur={6} style={{ marginBottom: 64 }}>
           <p style={{
-            fontSize: 15,
+            fontSize: 17,
             color: "var(--color-text-3)",
-            lineHeight: 2,
+            lineHeight: 1.85,
             maxWidth: 620,
             margin: "0 auto",
             letterSpacing: "-.01em",

@@ -95,7 +95,7 @@ export function Hero() {
           alignItems: "center",
           textAlign: "center",
           width: "100%",
-          paddingBottom: "clamp(44px, 6.5vh, 82px)",
+          paddingBottom: "clamp(18px, 2.5vh, 40px)",
           paddingLeft:   "clamp(1.5rem, 6vw, 7.5rem)",
           paddingRight:  "clamp(1.5rem, 6vw, 7.5rem)",
         }}
