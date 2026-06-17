@@ -70,7 +70,7 @@ export function Pillars() {
               fontWeight: 300,
             }}
           >
-            La excelencia no es un objetivo. Es el punto de partida.
+            La excelencia no es un objetivo, es el punto de partida.
           </SplitWords>
         </Reveal>
 
