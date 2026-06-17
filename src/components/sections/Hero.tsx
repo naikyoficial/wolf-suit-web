@@ -8,7 +8,7 @@ const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
 const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #9A6E12 22%, #D4A020 44%, #F0C840 52%, #D4A020 60%, #9A6E12 78%, #5A3C0A 100%)";
 
-const TAGS = ["Estrategia", "Diseño", "Tecnología", "Resultados"];
+const TAGS = ["Diseño Web", "Desarrollo Web", "E-commerce", "Landing Pages", "SEO", "Software a Medida"];
 
 export function Hero() {
   const { scrollY } = useScroll();
