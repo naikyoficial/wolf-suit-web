@@ -6,203 +6,139 @@ import { SplitWords }   from "@/components/ui/SplitWords";
 import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
-
-const LEFT = [
-  { label: "Ambición genuina",     sub: "Tenés algo real para ofrecer al mercado." },
-  { label: "Historia propia",       sub: "Una trayectoria que merece ser contada con precisión." },
-  { label: "Producto de valor",     sub: "Lo que ofrecés resuelve problemas reales." },
-  { label: "Visión de largo plazo", sub: "Sabés hacia dónde querés crecer." },
-];
-
-const RIGHT = [
-  { label: "Identidad irrepetible",      sub: "Diseñada exclusivamente para tu empresa." },
-  { label: "Autoridad inmediata",        sub: "Una presencia digital que inspira confianza desde el primer segundo." },
-  { label: "Diseño que justifica valor", sub: "La calidad se comunica antes de una reunión o una propuesta." },
-  { label: "Posicionamiento estratégico", sub: "Porque la percepción correcta abre oportunidades que el precio nunca consigue." },
-];
+const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
 
 export function Duality() {
   return (
     <section
       id="duality"
       className="relative"
-      style={{ padding: "clamp(80px,10vh,120px) 8vw", zIndex: 10, background: "rgba(7,6,4,.8)" }}
+      style={{
+        padding: "clamp(100px, 14vh, 160px) 8vw",
+        zIndex: 10,
+        background: "rgba(7,6,4,.8)",
+        textAlign: "center",
+      }}
     >
-      {/* Atmosphere — warm amber from center */}
-      <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(140,85,5,.07) 0%, transparent 72%)",
+      {/* Atmosphere */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse 55% 45% at 50% 50%, rgba(140,85,5,.08) 0%, transparent 70%)",
       }} />
       {/* Top fade */}
-      <div aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 140,
-        background: "linear-gradient(to bottom, rgba(4,4,4,1) 0%, transparent 100%)", pointerEvents: "none", zIndex: 20 }} />
+      <div aria-hidden style={{
+        position: "absolute", top: 0, left: 0, right: 0, height: 140,
+        background: "linear-gradient(to bottom, rgba(4,4,4,1) 0%, transparent 100%)",
+        pointerEvents: "none", zIndex: 20,
+      }} />
       {/* Bottom fade */}
-      <div aria-hidden style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 140,
-        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, transparent 100%)", pointerEvents: "none", zIndex: 20 }} />
-      <div className="w-full max-w-[1440px] mx-auto">
+      <div aria-hidden style={{
+        position: "absolute", bottom: 0, left: 0, right: 0, height: 140,
+        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, transparent 100%)",
+        pointerEvents: "none", zIndex: 20,
+      }} />
 
-        {/* Two-column grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1px 1fr" }}>
+      <div className="w-full max-w-[1100px] mx-auto" style={{ position: "relative", zIndex: 1 }}>
 
-          {/* ── Left ── */}
-          <motion.div
-            initial={{ opacity: 0, x: -60, filter: "blur(8px)" }}
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, margin: "-8%" }}
-            transition={{ duration: 1.2, ease: EASE }}
-            style={{ padding: "48px 64px 48px 0" }}
-          >
-            <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase", marginBottom: 20 }}>
-              El lobo
-            </ShimmerLabel>
+        {/* Eyebrow */}
+        <Reveal y={16} blur={4} style={{ marginBottom: 52 }}>
+          <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".52em", textTransform: "uppercase" }}>
+            Dualidad
+          </ShimmerLabel>
+        </Reveal>
 
-            <SplitWords
-              as="h2"
-              delay={0.1}
-              stagger={0.08}
-              style={{
-                fontSize: "clamp(52px, 5.8vw, 80px)",
-                lineHeight: 0.92,
-                letterSpacing: "-.03em",
-                marginBottom: 20,
-                fontFamily: "var(--font-display)",
-                fontWeight: 300,
-              }}
-            >
-              El potencial.
-            </SplitWords>
-
-            <Reveal delay={0.25} y={12} blur={4}>
-              <p style={{ fontSize: 13, color: "var(--color-text-3)", lineHeight: 1.75, maxWidth: 300, marginBottom: 52 }}>
-                Todo lo que tu empresa ya construyó y que el mercado todavía no percibe como merece.
-              </p>
-            </Reveal>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-              {LEFT.map((item, i) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7, delay: 0.35 + i * 0.09, ease: EASE }}
-                  style={{ display: "flex", alignItems: "flex-start", gap: 18 }}
-                >
-                  <span style={{ width: 22, height: 1, background: "var(--color-gold)", opacity: .35, flexShrink: 0, marginTop: 8 }} />
-                  <div>
-                    <p style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--color-text-2)", marginBottom: 5 }}>
-                      {item.label}
-                    </p>
-                    <p style={{ fontSize: 12, color: "var(--color-text-4)", lineHeight: 1.65 }}>
-                      {item.sub}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* ── Separator ── */}
-          <motion.div
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.6, delay: 0.3, ease: EASE }}
+        {/* Line 1 — what the client brings */}
+        <div style={{ marginBottom: 12 }}>
+          <SplitWords
+            as="h2"
+            delay={0.05}
+            stagger={0.07}
             style={{
-              width: 1,
-              alignSelf: "stretch",
-              background: "linear-gradient(to bottom, transparent 5%, rgba(212,160,32,.18) 25%, rgba(212,160,32,.18) 75%, transparent 95%)",
-              transformOrigin: "top",
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(44px, 6.5vw, 92px)",
+              fontWeight: 300,
+              lineHeight: 0.95,
+              letterSpacing: "-.03em",
+              color: "var(--color-text-2)",
             }}
-          />
-
-          {/* ── Right ── */}
-          <motion.div
-            initial={{ opacity: 0, x: 60, filter: "blur(8px)" }}
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, margin: "-8%" }}
-            transition={{ duration: 1.2, ease: EASE }}
-            style={{ padding: "48px 0 48px 64px", textAlign: "right" }}
           >
-            <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase", marginBottom: 20 }}>
-              El traje
-            </ShimmerLabel>
-
-            <SplitWords
-              as="h2"
-              delay={0.1}
-              stagger={0.08}
-              style={{
-                fontSize: "clamp(52px, 5.8vw, 80px)",
-                lineHeight: 0.92,
-                letterSpacing: "-.03em",
-                marginBottom: 20,
-                fontFamily: "var(--font-display)",
-                fontWeight: 300,
-              }}
-            >
-              La percepción.
-            </SplitWords>
-
-            <Reveal delay={0.25} y={12} blur={4} style={{ display: "flex", justifyContent: "flex-end" }}>
-              <p style={{ fontSize: 13, color: "var(--color-text-3)", lineHeight: 1.75, maxWidth: 300, marginBottom: 52 }}>
-                La identidad que construimos sobre ese potencial.
-              </p>
-            </Reveal>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: 28, alignItems: "flex-end" }}>
-              {RIGHT.map((item, i) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7, delay: 0.35 + i * 0.09, ease: EASE }}
-                  style={{ display: "flex", alignItems: "flex-start", gap: 18, flexDirection: "row-reverse" }}
-                >
-                  <span style={{ width: 22, height: 1, background: "var(--color-gold)", opacity: .35, flexShrink: 0, marginTop: 8 }} />
-                  <div style={{ textAlign: "right" }}>
-                    <p style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--color-text-2)", marginBottom: 5 }}>
-                      {item.label}
-                    </p>
-                    <p style={{ fontSize: 12, color: "var(--color-text-4)", lineHeight: 1.65 }}>
-                      {item.sub}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+            Traés el potencial.
+          </SplitWords>
         </div>
 
-        {/* ── Merge statement — the payoff ── */}
-        <Reveal
-          delay={0.2}
-          y={32}
-          blur={6}
-          style={{
-            textAlign: "center",
-            marginTop: 80,
-            paddingTop: 40,
-          }}
-        >
-          <div style={{ width: 1, height: 40, background: "linear-gradient(to bottom, transparent, rgba(212,160,32,.25))", margin: "0 auto 32px" }} />
+        {/* Line 2 — what SuitWolf builds — gold shimmer */}
+        <div style={{ marginBottom: 56 }}>
           <SplitWords
-            as="p"
-            delay={0.3}
-            stagger={0.035}
+            as="h2"
+            delay={0.32}
+            stagger={0.06}
             style={{
-              fontSize: "clamp(24px, 3vw, 40px)",
               fontFamily: "var(--font-display)",
+              fontSize: "clamp(44px, 6.5vw, 92px)",
               fontWeight: 300,
-              color: "rgba(236,232,223,.72)",
-              letterSpacing: ".005em",
-              lineHeight: 1.22,
-              maxWidth: 720,
-              margin: "0 auto",
+              lineHeight: 0.95,
+              letterSpacing: "-.03em",
+              background: GOLD,
+              backgroundSize: "260% 100%",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              animation: "metalShimmer 10s ease-in-out infinite",
             }}
           >
-            Tu empresa no necesita ser la número uno para verse como tal. Solo necesita el traje correcto.
+            Nosotros construimos la percepción.
           </SplitWords>
+        </div>
+
+        {/* Gold line — animated draw */}
+        <Reveal delay={0.6} y={0} blur={0} style={{ marginBottom: 44 }}>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.1, delay: 0.7, ease: EASE }}
+            style={{
+              width: 44, height: 1, margin: "0 auto",
+              background: GOLD,
+              backgroundSize: "260% 100%",
+              animation: "metalShimmer 8s ease-in-out infinite",
+              transformOrigin: "center",
+            }}
+          />
+        </Reveal>
+
+        {/* Narrative paragraph */}
+        <Reveal delay={0.75} y={24} blur={6} style={{ marginBottom: 64 }}>
+          <p style={{
+            fontSize: 15,
+            color: "var(--color-text-3)",
+            lineHeight: 2,
+            maxWidth: 620,
+            margin: "0 auto",
+            letterSpacing: "-.01em",
+          }}>
+            Venís con años de trabajo, una historia real y algo genuino para ofrecer al mercado.
+            Sobre esa base construimos una identidad digital exclusiva: presencia que genera autoridad
+            desde el primer segundo, diseño que justifica tu valor antes de una reunión y posicionamiento
+            que abre oportunidades que el precio solo no puede abrir.
+          </p>
+        </Reveal>
+
+        {/* Closing statement */}
+        <Reveal delay={0.95} y={20} blur={5}>
+          <p style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(20px, 2.4vw, 32px)",
+            fontWeight: 300,
+            color: "rgba(236,232,223,.55)",
+            letterSpacing: "-.01em",
+            lineHeight: 1.3,
+            maxWidth: 680,
+            margin: "0 auto",
+          }}>
+            Tu empresa no necesita ser la número uno para verse como tal.
+            Solo necesita el traje correcto.
+          </p>
         </Reveal>
 
       </div>
