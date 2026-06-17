@@ -58,20 +58,22 @@ export function Pillars() {
           </ShimmerLabel>
         </Reveal>
 
-        <Reveal delay={0.1} y={32} style={{ marginBottom: 56 }}>
-          <SplitWords
-            as="h2"
-            stagger={0.07}
-            style={{
-              fontSize: "clamp(36px,4.5vw,60px)",
-              lineHeight: 1.08,
-              letterSpacing: "-.02em",
-              fontFamily: "var(--font-display)",
-              fontWeight: 300,
-            }}
-          >
-            La excelencia no es un objetivo, es el punto de partida.
-          </SplitWords>
+        <Reveal delay={0.1} y={32} style={{ marginBottom: 56, textAlign: "center" }}>
+          <h2 style={{
+            fontSize: "clamp(36px,4.5vw,60px)",
+            lineHeight: 1.12,
+            letterSpacing: "-.02em",
+            fontFamily: "var(--font-display)",
+            fontWeight: 300,
+          }}>
+            <SplitWords as="span" stagger={0.06} delay={0.1}>
+              La excelencia no es un objetivo,
+            </SplitWords>
+            <br />
+            <SplitWords as="span" stagger={0.06} delay={0.52}>
+              es el punto de partida.
+            </SplitWords>
+          </h2>
         </Reveal>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "clamp(16px, 2vw, 28px)" }}>
