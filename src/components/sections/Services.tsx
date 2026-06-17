@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Reveal }       from "@/components/ui/Reveal";
 import { SplitWords }   from "@/components/ui/SplitWords";
@@ -244,6 +244,62 @@ function ServiceCard({ service, isActive }: { service: Service; isActive: boolea
   );
 }
 
+function NavArrow({ dir, onClick, disabled }: { dir: -1 | 1; onClick: () => void; disabled: boolean }) {
+  const [hov, setHov] = useState(false);
+  const isLeft = dir === -1;
+  const arrowColor = hov ? "rgba(212,160,32,.85)" : "rgba(200,195,185,.45)";
+
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      data-cursor-hover
+      aria-label={isLeft ? "Servicio anterior" : "Siguiente servicio"}
+      style={{
+        width: 56, height: 56,
+        border: `1px solid ${hov ? "rgba(212,160,32,.4)" : "rgba(255,255,255,.07)"}`,
+        background: hov ? "rgba(212,160,32,.05)" : "rgba(5,4,2,.75)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        opacity: disabled ? 0.15 : 1,
+        transition: "border-color .35s, background .35s, opacity .3s",
+        flexShrink: 0,
+        position: "relative",
+        zIndex: 15,
+      }}
+    >
+      <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
+        {isLeft && (
+          <div style={{
+            position: "absolute", left: 0, top: -3, width: 7, height: 7,
+            borderLeft: `1px solid ${arrowColor}`,
+            borderBottom: `1px solid ${arrowColor}`,
+            transform: "rotate(45deg)",
+            transition: "border-color .35s",
+          }} />
+        )}
+        <div style={{
+          width: 24, height: 1,
+          background: arrowColor,
+          transition: "background .35s",
+        }} />
+        {!isLeft && (
+          <div style={{
+            position: "absolute", right: 0, top: -3, width: 7, height: 7,
+            borderRight: `1px solid ${arrowColor}`,
+            borderTop: `1px solid ${arrowColor}`,
+            transform: "rotate(45deg)",
+            transition: "border-color .35s",
+          }} />
+        )}
+      </div>
+    </button>
+  );
+}
+
 export function Services() {
   const [active, setActive] = useState(0);
   const total = SERVICES.length;
@@ -294,14 +350,13 @@ export function Services() {
       }} />
 
       {/* ── Header ── */}
-      <div style={{ padding: "0 8vw", marginBottom: 60, position: "relative", zIndex: 10 }}>
-        <Reveal y={20} blur={4} style={{ marginBottom: 14 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            <div style={{ width: 28, height: 1, background: "linear-gradient(to right, transparent, rgba(212,160,32,.4))" }} />
-            <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".52em", textTransform: "uppercase" }}>
-              Servicios
-            </ShimmerLabel>
-          </div>
+      <div style={{ padding: "0 8vw", marginBottom: 60, position: "relative", zIndex: 10, textAlign: "center" }}>
+        <Reveal y={20} blur={4} style={{ marginBottom: 14, display: "flex", alignItems: "center", justifyContent: "center", gap: 14 }}>
+          <div style={{ width: 28, height: 1, background: "linear-gradient(to right, transparent, rgba(212,160,32,.4))" }} />
+          <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".52em", textTransform: "uppercase" }}>
+            Servicios
+          </ShimmerLabel>
+          <div style={{ width: 28, height: 1, background: "linear-gradient(to left, transparent, rgba(212,160,32,.4))" }} />
         </Reveal>
 
         <Reveal delay={0.08} y={36}>
@@ -330,6 +385,13 @@ export function Services() {
         justifyContent: "center",
         zIndex: 5,
       }}>
+        {/* Side arrows — float over the vignettes */}
+        <div style={{ position: "absolute", left: "4vw", top: "50%", transform: "translateY(-50%)", zIndex: 15 }}>
+          <NavArrow dir={-1} onClick={() => go(-1)} disabled={active === 0} />
+        </div>
+        <div style={{ position: "absolute", right: "4vw", top: "50%", transform: "translateY(-50%)", zIndex: 15 }}>
+          <NavArrow dir={1} onClick={() => go(1)} disabled={active === total - 1} />
+        </div>
         {SERVICES.map((service, i) => {
           const offset    = i - active;
           const absOffset = Math.abs(offset);
@@ -365,76 +427,30 @@ export function Services() {
         })}
       </div>
 
-      {/* ── Navigation + counter + dots ── */}
+      {/* ── Counter + dots ── */}
       <Reveal delay={0.3} y={16} blur={4} style={{
         padding: "36px 8vw 0",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: 28,
+        gap: 20,
         position: "relative",
         zIndex: 10,
       }}>
-        {/* Arrows */}
-        <div style={{ display: "flex", alignItems: "center", gap: 40 }}>
-          {/* Prev */}
-          <button
-            onClick={() => go(-1)}
-            disabled={active === 0}
-            data-cursor-hover
-            style={{
-              display: "flex", alignItems: "center", gap: 12,
-              background: "none", border: "none", padding: 0,
-              opacity: active === 0 ? 0.2 : 1,
-              transition: "opacity .3s",
-            }}
-            aria-label="Servicio anterior"
-          >
-            <span style={{ fontSize: 10, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--color-text-4)" }}>
-              Anterior
-            </span>
-            <div style={{ width: 20, height: 1, background: "rgba(180,176,168,.35)" }} />
-          </button>
-
-          {/* Counter */}
-          <span style={{ fontSize: 11, letterSpacing: ".28em", color: "rgba(180,176,168,.25)" }}>
-            <span style={{
-              fontFamily: "var(--font-display)",
-              fontSize: 18,
-              fontWeight: 300,
-              letterSpacing: "-.01em",
-              background: GOLD,
-              backgroundSize: "260% 100%",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              animation: "metalShimmer 8s ease-in-out infinite",
-              marginRight: 6,
-            }}>
-              {String(active + 1).padStart(2, "0")}
-            </span>
-            / {String(total).padStart(2, "0")}
+        {/* Counter */}
+        <span style={{ fontSize: 11, letterSpacing: ".28em", color: "rgba(180,176,168,.25)" }}>
+          <span style={{
+            fontFamily: "var(--font-display)",
+            fontSize: 18, fontWeight: 300, letterSpacing: "-.01em",
+            background: GOLD, backgroundSize: "260% 100%",
+            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+            backgroundClip: "text", animation: "metalShimmer 8s ease-in-out infinite",
+            marginRight: 6,
+          }}>
+            {String(active + 1).padStart(2, "0")}
           </span>
-
-          {/* Next */}
-          <button
-            onClick={() => go(1)}
-            disabled={active === total - 1}
-            data-cursor-hover
-            style={{
-              display: "flex", alignItems: "center", gap: 12,
-              background: "none", border: "none", padding: 0,
-              opacity: active === total - 1 ? 0.2 : 1,
-              transition: "opacity .3s",
-            }}
-            aria-label="Siguiente servicio"
-          >
-            <div style={{ width: 20, height: 1, background: "rgba(180,176,168,.35)" }} />
-            <span style={{ fontSize: 10, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--color-text-4)" }}>
-              Siguiente
-            </span>
-          </button>
-        </div>
+          / {String(total).padStart(2, "0")}
+        </span>
 
         {/* Dot indicators */}
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
