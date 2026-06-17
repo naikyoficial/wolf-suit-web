@@ -52,7 +52,7 @@ export function Pillars() {
         background: "linear-gradient(to top, rgba(4,4,4,1) 0%, transparent 100%)", pointerEvents: "none", zIndex: 20 }} />
       <div className="w-full max-w-[1440px] mx-auto">
 
-        <Reveal y={24} blur={4}>
+        <Reveal y={24} blur={4} style={{ textAlign: "center" }}>
           <ShimmerLabel style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", marginBottom: 18 }}>
             Enfoque
           </ShimmerLabel>
