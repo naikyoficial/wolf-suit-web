@@ -9,8 +9,7 @@ export const SITE = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Filosofía", href: "#duality" },
-  { label: "Enfoque",   href: "#pillars" },
+  { label: "Servicios", href: "#services" },
   { label: "Proceso",   href: "#process" },
-  { label: "Contacto",  href: "#contact" },
+  { label: "Enfoque",   href: "#pillars" },
 ] as const;

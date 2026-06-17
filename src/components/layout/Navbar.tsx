@@ -48,14 +48,23 @@ export function Navbar() {
           <Image
             src="/isotipo.png"
             alt="Suitwolf mark"
-            width={34}
-            height={34}
-            style={{ objectFit: "contain", filter: "drop-shadow(0 0 8px rgba(212,160,32,.45)) brightness(1.12)" }}
+            width={36}
+            height={36}
+            style={{ objectFit: "contain", filter: "drop-shadow(0 0 10px rgba(212,160,32,.55)) brightness(1.18)" }}
             priority
           />
           <span
-            className="font-display font-medium tracking-[0.28em] text-text uppercase"
-            style={{ fontSize: 15 }}
+            className="font-display font-medium uppercase"
+            style={{
+              fontSize: 15,
+              letterSpacing: ".28em",
+              background: GOLD,
+              backgroundSize: "260% 100%",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              animation: "metalShimmer 9s ease-in-out infinite",
+            }}
           >
             {SITE.name}
           </span>
