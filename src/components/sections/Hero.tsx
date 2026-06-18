@@ -100,39 +100,38 @@ export function Hero() {
         }}
       >
 
-        {/* Headline line 1 — white serif */}
+        {/* Headline — pregunta clave, estructura piramidal */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0, delay: 0.52, ease: EASE }}
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(15px, 2vw, 30px)",
+            fontWeight: 300,
+            letterSpacing: ".08em",
+            lineHeight: 1.3,
+            color: "rgba(240,235,225,.55)",
+            margin: 0,
+            textTransform: "uppercase",
+            textShadow: "0 2px 30px rgba(0,0,0,.95)",
+          }}
+        >
+          ¿Tu presencia digital refleja
+        </motion.p>
+
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.58, ease: EASE }}
+          transition={{ duration: 1.1, delay: 0.66, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(40px, 6vw, 84px)",
+            fontSize: "clamp(36px, 5.5vw, 82px)",
             fontWeight: 400,
             letterSpacing: "-.02em",
             lineHeight: 1.0,
-            color: "var(--color-text)",
             textTransform: "uppercase",
-            margin: 0,
-            textShadow: "0 2px 60px rgba(0,0,0,.9)",
-          }}
-        >
-          Diseñamos experiencias.
-        </motion.p>
-
-        {/* Headline line 2 — gold shimmer */}
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.74, ease: EASE }}
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(40px, 6vw, 84px)",
-            fontWeight: 600,
-            letterSpacing: "-.02em",
-            lineHeight: 1.0,
-            textTransform: "uppercase",
-            marginBottom: "clamp(20px, 2.8vw, 36px)",
+            margin: "clamp(3px, 0.5vw, 8px) 0",
             background: GOLD,
             backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
@@ -140,10 +139,29 @@ export function Hero() {
             backgroundClip: "text",
             animation: "metalShimmer 13s ease-in-out infinite",
             animationDelay: "-5s",
-            filter: "drop-shadow(0 2px 20px rgba(212,160,32,.32))",
+            filter: "drop-shadow(0 2px 24px rgba(212,160,32,.40))",
           }}
         >
-          Construimos legado.
+          el nivel de empresa
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0, delay: 0.80, ease: EASE }}
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(15px, 2vw, 30px)",
+            fontWeight: 300,
+            letterSpacing: ".08em",
+            lineHeight: 1.3,
+            color: "rgba(240,235,225,.55)",
+            marginBottom: "clamp(20px, 2.8vw, 36px)",
+            textTransform: "uppercase",
+            textShadow: "0 2px 30px rgba(0,0,0,.95)",
+          }}
+        >
+          que tienes en mente?
         </motion.p>
 
         {/* Tags */}
