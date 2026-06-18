@@ -8,7 +8,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const [lenis, setLenis] = useState<Lenis | null>(null);
 
   useEffect(() => {
-    const l = new Lenis({ lerp: 0.08 });
+    const l = new Lenis({ lerp: 0.12 });
     setLenis(l);
 
     let rafId: number;

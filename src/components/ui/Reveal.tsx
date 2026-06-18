@@ -17,19 +17,19 @@ interface RevealProps extends MotionProps {
 export function Reveal({
   children,
   delay = 0,
-  y = 56,
-  blur = 10,
-  scale = 0.97,
+  y = 40,
+  blur: _blur,
+  scale = 1,
   className,
   style,
   ...rest
 }: RevealProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y, scale, filter: `blur(${blur}px)` }}
-      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-      viewport={{ once: true, margin: "-6%" }}
-      transition={{ duration: 1.1, delay, ease: EASE }}
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-5%" }}
+      transition={{ duration: 0.75, delay, ease: EASE }}
       className={className}
       style={style}
       {...rest}

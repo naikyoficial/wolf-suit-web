@@ -11,8 +11,8 @@ export function Preloader() {
   const [phase, setPhase] = useState<"show" | "exit" | "gone">("show");
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase("exit"), 2400);
-    const t2 = setTimeout(() => setPhase("gone"), 3800);
+    const t1 = setTimeout(() => setPhase("exit"), 1200);
+    const t2 = setTimeout(() => setPhase("gone"), 2200);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 

@@ -107,14 +107,14 @@ export function Hero() {
           transition={{ duration: 1.0, delay: 0.52, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(15px, 2vw, 30px)",
+            fontSize: "clamp(28px, 4vw, 64px)",
             fontWeight: 300,
-            letterSpacing: ".08em",
-            lineHeight: 1.3,
-            color: "rgba(240,235,225,.55)",
+            letterSpacing: "-.01em",
+            lineHeight: 1.05,
+            color: "rgba(240,235,225,.6)",
             margin: 0,
             textTransform: "uppercase",
-            textShadow: "0 2px 30px rgba(0,0,0,.95)",
+            textShadow: "0 2px 40px rgba(0,0,0,.95)",
           }}
         >
           ¿Tu presencia digital refleja
@@ -126,12 +126,12 @@ export function Hero() {
           transition={{ duration: 1.1, delay: 0.66, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(36px, 5.5vw, 82px)",
+            fontSize: "clamp(32px, 4.8vw, 76px)",
             fontWeight: 400,
             letterSpacing: "-.02em",
             lineHeight: 1.0,
             textTransform: "uppercase",
-            margin: "clamp(3px, 0.5vw, 8px) 0",
+            margin: "clamp(2px, 0.3vw, 6px) 0",
             background: GOLD,
             backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
@@ -139,7 +139,7 @@ export function Hero() {
             backgroundClip: "text",
             animation: "metalShimmer 13s ease-in-out infinite",
             animationDelay: "-5s",
-            filter: "drop-shadow(0 2px 24px rgba(212,160,32,.40))",
+            filter: "drop-shadow(0 2px 20px rgba(212,160,32,.38))",
           }}
         >
           el nivel de empresa
@@ -151,14 +151,14 @@ export function Hero() {
           transition={{ duration: 1.0, delay: 0.80, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(15px, 2vw, 30px)",
+            fontSize: "clamp(28px, 4vw, 64px)",
             fontWeight: 300,
-            letterSpacing: ".08em",
-            lineHeight: 1.3,
-            color: "rgba(240,235,225,.55)",
+            letterSpacing: "-.01em",
+            lineHeight: 1.05,
+            color: "rgba(240,235,225,.6)",
             marginBottom: "clamp(20px, 2.8vw, 36px)",
             textTransform: "uppercase",
-            textShadow: "0 2px 30px rgba(0,0,0,.95)",
+            textShadow: "0 2px 40px rgba(0,0,0,.95)",
           }}
         >
           que tienes en mente?
