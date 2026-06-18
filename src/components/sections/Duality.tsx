@@ -51,8 +51,8 @@ export function Duality() {
         <div style={{ marginBottom: 12 }}>
           <SplitWords
             as="h2"
-            delay={0.05}
-            stagger={0.07}
+            delay={0}
+            stagger={0.032}
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(36px, 5.5vw, 80px)",
@@ -70,8 +70,8 @@ export function Duality() {
         <div style={{ marginBottom: 40 }}>
           <SplitWords
             as="h2"
-            delay={0.32}
-            stagger={0.06}
+            delay={0.12}
+            stagger={0.028}
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(36px, 5.5vw, 80px)",
@@ -94,8 +94,8 @@ export function Duality() {
         <div style={{ marginBottom: 56 }}>
           <SplitWords
             as="p"
-            delay={0.58}
-            stagger={0.05}
+            delay={0.22}
+            stagger={0.025}
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(20px, 2.2vw, 30px)",

@@ -100,69 +100,50 @@ export function Hero() {
         }}
       >
 
-        {/* Headline — key question, uppercase with gold focus */}
+        {/* Headline line 1 — white serif */}
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.52, ease: EASE }}
+          transition={{ duration: 1.1, delay: 0.58, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(16px, 2.6vw, 42px)",
-            fontWeight: 300,
-            letterSpacing: ".06em",
-            lineHeight: 1.2,
-            color: "rgba(240,235,225,.65)",
-            margin: 0,
-            textTransform: "uppercase",
-            textShadow: "0 2px 40px rgba(0,0,0,.9)",
-          }}
-        >
-          ¿Tu presencia digital refleja
-        </motion.p>
-
-        {/* Gold centerpiece — the key concept */}
-        <motion.p
-          initial={{ opacity: 0, y: 28, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.68, ease: EASE }}
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(34px, 6vw, 92px)",
+            fontSize: "clamp(40px, 6vw, 84px)",
             fontWeight: 400,
             letterSpacing: "-.02em",
             lineHeight: 1.0,
+            color: "var(--color-text)",
             textTransform: "uppercase",
-            margin: "clamp(4px,0.6vw,10px) 0",
+            margin: 0,
+            textShadow: "0 2px 60px rgba(0,0,0,.9)",
+          }}
+        >
+          Diseñamos experiencias.
+        </motion.p>
+
+        {/* Headline line 2 — gold shimmer */}
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, delay: 0.74, ease: EASE }}
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(40px, 6vw, 84px)",
+            fontWeight: 600,
+            letterSpacing: "-.02em",
+            lineHeight: 1.0,
+            textTransform: "uppercase",
+            marginBottom: "clamp(20px, 2.8vw, 36px)",
             background: GOLD,
             backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
-            animation: "metalShimmer 11s ease-in-out infinite",
-            animationDelay: "-4s",
-            filter: "drop-shadow(0 4px 28px rgba(212,160,32,.45))",
+            animation: "metalShimmer 13s ease-in-out infinite",
+            animationDelay: "-5s",
+            filter: "drop-shadow(0 2px 20px rgba(212,160,32,.32))",
           }}
         >
-          el nivel de empresa
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.84, ease: EASE }}
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(16px, 2.6vw, 42px)",
-            fontWeight: 300,
-            letterSpacing: ".06em",
-            lineHeight: 1.2,
-            color: "rgba(240,235,225,.65)",
-            marginBottom: "clamp(20px, 2.8vw, 40px)",
-            textTransform: "uppercase",
-            textShadow: "0 2px 40px rgba(0,0,0,.9)",
-          }}
-        >
-          que tienes en mente?
+          Construimos legado.
         </motion.p>
 
         {/* Tags */}
@@ -200,7 +181,7 @@ export function Hero() {
           ))}
         </motion.div>
 
-        {/* Brand tagline */}
+        {/* Sub — AGENCIA DIGITAL DE ALTO NIVEL */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -208,29 +189,23 @@ export function Hero() {
           style={{ marginBottom: "clamp(24px, 3.5vw, 44px)" }}
         >
           <span style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(13px, 1.4vw, 18px)",
-            letterSpacing: ".08em",
-            fontWeight: 300,
-            color: "rgba(200,188,168,.55)",
+            fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase",
+            color: "rgba(200,188,168,.6)",
             textShadow: "0 1px 12px rgba(0,0,0,.95)",
           }}>
-            Diseñamos experiencias.{" "}
+            Agencia digital de{" "}
           </span>
           <span style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(13px, 1.4vw, 18px)",
-            letterSpacing: ".08em",
-            fontWeight: 300,
+            fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase",
             background: GOLD,
             backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
-            animation: "metalShimmer 11s ease-in-out infinite",
-            animationDelay: "-4s",
+            animation: "metalShimmer 13s ease-in-out infinite",
+            animationDelay: "-5s",
           }}>
-            Construimos legado.
+            alto nivel
           </span>
         </motion.div>
 
