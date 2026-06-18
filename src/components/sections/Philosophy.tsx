@@ -68,24 +68,18 @@ export function Philosophy() {
         {/* Body — structured paragraphs for SEO + readability */}
         <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center" }}>
           <Reveal delay={0.65} y={20} blur={5}>
-            <p style={{ fontSize: 17, color: "var(--color-text-2)", lineHeight: 1.85, marginBottom: 28, letterSpacing: "-.01em" }}>
-              Muchas empresas invierten años perfeccionando sus productos, servicios y procesos, pero cuando un cliente potencial las descubre por primera vez, encuentra una imagen que no transmite todo su valor. En un mercado cada vez más competitivo, la percepción importa.
+            <p style={{ fontSize: 17, color: "var(--color-text-2)", lineHeight: 1.8, marginBottom: 28, letterSpacing: "-.01em" }}>
+              Muchas empresas invierten años perfeccionando sus productos y procesos. Pero cuando alguien las descubre por primera vez, la imagen no transmite ese valor. En un mercado competitivo, la percepción lo cambia todo.
             </p>
           </Reveal>
 
           <Reveal delay={0.8} y={20} blur={5}>
-            <p style={{ fontSize: 16, color: "var(--color-text-3)", lineHeight: 1.9, marginBottom: 28 }}>
-              En SuitWolf diseñamos <strong style={{ color: "var(--color-text-2)", fontWeight: 500 }}>sitios web premium</strong>, desarrollamos <strong style={{ color: "var(--color-text-2)", fontWeight: 500 }}>software a medida</strong> y construimos <strong style={{ color: "var(--color-text-2)", fontWeight: 500 }}>sistemas digitales</strong> que permiten a las empresas destacar, optimizar procesos y proyectar una imagen acorde a su verdadero potencial.
+            <p style={{ fontSize: 16, color: "var(--color-text-3)", lineHeight: 1.85, marginBottom: 32 }}>
+              Diseñamos <strong style={{ color: "var(--color-text-2)", fontWeight: 500 }}>sitios web premium</strong>, desarrollamos <strong style={{ color: "var(--color-text-2)", fontWeight: 500 }}>software a medida</strong> y construimos <strong style={{ color: "var(--color-text-2)", fontWeight: 500 }}>sistemas digitales</strong> que proyectan la imagen que tu empresa realmente merece.
             </p>
           </Reveal>
 
-          <Reveal delay={0.95} y={20} blur={5}>
-            <p style={{ fontSize: 16, color: "var(--color-text-3)", lineHeight: 1.9, marginBottom: 36 }}>
-              No creemos en soluciones genéricas. Cada decisión de diseño, tecnología y contenido responde a un objetivo concreto: <em style={{ color: "var(--color-text-2)", fontStyle: "normal" }}>representar el verdadero nivel de tu empresa y posicionarte como referente en tu industria.</em>
-            </p>
-          </Reveal>
-
-          <Reveal delay={1.1} y={16} blur={4}>
+          <Reveal delay={0.95} y={16} blur={4}>
             <p style={{ fontSize: 15, color: "var(--color-text-4)", lineHeight: 1.85, letterSpacing: ".005em" }}>
               Nuestro trabajo existe para cerrar una sola brecha: la distancia entre lo que tu empresa realmente es y lo que el mundo percibe hoy.
             </p>

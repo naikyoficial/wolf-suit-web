@@ -142,7 +142,7 @@ function ServiceCard({ service, isActive, cardW }: { service: Service; isActive:
       }}>
         <span style={{
           fontSize: 8, letterSpacing: ".48em", textTransform: "uppercase",
-          color: isActive ? "rgba(212,160,32,.55)" : "rgba(212,160,32,.2)",
+          color: isActive ? "rgba(212,160,32,.55)" : "rgba(212,160,32,.32)",
           transition: "color .5s",
         }}>
           {service.category}
@@ -161,7 +161,7 @@ function ServiceCard({ service, isActive, cardW }: { service: Service; isActive:
         {service.title.map((line, li) => (
           <p key={li} style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(28px, 2.5vw, 36px)",
+            fontSize: "clamp(32px, 2.5vw, 36px)",
             fontWeight: 300,
             letterSpacing: "-.022em",
             lineHeight: 1.1,
@@ -188,7 +188,7 @@ function ServiceCard({ service, isActive, cardW }: { service: Service; isActive:
       {/* Divider */}
       <div aria-hidden style={{
         height: 1, marginBottom: 22,
-        background: `linear-gradient(to right, rgba(212,160,32,${isActive ? ".22" : ".06"}), transparent)`,
+        background: `linear-gradient(to right, rgba(212,160,32,${isActive ? ".22" : ".1"}), transparent)`,
         position: "relative", zIndex: 1,
         transition: "background .5s",
       }} />
@@ -215,8 +215,8 @@ function ServiceCard({ service, isActive, cardW }: { service: Service; isActive:
           <span key={tag} style={{
             fontSize: 8, letterSpacing: ".32em", textTransform: "uppercase",
             padding: "5px 11px",
-            border: `1px solid rgba(212,160,32,${isActive ? ".18" : ".06"})`,
-            color: `rgba(212,160,32,${isActive ? ".6" : ".2"})`,
+            border: `1px solid rgba(212,160,32,${isActive ? ".18" : ".1"})`,
+            color: `rgba(212,160,32,${isActive ? ".6" : ".32"})`,
             transition: "border-color .5s, color .5s",
           }}>
             {tag}

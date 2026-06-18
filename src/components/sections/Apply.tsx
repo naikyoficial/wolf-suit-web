@@ -92,7 +92,7 @@ export function Apply() {
           Ayudamos a transformar ideas ambiciosas en experiencias digitales capaces de transmitir confianza, autoridad y excelencia desde el primer contacto.
         </p>
         <p style={{ fontSize: 16, color: "var(--color-text-3)", lineHeight: 1.85, letterSpacing: "-.01em" }}>
-          Trabajamos con una cantidad limitada de proyectos porque creemos que la excelencia necesita tiempo, criterio y atención. Cada colaboración comienza con una evaluación estratégica para determinar si realmente podemos generar un impacto significativo.
+          Trabajamos con proyectos selectos. La excelencia requiere tiempo y criterio — comenzamos siempre con una evaluación para confirmar que podemos generar un impacto real.
         </p>
       </Reveal>
 

@@ -39,7 +39,6 @@ export function Hero() {
           alt=""
           fill
           priority
-          unoptimized
           sizes="100vw"
           style={{
             objectFit: "contain",
@@ -110,7 +109,7 @@ export function Hero() {
             fontFamily: "var(--font-display)",
             fontSize: "clamp(16px, 2.6vw, 42px)",
             fontWeight: 300,
-            letterSpacing: ".1em",
+            letterSpacing: ".06em",
             lineHeight: 1.2,
             color: "rgba(240,235,225,.65)",
             margin: 0,
@@ -155,7 +154,7 @@ export function Hero() {
             fontFamily: "var(--font-display)",
             fontSize: "clamp(16px, 2.6vw, 42px)",
             fontWeight: 300,
-            letterSpacing: ".1em",
+            letterSpacing: ".06em",
             lineHeight: 1.2,
             color: "rgba(240,235,225,.65)",
             marginBottom: "clamp(20px, 2.8vw, 40px)",
