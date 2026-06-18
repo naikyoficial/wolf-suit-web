@@ -9,6 +9,8 @@ export const SITE = {
 } as const;
 
 export const NAV_LINKS = [
+  { label: "Filosofía", href: "#philosophy" },
+  { label: "Dualidad",  href: "#duality" },
   { label: "Servicios", href: "#services" },
   { label: "Proceso",   href: "#process" },
   { label: "Enfoque",   href: "#pillars" },

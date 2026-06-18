@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -41,23 +40,14 @@ export function Navbar() {
       >
         <Link
           href="/"
-          className="flex items-center gap-3"
           aria-label={`${SITE.name} — inicio`}
           onClick={() => setMenuOpen(false)}
         >
-          <Image
-            src="/isotipo.png"
-            alt="Suitwolf mark"
-            width={36}
-            height={36}
-            style={{ objectFit: "contain", filter: "drop-shadow(0 0 10px rgba(212,160,32,.55)) brightness(1.18)" }}
-            priority
-          />
           <span
             className="font-display font-medium uppercase"
             style={{
               fontSize: 15,
-              letterSpacing: ".28em",
+              letterSpacing: ".32em",
               background: GOLD,
               backgroundSize: "260% 100%",
               WebkitBackgroundClip: "text",

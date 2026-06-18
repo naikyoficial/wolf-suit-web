@@ -11,6 +11,7 @@ export function Philosophy() {
   return (
     <section
       className="relative text-center"
+      id="philosophy"
       style={{ padding: "clamp(80px, 11vh, 120px) 8vw", zIndex: 10, background: "rgba(5,5,8,.75)" }}
     >
       {/* Atmosphere — cool blue-gray glow top-right, warm gold at bottom */}
