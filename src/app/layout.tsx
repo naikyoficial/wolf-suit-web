@@ -71,14 +71,6 @@ export const metadata: Metadata = {
     description:
       "Sin templates. Sin atajos. Identidades digitales construidas desde cero para empresas que quieren verse en la categoría donde pertenecen.",
   },
-  icons: {
-    icon: [
-      { url: "/isotipo.png", sizes: "32x32",  type: "image/png" },
-      { url: "/isotipo.png", sizes: "192x192", type: "image/png" },
-    ],
-    apple: { url: "/isotipo.png", sizes: "180x180" },
-    shortcut: "/isotipo.png",
-  },
   robots: {
     index: true,
     follow: true,

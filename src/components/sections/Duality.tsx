@@ -47,7 +47,7 @@ export function Duality() {
           </ShimmerLabel>
         </Reveal>
 
-        {/* Line 1 — what the client brings */}
+        {/* Line 1 — contrast statement */}
         <div style={{ marginBottom: 12 }}>
           <SplitWords
             as="h2"
@@ -55,28 +55,28 @@ export function Duality() {
             stagger={0.07}
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(44px, 6.5vw, 92px)",
+              fontSize: "clamp(36px, 5.5vw, 80px)",
               fontWeight: 300,
-              lineHeight: 0.95,
+              lineHeight: 1.05,
               letterSpacing: "-.03em",
               color: "var(--color-text-2)",
             }}
           >
-            Traés el potencial.
+            Una empresa pequeña puede parecer líder de su sector.
           </SplitWords>
         </div>
 
-        {/* Line 2 — what SuitWolf builds — gold shimmer */}
-        <div style={{ marginBottom: 56 }}>
+        {/* Line 2 — counter — gold shimmer */}
+        <div style={{ marginBottom: 40 }}>
           <SplitWords
             as="h2"
             delay={0.32}
             stagger={0.06}
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(44px, 6.5vw, 92px)",
+              fontSize: "clamp(36px, 5.5vw, 80px)",
               fontWeight: 300,
-              lineHeight: 0.95,
+              lineHeight: 1.05,
               letterSpacing: "-.03em",
               background: GOLD,
               backgroundSize: "260% 100%",
@@ -86,7 +86,26 @@ export function Duality() {
               animation: "metalShimmer 10s ease-in-out infinite",
             }}
           >
-            Nosotros construimos la percepción.
+            Una gran empresa puede parecer amateur.
+          </SplitWords>
+        </div>
+
+        {/* Pivot line */}
+        <div style={{ marginBottom: 56 }}>
+          <SplitWords
+            as="p"
+            delay={0.58}
+            stagger={0.05}
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(20px, 2.2vw, 30px)",
+              fontWeight: 300,
+              lineHeight: 1.3,
+              letterSpacing: "-.015em",
+              color: "rgba(240,235,225,.6)",
+            }}
+          >
+            La diferencia está en cómo se presenta al mundo.
           </SplitWords>
         </div>
 
@@ -117,10 +136,11 @@ export function Duality() {
             margin: "0 auto",
             letterSpacing: "-.01em",
           }}>
-            Venís con años de trabajo, una historia real y algo genuino para ofrecer al mercado.
-            Sobre esa base construimos una identidad digital exclusiva: presencia que genera autoridad
-            desde el primer segundo, diseño que justifica tu valor antes de una reunión y posicionamiento
-            que abre oportunidades que el precio solo no puede abrir.
+            En SuitWolf ayudamos a transformar ideas ambiciosas en experiencias digitales capaces
+            de transmitir confianza, autoridad y excelencia desde el primer contacto.
+            Construimos la presencia que genera autoridad desde el primer segundo, el diseño que
+            justifica tu valor antes de una reunión y el posicionamiento que abre oportunidades
+            que el precio solo no puede abrir.
           </p>
         </Reveal>
 

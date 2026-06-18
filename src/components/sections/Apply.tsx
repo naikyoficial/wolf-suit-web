@@ -86,10 +86,10 @@ export function Apply() {
       {/* ── Body copy — centered ── */}
       <Reveal delay={0.25} y={24} blur={6} style={{ maxWidth: 580, marginBottom: 72 }}>
         <p style={{ fontSize: 16, color: "var(--color-text-3)", lineHeight: 1.85, letterSpacing: "-.01em", marginBottom: 22 }}>
-          Si buscás una página rápida, genérica o construida sobre una plantilla, probablemente existan muchas opciones.
+          No creemos en soluciones genéricas. Cada proyecto nace de una pregunta simple: ¿cómo debería verse una empresa que aspira a ser la referencia de su industria?
         </p>
         <p style={{ fontSize: 17, color: "var(--color-text-2)", lineHeight: 1.8, letterSpacing: "-.01em", marginBottom: 22 }}>
-          Si buscás una presencia digital capaz de representar el verdadero nivel de tu empresa, estamos dispuestos a conversar.
+          Ayudamos a transformar ideas ambiciosas en experiencias digitales capaces de transmitir confianza, autoridad y excelencia desde el primer contacto.
         </p>
         <p style={{ fontSize: 16, color: "var(--color-text-3)", lineHeight: 1.85, letterSpacing: "-.01em" }}>
           Trabajamos con una cantidad limitada de proyectos porque creemos que la excelencia necesita tiempo, criterio y atención. Cada colaboración comienza con una evaluación estratégica para determinar si realmente podemos generar un impacto significativo.
