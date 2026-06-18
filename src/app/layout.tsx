@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_419",
-    url: "https://wolfsuit.com",
+    url: "https://suitwolf.com",
     siteName: "Suitwolf",
     title: "Suitwolf — Diseño Web Premium y Estrategia de Percepción",
     description:
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://wolfsuit.com",
+    canonical: "https://suitwolf.com",
   },
 };
 
@@ -104,7 +104,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Suitwolf",
-              url: "https://wolfsuit.com",
+              url: "https://suitwolf.com",
               description:
                 "Firma de diseño estratégico especializada en identidades digitales premium para empresas ambiciosas. Sin templates — todo construido desde cero.",
               knowsAbout: [

@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://wolfsuit.com/sitemap.xml",
-    host: "https://wolfsuit.com",
+    sitemap: "https://suitwolf.com/sitemap.xml",
+    host: "https://suitwolf.com",
   };
 }
