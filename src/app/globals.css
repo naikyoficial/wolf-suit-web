@@ -223,6 +223,12 @@ body { scrollbar-width: none; }
     animation-play-state: paused !important;
     background-position: 50% center !important;
   }
+
+  /* Hero: cover the full frame with the wolf instead of contain (avoids empty black space) */
+  .hero-wolf-img {
+    object-fit: cover !important;
+    object-position: 50% 18% !important;
+  }
 }
 
 /* Reduced motion — accesibilidad obligatoria (OS Ch.6) */

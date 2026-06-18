@@ -9,6 +9,7 @@ import { useMobile }    from "@/hooks/useMobile";
 
 const EASE  = [0.16, 1.0, 0.3, 1.0] as const;
 const SPRING = { type: "spring", stiffness: 72, damping: 18, mass: 1.1 } as const;
+const SPRING_MOBILE = { type: "tween", duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] } as const;
 const GOLD  = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
 
 const CARD_W_MAX = 460;
@@ -428,7 +429,7 @@ export function Services() {
                 filter: `blur(${blur}px)`,
                 zIndex: zIdx,
               }}
-              transition={SPRING}
+              transition={isMobile ? SPRING_MOBILE : SPRING}
               style={{
                 position: "absolute",
                 cursor: isActive ? "default" : "pointer",

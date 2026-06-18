@@ -11,8 +11,9 @@ export function Preloader() {
   const [phase, setPhase] = useState<"show" | "exit" | "gone">("show");
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase("exit"), 1200);
-    const t2 = setTimeout(() => setPhase("gone"), 2200);
+    const touch = window.matchMedia("(pointer: coarse)").matches;
+    const t1 = setTimeout(() => setPhase("exit"), touch ? 500 : 1200);
+    const t2 = setTimeout(() => setPhase("gone"), touch ? 900 : 2200);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 

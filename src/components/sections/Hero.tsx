@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { HeroFx } from "@/components/sections/HeroFx";
+import { useMobile } from "@/hooks/useMobile";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
@@ -11,6 +12,7 @@ const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #9A6E12 22%, #D4A020 44%, #F0C8
 const TAGS = ["Diseño Web", "E-commerce", "Software a Medida"];
 
 export function Hero() {
+  const isMobile = useMobile();
   const { scrollY } = useScroll();
   const contentOp = useTransform(scrollY, [0, 400], [1, 0]);
   const contentY  = useTransform(scrollY, [0, 500], [0, -52]);
@@ -41,6 +43,7 @@ export function Hero() {
           fill
           priority
           sizes="(max-width: 768px) 100vw, 100vw"
+          className="hero-wolf-img"
           style={{
             objectFit: "contain",
             objectPosition: "50% 28%",
@@ -48,7 +51,7 @@ export function Hero() {
         />
       </div>
 
-      {/* Side fades — reduced on mobile */}
+      {/* Side fades */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, pointerEvents: "none",
         background: "linear-gradient(to right, rgba(4,4,4,.82) 0%, transparent 18%, transparent 82%, rgba(4,4,4,.82) 100%)",
@@ -81,11 +84,11 @@ export function Hero() {
       {/* FX — desktop only (HeroFx returns null on touch) */}
       <HeroFx />
 
-      {/* Content */}
+      {/* Content — no scroll parallax on mobile */}
       <motion.div
         style={{
-          opacity: contentOp,
-          y: contentY,
+          opacity: isMobile ? 1 : contentOp,
+          y: isMobile ? 0 : contentY,
           position: "relative",
           zIndex: 10,
           display: "flex",
