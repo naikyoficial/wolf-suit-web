@@ -39,20 +39,20 @@ export function Philosophy() {
         </motion.div>
 
         {/* Big quote — word by word reveal */}
-        <div style={{ maxWidth: 900, margin: "0 auto 28px" }}>
+        <div style={{ maxWidth: 860, margin: "0 auto 28px" }}>
           <SplitWords
             as="blockquote"
             delay={0.1}
             stagger={0.06}
             style={{
-              fontSize: "clamp(28px,4.5vw,66px)",
+              fontSize: "clamp(32px,5vw,72px)",
               lineHeight: 1.18,
               letterSpacing: "-.025em",
               fontFamily: "var(--font-display)",
               fontWeight: 300,
             }}
           >
-            ¿Tu presencia digital refleja el nivel de empresa que tienes en mente?
+            Las empresas son juzgadas antes de ser comprendidas.
           </SplitWords>
         </div>
 

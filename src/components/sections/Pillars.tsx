@@ -58,34 +58,22 @@ export function Pillars() {
           </ShimmerLabel>
         </Reveal>
 
-        <Reveal delay={0.1} y={32} style={{ marginBottom: 20, textAlign: "center" }}>
+        <Reveal delay={0.1} y={32} style={{ marginBottom: 56, textAlign: "center" }}>
           <h2 style={{
-            fontSize: "clamp(32px,4vw,56px)",
+            fontSize: "clamp(36px,4.5vw,60px)",
             lineHeight: 1.12,
             letterSpacing: "-.02em",
             fontFamily: "var(--font-display)",
             fontWeight: 300,
-            maxWidth: 760,
-            margin: "0 auto",
           }}>
-            <SplitWords as="span" stagger={0.05} delay={0.1}>
-              ¿Cómo debería verse una empresa que aspira a ser la referencia de su industria?
+            <SplitWords as="span" stagger={0.06} delay={0.1}>
+              La excelencia no es un objetivo,
+            </SplitWords>
+            <br />
+            <SplitWords as="span" stagger={0.06} delay={0.52}>
+              es el punto de partida.
             </SplitWords>
           </h2>
-        </Reveal>
-
-        <Reveal delay={0.55} y={16} blur={5} style={{ textAlign: "center", marginBottom: 56 }}>
-          <p style={{
-            fontSize: "clamp(14px, 1.4vw, 17px)",
-            color: "var(--color-text-3)",
-            lineHeight: 1.75,
-            maxWidth: 560,
-            margin: "0 auto",
-            letterSpacing: "-.005em",
-          }}>
-            Porque la tecnología no debería ser solo una herramienta.
-            Debería convertirse en una ventaja competitiva.
-          </p>
         </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "clamp(16px, 2vw, 28px)" }}>

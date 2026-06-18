@@ -101,39 +101,55 @@ export function Hero() {
         }}
       >
 
-        {/* Headline line 1 — white serif */}
+        {/* Headline — key question */}
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, delay: 0.58, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(40px, 6vw, 84px)",
-            fontWeight: 400,
+            fontSize: "clamp(28px, 4.5vw, 72px)",
+            fontWeight: 300,
             letterSpacing: "-.02em",
-            lineHeight: 1.0,
+            lineHeight: 1.12,
             color: "var(--color-text)",
-            textTransform: "uppercase",
             margin: 0,
+            maxWidth: "clamp(300px, 80vw, 860px)",
             textShadow: "0 2px 60px rgba(0,0,0,.9)",
           }}
         >
-          Diseñamos experiencias.
+          ¿Tu presencia digital refleja
         </motion.p>
-
-        {/* Headline line 2 — gold shimmer */}
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.74, ease: EASE }}
+          transition={{ duration: 1.1, delay: 0.68, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(40px, 6vw, 84px)",
-            fontWeight: 600,
+            fontSize: "clamp(28px, 4.5vw, 72px)",
+            fontWeight: 300,
             letterSpacing: "-.02em",
-            lineHeight: 1.0,
-            textTransform: "uppercase",
+            lineHeight: 1.12,
+            color: "var(--color-text)",
+            margin: 0,
+            maxWidth: "clamp(300px, 80vw, 860px)",
+            textShadow: "0 2px 60px rgba(0,0,0,.9)",
+          }}
+        >
+          el nivel de empresa
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, delay: 0.78, ease: EASE }}
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(28px, 4.5vw, 72px)",
+            fontWeight: 300,
+            letterSpacing: "-.02em",
+            lineHeight: 1.12,
             marginBottom: "clamp(20px, 2.8vw, 36px)",
+            maxWidth: "clamp(300px, 80vw, 860px)",
             background: GOLD,
             backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
@@ -144,7 +160,7 @@ export function Hero() {
             filter: "drop-shadow(0 2px 20px rgba(212,160,32,.32))",
           }}
         >
-          Construimos legado.
+          que tienes en mente?
         </motion.p>
 
         {/* Tags */}
@@ -182,7 +198,7 @@ export function Hero() {
           ))}
         </motion.div>
 
-        {/* Sub — AGENCIA DIGITAL DE ALTO NIVEL */}
+        {/* Brand tagline */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -190,14 +206,20 @@ export function Hero() {
           style={{ marginBottom: "clamp(24px, 3.5vw, 44px)" }}
         >
           <span style={{
-            fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase",
-            color: "rgba(200,188,168,.6)",
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(13px, 1.4vw, 18px)",
+            letterSpacing: ".08em",
+            fontWeight: 300,
+            color: "rgba(200,188,168,.55)",
             textShadow: "0 1px 12px rgba(0,0,0,.95)",
           }}>
-            Agencia digital de{" "}
+            Diseñamos experiencias.{" "}
           </span>
           <span style={{
-            fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase",
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(13px, 1.4vw, 18px)",
+            letterSpacing: ".08em",
+            fontWeight: 300,
             background: GOLD,
             backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
@@ -206,7 +228,7 @@ export function Hero() {
             animation: "metalShimmer 14s ease-in-out infinite",
             animationDelay: "-7s",
           }}>
-            alto nivel
+            Construimos legado.
           </span>
         </motion.div>
 
