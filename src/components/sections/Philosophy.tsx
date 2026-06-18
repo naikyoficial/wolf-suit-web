@@ -39,20 +39,20 @@ export function Philosophy() {
         </motion.div>
 
         {/* Big quote — word by word reveal */}
-        <div style={{ maxWidth: 860, margin: "0 auto 28px" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto 28px" }}>
           <SplitWords
             as="blockquote"
             delay={0.1}
             stagger={0.06}
             style={{
-              fontSize: "clamp(32px,5vw,72px)",
+              fontSize: "clamp(28px,4.5vw,66px)",
               lineHeight: 1.18,
               letterSpacing: "-.025em",
               fontFamily: "var(--font-display)",
               fontWeight: 300,
             }}
           >
-            Las empresas son juzgadas antes de ser comprendidas.
+            ¿Tu presencia digital refleja el nivel de empresa que tienes en mente?
           </SplitWords>
         </div>
 
@@ -69,19 +69,19 @@ export function Philosophy() {
         <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center" }}>
           <Reveal delay={0.65} y={20} blur={5}>
             <p style={{ fontSize: 17, color: "var(--color-text-2)", lineHeight: 1.85, marginBottom: 28, letterSpacing: "-.01em" }}>
-              Cada vez que alguien llega a tu sitio web, en menos de tres segundos ya tiene una opinión formada sobre tu empresa. Esa opinión decide si te contactan, si te ignoran o si eligen a tu competencia.
+              Muchas empresas invierten años perfeccionando sus productos, servicios y procesos, pero cuando un cliente potencial las descubre por primera vez, encuentra una imagen que no transmite todo su valor. En un mercado cada vez más competitivo, la percepción importa.
             </p>
           </Reveal>
 
           <Reveal delay={0.8} y={20} blur={5}>
             <p style={{ fontSize: 16, color: "var(--color-text-3)", lineHeight: 1.9, marginBottom: 28 }}>
-              SuitWolf es una <strong style={{ color: "var(--color-text-2)", fontWeight: 500 }}>agencia de diseño y desarrollo web premium</strong> especializada en empresas que entienden que su presencia digital es un activo estratégico, no un gasto. Creamos sitios web corporativos, landing pages de alta conversión,{" "}<span style={{ whiteSpace: "nowrap" }}>e-commerce</span>{" "}y aplicaciones web construidos sobre una arquitectura pensada para cada cliente.
+              En SuitWolf diseñamos <strong style={{ color: "var(--color-text-2)", fontWeight: 500 }}>sitios web premium</strong>, desarrollamos <strong style={{ color: "var(--color-text-2)", fontWeight: 500 }}>software a medida</strong> y construimos <strong style={{ color: "var(--color-text-2)", fontWeight: 500 }}>sistemas digitales</strong> que permiten a las empresas destacar, optimizar procesos y proyectar una imagen acorde a su verdadero potencial.
             </p>
           </Reveal>
 
           <Reveal delay={0.95} y={20} blur={5}>
             <p style={{ fontSize: 16, color: "var(--color-text-3)", lineHeight: 1.9, marginBottom: 36 }}>
-              No usamos plantillas. No seguimos tendencias pasajeras. Cada decisión de diseño, tecnología y contenido responde a un objetivo concreto: <em style={{ color: "var(--color-text-2)", fontStyle: "normal" }}>representar el verdadero nivel de tu empresa y posicionarte como referente en tu industria.</em>
+              No creemos en soluciones genéricas. Cada decisión de diseño, tecnología y contenido responde a un objetivo concreto: <em style={{ color: "var(--color-text-2)", fontStyle: "normal" }}>representar el verdadero nivel de tu empresa y posicionarte como referente en tu industria.</em>
             </p>
           </Reveal>
 
