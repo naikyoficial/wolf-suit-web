@@ -28,8 +28,8 @@ export function Reveal({
     <motion.div
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-5%" }}
-      transition={{ duration: 0.75, delay, ease: EASE }}
+      viewport={{ once: true, margin: "-4%" }}
+      transition={{ duration: 0.6, delay, ease: EASE }}
       className={className}
       style={style}
       {...rest}

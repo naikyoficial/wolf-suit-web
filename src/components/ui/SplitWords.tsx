@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { ElementType, CSSProperties } from "react";
 
@@ -22,6 +23,17 @@ export function SplitWords({
   className,
   style,
 }: SplitWordsProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia("(pointer: coarse)").matches) setIsMobile(true);
+  }, []);
+
+  // On mobile: plain render, no animation overhead
+  if (isMobile) {
+    return <Tag className={className} style={style}>{children}</Tag>;
+  }
+
   const words = children.split(" ");
 
   return (
@@ -33,7 +45,6 @@ export function SplitWords({
             display: "inline-block",
             overflow: "hidden",
             verticalAlign: "bottom",
-            /* padding/margin trick prevents descender clipping */
             paddingBottom: "0.12em",
             marginBottom: "-0.12em",
             marginRight: "0.3em",

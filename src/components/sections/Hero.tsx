@@ -107,10 +107,10 @@ export function Hero() {
           transition={{ duration: 1.0, delay: 0.52, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(28px, 4vw, 64px)",
+            fontSize: "clamp(18px, 4vw, 64px)",
             fontWeight: 300,
             letterSpacing: "-.01em",
-            lineHeight: 1.05,
+            lineHeight: 1.1,
             color: "rgba(240,235,225,.6)",
             margin: 0,
             textTransform: "uppercase",
@@ -126,7 +126,7 @@ export function Hero() {
           transition={{ duration: 1.1, delay: 0.66, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(32px, 4.8vw, 76px)",
+            fontSize: "clamp(26px, 4.8vw, 76px)",
             fontWeight: 400,
             letterSpacing: "-.02em",
             lineHeight: 1.0,
@@ -151,10 +151,10 @@ export function Hero() {
           transition={{ duration: 1.0, delay: 0.80, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(28px, 4vw, 64px)",
+            fontSize: "clamp(18px, 4vw, 64px)",
             fontWeight: 300,
             letterSpacing: "-.01em",
-            lineHeight: 1.05,
+            lineHeight: 1.1,
             color: "rgba(240,235,225,.6)",
             marginBottom: "clamp(20px, 2.8vw, 36px)",
             textTransform: "uppercase",
