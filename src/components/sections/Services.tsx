@@ -400,7 +400,7 @@ export function Services() {
         onTouchEnd={(e) => {
           if (touchStart.current === null) return;
           const delta = e.changedTouches[0]!.clientX - touchStart.current;
-          if (Math.abs(delta) > 44) go(delta < 0 ? 1 : -1);
+          if (Math.abs(delta) > Math.min(44, window.innerWidth * 0.1)) go(delta < 0 ? 1 : -1);
           touchStart.current = null;
         }}
       >

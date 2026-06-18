@@ -132,14 +132,12 @@ export function Duality() {
             fontSize: 17,
             color: "var(--color-text-3)",
             lineHeight: 1.85,
-            maxWidth: 620,
+            maxWidth: 560,
             margin: "0 auto",
             letterSpacing: "-.01em",
           }}>
-            En SuitWolf ayudamos a transformar ideas ambiciosas en experiencias digitales capaces
-            de transmitir confianza, autoridad y excelencia desde el primer contacto.
-            Construimos la presencia que genera autoridad desde el primer segundo, el diseño que
-            justifica tu valor antes de una reunión y el posicionamiento que abre oportunidades
+            Transformamos tu identidad digital en una herramienta de autoridad.
+            Diseño que justifica tu valor. Posicionamiento que abre oportunidades
             que el precio solo no puede abrir.
           </p>
         </Reveal>

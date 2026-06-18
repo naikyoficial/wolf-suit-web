@@ -35,7 +35,7 @@ export function Hero() {
         style={{ position: "absolute", top: "-10%", left: 0, right: 0, bottom: 0 }}
       >
         <Image
-          src="/wolf-hero.png"
+          src="/wolf-hero.jpg"
           alt=""
           fill
           priority
@@ -227,8 +227,8 @@ export function Hero() {
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
-            animation: "metalShimmer 14s ease-in-out infinite",
-            animationDelay: "-7s",
+            animation: "metalShimmer 11s ease-in-out infinite",
+            animationDelay: "-4s",
           }}>
             Construimos legado.
           </span>

@@ -65,15 +65,20 @@ export function HeroFx() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let w = 0, h = 0, rafId = 0;
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    const COUNT = isTouch ? 28 : 55;
+
+    let w = 0, h = 0, rafId = 0, visible = true;
 
     const resize = () => {
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       w = canvas.offsetWidth;
       h = canvas.offsetHeight;
       canvas.width  = w * dpr;
@@ -84,23 +89,24 @@ export function HeroFx() {
     window.addEventListener("resize", resize, { passive: true });
 
     type P = { x: number; y: number; r: number; speed: number; drift: number; op: number; opDir: number };
-    const particles: P[] = Array.from({ length: 65 }, () => ({
+    const particles: P[] = Array.from({ length: COUNT }, () => ({
       x:     Math.random() * w,
       y:     Math.random() * h,
       r:     Math.random() * 1.4 + 0.3,
-      speed: Math.random() * 0.32 + 0.06,
-      drift: (Math.random() - 0.5) * 0.12,
-      op:    Math.random() * 0.45 + 0.08,
+      speed: Math.random() * 0.28 + 0.05,
+      drift: (Math.random() - 0.5) * 0.10,
+      op:    Math.random() * 0.42 + 0.08,
       opDir: Math.random() > 0.5 ? 1 : -1,
     }));
 
     const tick = () => {
+      if (!visible) return;
       ctx.clearRect(0, 0, w, h);
       for (const p of particles) {
         p.y  -= p.speed;
         p.x  += p.drift;
         p.op += p.opDir * 0.004;
-        if (p.op > 0.62) p.opDir = -1;
+        if (p.op > 0.58) p.opDir = -1;
         if (p.op < 0.04) p.opDir =  1;
         if (p.y < -4) { p.y = h + 4; p.x = Math.random() * w; }
         if (p.x < -4 || p.x > w + 4) p.x = Math.random() * w;
@@ -112,11 +118,19 @@ export function HeroFx() {
       }
       rafId = requestAnimationFrame(tick);
     };
-    tick();
+
+    const observer = new IntersectionObserver((entries) => {
+      visible = entries[0]!.isIntersecting;
+      if (visible) { rafId = requestAnimationFrame(tick); }
+      else { cancelAnimationFrame(rafId); }
+    }, { threshold: 0.01 });
+    observer.observe(canvas);
+    rafId = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener("resize", resize);
+      observer.disconnect();
     };
   }, []);
 
