@@ -101,63 +101,66 @@ export function Hero() {
         }}
       >
 
-        {/* Headline — key question */}
+        {/* Headline — key question, uppercase with gold focus */}
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.58, ease: EASE }}
+          transition={{ duration: 1.1, delay: 0.52, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(28px, 4.5vw, 72px)",
+            fontSize: "clamp(16px, 2.6vw, 42px)",
             fontWeight: 300,
-            letterSpacing: "-.02em",
-            lineHeight: 1.12,
-            color: "var(--color-text)",
+            letterSpacing: ".1em",
+            lineHeight: 1.2,
+            color: "rgba(240,235,225,.65)",
             margin: 0,
-            maxWidth: "clamp(300px, 80vw, 860px)",
-            textShadow: "0 2px 60px rgba(0,0,0,.9)",
+            textTransform: "uppercase",
+            textShadow: "0 2px 40px rgba(0,0,0,.9)",
           }}
         >
           ¿Tu presencia digital refleja
         </motion.p>
+
+        {/* Gold centerpiece — the key concept */}
         <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.68, ease: EASE }}
+          initial={{ opacity: 0, y: 28, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1.2, delay: 0.68, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(28px, 4.5vw, 72px)",
-            fontWeight: 300,
+            fontSize: "clamp(34px, 6vw, 92px)",
+            fontWeight: 400,
             letterSpacing: "-.02em",
-            lineHeight: 1.12,
-            color: "var(--color-text)",
-            margin: 0,
-            maxWidth: "clamp(300px, 80vw, 860px)",
-            textShadow: "0 2px 60px rgba(0,0,0,.9)",
-          }}
-        >
-          el nivel de empresa
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.78, ease: EASE }}
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(28px, 4.5vw, 72px)",
-            fontWeight: 300,
-            letterSpacing: "-.02em",
-            lineHeight: 1.12,
-            marginBottom: "clamp(20px, 2.8vw, 36px)",
-            maxWidth: "clamp(300px, 80vw, 860px)",
+            lineHeight: 1.0,
+            textTransform: "uppercase",
+            margin: "clamp(4px,0.6vw,10px) 0",
             background: GOLD,
             backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
-            animation: "metalShimmer 13s ease-in-out infinite",
-            animationDelay: "-5s",
-            filter: "drop-shadow(0 2px 20px rgba(212,160,32,.32))",
+            animation: "metalShimmer 11s ease-in-out infinite",
+            animationDelay: "-4s",
+            filter: "drop-shadow(0 4px 28px rgba(212,160,32,.45))",
+          }}
+        >
+          el nivel de empresa
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, delay: 0.84, ease: EASE }}
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(16px, 2.6vw, 42px)",
+            fontWeight: 300,
+            letterSpacing: ".1em",
+            lineHeight: 1.2,
+            color: "rgba(240,235,225,.65)",
+            marginBottom: "clamp(20px, 2.8vw, 40px)",
+            textTransform: "uppercase",
+            textShadow: "0 2px 40px rgba(0,0,0,.9)",
           }}
         >
           que tienes en mente?
