@@ -84,7 +84,7 @@ export default function MockupPage() {
               >
                 "Las empresas son juzgadas antes de ser comprendidas."
               </blockquote>
-              <div className="w-10 h-px mb-10" style={{ background: "var(--color-gold)" }} />
+              <div className="w-10 h-px mb-10" style={{ background: "var(--color-silver)" }} />
               <p className="text-text-3 leading-relaxed max-w-prose text-sm">
                 La percepción precede a la confianza. La confianza precede a la decisión.
                 La decisión precede al crecimiento. Por eso, todo lo que hacemos existe
@@ -149,7 +149,7 @@ export default function MockupPage() {
                 >
                   <span
                     className="text-xs font-mono tracking-widest pt-0.5 shrink-0 w-6"
-                    style={{ color: "var(--color-gold-dim)" }}
+                    style={{ color: "var(--color-silver-dim)" }}
                   >
                     {step.n}
                   </span>
@@ -236,7 +236,7 @@ export default function MockupPage() {
                 >
                   <p
                     className="text-xs tracking-wide font-display italic"
-                    style={{ color: "var(--color-gold-dim)" }}
+                    style={{ color: "var(--color-silver-dim)" }}
                   >
                     {item.outcome}
                   </p>
@@ -296,7 +296,7 @@ export default function MockupPage() {
                   </p>
                   <div
                     className="h-px w-8"
-                    style={{ background: "var(--color-gold)" }}
+                    style={{ background: "var(--color-silver)" }}
                   />
                 </div>
               </div>
@@ -320,7 +320,7 @@ export default function MockupPage() {
                   letterSpacing: "var(--tracking-tight)",
                 }}
               >
-                "Wolf Suit transformó la forma en que nuestros
+                "Suitwolf transformó la forma en que nuestros
                 clientes nos perciben desde el primer segundo."
               </blockquote>
               <p className="text-text-4 text-xs tracking-[0.12em] uppercase">

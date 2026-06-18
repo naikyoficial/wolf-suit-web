@@ -5,19 +5,16 @@ export function Footer() {
 
   return (
     <footer
-      className="relative"
+      className="relative flex flex-col md:flex-row items-center justify-between gap-3 md:gap-0"
       style={{
-        padding: "52px 8vw",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        borderTop: "1px solid rgba(201,164,90,.07)",
+        padding: "clamp(36px, 5vh, 52px) 8vw",
+        borderTop: "1px solid rgba(178,192,204,.07)",
         zIndex: 10,
       }}
     >
       <span
         className="font-display"
-        style={{ fontSize: 15, letterSpacing: ".28em", color: "rgba(201,164,90,.55)" }}
+        style={{ fontSize: 15, letterSpacing: ".28em", color: "rgba(178,192,204,.55)" }}
       >
         {SITE.name.toUpperCase()}
       </span>

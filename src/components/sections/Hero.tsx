@@ -2,177 +2,243 @@
 
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { HeroFx } from "@/components/sections/HeroFx";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
+const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #9A6E12 22%, #D4A020 44%, #F0C840 52%, #D4A020 60%, #9A6E12 78%, #5A3C0A 100%)";
+
+const TAGS = ["Diseño y Desarrollo Web", "E-commerce", "Software a Medida"];
+
 export function Hero() {
-  const isoRef    = useRef<HTMLDivElement>(null);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  /* ── Mouse parallax tilt on isotipo ── */
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (!isoRef.current) return;
-      const x = (e.clientX / window.innerWidth  - 0.5) * 12;
-      const y = (e.clientY / window.innerHeight - 0.5) * -12;
-      isoRef.current.style.transform = `perspective(700px) rotateY(${x}deg) rotateX(${y}deg)`;
-    };
-    window.addEventListener("mousemove", handler);
-    return () => window.removeEventListener("mousemove", handler);
-  }, []);
-
-  /* ── Scroll-driven parallax: hero exits as user scrolls ── */
   const { scrollY } = useScroll();
-  const logoScale   = useTransform(scrollY, [0, 600], [1, 0.8]);
-  const logoOpacity = useTransform(scrollY, [0, 450], [1, 0]);
-  const contentY    = useTransform(scrollY, [0, 500], [0, -70]);
-  const contentOp   = useTransform(scrollY, [0, 350], [1, 0]);
+  const contentOp = useTransform(scrollY, [0, 400], [1, 0]);
+  const contentY  = useTransform(scrollY, [0, 500], [0, -52]);
 
   return (
     <section
-      ref={sectionRef}
-      className="relative flex flex-col items-center justify-center text-center"
-      style={{ minHeight: "calc(100dvh - 4rem)", padding: "80px 5vw" }}
+      style={{
+        position: "relative",
+        minHeight: "calc(100dvh - 4rem)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        overflow: "hidden",
+      }}
     >
+      <h1 className="sr-only">Agencia de Diseño y Desarrollo Web Premium — Suitwolf</h1>
 
-      {/* ── Isotipo + rings ── */}
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 2, delay: 0.4, ease: EASE }}
-        style={{ position: "relative", width: 360, height: 360, marginBottom: 44, scale: logoScale, opacity: logoOpacity }}
+      {/* ── Background image — shifted up ── */}
+      <div
+        aria-hidden
+        style={{ position: "absolute", top: "-10%", left: 0, right: 0, bottom: 0 }}
       >
-        {/* Breathing glow */}
-        <div
-          aria-hidden
+        <Image
+          src="/wolf-hero.png"
+          alt=""
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
           style={{
-            position: "absolute",
-            inset: -80,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(201,164,90,.28) 0%, rgba(201,164,90,.06) 45%, transparent 70%)",
-            animation: "breathe 5s ease-in-out infinite",
+            objectFit: "contain",
+            objectPosition: "50% 50%",
           }}
         />
+      </div>
 
-        {/* Parallax tilt wrapper */}
-        <div ref={isoRef} style={{ position: "relative", width: "100%", height: "100%" }}>
-          {/* Orbital rings SVG */}
-          <svg
-            viewBox="0 0 472 472"
-            fill="none"
-            aria-hidden
-            style={{
-              position: "absolute",
-              inset: -56,
-              width: "calc(100% + 112px)",
-              height: "calc(100% + 112px)",
-              zIndex: 1,
-              pointerEvents: "none",
-            }}
-          >
-            <defs>
-              <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#e2c070" />
-                <stop offset="50%" stopColor="#c9a45a" />
-                <stop offset="100%" stopColor="#8a6828" />
-              </linearGradient>
-            </defs>
-            <g style={{ animation: "spin 28s linear infinite", transformOrigin: "236px 236px" }}>
-              <circle cx="236" cy="236" r="228" stroke="url(#rg)" strokeWidth="1" opacity=".28" />
-              <polygon points="236,6 240,17 236,28 232,17" fill="#c9a45a" opacity=".75" />
-              <line x1="236" y1="446" x2="236" y2="466" stroke="#c9a45a" strokeWidth="1" opacity=".45" />
-              <line x1="8"   y1="236" x2="24"  y2="236" stroke="#c9a45a" strokeWidth="1" opacity=".35" />
-              <line x1="448" y1="236" x2="464" y2="236" stroke="#c9a45a" strokeWidth="1" opacity=".35" />
-            </g>
-            <g style={{ animation: "spin 42s linear infinite reverse", transformOrigin: "236px 236px" }}>
-              <circle cx="236" cy="236" r="206" stroke="url(#rg)" strokeWidth=".6" strokeDasharray="4 18" opacity=".18" />
-            </g>
-          </svg>
+      {/* Side fades — aggressive blend of image edges into dark bg */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "linear-gradient(to right, rgba(4,4,4,1) 0%, rgba(4,4,4,.92) 18%, rgba(4,4,4,.5) 32%, transparent 46%, transparent 54%, rgba(4,4,4,.5) 68%, rgba(4,4,4,.92) 82%, rgba(4,4,4,1) 100%)",
+      }} />
 
-          {/* Real isotipo PNG */}
-          <Image
-            src="/isotipo.png"
-            alt="Wolf Suit"
-            width={360}
-            height={360}
-            priority
-            style={{
-              position: "relative",
-              zIndex: 2,
-              filter: "drop-shadow(0 0 32px rgba(201,164,90,.35)) drop-shadow(0 0 8px rgba(201,164,90,.2))",
-            }}
-          />
-        </div>
-      </motion.div>
+      {/* ── Overlays ── */}
 
-      {/* ── Text block — also exits on scroll ── */}
+      {/* Vignette — edges dark, wolf face area clear */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0,
+        background: "radial-gradient(ellipse 90% 80% at 50% 36%, rgba(4,4,4,.04) 0%, rgba(4,4,4,.48) 62%, rgba(4,4,4,.97) 100%)",
+      }} />
+
+      {/* Content backdrop — darkens lower section behind text */}
+      <div aria-hidden style={{
+        position: "absolute", inset: "18% 0 0 0",
+        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, rgba(4,4,4,.90) 22%, rgba(4,4,4,.52) 50%, transparent 100%)",
+      }} />
+
+      {/* Bottom seal — guarantees solid black at the very bottom edge for seamless section transition */}
+      <div aria-hidden style={{
+        position: "absolute", bottom: 0, left: 0, right: 0, height: "38%",
+        background: "linear-gradient(to bottom, transparent 0%, rgba(4,4,4,.85) 40%, rgba(4,4,4,1) 70%, rgba(4,4,4,1) 100%)",
+      }} />
+
+      {/* Top gradient — blends into navbar */}
+      <div aria-hidden style={{
+        position: "absolute", top: 0, left: 0, right: 0, height: "20%",
+        background: "linear-gradient(to bottom, rgba(4,4,4,.55) 0%, transparent 100%)",
+      }} />
+
+      {/* ── 3D animated FX layer ── */}
+      <HeroFx />
+
+      {/* ── Content — anchored bottom ── */}
       <motion.div
-        style={{ y: contentY, opacity: contentOp, display: "flex", flexDirection: "column", alignItems: "center" }}
+        style={{
+          opacity: contentOp,
+          y: contentY,
+          position: "relative",
+          zIndex: 10,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+          width: "100%",
+          paddingBottom: "clamp(18px, 2.5vh, 40px)",
+          paddingLeft:   "clamp(1.5rem, 6vw, 7.5rem)",
+          paddingRight:  "clamp(1.5rem, 6vw, 7.5rem)",
+        }}
       >
-        {/* Wordmark */}
+
+        {/* Headline line 1 — white serif */}
         <motion.p
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, delay: 1.1, ease: EASE }}
-          className="font-display font-semibold"
+          transition={{ duration: 1.1, delay: 0.58, ease: EASE }}
           style={{
-            fontSize: "clamp(36px, 5.5vw, 68px)",
-            letterSpacing: ".38em",
-            background: "linear-gradient(135deg, #e2c070 0%, #c9a45a 45%, #9a7a3a 75%, #c9a45a 100%)",
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(40px, 6vw, 84px)",
+            fontWeight: 400,
+            letterSpacing: "-.02em",
+            lineHeight: 1.0,
+            color: "var(--color-text)",
+            textTransform: "uppercase",
+            margin: 0,
+            textShadow: "0 2px 60px rgba(0,0,0,.9)",
+          }}
+        >
+          Diseñamos experiencias.
+        </motion.p>
+
+        {/* Headline line 2 — gold shimmer */}
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, delay: 0.74, ease: EASE }}
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(40px, 6vw, 84px)",
+            fontWeight: 600,
+            letterSpacing: "-.02em",
+            lineHeight: 1.0,
+            textTransform: "uppercase",
+            marginBottom: "clamp(20px, 2.8vw, 36px)",
+            background: GOLD,
+            backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
+            animation: "metalShimmer 13s ease-in-out infinite",
+            animationDelay: "-5s",
+            filter: "drop-shadow(0 2px 20px rgba(212,160,32,.32))",
           }}
         >
-          WOLF SUIT
+          Construimos legado.
         </motion.p>
 
-        {/* Diamond */}
+        {/* Tags */}
         <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 1.6 }}
-          style={{ width: 5, height: 5, background: "var(--color-gold)", transform: "rotate(45deg)", margin: "14px auto" }}
-        />
-
-        {/* Tag */}
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.8 }}
-          style={{
-            fontSize: 11,
-            letterSpacing: ".32em",
-            textTransform: "uppercase",
-            color: "var(--color-text-3)",
-            marginBottom: 56,
-          }}
-        >
-          Diseño · Estrategia · Tecnología
-        </motion.p>
-
-        {/* Scroll cue */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 2.3 }}
+          transition={{ duration: 0.9, delay: 1.0, ease: EASE }}
           style={{
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
-            gap: 8,
-            color: "rgba(201,164,90,.45)",
-            fontSize: 10,
-            letterSpacing: ".25em",
-            textTransform: "uppercase",
+            gap: 10,
+            marginBottom: "clamp(18px, 2.8vw, 32px)",
           }}
         >
-          <div style={{ width: 1, height: 44, background: "linear-gradient(to bottom, rgba(201,164,90,.45), transparent)" }} />
-          <span>Continuar</span>
+          {TAGS.map((tag, i) => (
+            <span key={tag} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <span style={{
+                fontSize: 10,
+                letterSpacing: ".38em",
+                textTransform: "uppercase",
+                color: "rgba(180,176,168,.65)",
+                textShadow: "0 1px 12px rgba(0,0,0,.9)",
+              }}>
+                {tag}
+              </span>
+              {i < TAGS.length - 1 && (
+                <span style={{
+                  width: 3, height: 3, borderRadius: "50%",
+                  background: "rgba(180,176,168,.35)",
+                  display: "inline-block",
+                  flexShrink: 0,
+                }} />
+              )}
+            </span>
+          ))}
         </motion.div>
-      </motion.div>
 
+        {/* Sub — AGENCIA DIGITAL DE ALTO NIVEL */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 1.2, ease: EASE }}
+          style={{ marginBottom: "clamp(24px, 3.5vw, 44px)" }}
+        >
+          <span style={{
+            fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase",
+            color: "rgba(200,188,168,.6)",
+            textShadow: "0 1px 12px rgba(0,0,0,.95)",
+          }}>
+            Agencia digital de{" "}
+          </span>
+          <span style={{
+            fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase",
+            background: GOLD,
+            backgroundSize: "260% 100%",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            animation: "metalShimmer 14s ease-in-out infinite",
+            animationDelay: "-7s",
+          }}>
+            alto nivel
+          </span>
+        </motion.div>
+
+        {/* Continuar scroll cue */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 1.45 }}
+          style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}
+        >
+          <div style={{ width: 1, height: 30, background: "linear-gradient(to bottom, rgba(212,160,32,.5), transparent)" }} />
+          <span style={{
+            fontSize: 9,
+            letterSpacing: ".52em",
+            textTransform: "uppercase",
+            background: GOLD,
+            backgroundSize: "260% 100%",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            animation: "metalShimmer 11s ease-in-out infinite",
+          }}>
+            Continuar
+          </span>
+          <motion.div
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+            style={{ width: 1, height: 18, background: "linear-gradient(to bottom, rgba(212,160,32,.35), transparent)" }}
+          />
+        </motion.div>
+
+      </motion.div>
     </section>
   );
 }

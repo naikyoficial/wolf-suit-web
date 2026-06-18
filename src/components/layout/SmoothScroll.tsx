@@ -1,24 +1,33 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Lenis from "lenis";
+import { LenisContext } from "@/contexts/LenisContext";
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
+  const [lenis, setLenis] = useState<Lenis | null>(null);
+
   useEffect(() => {
-    const lenis = new Lenis({ lerp: 0.08 });
+    const l = new Lenis({ lerp: 0.08 });
+    setLenis(l);
 
     let rafId: number;
     function raf(time: number) {
-      lenis.raf(time);
+      l.raf(time);
       rafId = requestAnimationFrame(raf);
     }
     rafId = requestAnimationFrame(raf);
 
     return () => {
       cancelAnimationFrame(rafId);
-      lenis.destroy();
+      l.destroy();
+      setLenis(null);
     };
   }, []);
 
-  return <>{children}</>;
+  return (
+    <LenisContext.Provider value={lenis}>
+      {children}
+    </LenisContext.Provider>
+  );
 }

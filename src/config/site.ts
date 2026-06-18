@@ -1,5 +1,5 @@
 export const SITE = {
-  name: "Wolf Suit",
+  name: "Suitwolf",
   tagline: "Experiencias Digitales de Alto Nivel",
   description:
     "Firma estratégica especializada en construir percepción de valor para empresas ambiciosas.",
@@ -9,8 +9,9 @@ export const SITE = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Filosofía", href: "#duality" },
-  { label: "Enfoque",   href: "#pillars" },
+  { label: "Filosofía", href: "#philosophy" },
+  { label: "Dualidad",  href: "#duality" },
+  { label: "Servicios", href: "#services" },
   { label: "Proceso",   href: "#process" },
-  { label: "Contacto",  href: "#contact" },
+  { label: "Enfoque",   href: "#pillars" },
 ] as const;
