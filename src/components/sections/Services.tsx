@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Reveal }       from "@/components/ui/Reveal";
 import { SplitWords }   from "@/components/ui/SplitWords";
 import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
+import { useMobile }    from "@/hooks/useMobile";
 
 const EASE  = [0.16, 1.0, 0.3, 1.0] as const;
 const SPRING = { type: "spring", stiffness: 72, damping: 18, mass: 1.1 } as const;
@@ -85,8 +86,8 @@ function ServiceCard({ service, isActive, cardW }: { service: Service; isActive:
   return (
     <div style={{
       width: cardW,
-      minHeight: 520,
-      padding: "40px 36px 36px",
+      minHeight: cardW < 400 ? 440 : 520,
+      padding: cardW < 400 ? "28px 24px 24px" : "40px 36px 36px",
       position: "relative",
       border: `1px solid ${isActive ? "rgba(212,160,32,.24)" : "rgba(255,255,255,.06)"}`,
       background: isActive
@@ -301,6 +302,7 @@ function NavArrow({ dir, onClick, disabled }: { dir: -1 | 1; onClick: () => void
 }
 
 export function Services() {
+  const isMobile = useMobile();
   const [active, setActive] = useState(0);
   const [cardW, setCardW] = useState(CARD_W_MAX);
   const touchStart = useRef<number | null>(null);
@@ -323,7 +325,7 @@ export function Services() {
       id="services"
       className="relative"
       style={{
-        padding: "clamp(80px, 11vh, 130px) 0",
+        padding: "clamp(48px, 6vh, 130px) 0",
         background: "rgba(4,4,4,.96)",
         zIndex: 10,
         overflow: "hidden",
@@ -360,7 +362,7 @@ export function Services() {
       }} />
 
       {/* ── Header ── */}
-      <div style={{ padding: "0 8vw", marginBottom: 60, position: "relative", zIndex: 10, textAlign: "center" }}>
+      <div style={{ padding: "0 clamp(1.5rem, 8vw, 7.5rem)", marginBottom: "clamp(28px, 4vw, 60px)", position: "relative", zIndex: 10, textAlign: "center" }}>
         <Reveal y={20} blur={4} style={{ marginBottom: 14, display: "flex", alignItems: "center", justifyContent: "center", gap: 14 }}>
           <div style={{ width: 28, height: 1, background: "linear-gradient(to right, transparent, rgba(212,160,32,.4))" }} />
           <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".52em", textTransform: "uppercase" }}>
@@ -390,7 +392,7 @@ export function Services() {
       <div
         style={{
           position: "relative",
-          height: 580,
+          height: cardW < 400 ? 500 : 580,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -411,7 +413,7 @@ export function Services() {
 
           const scale    = 1 - absOffset * 0.07;
           const opacity  = absOffset === 0 ? 1 : absOffset === 1 ? 0.45 : 0.1;
-          const blur     = absOffset === 0 ? 0 : absOffset === 1 ? 1 : 4;
+          const blur     = isMobile ? 0 : (absOffset === 0 ? 0 : absOffset === 1 ? 1 : 4);
           const zIdx     = 10 - absOffset;
           const isActive = absOffset === 0;
 

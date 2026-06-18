@@ -34,7 +34,7 @@ export function Pillars() {
     <section
       id="pillars"
       className="relative flex items-center"
-      style={{ minHeight: "100vh", padding: "100px 8vw", background: "rgba(6,5,3,.82)", zIndex: 10 }}
+      style={{ padding: "clamp(56px, 8vh, 120px) clamp(1.5rem, 8vw, 7.5rem)", background: "rgba(6,5,3,.82)", zIndex: 10 }}
     >
       {/* Atmosphere — warm amber radial + micro dot grid */}
       <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none",
@@ -58,7 +58,7 @@ export function Pillars() {
           </ShimmerLabel>
         </Reveal>
 
-        <Reveal delay={0.1} y={32} style={{ marginBottom: 56, textAlign: "center" }}>
+        <Reveal delay={0.1} y={32} style={{ marginBottom: "clamp(28px, 4vh, 56px)", textAlign: "center" }}>
           <h2 style={{
             fontSize: "clamp(36px,4.5vw,60px)",
             lineHeight: 1.12,
@@ -80,8 +80,8 @@ export function Pillars() {
           {PILLARS.map((p, i) => (
             <motion.div
               key={p.num}
-              initial={{ opacity: 0, y: 60, scale: 0.95, filter: "blur(12px)" }}
-              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+              initial={{ opacity: 0, y: 40, scale: 0.97 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.1, delay: 0.15 + i * 0.15, ease: EASE }}
             >
@@ -89,7 +89,7 @@ export function Pillars() {
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
                 style={{
-                  padding: 44,
+                  padding: "clamp(24px, 4vw, 44px)",
                   height: "100%",
                   background: hovered === i ? "#0d0d0d" : "#070707",
                   border: `1px solid ${hovered === i ? "rgba(212,160,32,.28)" : "transparent"}`,

@@ -36,8 +36,7 @@ export function Apply() {
       id="contact"
       className="relative"
       style={{
-        minHeight: "100vh",
-        padding: "clamp(80px, 12vh, 130px) 8vw",
+        padding: "clamp(52px, 7vh, 130px) clamp(1.5rem, 8vw, 7.5rem)",
         background: "rgba(4,4,4,.97)",
         zIndex: 10,
         display: "flex",
@@ -84,7 +83,7 @@ export function Apply() {
       </Reveal>
 
       {/* ── Body copy — centered ── */}
-      <Reveal delay={0.25} y={24} blur={6} style={{ maxWidth: 580, marginBottom: 72 }}>
+      <Reveal delay={0.25} y={24} blur={6} style={{ maxWidth: 580, marginBottom: "clamp(36px, 5vh, 72px)" }}>
         <p style={{ fontSize: 16, color: "var(--color-text-3)", lineHeight: 1.85, letterSpacing: "-.01em", marginBottom: 22 }}>
           No creemos en soluciones genéricas. Cada proyecto nace de una pregunta simple: ¿cómo debería verse una empresa que aspira a ser la referencia de su industria?
         </p>
@@ -101,7 +100,7 @@ export function Apply() {
         style={{
           display: "flex",
           gap: "clamp(32px, 5vw, 64px)",
-          marginBottom: 80,
+          marginBottom: "clamp(40px, 5vh, 80px)",
           flexWrap: "wrap",
           justifyContent: "center",
           alignItems: "stretch",
@@ -110,8 +109,8 @@ export function Apply() {
         {STEPS.map((s, i) => (
           <motion.div
             key={s.num}
-            initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.3 + i * 0.13, ease: EASE }}
             style={{ display: "flex" }}

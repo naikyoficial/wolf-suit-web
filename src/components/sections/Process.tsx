@@ -21,7 +21,7 @@ export function Process() {
     <section
       id="process"
       className="relative"
-      style={{ padding: "100px 8vw", zIndex: 10, background: "rgba(4,5,7,.85)" }}
+      style={{ padding: "clamp(56px, 8vh, 120px) clamp(1.5rem, 8vw, 7.5rem)", zIndex: 10, background: "rgba(4,5,7,.85)" }}
     >
       {/* Atmosphere */}
       <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none",
@@ -40,7 +40,7 @@ export function Process() {
           </ShimmerLabel>
         </Reveal>
 
-        <Reveal delay={0.1} y={32} style={{ marginBottom: 80 }}>
+        <Reveal delay={0.1} y={32} style={{ marginBottom: "clamp(36px, 5vh, 80px)" }}>
           <SplitWords
             as="h2"
             stagger={0.07}
@@ -75,8 +75,8 @@ export function Process() {
               />
 
               <motion.div
-                initial={{ opacity: 0, y: 36, filter: "blur(8px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.95, delay: 0.1, ease: EASE }}
                 style={{

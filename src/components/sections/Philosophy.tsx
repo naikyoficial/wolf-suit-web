@@ -12,7 +12,7 @@ export function Philosophy() {
     <section
       className="relative text-center"
       id="philosophy"
-      style={{ padding: "clamp(80px, 11vh, 120px) 8vw", zIndex: 10, background: "rgba(5,5,8,.75)" }}
+      style={{ padding: "clamp(48px, 7vh, 120px) clamp(1.5rem, 8vw, 7.5rem)", zIndex: 10, background: "rgba(5,5,8,.75)" }}
     >
       {/* Atmosphere — cool blue-gray glow top-right, warm gold at bottom */}
       <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none",
@@ -33,13 +33,13 @@ export function Philosophy() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: EASE }}
         >
-          <ShimmerLabel style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", marginBottom: 28 }}>
+          <ShimmerLabel style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", marginBottom: "clamp(16px, 2.5vh, 28px)" }}>
             Filosofía
           </ShimmerLabel>
         </motion.div>
 
         {/* Big quote — word by word reveal */}
-        <div style={{ maxWidth: 860, margin: "0 auto 28px" }}>
+        <div style={{ maxWidth: 860, margin: "0 auto clamp(16px, 2.5vh, 28px)" }}>
           <SplitWords
             as="blockquote"
             delay={0.1}
@@ -62,7 +62,7 @@ export function Philosophy() {
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.6, ease: EASE }}
-          style={{ width: 36, height: 1, background: "var(--color-gold)", margin: "0 auto 36px", transformOrigin: "center" }}
+          style={{ width: 36, height: 1, background: "var(--color-gold)", margin: "0 auto clamp(20px, 3vh, 36px)", transformOrigin: "center" }}
         />
 
         {/* Body — structured paragraphs for SEO + readability */}

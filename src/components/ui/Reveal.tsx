@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, type MotionProps } from "framer-motion";
+import { useMobile } from "@/hooks/useMobile";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
@@ -19,11 +20,21 @@ export function Reveal({
   delay = 0,
   y = 40,
   blur: _blur,
-  scale = 1,
+  scale: _scale,
   className,
   style,
   ...rest
 }: RevealProps) {
+  const isMobile = useMobile();
+
+  if (isMobile) {
+    return (
+      <div className={className} style={style}>
+        {children}
+      </div>
+    );
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y }}

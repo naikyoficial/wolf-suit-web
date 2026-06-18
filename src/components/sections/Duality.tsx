@@ -14,7 +14,7 @@ export function Duality() {
       id="duality"
       className="relative"
       style={{
-        padding: "clamp(100px, 14vh, 160px) 8vw",
+        padding: "clamp(48px, 7vh, 160px) clamp(1.5rem, 8vw, 7.5rem)",
         zIndex: 10,
         background: "rgba(7,6,4,.8)",
         textAlign: "center",
@@ -41,7 +41,7 @@ export function Duality() {
       <div className="w-full max-w-[1100px] mx-auto" style={{ position: "relative", zIndex: 1 }}>
 
         {/* Eyebrow */}
-        <Reveal y={16} blur={4} style={{ marginBottom: 52 }}>
+        <Reveal y={16} blur={4} style={{ marginBottom: "clamp(24px, 3.5vh, 52px)" }}>
           <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".52em", textTransform: "uppercase" }}>
             Dualidad
           </ShimmerLabel>
@@ -67,7 +67,7 @@ export function Duality() {
         </div>
 
         {/* Line 2 — counter — gold shimmer */}
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: "clamp(16px, 2.5vh, 40px)" }}>
           <SplitWords
             as="h2"
             delay={0.12}
@@ -91,7 +91,7 @@ export function Duality() {
         </div>
 
         {/* Pivot line */}
-        <div style={{ marginBottom: 56 }}>
+        <div style={{ marginBottom: "clamp(22px, 3.5vh, 56px)" }}>
           <SplitWords
             as="p"
             delay={0.22}
@@ -110,7 +110,7 @@ export function Duality() {
         </div>
 
         {/* Gold line — animated draw */}
-        <Reveal delay={0.6} y={0} blur={0} style={{ marginBottom: 44 }}>
+        <Reveal delay={0.6} y={0} blur={0} style={{ marginBottom: "clamp(18px, 2.8vh, 44px)" }}>
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
@@ -127,7 +127,7 @@ export function Duality() {
         </Reveal>
 
         {/* Narrative paragraph */}
-        <Reveal delay={0.75} y={24} blur={6} style={{ marginBottom: 64 }}>
+        <Reveal delay={0.75} y={24} blur={6} style={{ marginBottom: "clamp(24px, 4vh, 64px)" }}>
           <p style={{
             fontSize: 17,
             color: "var(--color-text-3)",
