@@ -7,6 +7,7 @@ import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
 import { Reveal }      from "@/components/ui/Reveal";
 import { SplitWords }  from "@/components/ui/SplitWords";
 import { TiltCard }    from "@/components/ui/TiltCard";
+import { useMobile }   from "@/hooks/useMobile";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
@@ -30,6 +31,7 @@ const STEPS = [
 
 export function Apply() {
   const [hovered, setHovered] = useState(false);
+  const isMobile = useMobile();
 
   return (
     <section
@@ -109,10 +111,10 @@ export function Apply() {
         {STEPS.map((s, i) => (
           <motion.div
             key={s.num}
-            initial={{ opacity: 0, y: 20 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.3 + i * 0.13, ease: EASE }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.9, delay: 0.3 + i * 0.13, ease: EASE }}
             style={{ display: "flex" }}
           >
             <TiltCard

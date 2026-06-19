@@ -6,6 +6,7 @@ import { Reveal }       from "@/components/ui/Reveal";
 import { SplitWords }   from "@/components/ui/SplitWords";
 import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
 import { TiltCard }     from "@/components/ui/TiltCard";
+import { useMobile }    from "@/hooks/useMobile";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
@@ -16,6 +17,7 @@ const PROJECTS = [
 
 export function Work() {
   const [hovered, setHovered] = useState<number | null>(null);
+  const isMobile = useMobile();
 
   return (
     <section
@@ -50,10 +52,10 @@ export function Work() {
           {PROJECTS.map((p, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 40, scale: 0.96, filter: "blur(10px)" }}
-              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+              initial={isMobile ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.96, filter: "blur(10px)" }}
+              whileInView={isMobile ? { opacity: 1, y: 0, scale: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true }}
-              transition={{ duration: 1.1, delay: 0.1 + i * 0.15, ease: EASE }}
+              transition={isMobile ? { duration: 0 } : { duration: 1.1, delay: 0.1 + i * 0.15, ease: EASE }}
             >
               <TiltCard
                 onMouseEnter={() => setHovered(i)}

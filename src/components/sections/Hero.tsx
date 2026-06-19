@@ -96,9 +96,9 @@ export function Hero() {
           alignItems: "center",
           textAlign: "center",
           width: "100%",
-          paddingBottom: "clamp(24px, 4vh, 48px)",
-          paddingLeft:  "clamp(1.5rem, 6vw, 7.5rem)",
-          paddingRight: "clamp(1.5rem, 6vw, 7.5rem)",
+          paddingBottom: "clamp(28px, 4vh, 48px)",
+          paddingLeft:  "clamp(1rem, 6vw, 7.5rem)",
+          paddingRight: "clamp(1rem, 6vw, 7.5rem)",
         }}
       >
 
@@ -109,14 +109,15 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.48, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(17px, 4vw, 64px)",
+            fontSize: "clamp(17px, 5vw, 64px)",
             fontWeight: 300,
             letterSpacing: "-.01em",
-            lineHeight: 1.1,
-            color: "rgba(240,235,225,.58)",
+            lineHeight: 1.12,
+            color: "rgba(240,235,225,.62)",
             margin: 0,
             textTransform: "uppercase",
             textShadow: "0 2px 30px rgba(0,0,0,.95)",
+            whiteSpace: "nowrap",
           }}
         >
           ¿Tu presencia digital refleja
@@ -128,12 +129,13 @@ export function Hero() {
           transition={{ duration: 1.0, delay: 0.60, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(24px, 4.8vw, 76px)",
+            fontSize: "clamp(28px, 8vw, 76px)",
             fontWeight: 400,
             letterSpacing: "-.02em",
-            lineHeight: 1.0,
+            lineHeight: 1.02,
             textTransform: "uppercase",
-            margin: "clamp(2px, 0.3vw, 6px) 0",
+            margin: "clamp(3px, 0.5vw, 6px) 0",
+            whiteSpace: "nowrap",
             background: GOLD,
             backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
@@ -153,14 +155,15 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.72, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(17px, 4vw, 64px)",
+            fontSize: "clamp(17px, 5vw, 64px)",
             fontWeight: 300,
             letterSpacing: "-.01em",
-            lineHeight: 1.1,
-            color: "rgba(240,235,225,.58)",
+            lineHeight: 1.12,
+            color: "rgba(240,235,225,.62)",
             marginBottom: "clamp(18px, 2.8vw, 36px)",
             textTransform: "uppercase",
             textShadow: "0 2px 30px rgba(0,0,0,.95)",
+            whiteSpace: "nowrap",
           }}
         >
           que tienes en mente?

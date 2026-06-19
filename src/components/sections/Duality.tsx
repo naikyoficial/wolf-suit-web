@@ -4,11 +4,13 @@ import { motion } from "framer-motion";
 import { Reveal }       from "@/components/ui/Reveal";
 import { SplitWords }   from "@/components/ui/SplitWords";
 import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
+import { useMobile }    from "@/hooks/useMobile";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
 
 export function Duality() {
+  const isMobile = useMobile();
   return (
     <section
       id="duality"
@@ -112,10 +114,10 @@ export function Duality() {
         {/* Gold line — animated draw */}
         <Reveal delay={0.6} y={0} blur={0} style={{ marginBottom: "clamp(18px, 2.8vh, 44px)" }}>
           <motion.div
-            initial={{ scaleX: 0 }}
+            initial={isMobile ? { scaleX: 1 } : { scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.1, delay: 0.7, ease: EASE }}
+            transition={isMobile ? { duration: 0 } : { duration: 1.1, delay: 0.7, ease: EASE }}
             style={{
               width: 44, height: 1, margin: "0 auto",
               background: GOLD,

@@ -1,11 +1,21 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function Grain() {
   const turbRef = useRef<SVGFETurbulenceElement>(null);
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
+    // The per-frame re-seed of an SVG fractalNoise filter is far too expensive
+    // for mobile GPUs — keep a static grain there, animate only on desktop.
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    setAnimate(true);
+  }, []);
+
+  useEffect(() => {
+    if (!animate) return;
     let seed = 0;
     let frame = 0;
     let rafId: number;
@@ -20,12 +30,12 @@ export function Grain() {
     };
     rafId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafId);
-  }, []);
+  }, [animate]);
 
   return (
     <div
       aria-hidden
-      className="fixed inset-0 pointer-events-none"
+      className="grain-overlay fixed inset-0 pointer-events-none"
       style={{ zIndex: 9992, opacity: 0.055, mixBlendMode: "overlay" }}
     >
       <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">

@@ -258,6 +258,7 @@ function NavArrow({ dir, onClick, disabled }: { dir: -1 | 1; onClick: () => void
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       data-cursor-hover
+      className="carousel-arrow"
       aria-label={isLeft ? "Servicio anterior" : "Siguiente servicio"}
       style={{
         width: 56, height: 56,
@@ -410,7 +411,9 @@ export function Services() {
         {SERVICES.map((service, i) => {
           const offset    = i - active;
           const absOffset = Math.abs(offset);
-          if (absOffset > 2) return null;
+          // Render fewer neighbours on mobile — less animated DOM = smoother swipe
+          const maxVisible = isMobile ? 1 : 2;
+          if (absOffset > maxVisible) return null;
 
           const scale    = 1 - absOffset * 0.07;
           const opacity  = absOffset === 0 ? 1 : absOffset === 1 ? 0.45 : 0.1;
@@ -422,18 +425,17 @@ export function Services() {
             <motion.div
               key={service.num}
               onClick={() => !isActive && setActive(i)}
-              animate={{
-                x: offset * step,
-                scale,
-                opacity,
-                filter: `blur(${blur}px)`,
-                zIndex: zIdx,
-              }}
+              animate={
+                isMobile
+                  ? { x: offset * step, scale, opacity, zIndex: zIdx }
+                  : { x: offset * step, scale, opacity, filter: `blur(${blur}px)`, zIndex: zIdx }
+              }
               transition={isMobile ? SPRING_MOBILE : SPRING}
               style={{
                 position: "absolute",
                 cursor: isActive ? "default" : "pointer",
                 transformOrigin: "center center",
+                willChange: "transform",
               }}
             >
               <ServiceCard service={service} isActive={isActive} cardW={cardW} />

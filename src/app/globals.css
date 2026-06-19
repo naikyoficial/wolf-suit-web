@@ -229,6 +229,25 @@ body { scrollbar-width: none; }
     object-fit: cover !important;
     object-position: 50% 18% !important;
   }
+
+  /* Grain overlay's mix-blend + fixed layer forces continuous re-compositing on
+     scroll; at 5% opacity it's invisible on a retina phone — drop it on mobile. */
+  .grain-overlay { display: none !important; }
+
+  /* backdrop-filter blur on the fixed header re-samples the whole page every
+     scroll frame — the single biggest cause of scroll jank on mobile Safari.
+     Use an opaque solid background instead. */
+  .site-header {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background: rgba(6,6,6,.92) !important;
+  }
+
+  /* Same problem on the carousel arrows — cards slide behind them */
+  .carousel-arrow {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
 }
 
 /* Reduced motion — accesibilidad obligatoria (OS Ch.6) */

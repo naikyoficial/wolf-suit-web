@@ -6,6 +6,7 @@ import { Reveal }       from "@/components/ui/Reveal";
 import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
 import { SplitWords }   from "@/components/ui/SplitWords";
 import { TiltCard }     from "@/components/ui/TiltCard";
+import { useMobile }    from "@/hooks/useMobile";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
@@ -29,6 +30,7 @@ const PILLARS = [
 
 export function Pillars() {
   const [hovered, setHovered] = useState<number | null>(null);
+  const isMobile = useMobile();
 
   return (
     <section
@@ -80,10 +82,10 @@ export function Pillars() {
           {PILLARS.map((p, i) => (
             <motion.div
               key={p.num}
-              initial={{ opacity: 0, y: 40, scale: 0.97 }}
+              initial={isMobile ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.97 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 1.1, delay: 0.15 + i * 0.15, ease: EASE }}
+              transition={isMobile ? { duration: 0 } : { duration: 1.1, delay: 0.15 + i * 0.15, ease: EASE }}
             >
               <TiltCard
                 onMouseEnter={() => setHovered(i)}

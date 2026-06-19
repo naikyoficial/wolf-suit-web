@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Reveal }       from "@/components/ui/Reveal";
 import { SplitWords }   from "@/components/ui/SplitWords";
 import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
+import { useMobile }    from "@/hooks/useMobile";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
@@ -17,6 +18,7 @@ const STEPS = [
 ];
 
 export function Process() {
+  const isMobile = useMobile();
   return (
     <section
       id="process"
@@ -62,10 +64,10 @@ export function Process() {
             <div key={step.num}>
               {/* Divider */}
               <motion.div
-                initial={{ scaleX: 0 }}
+                initial={isMobile ? { scaleX: 1 } : { scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.9, delay: 0.05, ease: EASE }}
+                transition={isMobile ? { duration: 0 } : { duration: 0.9, delay: 0.05, ease: EASE }}
                 style={{
                   height: 1,
                   background: i === 0 ? "rgba(212,160,32,.38)" : "rgba(212,160,32,.16)",
@@ -75,10 +77,10 @@ export function Process() {
               />
 
               <motion.div
-                initial={{ opacity: 0, y: 28 }}
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.95, delay: 0.1, ease: EASE }}
+                transition={isMobile ? { duration: 0 } : { duration: 0.95, delay: 0.1, ease: EASE }}
                 style={{
                   display: "flex",
                   flexWrap: "wrap",
@@ -133,10 +135,10 @@ export function Process() {
 
           {/* Closing divider */}
           <motion.div
-            initial={{ scaleX: 0 }}
+            initial={isMobile ? { scaleX: 1 } : { scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.05, ease: EASE }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.9, delay: 0.05, ease: EASE }}
             style={{
               height: 1,
               background: "rgba(212,160,32,.16)",

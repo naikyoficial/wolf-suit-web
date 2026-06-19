@@ -1,13 +1,19 @@
 "use client";
 
 import { useScroll, useTransform, motion } from "framer-motion";
+import { useMobile } from "@/hooks/useMobile";
 
 export function ScrollProgress() {
+  const isMobile = useMobile();
   const { scrollYProgress } = useScroll();
 
   const scaleY     = useTransform(scrollYProgress, [0, 1], [0, 1]);
   const tipTop     = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const tipOpacity = useTransform(scrollYProgress, [0, 0.02, 0.96, 1], [0, 1, 1, 0]);
+
+  // Native scroll feel on mobile — a 2px rail with a breathing glow tip is
+  // low value and the infinite box-shadow animation repaints every frame.
+  if (isMobile) return null;
 
   return (
     <div

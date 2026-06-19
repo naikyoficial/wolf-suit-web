@@ -28,7 +28,7 @@ export function Navbar() {
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 flex items-center justify-between h-16 z-[200]"
+        className="site-header fixed top-0 left-0 right-0 flex items-center justify-between h-16 z-[200]"
         style={{
           padding: "0 clamp(1.5rem, 6vw, 7.5rem)",
           background: menuOpen ? "rgba(4,4,4,.98)" : "rgba(4,4,4,.6)",
@@ -151,9 +151,7 @@ export function Navbar() {
             transition={{ duration: 0.28 }}
             className="md:hidden fixed inset-0 z-[199] flex flex-col items-center justify-center"
             style={{
-              background: "rgba(4,4,4,.97)",
-              backdropFilter: "blur(24px)",
-              WebkitBackdropFilter: "blur(24px)",
+              background: "rgba(4,4,4,.99)",
             }}
           >
             {/* Atmosphere */}
