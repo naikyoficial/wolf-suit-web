@@ -18,10 +18,13 @@
   --color-surface-1:  #141414;
   --color-surface-2:  #1C1C1C;
 
-  /* Texto */
-  --color-text:   #F5F3EE;
-  --color-text-2: #C4C2BE;
-  --color-text-3: #8A8886;
+  /* Texto — escala con suficiente separación entre niveles para una jerarquía
+     clara: título (casi blanco) → cuerpo principal (gris claro) → cuerpo
+     secundario (gris medio) → apagado. text-2 se bajó de #C4C2BE para que los
+     títulos se diferencien claramente del párrafo de abajo en toda la web. */
+  --color-text:   #F7F5F0;
+  --color-text-2: #ABA8A2;
+  --color-text-3: #837F7B;
   --color-text-4: #555452;
 
   /* Acento — plata */
