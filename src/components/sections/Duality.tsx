@@ -114,10 +114,10 @@ export function Duality() {
         {/* Gold line — animated draw */}
         <Reveal delay={0.6} y={0} blur={0} style={{ marginBottom: "clamp(18px, 2.8vh, 44px)" }}>
           <motion.div
-            initial={isMobile ? { scaleX: 1 } : { scaleX: 0 }}
+            initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={isMobile ? { duration: 0 } : { duration: 1.1, delay: 0.7, ease: EASE }}
+            transition={isMobile ? { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const } : { duration: 1.1, delay: 0.7, ease: EASE }}
             style={{
               width: 44, height: 1, margin: "0 auto",
               background: GOLD,

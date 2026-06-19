@@ -30,10 +30,10 @@ export function Philosophy() {
 
         {/* Tag */}
         <motion.div
-          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          initial={isMobile ? { opacity: 0, y: 14 } : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={isMobile ? { duration: 0 } : { duration: 0.7, ease: EASE }}
+          transition={isMobile ? { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const } : { duration: 0.7, ease: EASE }}
         >
           <ShimmerLabel style={{ fontSize: 10, letterSpacing: ".35em", textTransform: "uppercase", marginBottom: "clamp(16px, 2.5vh, 28px)" }}>
             Filosofía
@@ -60,10 +60,10 @@ export function Philosophy() {
 
         {/* Gold bar — draws in */}
         <motion.div
-          initial={isMobile ? { scaleX: 1 } : { scaleX: 0 }}
+          initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
-          transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.6, ease: EASE }}
+          transition={isMobile ? { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const } : { duration: 1, delay: 0.6, ease: EASE }}
           style={{ width: 36, height: 1, background: "var(--color-gold)", margin: "0 auto clamp(20px, 3vh, 36px)", transformOrigin: "center" }}
         />
 

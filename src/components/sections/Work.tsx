@@ -52,10 +52,10 @@ export function Work() {
           {PROJECTS.map((p, i) => (
             <motion.div
               key={i}
-              initial={isMobile ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.96, filter: "blur(10px)" }}
+              initial={isMobile ? { opacity: 0, y: 16, scale: 1 } : { opacity: 0, y: 40, scale: 0.96, filter: "blur(10px)" }}
               whileInView={isMobile ? { opacity: 1, y: 0, scale: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true }}
-              transition={isMobile ? { duration: 0 } : { duration: 1.1, delay: 0.1 + i * 0.15, ease: EASE }}
+              transition={isMobile ? { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const } : { duration: 1.1, delay: 0.1 + i * 0.15, ease: EASE }}
             >
               <TiltCard
                 onMouseEnter={() => setHovered(i)}

@@ -29,11 +29,6 @@ export function SplitWords({
     if (window.matchMedia("(pointer: coarse)").matches) setIsMobile(true);
   }, []);
 
-  // On mobile: plain render, no animation overhead
-  if (isMobile) {
-    return <Tag className={className} style={style}>{children}</Tag>;
-  }
-
   const words = children.split(" ");
 
   return (
@@ -54,7 +49,11 @@ export function SplitWords({
             initial={{ y: "110%" }}
             whileInView={{ y: "0%" }}
             viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: delay + i * stagger, ease: EASE }}
+            transition={{
+              duration: isMobile ? 0.42 : 0.9,
+              delay: delay + i * (isMobile ? 0.028 : stagger),
+              ease: EASE,
+            }}
             style={{ display: "inline-block" }}
           >
             {word}

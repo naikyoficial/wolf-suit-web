@@ -111,10 +111,10 @@ export function Apply() {
         {STEPS.map((s, i) => (
           <motion.div
             key={s.num}
-            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={isMobile ? { opacity: 0, y: 14 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={isMobile ? { duration: 0 } : { duration: 0.9, delay: 0.3 + i * 0.13, ease: EASE }}
+            transition={isMobile ? { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const } : { duration: 0.9, delay: 0.3 + i * 0.13, ease: EASE }}
             style={{ display: "flex" }}
           >
             <TiltCard

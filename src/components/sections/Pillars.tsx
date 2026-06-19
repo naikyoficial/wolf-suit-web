@@ -82,10 +82,10 @@ export function Pillars() {
           {PILLARS.map((p, i) => (
             <motion.div
               key={p.num}
-              initial={isMobile ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.97 }}
+              initial={isMobile ? { opacity: 0, y: 16, scale: 1 } : { opacity: 0, y: 40, scale: 0.97 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              transition={isMobile ? { duration: 0 } : { duration: 1.1, delay: 0.15 + i * 0.15, ease: EASE }}
+              transition={isMobile ? { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const } : { duration: 1.1, delay: 0.15 + i * 0.15, ease: EASE }}
             >
               <TiltCard
                 onMouseEnter={() => setHovered(i)}

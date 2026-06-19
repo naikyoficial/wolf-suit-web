@@ -64,10 +64,10 @@ export function Process() {
             <div key={step.num}>
               {/* Divider */}
               <motion.div
-                initial={isMobile ? { scaleX: 1 } : { scaleX: 0 }}
+                initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={isMobile ? { duration: 0 } : { duration: 0.9, delay: 0.05, ease: EASE }}
+                transition={isMobile ? { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const } : { duration: 0.9, delay: 0.05, ease: EASE }}
                 style={{
                   height: 1,
                   background: i === 0 ? "rgba(212,160,32,.38)" : "rgba(212,160,32,.16)",
@@ -77,10 +77,10 @@ export function Process() {
               />
 
               <motion.div
-                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+                initial={isMobile ? { opacity: 0, y: 14 } : { opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={isMobile ? { duration: 0 } : { duration: 0.95, delay: 0.1, ease: EASE }}
+                transition={isMobile ? { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const } : { duration: 0.95, delay: 0.1, ease: EASE }}
                 style={{
                   display: "flex",
                   flexWrap: "wrap",
@@ -135,10 +135,10 @@ export function Process() {
 
           {/* Closing divider */}
           <motion.div
-            initial={isMobile ? { scaleX: 1 } : { scaleX: 0 }}
+            initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={isMobile ? { duration: 0 } : { duration: 0.9, delay: 0.05, ease: EASE }}
+            transition={isMobile ? { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const } : { duration: 0.9, delay: 0.05, ease: EASE }}
             style={{
               height: 1,
               background: "rgba(212,160,32,.16)",
