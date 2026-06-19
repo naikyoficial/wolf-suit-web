@@ -122,7 +122,7 @@ export function Contact() {
     <section
       id="contact"
       style={{
-        minHeight: "100dvh", display: "flex", flexDirection: "column",
+        minHeight: "100svh", display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center",
         padding: "100px 24px 80px",
         background: "#040404",

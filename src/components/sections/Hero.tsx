@@ -21,7 +21,7 @@ export function Hero() {
     <section
       style={{
         position: "relative",
-        minHeight: "calc(100dvh - 4rem)",
+        minHeight: "calc(100svh - 4rem)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

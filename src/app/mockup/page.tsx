@@ -13,7 +13,7 @@ export default function MockupPage() {
     <div className="bg-surface text-text">
 
       {/* ── HERO ──────────────────────────────────────────────── */}
-      <section className="relative min-h-[100dvh] flex flex-col justify-center px-[--section-px] pt-16">
+      <section className="relative min-h-[100svh] flex flex-col justify-center px-[--section-px] pt-16">
         <div className="max-w-[--grid-max] mx-auto w-full">
 
           <p className="text-xs text-gold tracking-[0.25em] uppercase mb-12 font-body">

@@ -125,7 +125,11 @@ html {
 
 body {
   min-height: 100vh;
-  min-height: 100dvh;
+  /* svh (small viewport height) is STATIC — unlike dvh it does not resize as
+     the iOS Safari address bar shows/hides, so full-height sections never
+     reflow on scroll-direction changes. This is what eliminates the
+     "weird jump when you scroll down then back up" on mobile. */
+  min-height: 100svh;
   overflow-x: hidden;
   overscroll-behavior-y: none;
 }
