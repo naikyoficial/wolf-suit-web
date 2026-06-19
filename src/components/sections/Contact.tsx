@@ -70,6 +70,7 @@ export function Contact() {
   const [dir, setDir]           = useState(1);
   const [selected, setSelected] = useState<string | null>(null);
   const [hoveredOpt, setHoveredOpt] = useState<string | null>(null);
+  const [answers, setAnswers]   = useState<Record<string, string>>({});
 
   const [name,    setName]    = useState("");
   const [email,   setEmail]   = useState("");
@@ -79,6 +80,7 @@ export function Contact() {
 
   const [startHovered,  setStartHovered]  = useState(false);
   const [submitHovered, setSubmitHovered] = useState(false);
+  const [submitting, setSubmitting]       = useState(false);
 
   const goTo = (next: StepId) => {
     const from = STEP_ORDER.indexOf(step);
@@ -97,13 +99,25 @@ export function Contact() {
   const pickOption = (questionId: StepId, option: string) => {
     if (selected) return;
     setSelected(option);
+    setAnswers(prev => ({ ...prev, [questionId]: option }));
     const qIdx = QUESTIONS.findIndex(q => q.id === questionId);
     const next: StepId = qIdx < QUESTIONS.length - 1 ? QUESTIONS[qIdx + 1]!.id : "data";
     setTimeout(() => goTo(next), isMobile ? 220 : 400);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, company, role, vision, answers }),
+      });
+    } catch {
+      // still show confirmation — email failure shouldn't block UX
+    }
+    setSubmitting(false);
     goTo("confirmed");
   };
 
@@ -404,22 +418,26 @@ export function Contact() {
                 <div style={{ display: "inline-block", padding: "1px", background: GOLD, backgroundSize: "280% 100%", animation: "metalShimmer 4s ease-in-out infinite" }}>
                   <button
                     type="submit"
+                    disabled={submitting}
                     onMouseEnter={() => setSubmitHovered(true)}
                     onMouseLeave={() => setSubmitHovered(false)}
                     data-cursor-hover
                     style={{
                       display: "inline-flex", alignItems: "center", gap: 20,
                       padding: "16px 40px",
-                      background: submitHovered ? "var(--color-gold)" : "#060606",
-                      color: submitHovered ? "#080808" : "var(--color-text)",
+                      background: submitHovered && !submitting ? "var(--color-gold)" : "#060606",
+                      color: submitHovered && !submitting ? "#080808" : "var(--color-text)",
                       fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase",
                       border: "none", fontFamily: "var(--font-body)", transition: "background .3s, color .3s",
+                      opacity: submitting ? 0.6 : 1,
                     }}
                   >
-                    Enviar solicitud
-                    <span style={{ display: "inline-flex", alignItems: "center", position: "relative", width: submitHovered ? 30 : 20, height: 1, background: "currentColor", transition: "width .3s", flexShrink: 0 }}>
-                      <span style={{ position: "absolute", right: -1, top: -3, width: 6, height: 6, borderRight: "1px solid currentColor", borderTop: "1px solid currentColor", transform: "rotate(45deg)" }} />
-                    </span>
+                    {submitting ? "Enviando…" : "Enviar solicitud"}
+                    {!submitting && (
+                      <span style={{ display: "inline-flex", alignItems: "center", position: "relative", width: submitHovered ? 30 : 20, height: 1, background: "currentColor", transition: "width .3s", flexShrink: 0 }}>
+                        <span style={{ position: "absolute", right: -1, top: -3, width: 6, height: 6, borderRight: "1px solid currentColor", borderTop: "1px solid currentColor", transform: "rotate(45deg)" }} />
+                      </span>
+                    )}
                   </button>
                 </div>
               </div>
