@@ -127,6 +127,7 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   overflow-x: hidden;
+  overscroll-behavior-y: none;
 }
 
 /* Selección de texto */
@@ -236,11 +237,16 @@ body { scrollbar-width: none; }
 
   /* backdrop-filter blur on the fixed header re-samples the whole page every
      scroll frame — the single biggest cause of scroll jank on mobile Safari.
-     Use an opaque solid background instead. */
+     Use an opaque solid background instead.
+     transform: translateZ(0) promotes the header to its own GPU compositor
+     layer, preventing it from visually jumping when the iOS address bar
+     animates in/out during scroll direction changes. */
   .site-header {
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
     background: rgba(6,6,6,.92) !important;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
   }
 
   /* Same problem on the carousel arrows — cards slide behind them */
