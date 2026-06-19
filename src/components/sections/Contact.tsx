@@ -51,14 +51,19 @@ export function Contact() {
   const isMobile = useMobile();
 
   const slide = {
+    // center ALWAYS clears the filter to blur(0px) — this is critical because
+    // useMobile() returns false on the first paint (before its effect runs), so
+    // the desktop `enter` state with blur(8px) can get applied for one frame. If
+    // center omitted `filter`, framer never animates it back and the blur stays
+    // stuck forever. Keeping blur(0px) here guarantees it's always reset.
     enter: (d: number) => isMobile
-      ? { opacity: 0, x: d * 28 }
+      ? { opacity: 0, x: d * 28, filter: "blur(0px)" }
       : { opacity: 0, x: d * 40, filter: "blur(8px)" },
     center: isMobile
-      ? { opacity: 1, x: 0, transition: { duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] as const } }
+      ? { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] as const } }
       : { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: EASE } },
     exit: (d: number) => isMobile
-      ? { opacity: 0, x: d * -28, transition: { duration: 0.18 } }
+      ? { opacity: 0, x: d * -28, filter: "blur(0px)", transition: { duration: 0.18 } }
       : { opacity: 0, x: d * -40, filter: "blur(8px)", transition: { duration: 0.3 } },
   };
   const [step, setStep]         = useState<StepId>("intro");
@@ -298,9 +303,11 @@ export function Contact() {
                 return (
                   <motion.button
                     key={opt}
-                    initial={{ opacity: 0, x: -16, filter: "blur(4px)" }}
-                    animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                    transition={{ duration: 0.4, delay: 0.06 * i, ease: EASE }}
+                    initial={isMobile ? { opacity: 0, x: -10 } : { opacity: 0, x: -16, filter: "blur(4px)" }}
+                    animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0, filter: "blur(0px)" }}
+                    transition={isMobile
+                      ? { duration: 0.22, delay: 0.03 * i, ease: [0.25, 0.46, 0.45, 0.94] as const }
+                      : { duration: 0.4, delay: 0.06 * i, ease: EASE }}
                     onClick={() => pickOption(currentQ.id, opt)}
                     onMouseEnter={() => !selected && setHoveredOpt(opt)}
                     onMouseLeave={() => setHoveredOpt(null)}
