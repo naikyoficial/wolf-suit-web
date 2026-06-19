@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
+import { useMobile }    from "@/hooks/useMobile";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
@@ -46,13 +47,20 @@ const NEXT_STEPS = [
   "Si encontramos esa alineación, nos ponemos en contacto para coordinar una conversación estratégica sin compromiso.",
 ];
 
-const slide = {
-  enter: (d: number) => ({ opacity: 0, x: d * 40, filter: "blur(8px)" }),
-  center: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: EASE } },
-  exit:   (d: number) => ({ opacity: 0, x: d * -40, filter: "blur(8px)", transition: { duration: 0.3 } }),
-};
-
 export function Contact() {
+  const isMobile = useMobile();
+
+  const slide = {
+    enter: (d: number) => isMobile
+      ? { opacity: 0, x: d * 28 }
+      : { opacity: 0, x: d * 40, filter: "blur(8px)" },
+    center: isMobile
+      ? { opacity: 1, x: 0, transition: { duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] as const } }
+      : { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: EASE } },
+    exit: (d: number) => isMobile
+      ? { opacity: 0, x: d * -28, transition: { duration: 0.18 } }
+      : { opacity: 0, x: d * -40, filter: "blur(8px)", transition: { duration: 0.3 } },
+  };
   const [step, setStep]         = useState<StepId>("intro");
   const [dir, setDir]           = useState(1);
   const [selected, setSelected] = useState<string | null>(null);
@@ -86,7 +94,7 @@ export function Contact() {
     setSelected(option);
     const qIdx = QUESTIONS.findIndex(q => q.id === questionId);
     const next: StepId = qIdx < QUESTIONS.length - 1 ? QUESTIONS[qIdx + 1]!.id : "data";
-    setTimeout(() => goTo(next), 400);
+    setTimeout(() => goTo(next), isMobile ? 220 : 400);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -114,7 +122,7 @@ export function Contact() {
     <section
       id="contact"
       style={{
-        minHeight: "100vh", display: "flex", flexDirection: "column",
+        minHeight: "100dvh", display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center",
         padding: "100px 24px 80px",
         background: "#040404",

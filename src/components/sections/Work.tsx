@@ -22,7 +22,7 @@ export function Work() {
   return (
     <section
       className="relative flex items-center"
-      style={{ minHeight: "100vh", padding: "100px 8vw", zIndex: 10 }}
+      style={{ minHeight: "100dvh", padding: "100px 8vw", zIndex: 10 }}
     >
       <div className="w-full max-w-[1440px] mx-auto">
 
