@@ -83,6 +83,7 @@ export function Duality() {
           margin: "0 auto",
           position: "relative",
           zIndex: 1,
+          overflow: "hidden",
           background: [
             "radial-gradient(ellipse 80% 55% at 50% -5%, rgba(194,152,74,.10) 0%, transparent 60%)",
             "radial-gradient(ellipse 55% 40% at 15% 100%, rgba(140,100,30,.06) 0%, transparent 55%)",
@@ -99,9 +100,19 @@ export function Duality() {
           padding: "clamp(48px, 7vw, 100px) clamp(28px, 7vw, 90px)",
         }}
       >
+        {/* Texture image — same as section bg but inside the card */}
+        <Image
+          src="/dualidad-bg.png"
+          alt=""
+          fill
+          sizes="(max-width: 1080px) 100vw, 1080px"
+          style={{ objectFit: "cover", objectPosition: "50% 50%", opacity: 0.11, zIndex: 0 }}
+          aria-hidden
+        />
+
         {/* Radial glow behind frame content */}
         <div aria-hidden style={{
-          position: "absolute", inset: 0, pointerEvents: "none",
+          position: "absolute", inset: 0, pointerEvents: "none", zIndex: 1,
           background: "radial-gradient(ellipse at 50% 30%, rgba(194,152,74,.05), transparent 60%)",
           borderRadius: "inherit",
         }} />
