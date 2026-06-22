@@ -96,7 +96,7 @@ export function Hero() {
             textShadow: "0 2px 40px rgba(0,0,0,.95)",
           }}
         >
-          ¿Tu presencia digital refleja
+          ¿Tu sitio web refleja
         </motion.p>
 
         <motion.p
@@ -140,7 +140,7 @@ export function Hero() {
             textShadow: "0 2px 40px rgba(0,0,0,.95)",
           }}
         >
-          que tienes en mente?
+          que tenes en mente?
         </motion.p>
 
         {/* Tags — hidden on mobile */}
