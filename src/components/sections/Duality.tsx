@@ -39,30 +39,29 @@ export function Duality() {
         paddingBlock: "clamp(80px, 12vh, 180px)",
         paddingInline: "clamp(1.5rem, 8vw, 7.5rem)",
         zIndex: 10,
+        background: "#080808",
         textAlign: "center",
         overflow: "hidden",
       }}
     >
-      {/* Background image — full opacity so it's actually visible */}
+      {/* Background image — very low opacity, pure texture */}
       <Image
         src="/dualidad-bg.png"
         alt=""
         fill
         sizes="100vw"
-        style={{ objectFit: "cover", objectPosition: "50% 50%" }}
+        style={{ objectFit: "cover", objectPosition: "50% 50%", opacity: 0.07 }}
         aria-hidden
       />
 
-      {/* Dark overlay — replaces the old section background, sits on top of image */}
+      {/* Gold illuminations */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        background: "rgba(7,6,4,.78)",
-      }} />
-
-      {/* Atmosphere */}
-      <div aria-hidden style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 55% 45% at 50% 50%, rgba(140,85,5,.07) 0%, transparent 70%)",
+        background: [
+          "radial-gradient(ellipse 55% 40% at 50% 0%,   rgba(194,148,60,.13) 0%, transparent 65%)",
+          "radial-gradient(ellipse 35% 30% at  4% 35%,  rgba(180,135,50,.09) 0%, transparent 60%)",
+          "radial-gradient(ellipse 35% 30% at 96% 65%,  rgba(180,135,50,.09) 0%, transparent 60%)",
+        ].join(", "),
       }} />
       {/* Top fade */}
       <div aria-hidden style={{
