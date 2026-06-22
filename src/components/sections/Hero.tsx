@@ -79,13 +79,21 @@ export function Hero() {
         background: "linear-gradient(to top, rgba(8,8,8,.98) 0%, rgba(8,8,8,.45) 40%, transparent 100%)",
       }} />
 
-      {/* Mobile: heavier bottom fade so title doesn't clash with centered wolf */}
+      {/* Mobile: gentle full-frame veil + heavier bottom fade so the wolf
+          recedes behind the title instead of clashing with it */}
       {isMobile && (
-        <div aria-hidden style={{
-          position: "absolute", bottom: 0, left: 0, right: 0, height: "58%",
-          pointerEvents: "none", zIndex: 5,
-          background: "linear-gradient(to top, rgba(8,8,8,1) 0%, rgba(8,8,8,.82) 30%, rgba(8,8,8,.25) 62%, transparent 100%)",
-        }} />
+        <>
+          <div aria-hidden style={{
+            position: "absolute", inset: 0,
+            pointerEvents: "none", zIndex: 5,
+            background: "rgba(8,8,8,.34)",
+          }} />
+          <div aria-hidden style={{
+            position: "absolute", bottom: 0, left: 0, right: 0, height: "70%",
+            pointerEvents: "none", zIndex: 5,
+            background: "linear-gradient(to top, rgba(8,8,8,1) 0%, rgba(8,8,8,.9) 32%, rgba(8,8,8,.4) 66%, transparent 100%)",
+          }} />
+        </>
       )}
 
       {/* Gold particles — right side only */}
@@ -103,9 +111,9 @@ export function Hero() {
           alignItems: isMobile ? "center" : "flex-start",
           textAlign: isMobile ? "center" : "left",
           width: "100%",
-          maxWidth: isMobile ? "100%" : "clamp(340px, 44vw, 680px)",
+          maxWidth: isMobile ? "100%" : "clamp(360px, 56vw, 880px)",
           paddingBottom: "clamp(20px, 3vh, 48px)",
-          paddingLeft:  "clamp(1.5rem, 8vw, 9rem)",
+          paddingLeft:  isMobile ? "clamp(1.5rem, 8vw, 9rem)" : "clamp(2rem, 10vw, 12rem)",
           paddingRight: isMobile ? "clamp(1.5rem, 8vw, 9rem)" : "1.5rem",
         }}
       >
@@ -178,9 +186,14 @@ export function Hero() {
               letterSpacing: ".01em",
               lineHeight: 1,
               whiteSpace: "nowrap",
-              color: "#D4A020",
               textTransform: "uppercase",
-              textShadow: "0 2px 32px rgba(212,160,32,.2)",
+              background: GOLD,
+              backgroundSize: "260% 100%",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              animation: "metalShimmer 13s ease-in-out infinite",
+              filter: "drop-shadow(0 2px 20px rgba(212,160,32,.4))",
             }}
           >
             Nivel
@@ -231,8 +244,8 @@ export function Hero() {
 
           {/* "EMPRESA?" — tilted */}
           <motion.span
-            initial={{ opacity: 0, y: 10, rotate: 3 }}
-            animate={{ opacity: 1, y: 0, rotate: 3 }}
+            initial={{ opacity: 0, y: 10, rotate: -3 }}
+            animate={{ opacity: 1, y: 0, rotate: -3 }}
             transition={{ duration: 0.8, delay: 0.88, ease: EASE }}
             style={{
               position: "absolute", left: "18%", top: "72%",
