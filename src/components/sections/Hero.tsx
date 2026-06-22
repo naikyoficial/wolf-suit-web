@@ -53,16 +53,16 @@ export function Hero() {
       {/* Desktop: gradient bridge — blends black left area into the wolf image */}
       <div aria-hidden className="hidden sm:block" style={{
         position: "absolute", top: 0, bottom: 0,
-        left: "20%", width: "28%",
+        left: "18%", width: "34%",
         pointerEvents: "none", zIndex: 5,
-        background: "linear-gradient(to right, rgba(8,8,8,1) 0%, rgba(8,8,8,.75) 42%, rgba(8,8,8,.2) 75%, transparent 100%)",
+        background: "linear-gradient(to right, rgba(8,8,8,1) 0%, rgba(8,8,8,.9) 35%, rgba(8,8,8,.45) 68%, transparent 100%)",
       }} />
 
       {/* Right edge fade */}
       <div aria-hidden style={{
-        position: "absolute", top: 0, right: 0, bottom: 0, width: "18%",
+        position: "absolute", top: 0, right: 0, bottom: 0, width: "26%",
         pointerEvents: "none", zIndex: 5,
-        background: "linear-gradient(to left, rgba(8,8,8,.85) 0%, transparent 100%)",
+        background: "linear-gradient(to left, rgba(8,8,8,1) 0%, rgba(8,8,8,.5) 55%, transparent 100%)",
       }} />
 
       {/* Top fade — navbar blend */}

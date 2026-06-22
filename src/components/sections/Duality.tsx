@@ -54,15 +54,6 @@ export function Duality() {
         aria-hidden
       />
 
-      {/* Gold illuminations */}
-      <div aria-hidden style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
-        background: [
-          "radial-gradient(ellipse 55% 40% at 50% 0%,   rgba(194,148,60,.13) 0%, transparent 65%)",
-          "radial-gradient(ellipse 35% 30% at  4% 35%,  rgba(180,135,50,.09) 0%, transparent 60%)",
-          "radial-gradient(ellipse 35% 30% at 96% 65%,  rgba(180,135,50,.09) 0%, transparent 60%)",
-        ].join(", "),
-      }} />
       {/* Top fade */}
       <div aria-hidden style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 140,
@@ -84,16 +75,9 @@ export function Duality() {
           position: "relative",
           zIndex: 1,
           overflow: "hidden",
-          background: [
-            "radial-gradient(ellipse 80% 55% at 50% -5%, rgba(194,152,74,.10) 0%, transparent 60%)",
-            "radial-gradient(ellipse 55% 40% at 15% 100%, rgba(140,100,30,.06) 0%, transparent 55%)",
-            "linear-gradient(135deg, rgba(255,255,255,.022) 0%, transparent 45%)",
-            "linear-gradient(160deg, #1c1a17 0%, #0f0e0c 100%)",
-          ].join(", "),
-          border: "1px solid rgba(180,140,60,.18)",
+          background: "linear-gradient(160deg, #161614 0%, #0d0d0b 100%)",
+          border: "1px solid rgba(255,255,255,.07)",
           boxShadow: [
-            "inset 0 1px 0 rgba(200,160,80,.10)",
-            "inset 0 -1px 0 rgba(0,0,0,.4)",
             "0 32px 80px rgba(0,0,0,.55)",
             "0 0 0 1px rgba(0,0,0,.6)",
           ].join(", "),
@@ -109,13 +93,6 @@ export function Duality() {
           style={{ objectFit: "cover", objectPosition: "50% 50%", opacity: 0.11, zIndex: 0 }}
           aria-hidden
         />
-
-        {/* Radial glow behind frame content */}
-        <div aria-hidden style={{
-          position: "absolute", inset: 0, pointerEvents: "none", zIndex: 1,
-          background: "radial-gradient(ellipse at 50% 30%, rgba(194,152,74,.05), transparent 60%)",
-          borderRadius: "inherit",
-        }} />
 
         {/* Corner ticks */}
         <CornerTick pos="tl" />
