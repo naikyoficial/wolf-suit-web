@@ -46,7 +46,7 @@ export function Hero() {
           className="hero-wolf-img"
           style={{
             objectFit: "cover",
-            objectPosition: "62% 6%",
+            objectPosition: "38% 6%",
           }}
         />
       </div>
