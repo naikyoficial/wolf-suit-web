@@ -110,77 +110,103 @@ export function Hero() {
         }}
       >
 
-        {/* Headline — all three lines unified in size/weight; only "nivel" in gold */}
-        <motion.p
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.0, delay: 0.5, ease: EASE }}
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(32px, 4.8vw, 72px)",
-            fontWeight: 300,
-            letterSpacing: "-.01em",
-            lineHeight: 1.1,
-            color: "rgba(235,230,220,.72)",
-            margin: 0,
-            textTransform: "uppercase",
-            textShadow: "0 2px 24px rgba(0,0,0,.8)",
-          }}
-        >
-          ¿Tu sitio web refleja
-        </motion.p>
+        {/* Editorial headline — Figma layout */}
 
-        <motion.p
-          initial={{ opacity: 0, y: 18 }}
+        {/* Row 1–2: "¿Tu sitio web refleja" + "El" */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.0, delay: 0.64, ease: EASE }}
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(32px, 4.8vw, 72px)",
-            fontWeight: 300,
-            letterSpacing: "-.01em",
-            lineHeight: 1.1,
-            color: "rgba(235,230,220,.72)",
-            margin: "0.06em 0",
-            textTransform: "uppercase",
-            textShadow: "0 2px 24px rgba(0,0,0,.8)",
-          }}
+          transition={{ duration: 0.9, delay: 0.5, ease: EASE }}
+          style={{ lineHeight: 1.15 }}
         >
-          el{" "}
-          <span style={{
-            background: GOLD,
-            backgroundSize: "260% 100%",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            animation: "metalShimmer 13s ease-in-out infinite",
-            animationDelay: "-5s",
-            filter: "drop-shadow(0 1px 14px rgba(212,160,32,.32))",
+          <div style={{
+            fontFamily: "var(--ws-hubballi)",
+            fontSize: "clamp(18px, 2.2vw, 34px)",
+            letterSpacing: ".06em",
+            color: "rgba(235,230,220,.82)",
+            textTransform: "uppercase",
+            textShadow: "0 2px 20px rgba(0,0,0,.8)",
           }}>
-            nivel
-          </span>
-          {" "}de empresa
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.0, delay: 0.78, ease: EASE }}
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(32px, 4.8vw, 72px)",
-            fontWeight: 300,
-            letterSpacing: "-.01em",
-            lineHeight: 1.1,
-            color: "rgba(235,230,220,.72)",
-            margin: 0,
-            marginBottom: "clamp(28px, 4vw, 52px)",
+            ¿Tu sitio web refleja
+          </div>
+          <div style={{
+            fontFamily: "var(--ws-hubballi)",
+            fontSize: "clamp(18px, 2.2vw, 34px)",
+            letterSpacing: ".06em",
+            color: "rgba(235,230,220,.82)",
             textTransform: "uppercase",
-            textShadow: "0 2px 24px rgba(0,0,0,.8)",
-          }}
+            textShadow: "0 2px 20px rgba(0,0,0,.8)",
+          }}>
+            El
+          </div>
+        </motion.div>
+
+        {/* Row 3: "NIVEL" — Iceland, large, gold */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.68, ease: EASE }}
         >
-          que tenes en mente?
-        </motion.p>
+          <div style={{
+            fontFamily: "var(--ws-iceland)",
+            fontSize: "clamp(72px, 9.5vw, 140px)",
+            letterSpacing: ".02em",
+            lineHeight: 0.88,
+            color: "#D4A020",
+            textTransform: "uppercase",
+            textShadow: "0 2px 32px rgba(212,160,32,.25)",
+          }}>
+            Nivel
+          </div>
+          {/* Hand-drawn swoosh */}
+          <svg
+            viewBox="0 0 340 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden
+            style={{ display: "block", width: "clamp(140px, 18vw, 270px)", height: "auto", marginTop: "clamp(2px, 0.4vw, 6px)", marginBottom: "clamp(4px, 0.6vw, 10px)" }}
+          >
+            <path
+              d="M4 19 C 28 7, 65 26, 105 14 C 145 2, 182 24, 225 13 C 258 4, 295 21, 322 12 C 332 9, 338 13, 336 16"
+              stroke="#D4A020"
+              strokeWidth="2.8"
+              strokeLinecap="round"
+              fill="none"
+            />
+          </svg>
+        </motion.div>
+
+        {/* Row 4–5: "De tu" + "Empresa?" */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.84, ease: EASE }}
+          style={{ marginBottom: "clamp(28px, 4vw, 52px)" }}
+        >
+          <div style={{
+            fontFamily: "var(--ws-hubballi)",
+            fontSize: "clamp(18px, 2.2vw, 34px)",
+            letterSpacing: ".06em",
+            lineHeight: 1.2,
+            color: "rgba(235,230,220,.82)",
+            textTransform: "uppercase",
+            textShadow: "0 2px 20px rgba(0,0,0,.8)",
+          }}>
+            De tu
+          </div>
+          <div style={{
+            fontFamily: "var(--ws-kanit)",
+            fontSize: "clamp(54px, 7vw, 104px)",
+            fontWeight: 800,
+            letterSpacing: "-.01em",
+            lineHeight: 0.92,
+            color: "#f5f3ef",
+            textTransform: "uppercase",
+            textShadow: "0 2px 28px rgba(0,0,0,.7)",
+          }}>
+            Empresa?
+          </div>
+        </motion.div>
 
         {/* Tags */}
         <motion.div

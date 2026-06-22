@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans, Hubballi, Iceland, Kanit } from "next/font/google";
 import { Navbar }         from "@/components/layout/Navbar";
 import { Footer }         from "@/components/layout/Footer";
 import { SmoothScroll }   from "@/components/layout/SmoothScroll";
@@ -25,6 +25,27 @@ const dmSans = DM_Sans({
   weight: ["300", "400", "500"],
   display: "swap",
   preload: true,
+});
+
+const hubballi = Hubballi({
+  variable: "--ws-hubballi",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+const iceland = Iceland({
+  variable: "--ws-iceland",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+const kanit = Kanit({
+  variable: "--ws-kanit",
+  subsets: ["latin"],
+  weight: ["400", "700", "800", "900"],
+  display: "swap",
 });
 
 export const viewport: Viewport = {
@@ -93,7 +114,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${cormorant.variable} ${dmSans.variable} h-full`}
+      className={`${cormorant.variable} ${dmSans.variable} ${hubballi.variable} ${iceland.variable} ${kanit.variable} h-full`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-surface text-text antialiased">
