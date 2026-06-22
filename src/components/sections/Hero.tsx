@@ -54,8 +54,8 @@ export function Hero() {
 
       {/* Bottom fade — soft rise from black so the title reads clearly */}
       <div aria-hidden style={{
-        position: "absolute", bottom: 0, left: 0, right: 0, height: "50%", pointerEvents: "none",
-        background: "linear-gradient(to top, rgba(4,4,4,.95) 0%, rgba(4,4,4,.6) 25%, rgba(4,4,4,.2) 55%, transparent 100%)",
+        position: "absolute", bottom: 0, left: 0, right: 0, height: "65%", pointerEvents: "none",
+        background: "linear-gradient(to top, rgba(4,4,4,.95) 0%, rgba(4,4,4,.6) 22%, rgba(4,4,4,.2) 50%, transparent 100%)",
       }} />
 
       {/* FX — desktop only (HeroFx returns null on touch) */}
@@ -86,7 +86,7 @@ export function Hero() {
           transition={{ duration: 1.0, delay: 0.52, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(28px, 4vw, 64px)",
+            fontSize: "clamp(34px, 5vw, 76px)",
             fontWeight: 300,
             letterSpacing: "-.01em",
             lineHeight: 1.05,
@@ -105,7 +105,7 @@ export function Hero() {
           transition={{ duration: 1.1, delay: 0.66, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(32px, 4.8vw, 76px)",
+            fontSize: "clamp(38px, 5.8vw, 90px)",
             fontWeight: 400,
             letterSpacing: "-.02em",
             lineHeight: 1.0,
@@ -130,7 +130,7 @@ export function Hero() {
           transition={{ duration: 1.0, delay: 0.80, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(28px, 4vw, 64px)",
+            fontSize: "clamp(34px, 5vw, 76px)",
             fontWeight: 300,
             letterSpacing: "-.01em",
             lineHeight: 1.05,
