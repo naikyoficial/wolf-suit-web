@@ -7,7 +7,6 @@ export function HeroFx() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    // Skip entirely on touch/mobile — hero image is the visual focus
     if (window.matchMedia("(pointer: coarse)").matches) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     setShow(true);
@@ -33,14 +32,17 @@ export function HeroFx() {
     resize();
     window.addEventListener("resize", resize, { passive: true });
 
+    // Spawn only in the right 55% — wolf territory
+    const spawnX = () => w * 0.45 + Math.random() * w * 0.55;
+
     type P = { x: number; y: number; r: number; speed: number; drift: number; op: number; opDir: number };
-    const particles: P[] = Array.from({ length: 55 }, () => ({
-      x:     Math.random() * w,
+    const particles: P[] = Array.from({ length: 38 }, () => ({
+      x:     spawnX(),
       y:     Math.random() * h,
-      r:     Math.random() * 1.4 + 0.3,
-      speed: Math.random() * 0.28 + 0.05,
-      drift: (Math.random() - 0.5) * 0.10,
-      op:    Math.random() * 0.42 + 0.08,
+      r:     Math.random() * 1.2 + 0.2,
+      speed: Math.random() * 0.22 + 0.04,
+      drift: (Math.random() - 0.5) * 0.08,
+      op:    Math.random() * 0.35 + 0.05,
       opDir: Math.random() > 0.5 ? 1 : -1,
     }));
 
@@ -50,11 +52,11 @@ export function HeroFx() {
       for (const p of particles) {
         p.y  -= p.speed;
         p.x  += p.drift;
-        p.op += p.opDir * 0.004;
-        if (p.op > 0.58) p.opDir = -1;
-        if (p.op < 0.04) p.opDir =  1;
-        if (p.y < -4) { p.y = h + 4; p.x = Math.random() * w; }
-        if (p.x < -4 || p.x > w + 4) p.x = Math.random() * w;
+        p.op += p.opDir * 0.003;
+        if (p.op > 0.48) p.opDir = -1;
+        if (p.op < 0.03) p.opDir =  1;
+        if (p.y < -4) { p.y = h + 4; p.x = spawnX(); }
+        if (p.x < w * 0.44 || p.x > w + 4) p.x = spawnX();
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(212,160,32,${p.op.toFixed(2)})`;
@@ -81,31 +83,10 @@ export function HeroFx() {
   if (!show) return null;
 
   return (
-    <>
-      {/* Mist blobs — desktop only */}
-      <div aria-hidden style={{ position: "absolute", inset: 0, zIndex: 3, pointerEvents: "none", overflow: "hidden" }}>
-        {[
-          {
-            width: "70vw", height: "50vh", bottom: "-8%", left: "-14%",
-            background: "radial-gradient(ellipse, rgba(168,108,8,.20) 0%, rgba(140,85,4,.08) 40%, transparent 72%)",
-            filter: "blur(56px)", animation: "mist1 22s ease-in-out infinite", opacity: 0.8,
-          },
-          {
-            width: "56vw", height: "44vh", top: "18%", right: "-18%",
-            background: "radial-gradient(ellipse, rgba(148,90,4,.16) 0%, rgba(120,70,0,.06) 45%, transparent 72%)",
-            filter: "blur(64px)", animation: "mist2 28s ease-in-out infinite", animationDelay: "-10s", opacity: 0.7,
-          },
-        ].map((s, i) => (
-          <div key={i} aria-hidden style={{ position: "absolute", borderRadius: "50%", ...s }} />
-        ))}
-      </div>
-
-      {/* Floating gold particles */}
-      <canvas
-        ref={canvasRef}
-        aria-hidden
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 4, pointerEvents: "none" }}
-      />
-    </>
+    <canvas
+      ref={canvasRef}
+      aria-hidden
+      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 4, pointerEvents: "none" }}
+    />
   );
 }

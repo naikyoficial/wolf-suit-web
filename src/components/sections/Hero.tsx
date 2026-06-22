@@ -24,14 +24,14 @@ export function Hero() {
         minHeight: "calc(100svh - 4rem)",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
+        alignItems: isMobile ? "center" : "flex-start",
         justifyContent: "flex-end",
         overflow: "hidden",
       }}
     >
       <h1 className="sr-only">Agencia de Diseño y Desarrollo Web Premium — Suitwolf</h1>
 
-      {/* Background image — no transforms, pure objectFit cover for original quality */}
+      {/* Background image */}
       <div
         aria-hidden
         className="hero-image-wrap"
@@ -42,32 +42,54 @@ export function Hero() {
           alt=""
           fill
           priority
+          quality={100}
           sizes="100vw"
           className="hero-wolf-img"
           style={{
             objectFit: "cover",
-            objectPosition: "50% 50%",
+            objectPosition: "60% 38%",
           }}
         />
       </div>
 
+      {/* Left dark zone — desktop only; creates dark canvas for text */}
+      {!isMobile && (
+        <div aria-hidden style={{
+          position: "absolute", inset: 0, pointerEvents: "none",
+          background: "linear-gradient(to right, rgba(4,4,4,1) 0%, rgba(4,4,4,.96) 18%, rgba(4,4,4,.75) 34%, rgba(4,4,4,.3) 50%, transparent 65%)",
+        }} />
+      )}
 
-      {/* Top fade — blends into navbar */}
+      {/* Right edge fade — softens the image cut on both layouts */}
       <div aria-hidden style={{
-        position: "absolute", top: 0, left: 0, right: 0, height: "18%", pointerEvents: "none",
-        background: "linear-gradient(to bottom, rgba(4,4,4,.5) 0%, transparent 100%)",
+        position: "absolute", top: 0, right: 0, bottom: 0, width: "22%", pointerEvents: "none",
+        background: "linear-gradient(to left, rgba(4,4,4,.8) 0%, transparent 100%)",
       }} />
 
-      {/* Bottom fade — soft, only darkens the lower third where text lives */}
+      {/* Top fade — navbar blend */}
       <div aria-hidden style={{
-        position: "absolute", bottom: 0, left: 0, right: 0, height: "48%", pointerEvents: "none",
-        background: "linear-gradient(to top, rgba(4,4,4,.96) 0%, rgba(4,4,4,.55) 28%, rgba(4,4,4,.12) 60%, transparent 100%)",
+        position: "absolute", top: 0, left: 0, right: 0, height: "16%", pointerEvents: "none",
+        background: "linear-gradient(to bottom, rgba(4,4,4,.55) 0%, transparent 100%)",
       }} />
 
-      {/* FX — desktop only (HeroFx returns null on touch) */}
+      {/* Bottom fade — text legibility */}
+      <div aria-hidden style={{
+        position: "absolute", bottom: 0, left: 0, right: 0, height: "40%", pointerEvents: "none",
+        background: "linear-gradient(to top, rgba(4,4,4,.97) 0%, rgba(4,4,4,.5) 32%, transparent 100%)",
+      }} />
+
+      {/* Mobile bottom fade — heavier to ensure text reads over centered wolf */}
+      {isMobile && (
+        <div aria-hidden style={{
+          position: "absolute", bottom: 0, left: 0, right: 0, height: "60%", pointerEvents: "none",
+          background: "linear-gradient(to top, rgba(4,4,4,1) 0%, rgba(4,4,4,.85) 28%, rgba(4,4,4,.3) 60%, transparent 100%)",
+        }} />
+      )}
+
+      {/* Gold particles — right side only (HeroFx returns null on touch) */}
       <HeroFx />
 
-      {/* Content — no scroll parallax on mobile */}
+      {/* Content */}
       <motion.div
         style={{
           opacity: isMobile ? 1 : contentOp,
@@ -76,12 +98,13 @@ export function Hero() {
           zIndex: 10,
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          textAlign: "center",
+          alignItems: isMobile ? "center" : "flex-start",
+          textAlign: isMobile ? "center" : "left",
           width: "100%",
+          maxWidth: isMobile ? "100%" : "clamp(360px, 50vw, 720px)",
           paddingBottom: "clamp(18px, 2.5vh, 40px)",
-          paddingLeft:  "clamp(1.5rem, 6vw, 7.5rem)",
-          paddingRight: "clamp(1.5rem, 6vw, 7.5rem)",
+          paddingLeft:  "clamp(1.5rem, 8vw, 9rem)",
+          paddingRight: isMobile ? "clamp(1.5rem, 8vw, 9rem)" : "2rem",
         }}
       >
 
@@ -96,10 +119,10 @@ export function Hero() {
             fontWeight: 300,
             letterSpacing: "-.01em",
             lineHeight: 1.05,
-            color: "rgba(240,235,225,.6)",
+            color: "rgba(240,235,225,.7)",
             margin: 0,
             textTransform: "uppercase",
-            textShadow: "0 2px 40px rgba(0,0,0,.95)",
+            textShadow: "0 2px 32px rgba(0,0,0,.9)",
           }}
         >
           ¿Tu sitio web refleja
@@ -140,16 +163,16 @@ export function Hero() {
             fontWeight: 300,
             letterSpacing: "-.01em",
             lineHeight: 1.05,
-            color: "rgba(240,235,225,.6)",
+            color: "rgba(240,235,225,.7)",
             marginBottom: "clamp(20px, 2.8vw, 36px)",
             textTransform: "uppercase",
-            textShadow: "0 2px 40px rgba(0,0,0,.95)",
+            textShadow: "0 2px 32px rgba(0,0,0,.9)",
           }}
         >
           que tenes en mente?
         </motion.p>
 
-        {/* Tags — hidden on mobile */}
+        {/* Tags */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -212,13 +235,13 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* Scroll cue — hidden on mobile */}
+        {/* Scroll cue */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 1.45 }}
           className="hidden sm:flex"
-          style={{ flexDirection: "column", alignItems: "center", gap: 10 }}
+          style={{ flexDirection: "column", alignItems: isMobile ? "center" : "flex-start", gap: 10 }}
         >
           <div style={{ width: 1, height: 30, background: "linear-gradient(to bottom, rgba(212,160,32,.5), transparent)" }} />
           <span style={{
