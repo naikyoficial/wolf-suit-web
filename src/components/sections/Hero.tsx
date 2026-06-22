@@ -229,7 +229,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.80, ease: EASE }}
             style={{
-              position: "absolute", left: "36%", top: "60%",
+              position: "absolute", left: "36%", top: "52%",
               fontFamily: "var(--ws-hubballi)",
               fontSize: "8cqw",
               letterSpacing: ".03em",
@@ -248,7 +248,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0, rotate: -3 }}
             transition={{ duration: 0.8, delay: 0.88, ease: EASE }}
             style={{
-              position: "absolute", left: "18%", top: "72%",
+              position: "absolute", left: "18%", top: "64%",
               fontFamily: "var(--ws-kanit)",
               fontSize: "13.5cqw",
               fontWeight: 800,
