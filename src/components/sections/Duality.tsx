@@ -123,7 +123,7 @@ export function Duality() {
         </div>
 
         {/* Line 2 — dominant / white */}
-        <div style={{ marginBottom: "clamp(16px, 2.5vh, 40px)", position: "relative", zIndex: 1 }}>
+        <div style={{ marginBottom: "clamp(20px, 3vh, 48px)", position: "relative", zIndex: 1 }}>
           <SplitWords
             as="h2"
             delay={0.12}
@@ -131,7 +131,7 @@ export function Duality() {
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(34px, 5.6vw, 82px)",
-              fontWeight: 600,
+              fontWeight: 700,
               lineHeight: 1.03,
               letterSpacing: "-.03em",
               color: "#f5f3ef",
@@ -141,16 +141,32 @@ export function Duality() {
           </SplitWords>
         </div>
 
-        {/* Pivot line */}
+        {/* Gold separator — short, centered, between line 2 and pivot */}
+        <Reveal delay={0.45} y={0} blur={0} style={{ marginBottom: "clamp(20px, 3vh, 48px)", position: "relative", zIndex: 1 }}>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={isMobile ? { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const } : { duration: 1.1, delay: 0.5, ease: EASE }}
+            style={{
+              width: 44, height: 1, margin: "0 auto",
+              background: "linear-gradient(90deg, transparent, #c2984a, transparent)",
+              transformOrigin: "center",
+            }}
+          />
+        </Reveal>
+
+        {/* Pivot line — italic */}
         <div style={{ marginBottom: "clamp(22px, 3.5vh, 56px)", position: "relative", zIndex: 1 }}>
           <SplitWords
             as="p"
-            delay={0.22}
+            delay={0.55}
             stagger={0.025}
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(20px, 2.2vw, 30px)",
               fontWeight: 300,
+              fontStyle: "italic",
               lineHeight: 1.3,
               letterSpacing: "-.015em",
               color: "rgba(240,235,225,.6)",
@@ -160,28 +176,13 @@ export function Duality() {
           </SplitWords>
         </div>
 
-        {/* Gold separator — full bleed within frame */}
-        <Reveal delay={0.6} y={0} blur={0} style={{ marginBottom: "clamp(18px, 2.8vh, 44px)", position: "relative", zIndex: 1 }}>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={isMobile ? { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const } : { duration: 1.1, delay: 0.7, ease: EASE }}
-            style={{
-              height: 1,
-              background: "linear-gradient(90deg, transparent, #c2984a, transparent)",
-              transformOrigin: "center",
-            }}
-          />
-        </Reveal>
-
         {/* Narrative paragraph */}
         <Reveal delay={0.75} y={24} blur={6} style={{ marginBottom: "clamp(24px, 4vh, 64px)", position: "relative", zIndex: 1 }}>
           <p style={{
             fontSize: 17,
             color: "var(--color-text-3)",
             lineHeight: 1.85,
-            maxWidth: 560,
+            maxWidth: 520,
             margin: "0 auto",
             letterSpacing: "-.01em",
           }}>
@@ -192,7 +193,7 @@ export function Duality() {
         </Reveal>
 
         {/* Closing statement */}
-        <Reveal delay={0.95} y={20} blur={5} style={{ position: "relative", zIndex: 1 }}>
+        <Reveal delay={1.0} y={20} blur={5} style={{ position: "relative", zIndex: 1 }}>
           <p style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(20px, 2.4vw, 32px)",
