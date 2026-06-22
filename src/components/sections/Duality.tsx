@@ -46,7 +46,7 @@ export function Duality() {
     >
       {/* Background image */}
       <Image
-        src="/dualidad-suitwolf.png"
+        src="/dualidad-bg.png"
         alt=""
         fill
         sizes="100vw"

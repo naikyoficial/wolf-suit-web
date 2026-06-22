@@ -46,16 +46,16 @@ export function Hero() {
           className="hero-wolf-img"
           style={{
             objectFit: "cover",
-            objectPosition: "50% 44%",
+            objectPosition: "50% 100%",
           }}
         />
       </div>
 
 
-      {/* Bottom fade — soft rise from black so the title reads clearly */}
+      {/* Gradient: clears at ~18% (wolf zone), darkens from 30% down (title zone) */}
       <div aria-hidden style={{
-        position: "absolute", bottom: 0, left: 0, right: 0, height: "65%", pointerEvents: "none",
-        background: "linear-gradient(to top, rgba(4,4,4,.95) 0%, rgba(4,4,4,.6) 22%, rgba(4,4,4,.2) 50%, transparent 100%)",
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "linear-gradient(to bottom, rgba(4,4,4,.6) 0%, transparent 18%, rgba(4,4,4,.3) 32%, rgba(4,4,4,.86) 48%, rgba(4,4,4,1) 65%, rgba(4,4,4,1) 100%)",
       }} />
 
       {/* FX — desktop only (HeroFx returns null on touch) */}
