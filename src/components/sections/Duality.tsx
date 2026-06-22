@@ -84,8 +84,19 @@ export function Duality() {
           margin: "0 auto",
           position: "relative",
           zIndex: 1,
-          background: "linear-gradient(160deg, #161616, #0e0e0e)",
-          border: "1px solid #262626",
+          background: [
+            "radial-gradient(ellipse 80% 55% at 50% -5%, rgba(194,152,74,.10) 0%, transparent 60%)",
+            "radial-gradient(ellipse 55% 40% at 15% 100%, rgba(140,100,30,.06) 0%, transparent 55%)",
+            "linear-gradient(135deg, rgba(255,255,255,.022) 0%, transparent 45%)",
+            "linear-gradient(160deg, #1c1a17 0%, #0f0e0c 100%)",
+          ].join(", "),
+          border: "1px solid rgba(180,140,60,.18)",
+          boxShadow: [
+            "inset 0 1px 0 rgba(200,160,80,.10)",
+            "inset 0 -1px 0 rgba(0,0,0,.4)",
+            "0 32px 80px rgba(0,0,0,.55)",
+            "0 0 0 1px rgba(0,0,0,.6)",
+          ].join(", "),
           padding: "clamp(48px, 7vw, 100px) clamp(28px, 7vw, 90px)",
         }}
       >
@@ -132,7 +143,7 @@ export function Duality() {
               fontWeight: 400,
               lineHeight: 1.05,
               letterSpacing: "-.03em",
-              color: "#56544f",
+              color: "#7a7672",
             }}
           >
             Una empresa pequeña puede parecer líder de su sector.
