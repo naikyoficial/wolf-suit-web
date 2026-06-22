@@ -24,68 +24,74 @@ export function Hero() {
         minHeight: "calc(100svh - 4rem)",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
+        alignItems: isMobile ? "center" : "flex-start",
         justifyContent: "flex-end",
         overflow: "hidden",
+        background: "#080808",
       }}
     >
       <h1 className="sr-only">Agencia de Diseño y Desarrollo Web Premium — Suitwolf</h1>
 
-      {/* Background image — full-height cover; objectPosition lifts the wolf
-         (mid-left of the frame) into the upper half, above the headline. */}
+      {/* Wolf image — desktop: right 68% only so the wolf sits in the blue zone.
+          Mobile: full width, wolf centered via globals.css override. */}
       <div
         aria-hidden
-        className="hero-image-wrap"
-        style={{ position: "absolute", inset: 0 }}
+        className="hero-image-wrap absolute inset-0 sm:left-[32%]"
       >
         <Image
-          src="/suitwolf-hero.png"
+          src="/suitwolf-hero-v4.png"
           alt=""
           fill
           priority
-          sizes="100vw"
+          quality={100}
+          sizes="(max-width: 640px) 100vw, 68vw"
           className="hero-wolf-img"
-          style={{
-            objectFit: "cover",
-            objectPosition: "50% 58%",
-          }}
+          style={{ objectFit: "cover", objectPosition: "50% 38%" }}
         />
       </div>
 
-      {/* Side fades — gentle, so the wolf on the left wall is not darkened */}
-      <div aria-hidden style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
-        background: "linear-gradient(to right, rgba(4,4,4,.6) 0%, rgba(4,4,4,.2) 10%, transparent 24%, transparent 76%, rgba(4,4,4,.3) 90%, rgba(4,4,4,.7) 100%)",
+      {/* Desktop: gradient bridge — blends black left area into the wolf image */}
+      <div aria-hidden className="hidden sm:block" style={{
+        position: "absolute", top: 0, bottom: 0,
+        left: "20%", width: "28%",
+        pointerEvents: "none", zIndex: 5,
+        background: "linear-gradient(to right, rgba(8,8,8,1) 0%, rgba(8,8,8,.75) 42%, rgba(8,8,8,.2) 75%, transparent 100%)",
       }} />
 
-      {/* Vignette — edges dark, wolf face area clear */}
+      {/* Right edge fade */}
       <div aria-hidden style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 90% 80% at 50% 36%, rgba(4,4,4,.04) 0%, rgba(4,4,4,.48) 62%, rgba(4,4,4,.97) 100%)",
+        position: "absolute", top: 0, right: 0, bottom: 0, width: "18%",
+        pointerEvents: "none", zIndex: 5,
+        background: "linear-gradient(to left, rgba(8,8,8,.85) 0%, transparent 100%)",
       }} />
 
-      {/* Content backdrop — darkens lower section behind text */}
+      {/* Top fade — navbar blend */}
       <div aria-hidden style={{
-        position: "absolute", inset: "38% 0 0 0", pointerEvents: "none",
-        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, rgba(4,4,4,.92) 28%, rgba(4,4,4,.55) 55%, transparent 100%)",
+        position: "absolute", top: 0, left: 0, right: 0, height: "16%",
+        pointerEvents: "none", zIndex: 5,
+        background: "linear-gradient(to bottom, rgba(8,8,8,.6) 0%, transparent 100%)",
       }} />
 
-      {/* Bottom seal */}
+      {/* Bottom fade */}
       <div aria-hidden style={{
-        position: "absolute", bottom: 0, left: 0, right: 0, height: "38%", pointerEvents: "none",
-        background: "linear-gradient(to bottom, transparent 0%, rgba(4,4,4,.85) 40%, rgba(4,4,4,1) 70%, rgba(4,4,4,1) 100%)",
+        position: "absolute", bottom: 0, left: 0, right: 0, height: "36%",
+        pointerEvents: "none", zIndex: 5,
+        background: "linear-gradient(to top, rgba(8,8,8,.98) 0%, rgba(8,8,8,.45) 40%, transparent 100%)",
       }} />
 
-      {/* Top gradient — blends into navbar */}
-      <div aria-hidden style={{
-        position: "absolute", top: 0, left: 0, right: 0, height: "20%", pointerEvents: "none",
-        background: "linear-gradient(to bottom, rgba(4,4,4,.55) 0%, transparent 100%)",
-      }} />
+      {/* Mobile: heavier bottom fade so title doesn't clash with centered wolf */}
+      {isMobile && (
+        <div aria-hidden style={{
+          position: "absolute", bottom: 0, left: 0, right: 0, height: "58%",
+          pointerEvents: "none", zIndex: 5,
+          background: "linear-gradient(to top, rgba(8,8,8,1) 0%, rgba(8,8,8,.82) 30%, rgba(8,8,8,.25) 62%, transparent 100%)",
+        }} />
+      )}
 
-      {/* FX — desktop only (HeroFx returns null on touch) */}
+      {/* Gold particles — right side only */}
       <HeroFx />
 
-      {/* Content — no scroll parallax on mobile */}
+      {/* Content */}
       <motion.div
         style={{
           opacity: isMobile ? 1 : contentOp,
@@ -94,47 +100,54 @@ export function Hero() {
           zIndex: 10,
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          textAlign: "center",
+          alignItems: isMobile ? "center" : "flex-start",
+          textAlign: isMobile ? "center" : "left",
           width: "100%",
-          paddingBottom: "clamp(18px, 2.5vh, 40px)",
-          paddingLeft:  "clamp(1.5rem, 6vw, 7.5rem)",
-          paddingRight: "clamp(1.5rem, 6vw, 7.5rem)",
+          maxWidth: isMobile ? "100%" : "clamp(340px, 44vw, 680px)",
+          paddingBottom: "clamp(20px, 3vh, 48px)",
+          paddingLeft:  "clamp(1.5rem, 8vw, 9rem)",
+          paddingRight: isMobile ? "clamp(1.5rem, 8vw, 9rem)" : "1.5rem",
         }}
       >
 
-        {/* Headline */}
+        {/* Headline — all three lines unified in size/weight; only "nivel" in gold */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.0, delay: 0.52, ease: EASE }}
+          transition={{ duration: 1.0, delay: 0.5, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(28px, 4vw, 64px)",
+            fontSize: "clamp(32px, 4.8vw, 72px)",
             fontWeight: 300,
             letterSpacing: "-.01em",
-            lineHeight: 1.05,
-            color: "rgba(240,235,225,.6)",
+            lineHeight: 1.1,
+            color: "rgba(235,230,220,.72)",
             margin: 0,
             textTransform: "uppercase",
-            textShadow: "0 2px 40px rgba(0,0,0,.95)",
+            textShadow: "0 2px 24px rgba(0,0,0,.8)",
           }}
         >
-          ¿Tu presencia digital refleja
+          ¿Tu sitio web refleja
         </motion.p>
 
         <motion.p
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.66, ease: EASE }}
+          transition={{ duration: 1.0, delay: 0.64, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(32px, 4.8vw, 76px)",
-            fontWeight: 400,
-            letterSpacing: "-.02em",
-            lineHeight: 1.0,
+            fontSize: "clamp(32px, 4.8vw, 72px)",
+            fontWeight: 300,
+            letterSpacing: "-.01em",
+            lineHeight: 1.1,
+            color: "rgba(235,230,220,.72)",
+            margin: "0.06em 0",
             textTransform: "uppercase",
-            margin: "clamp(2px, 0.3vw, 6px) 0",
+            textShadow: "0 2px 24px rgba(0,0,0,.8)",
+          }}
+        >
+          el{" "}
+          <span style={{
             background: GOLD,
             backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
@@ -142,60 +155,56 @@ export function Hero() {
             backgroundClip: "text",
             animation: "metalShimmer 13s ease-in-out infinite",
             animationDelay: "-5s",
-            filter: "drop-shadow(0 2px 20px rgba(212,160,32,.38))",
-          }}
-        >
-          el nivel de empresa
+            filter: "drop-shadow(0 1px 14px rgba(212,160,32,.32))",
+          }}>
+            nivel
+          </span>
+          {" "}de empresa
         </motion.p>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.0, delay: 0.80, ease: EASE }}
+          transition={{ duration: 1.0, delay: 0.78, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(28px, 4vw, 64px)",
+            fontSize: "clamp(32px, 4.8vw, 72px)",
             fontWeight: 300,
             letterSpacing: "-.01em",
-            lineHeight: 1.05,
-            color: "rgba(240,235,225,.6)",
-            marginBottom: "clamp(20px, 2.8vw, 36px)",
+            lineHeight: 1.1,
+            color: "rgba(235,230,220,.72)",
+            margin: 0,
+            marginBottom: "clamp(28px, 4vw, 52px)",
             textTransform: "uppercase",
-            textShadow: "0 2px 40px rgba(0,0,0,.95)",
+            textShadow: "0 2px 24px rgba(0,0,0,.8)",
           }}
         >
-          que tienes en mente?
+          que tenes en mente?
         </motion.p>
 
-        {/* Tags — hidden on mobile */}
+        {/* Tags */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.0, ease: EASE }}
+          transition={{ duration: 0.9, delay: 0.95, ease: EASE }}
           className="hidden sm:flex"
-          style={{
-            alignItems: "center",
-            gap: 10,
-            marginBottom: "clamp(18px, 2.8vw, 32px)",
-          }}
+          style={{ alignItems: "center", gap: 10, marginBottom: "clamp(16px, 2.4vw, 28px)" }}
         >
           {TAGS.map((tag, i) => (
             <span key={tag} style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <span style={{
-                fontSize: 10,
-                letterSpacing: ".38em",
+                fontSize: 9,
+                letterSpacing: ".42em",
                 textTransform: "uppercase",
-                color: "rgba(180,176,168,.65)",
-                textShadow: "0 1px 12px rgba(0,0,0,.9)",
+                color: "rgba(180,175,165,.52)",
               }}>
                 {tag}
               </span>
               {i < TAGS.length - 1 && (
                 <span style={{
-                  width: 3, height: 3, borderRadius: "50%",
-                  background: "rgba(180,176,168,.35)",
-                  display: "inline-block",
-                  flexShrink: 0,
+                  width: 2, height: 2, borderRadius: "50%",
+                  background: "rgba(180,175,165,.28)",
+                  display: "inline-block", flexShrink: 0,
                 }} />
               )}
             </span>
@@ -204,20 +213,19 @@ export function Hero() {
 
         {/* Sub */}
         <motion.div
-          initial={{ opacity: 0, y: 8 }}
+          initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.2, ease: EASE }}
-          style={{ marginBottom: "clamp(24px, 3.5vw, 44px)" }}
+          transition={{ duration: 0.9, delay: 1.15, ease: EASE }}
+          style={{ marginBottom: "clamp(28px, 4vw, 52px)" }}
         >
           <span style={{
-            fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase",
-            color: "rgba(200,188,168,.6)",
-            textShadow: "0 1px 12px rgba(0,0,0,.95)",
+            fontSize: 9, letterSpacing: ".28em", textTransform: "uppercase",
+            color: "rgba(190,182,168,.48)",
           }}>
             Agencia digital de{" "}
           </span>
           <span style={{
-            fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase",
+            fontSize: 9, letterSpacing: ".28em", textTransform: "uppercase",
             background: GOLD,
             backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
@@ -230,18 +238,18 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* Scroll cue — hidden on mobile */}
+        {/* Scroll cue */}
         <motion.div
-          initial={{ opacity: 0, y: 8 }}
+          initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 1.45 }}
+          transition={{ duration: 1.2, delay: 1.4 }}
           className="hidden sm:flex"
-          style={{ flexDirection: "column", alignItems: "center", gap: 10 }}
+          style={{ flexDirection: "column", alignItems: "flex-start", gap: 10 }}
         >
-          <div style={{ width: 1, height: 30, background: "linear-gradient(to bottom, rgba(212,160,32,.5), transparent)" }} />
+          <div style={{ width: 1, height: 28, background: "linear-gradient(to bottom, rgba(212,160,32,.45), transparent)" }} />
           <span style={{
-            fontSize: 9,
-            letterSpacing: ".52em",
+            fontSize: 8,
+            letterSpacing: ".55em",
             textTransform: "uppercase",
             background: GOLD,
             backgroundSize: "260% 100%",
@@ -255,7 +263,7 @@ export function Hero() {
           <motion.div
             animate={{ y: [0, 5, 0] }}
             transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-            style={{ width: 1, height: 18, background: "linear-gradient(to bottom, rgba(212,160,32,.35), transparent)" }}
+            style={{ width: 1, height: 16, background: "linear-gradient(to bottom, rgba(212,160,32,.3), transparent)" }}
           />
         </motion.div>
 
