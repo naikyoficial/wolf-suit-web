@@ -51,16 +51,10 @@ export function Hero() {
         />
       </div>
 
-      {/* Content backdrop — darkens lower section behind text */}
+      {/* Bottom fade — single soft gradient, starts low so most of the image shows clean */}
       <div aria-hidden style={{
-        position: "absolute", inset: "42% 0 0 0", pointerEvents: "none",
-        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, rgba(4,4,4,.90) 30%, rgba(4,4,4,.45) 60%, transparent 100%)",
-      }} />
-
-      {/* Bottom seal */}
-      <div aria-hidden style={{
-        position: "absolute", bottom: 0, left: 0, right: 0, height: "38%", pointerEvents: "none",
-        background: "linear-gradient(to bottom, transparent 0%, rgba(4,4,4,.85) 40%, rgba(4,4,4,1) 70%, rgba(4,4,4,1) 100%)",
+        position: "absolute", bottom: 0, left: 0, right: 0, height: "55%", pointerEvents: "none",
+        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, rgba(4,4,4,.85) 20%, rgba(4,4,4,.55) 45%, rgba(4,4,4,.18) 70%, transparent 100%)",
       }} />
 
       {/* Top gradient — blends into navbar */}
