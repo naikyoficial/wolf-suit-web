@@ -35,7 +35,7 @@ export function Hero() {
       <div
         aria-hidden
         className="hero-image-wrap"
-        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: "30%" }}
+        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: "28%" }}
       >
         <Image
           src="/suitwolf-hero.png"
@@ -45,16 +45,16 @@ export function Hero() {
           sizes="100vw"
           className="hero-wolf-img"
           style={{
-            objectFit: "contain",
-            objectPosition: "50% 15%",
+            objectFit: "cover",
+            objectPosition: "50% 22%",
           }}
         />
       </div>
 
-      {/* Side fades — aggressive blend of image edges into dark bg */}
+      {/* Side fades — softened so the image breathes at the edges */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        background: "linear-gradient(to right, rgba(4,4,4,1) 0%, rgba(4,4,4,.92) 18%, rgba(4,4,4,.5) 32%, transparent 46%, transparent 54%, rgba(4,4,4,.5) 68%, rgba(4,4,4,.92) 82%, rgba(4,4,4,1) 100%)",
+        background: "linear-gradient(to right, rgba(4,4,4,.85) 0%, rgba(4,4,4,.5) 12%, transparent 28%, transparent 72%, rgba(4,4,4,.5) 88%, rgba(4,4,4,.85) 100%)",
       }} />
 
       {/* Vignette — edges dark, wolf face area clear */}
