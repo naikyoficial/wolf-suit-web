@@ -35,7 +35,7 @@ export function Hero() {
       <div
         aria-hidden
         className="hero-image-wrap"
-        style={{ position: "absolute", top: "-10%", left: 0, right: 0, bottom: 0 }}
+        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: "30%" }}
       >
         <Image
           src="/suitwolf-hero.png"
@@ -46,7 +46,7 @@ export function Hero() {
           className="hero-wolf-img"
           style={{
             objectFit: "contain",
-            objectPosition: "50% 50%",
+            objectPosition: "50% 15%",
           }}
         />
       </div>
@@ -65,7 +65,7 @@ export function Hero() {
 
       {/* Content backdrop — darkens lower section behind text */}
       <div aria-hidden style={{
-        position: "absolute", inset: "18% 0 0 0", pointerEvents: "none",
+        position: "absolute", inset: "30% 0 0 0", pointerEvents: "none",
         background: "linear-gradient(to top, rgba(4,4,4,1) 0%, rgba(4,4,4,.90) 22%, rgba(4,4,4,.52) 50%, transparent 100%)",
       }} />
 
