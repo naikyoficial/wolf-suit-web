@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SuitWolf — Agencia Digital de Alto Nivel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       DESIGN TOKENS & RESET
+    ============================================================ */
+    :root {
+      --color-surface: #0D0D0D;
+      --color-surface-1: #141414;
+      --color-text: #F7F5F0;
+      --color-text-2: #ABA8A2;
+      --color-text-3: #837F7B;
+      --color-text-4: #555452;
+      --color-gold: #D4A020;
+      --color-gold-dim: #A87214;
+      --color-gold-peak: #F0C840;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', Arial, sans-serif;
+      --gold-gradient: linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #040404;
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::-webkit-scrollbar { display: none; }
+    * { scrollbar-width: none; }
+
+    ::selection { background: #D4A020; color: #080808; }
+
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; background: none; border: none; font-family: inherit; }
+
+    /* ============================================================
+       KEYFRAMES
+    ============================================================ */
+    @keyframes metalShimmer {
+      0%, 100% { background-position: 200% center; }
+      50%       { background-position: -100% center; }
+    }
+
+    @keyframes labelShimmer {
+      from { background-position: 100% center; }
+      to   { background-position: -100% center; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    /* ============================================================
+       UTILITY: SHIMMER LABEL
+    ============================================================ */
+    .shimmer-label {
+      display: inline-block;
+      background: var(--gold-gradient);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: labelShimmer 6s linear infinite;
+      font-family: var(--font-body);
+      font-size: 9px;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    /* SHIMMER GOLD TEXT */
+    .gold-shimmer {
+      background: var(--gold-gradient);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: metalShimmer 13s ease-in-out infinite;
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       SECTION FADES
+    ============================================================ */
+    .fade-top {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 140px;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .fade-bottom {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 140px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      z-index: 200;
+      background: rgba(4, 4, 4, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(178, 192, 204, 0.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .nav-wordmark {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      background: var(--gold-gradient);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: metalShimmer 13s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(1rem, 2.5vw, 2.5rem);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-text-3);
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--color-text); }
+
+    .nav-cta {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      padding: 9px 20px;
+      border: 1px solid transparent;
+      border-image: var(--gold-gradient) 1;
+      background: transparent;
+      transition: background 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .nav-cta:hover { background: rgba(212, 160, 32, 0.06); }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 2px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: var(--color-text-2);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 190;
+      background: rgba(4, 4, 4, 0.97);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-body);
+      font-size: 13px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--color-text-2);
+      transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--color-text); }
+    .mobile-menu .mobile-cta {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--color-text);
+      padding: 12px 28px;
+      border: 1px solid transparent;
+      border-image: var(--gold-gradient) 1;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: calc(100svh - 4rem);
+      background: #040404;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-overlay-sides {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right,
+        rgba(4,4,4,1) 0%,
+        rgba(4,4,4,.92) 18%,
+        rgba(4,4,4,.5) 32%,
+        transparent 46%,
+        transparent 54%,
+        rgba(4,4,4,.5) 68%,
+        rgba(4,4,4,.92) 82%,
+        rgba(4,4,4,1) 100%
+      );
+    }
+    .hero-overlay-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 90% 80% at 50% 36%,
+        rgba(4,4,4,.04) 0%,
+        rgba(4,4,4,.48) 62%,
+        rgba(4,4,4,.97) 100%
+      );
+    }
+    .hero-overlay-content {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+        rgba(4,4,4,1) 0%,
+        rgba(4,4,4,.90) 22%,
+        rgba(4,4,4,.52) 50%,
+        transparent 100%
+      );
+    }
+    .hero-overlay-bottom {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(4,4,4,.85) 40%,
+        rgba(4,4,4,1) 70%,
+        rgba(4,4,4,1) 100%
+      );
+    }
+
+    .hero-content {
+      position: absolute;
+      bottom: 40px;
+      left: 0; right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 clamp(1.5rem, 8vw, 7.5rem);
+      z-index: 10;
+      gap: 0;
+    }
+
+    .hero-line-1 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 64px);
+      font-weight: 300;
+      color: rgba(240, 235, 225, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 40px rgba(0,0,0,.95);
+      line-height: 1.1;
+    }
+
+    .hero-line-2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4.8vw, 76px);
+      font-weight: 400;
+      background: var(--gold-gradient);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: metalShimmer 13s ease-in-out infinite;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      display: block;
+    }
+
+    .hero-line-3 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 64px);
+      font-weight: 300;
+      color: rgba(240, 235, 225, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 40px rgba(0,0,0,.95);
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .hero-tags {
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 0.38em;
+      color: rgba(180, 176, 168, 0.65);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-sub-plain { color: rgba(200, 188, 168, 0.6); }
+    .hero-sub-gold {
+      background: var(--gold-gradient);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: metalShimmer 13s ease-in-out infinite;
+    }
+
+    .hero-scroll-cue {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-scroll-line-top {
+      width: 1px;
+      height: 30px;
+      background: var(--gold-gradient);
+      background-size: 200%;
+    }
+
+    .hero-scroll-text {
+      font-family: var(--font-body);
+      font-size: 8px;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      background: var(--gold-gradient);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: metalShimmer 13s ease-in-out infinite;
+    }
+
+    .hero-scroll-line-bottom {
+      width: 1px;
+      height: 18px;
+      background: var(--gold-gradient);
+      background-size: 200%;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    @media (max-width: 768px) {
+      .hero-tags, .hero-scroll-cue { display: none; }
+    }
+
+    /* ============================================================
+       DUALITY SECTION
+    ============================================================ */
+    .section-duality {
+      position: relative;
+      background: rgba(7, 6, 4, 0.8);
+      padding: clamp(48px, 7vh, 160px) clamp(1.5rem, 8vw, 7.5rem);
+      text-align: center;
+    }
+
+    .duality-eyebrow {
+      font-size: 9px;
+      letter-spacing: 0.52em;
+      margin-bottom: clamp(24px, 3.5vh, 52px);
+      display: block;
+    }
+
+    .duality-h2-plain {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5.5vw, 80px);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--color-text-2);
+      margin-bottom: 12px;
+    }
+
+    .duality-h2-gold {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5.5vw, 80px);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      background: var(--gold-gradient);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: metalShimmer 10s ease-in-out infinite;
+      display: block;
+      margin-bottom: clamp(18px, 3vh, 44px);
+    }
+
+    .duality-pivot {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.2vw, 30px);
+      font-weight: 300;
+      color: rgba(240, 235, 225, 0.6);
+      margin-bottom: clamp(18px, 2.8vh, 44px);
+    }
+
+    .gold-separator {
+      width: 44px;
+      height: 1px;
+      background: var(--gold-gradient);
+      background-size: 200%;
+      margin: 0 auto clamp(18px, 2.8vh, 44px);
+    }
+
+    .duality-para {
+      font-family: var(--font-body);
+      font-size: 17px;
+      color: var(--color-text-3);
+      line-height: 1.85;
+      max-width: 560px;
+      margin: 0 auto clamp(18px, 2.8vh, 44px);
+    }
+
+    .duality-closing {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.4vw, 32px);
+      font-weight: 300;
+      color: rgba(236, 232, 223, 0.55);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ============================================================
+       PHILOSOPHY SECTION
+    ============================================================ */
+    .section-philosophy {
+      position: relative;
+      background: rgba(5, 5, 8, 0.75);
+      padding: clamp(48px, 7vh, 120px) clamp(1.5rem, 8vw, 7.5rem);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .philosophy-atmosphere {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 10%, rgba(90,100,120,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 10% 90%, rgba(212,160,32,0.03) 0%, transparent 60%);
+    }
+
+    .philosophy-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      margin-bottom: clamp(24px, 3.5vh, 52px);
+      display: block;
+    }
+
+    .philosophy-blockquote {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 72px);
+      font-weight: 300;
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      color: var(--color-text);
+      max-width: 860px;
+      margin: 0 auto clamp(20px, 3vh, 36px);
+    }
+
+    .philosophy-gold-bar {
+      width: 36px;
+      height: 1px;
+      background: var(--gold-gradient);
+      background-size: 200%;
+      margin: 0 auto clamp(20px, 3vh, 36px);
+    }
+
+    .philosophy-para {
+      font-family: var(--font-body);
+      max-width: 560px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+    }
+    .philosophy-para-1 { font-size: 17px; color: var(--color-text-2); }
+    .philosophy-para-2 { font-size: 16px; color: var(--color-text-3); line-height: 1.85; }
+    .philosophy-para-2 strong { color: var(--color-text-2); font-weight: 400; }
+    .philosophy-para-3 { font-size: 15px; color: var(--color-text-4); line-height: 1.85; }
+
+    /* ============================================================
+       PILLARS SECTION
+    ============================================================ */
+    .section-pillars {
+      position: relative;
+      background: rgba(6, 5, 3, 0.82);
+      padding: clamp(56px, 8vh, 120px) clamp(1.5rem, 8vw, 7.5rem);
+      overflow: hidden;
+    }
+
+    .pillars-dot-grid {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(212,160,32,.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .pillars-eyebrow {
+      text-align: center;
+      font-size: 9px;
+      letter-spacing: 0.42em;
+      display: block;
+      margin-bottom: clamp(16px, 2.5vh, 32px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .pillars-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 60px);
+      font-weight: 300;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      text-align: center;
+      margin-bottom: clamp(28px, 4vh, 56px);
+      white-space: pre-line;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(16px, 2vw, 28px);
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (min-width: 768px) {
+      .pillars-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1024px) {
+      .pillars-grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    .pillar-card {
+      background: #070707;
+      border: 1px solid rgba(178, 192, 204, 0.06);
+      padding: clamp(24px, 4vw, 44px);
+      transition: border-color 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .pillar-card:hover { border-color: rgba(212, 160, 32, 0.28); }
+
+    .pillar-num {
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--color-text-4);
+      margin-bottom: clamp(12px, 2vh, 20px);
+    }
+
+    .pillar-title {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--color-text);
+      margin-bottom: clamp(12px, 2vh, 20px);
+    }
+
+    .pillar-body {
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 1.85;
+      color: var(--color-text-3);
+      white-space: pre-line;
+      flex: 1;
+    }
+
+    .pillar-bar {
+      width: 24px;
+      height: 1px;
+      background: var(--gold-gradient);
+      background-size: 200%;
+      opacity: 0.4;
+      transition: width 0.35s ease, opacity 0.35s ease;
+      margin-top: clamp(20px, 3vh, 36px);
+    }
+
+    .pillar-card:hover .pillar-bar {
+      width: 44px;
+      opacity: 0.8;
+    }
+
+    /* ============================================================
+       PROCESS SECTION
+    ============================================================ */
+    .section-process {
+      position: relative;
+      background: rgba(4, 5, 7, 0.85);
+      padding: clamp(56px, 8vh, 120px) clamp(1.5rem, 8vw, 7.5rem);
+      overflow: hidden;
+    }
+
+    .process-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .process-eyebrow {
+      text-align: center;
+      font-size: 9px;
+      letter-spacing: 0.42em;
+      display: block;
+      margin-bottom: clamp(16px, 2.5vh, 32px);
+    }
+
+    .process-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 60px);
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: clamp(36px, 5vh, 80px);
+      color: var(--color-text);
+    }
+
+    .process-step {
+      margin-bottom: clamp(28px, 4vw, 52px);
+    }
+
+    .process-step-divider {
+      height: 1px;
+      margin-bottom: clamp(28px, 4vw, 52px);
+    }
+
+    .process-step-row {
+      display: flex;
+      gap: clamp(2rem, 6vw, 5rem);
+      align-items: flex-start;
+    }
+
+    .process-step-left {
+      flex-shrink: 0;
+      min-width: 160px;
+      max-width: 280px;
+    }
+
+    .process-step-num {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      background: var(--gold-gradient);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: metalShimmer 13s ease-in-out infinite;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .process-step-title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 3.2vw, 46px);
+      font-weight: 300;
+      color: var(--color-text);
+      line-height: 1.1;
+    }
+
+    .process-step-desc {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--color-text-3);
+      line-height: 1.95;
+      max-width: 560px;
+    }
+
+    @media (max-width: 640px) {
+      .process-step-row { flex-direction: column; gap: 1rem; }
+      .process-step-left { min-width: unset; max-width: unset; }
+    }
+
+    /* ============================================================
+       SERVICES SECTION
+    ============================================================ */
+    .section-services {
+      position: relative;
+      background: rgba(4, 4, 4, 0.96);
+      padding: clamp(48px, 6vh, 130px) 0;
+      overflow: hidden;
+    }
+
+    .services-vignette-left,
+    .services-vignette-right {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 18vw;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .services-vignette-left {
+      left: 0;
+      background: linear-gradient(to right, rgba(4,4,4,1), transparent);
+    }
+    .services-vignette-right {
+      right: 0;
+      background: linear-gradient(to left, rgba(4,4,4,1), transparent);
+    }
+
+    .services-header {
+      text-align: center;
+      padding: 0 clamp(1.5rem, 8vw, 7.5rem);
+      margin-bottom: clamp(36px, 5vh, 64px);
+    }
+
+    .services-eyebrow {
+      font-size: 9px;
+      letter-spacing: 0.42em;
+      display: block;
+      margin-bottom: clamp(16px, 2.5vh, 32px);
+    }
+
+    .services-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 3.8vw, 52px);
+      font-weight: 300;
+      color: var(--color-text);
+    }
+
+    /* Carousel */
+    .carousel-viewport {
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .carousel-track {
+      display: flex;
+      align-items: stretch;
+      gap: clamp(16px, 2.5vw, 28px);
+      transition: transform 0.5s cubic-bezier(0.35, 0, 0.25, 1);
+      padding: 4px 0 16px;
+    }
+
+    .service-card {
+      flex-shrink: 0;
+      width: clamp(280px, 50vw, 460px);
+      position: relative;
+      padding: clamp(24px, 3.5vw, 40px);
+      background: linear-gradient(160deg, #0D0C09 0%, #080807 100%);
+      border: 1px solid rgba(178, 192, 204, 0.05);
+      transition: border-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+      opacity: 0.45;
+      transform: scale(0.96);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(12px, 1.8vh, 18px);
+    }
+
+    .service-card.active {
+      border-color: rgba(212, 160, 32, 0.24);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .service-card.active::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 1px;
+      background: var(--gold-gradient);
+      background-size: 200%;
+      opacity: 0.85;
+    }
+
+    .card-ghost-num {
+      position: absolute;
+      right: 20px;
+      top: 16px;
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 300;
+      color: rgba(212, 160, 32, 0.08);
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .card-category {
+      font-family: var(--font-body);
+      font-size: 9px;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--color-text-4);
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 2.5vw, 36px);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--color-text);
+      white-space: pre-line;
+    }
+
+    .card-subtitle {
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--color-text-4);
+    }
+
+    .card-desc {
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--color-text-3);
+      flex: 1;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .card-tag {
+      font-family: var(--font-body);
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-text-4);
+      border: 1px solid rgba(178, 192, 204, 0.12);
+      padding: 4px 10px;
+    }
+
+    .card-arrow {
+      font-size: 18px;
+      color: var(--color-gold);
+      align-self: flex-end;
+    }
+
+    /* Carousel navigation */
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(16px, 2vw, 28px);
+      margin-top: clamp(24px, 4vh, 48px);
+      padding: 0 clamp(1.5rem, 8vw, 7.5rem);
+    }
+
+    .carousel-btn {
+      width: 56px;
+      height: 56px;
+      border: 1px solid rgba(212, 160, 32, 0.3);
+      color: var(--color-gold);
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease, border-color 0.3s ease;
+      background: transparent;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(212, 160, 32, 0.06);
+      border-color: rgba(212, 160, 32, 0.6);
+    }
+
+    .carousel-counter {
+      font-family: var(--font-body);
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .carousel-counter-cur {
+      background: var(--gold-gradient);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: metalShimmer 13s ease-in-out infinite;
+    }
+
+    .carousel-counter-sep,
+    .carousel-counter-total {
+      color: var(--color-text-4);
+    }
+
+    .carousel-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 16px;
+    }
+
+    .carousel-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--color-text-4);
+      cursor: pointer;
+      transition: background 0.3s ease, width 0.3s ease;
+    }
+
+    .carousel-dot.active {
+      background: var(--color-gold);
+      width: 16px;
+      border-radius: 2px;
+    }
+
+    .services-note {
+      text-align: center;
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: var(--color-text-4);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: clamp(20px, 3vh, 36px);
+      padding: 0 clamp(1.5rem, 8vw, 7.5rem);
+    }
+
+    /* ============================================================
+       APPLY / CONTACT SECTION
+    ============================================================ */
+    .section-apply {
+      position: relative;
+      background: rgba(4, 4, 4, 0.97);
+      padding: clamp(52px, 7vh, 130px) clamp(1.5rem, 8vw, 7.5rem);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .apply-glow {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 60%;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,160,32,.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .apply-eyebrow-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: clamp(24px, 3.5vh, 52px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .apply-eyebrow-line {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(to right, var(--color-gold), transparent);
+      opacity: 0.6;
+    }
+
+    .apply-eyebrow-line.right {
+      background: linear-gradient(to left, var(--color-gold), transparent);
+    }
+
+    .apply-eyebrow {
+      font-size: 9px;
+      letter-spacing: 0.42em;
+    }
+
+    .apply-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.8vw, 64px);
+      font-weight: 300;
+      max-width: 760px;
+      margin: 0 auto clamp(28px, 4vh, 52px);
+      color: var(--color-text);
+      line-height: 1.1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .apply-body {
+      max-width: 640px;
+      margin: 0 auto clamp(28px, 4vh, 52px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .apply-body p {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--color-text-3);
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+    }
+
+    .apply-body p:first-child { font-size: 16px; }
+    .apply-body p:last-child { margin-bottom: 0; }
+
+    .apply-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: clamp(28px, 4vh, 52px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .apply-step-card {
+      width: clamp(180px, 30vw, 220px);
+      background: rgba(20, 14, 4, 0.6);
+      border-left: 2px solid rgba(212, 160, 32, 0.4);
+      padding: 20px 24px;
+      text-align: left;
+    }
+
+    .apply-step-num {
+      font-family: var(--font-body);
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--color-gold-dim);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .apply-step-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--color-text);
+      margin-bottom: 8px;
+    }
+
+    .apply-step-desc {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--color-text-3);
+      line-height: 1.7;
+    }
+
+    .apply-cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .apply-cta {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 12px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      padding: 14px 36px;
+      border: 1px solid transparent;
+      border-image: var(--gold-gradient) 1;
+      background: transparent;
+      transition: background 0.3s ease;
+      cursor: pointer;
+    }
+
+    .apply-cta:hover { background: rgba(212, 160, 32, 0.06); }
+
+    .apply-small {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: var(--color-text-4);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .site-footer {
+      border-top: 1px solid rgba(178, 192, 204, 0.07);
+      padding: clamp(36px, 5vh, 52px) 8vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-wordmark {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(178, 192, 204, 0.55);
+    }
+
+    .footer-copy {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: var(--color-text-4);
+    }
+
+    @media (max-width: 640px) {
+      .site-footer { flex-direction: column; align-items: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <header class="site-header" role="banner">
+    <a href="#" class="nav-wordmark" aria-label="SuitWolf — Inicio">SUITWOLF</a>
+
+    <nav aria-label="Navegación principal">
+      <ul class="nav-links">
+        <li><a href="#philosophy">Filosofía</a></li>
+        <li><a href="#duality">Dualidad</a></li>
+        <li><a href="#services">Servicios</a></li>
+        <li><a href="#process">Proceso</a></li>
+        <li><a href="#pillars">Enfoque</a></li>
+      </ul>
+    </nav>
+
+    <a href="#contact" class="nav-cta" role="button">Iniciar proceso</a>
+
+    <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menú móvil">
+    <a href="#philosophy" class="mobile-menu-link">Filosofía</a>
+    <a href="#duality" class="mobile-menu-link">Dualidad</a>
+    <a href="#services" class="mobile-menu-link">Servicios</a>
+    <a href="#process" class="mobile-menu-link">Proceso</a>
+    <a href="#pillars" class="mobile-menu-link">Enfoque</a>
+    <a href="#contact" class="mobile-cta">Iniciar proceso</a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" aria-label="Hero principal">
+    <div class="hero-bg">
+      <img
+        src="https://www.suitwolf.com/wolf-hero.png"
+        alt="Wolf SuitWolf hero"
+        loading="eager"
+      />
+    </div>
+
+    <!-- Overlay layers -->
+    <div class="hero-overlay">
+      <div class="hero-overlay-sides"></div>
+      <div class="hero-overlay-vignette"></div>
+      <div class="hero-overlay-content"></div>
+      <div class="hero-overlay-bottom"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="hero-content">
+      <p class="hero-line-1">¿Tu presencia digital refleja</p>
+      <span class="hero-line-2">el nivel de empresa</span>
+      <p class="hero-line-3">que tienes en mente?</p>
+
+      <p class="hero-tags">Diseño y Desarrollo Web · E-commerce · Software a Medida</p>
+
+      <p class="hero-sub">
+        <span class="hero-sub-plain">Agencia digital de </span>
+        <span class="hero-sub-gold">alto nivel</span>
+      </p>
+
+      <div class="hero-scroll-cue" aria-hidden="true">
+        <div class="hero-scroll-line-top"></div>
+        <span class="hero-scroll-text">Continuar</span>
+        <div class="hero-scroll-line-bottom"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DUALITY SECTION
+  ============================================================ -->
+  <section id="duality" class="section-duality" aria-labelledby="duality-h2">
+    <div class="fade-top" style="background: linear-gradient(to bottom, rgba(4,4,4,1), transparent);"></div>
+    <div class="fade-bottom" style="background: linear-gradient(to top, rgba(4,4,4,1), transparent);"></div>
+
+    <span class="shimmer-label duality-eyebrow reveal">Dualidad</span>
+
+    <div class="reveal">
+      <p class="duality-h2-plain" id="duality-h2">Una empresa pequeña puede parecer líder de su sector.</p>
+      <span class="duality-h2-gold">Una gran empresa puede parecer amateur.</span>
+    </div>
+
+    <p class="duality-pivot reveal">La diferencia está en cómo se presenta al mundo.</p>
+
+    <div class="gold-separator reveal"></div>
+
+    <p class="duality-para reveal">
+      Transformamos tu identidad digital en una herramienta de autoridad. Diseño que justifica tu valor. Posicionamiento que abre oportunidades que el precio solo no puede abrir.
+    </p>
+
+    <p class="duality-closing reveal">
+      Tu empresa no necesita ser la número uno para verse como tal. Solo necesita el traje correcto.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       PHILOSOPHY SECTION
+  ============================================================ -->
+  <section id="philosophy" class="section-philosophy" aria-labelledby="philosophy-heading">
+    <div class="philosophy-atmosphere" aria-hidden="true"></div>
+    <div class="fade-top" style="background: linear-gradient(to bottom, rgba(4,4,4,1), transparent);"></div>
+    <div class="fade-bottom" style="background: linear-gradient(to top, rgba(4,4,4,1), transparent);"></div>
+
+    <span class="shimmer-label philosophy-eyebrow reveal" style="font-size:10px; letter-spacing:0.35em;">Filosofía</span>
+
+    <blockquote class="philosophy-blockquote reveal" id="philosophy-heading">
+      Las empresas son juzgadas antes de ser comprendidas.
+    </blockquote>
+
+    <div class="philosophy-gold-bar reveal"></div>
+
+    <p class="philosophy-para philosophy-para-1 reveal">
+      Muchas empresas invierten años perfeccionando sus productos y procesos. Pero cuando alguien las descubre por primera vez, la imagen no transmite ese valor. En un mercado competitivo, la percepción lo cambia todo.
+    </p>
+
+    <p class="philosophy-para philosophy-para-2 reveal">
+      Diseñamos <strong>sitios web premium</strong>, desarrollamos <strong>software a medida</strong> y construimos <strong>sistemas digitales</strong> que proyectan la imagen que tu empresa realmente merece.
+    </p>
+
+    <p class="philosophy-para philosophy-para-3 reveal">
+      Nuestro trabajo existe para cerrar una sola brecha: la distancia entre lo que tu empresa realmente es y lo que el mundo percibe hoy.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       PILLARS SECTION
+  ============================================================ -->
+  <section id="pillars" class="section-pillars" aria-labelledby="pillars-heading">
+    <div class="pillars-dot-grid" aria-hidden="true"></div>
+    <div class="fade-top" style="background: linear-gradient(to bottom, rgba(4,4,4,1), transparent);"></div>
+    <div class="fade-bottom" style="background: linear-gradient(to top, rgba(4,4,4,1), transparent);"></div>
+
+    <span class="shimmer-label pillars-eyebrow reveal">Enfoque</span>
+
+    <h2 class="pillars-h2 reveal" id="pillars-heading">La excelencia no es un objetivo,&#10;es el punto de partida.</h2>
+
+    <div class="pillars-grid">
+      <article class="pillar-card reveal">
+        <span class="pillar-num">01</span>
+        <h3 class="pillar-title">Estrategia</h3>
+        <p class="pillar-body">Antes de diseñar una sola pantalla entendemos quién sos, a quién le hablás, cómo te percibe el mercado y cuál es el lugar que querés ocupar.
+
+No diseñamos páginas.
+Diseñamos posicionamiento.</p>
+        <div class="pillar-bar"></div>
+      </article>
+
+      <article class="pillar-card reveal">
+        <span class="pillar-num">02</span>
+        <h3 class="pillar-title">Diseño</h3>
+        <p class="pillar-body">Cada sitio web es creado desde cero. No reutilizamos estructuras. No adaptamos plantillas.
+
+Tu empresa tiene una historia única y merece una identidad visual construida exclusivamente para representarla.</p>
+        <div class="pillar-bar"></div>
+      </article>
+
+      <article class="pillar-card reveal">
+        <span class="pillar-num">03</span>
+        <h3 class="pillar-title">Tecnología</h3>
+        <p class="pillar-body">El desarrollo web debe ser invisible. El usuario no debería notar el código. Debería notar la velocidad, la precisión, la claridad y la confianza que transmite una experiencia impecable.</p>
+        <div class="pillar-bar"></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROCESS SECTION
+  ============================================================ -->
+  <section id="process" class="section-process" aria-labelledby="process-heading">
+    <div class="fade-top" style="background: linear-gradient(to bottom, rgba(4,4,4,1), transparent);"></div>
+    <div class="fade-bottom" style="background: linear-gradient(to top, rgba(4,4,4,1), transparent);"></div>
+
+    <div class="process-inner">
+      <span class="shimmer-label process-eyebrow reveal">Proceso</span>
+      <h2 class="process-h2 reveal" id="process-heading">Un proceso obsesionado por el detalle.</h2>
+
+      <!-- Step 01 -->
+      <div class="process-step reveal">
+        <div class="process-step-divider" style="background: rgba(212,160,32,.38);"></div>
+        <div class="process-step-row">
+          <div class="process-step-left">
+            <span class="process-step-num">01</span>
+            <h3 class="process-step-title">Descubrir</h3>
+          </div>
+          <p class="process-step-desc">
+            Antes de abrir cualquier programa de diseño, necesitamos entenderte. Quién sos, qué hacés, a quién le hablás y qué lugar querés ocupar en tu mercado. Esta etapa define todo lo que sigue.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 02 -->
+      <div class="process-step reveal">
+        <div class="process-step-divider" style="background: rgba(212,160,32,.16);"></div>
+        <div class="process-step-row">
+          <div class="process-step-left">
+            <span class="process-step-num">02</span>
+            <h3 class="process-step-title">Definir</h3>
+          </div>
+          <p class="process-step-desc">
+            Con la información obtenida, construimos la estrategia visual y de contenido. Definimos la arquitectura, el tono, la dirección estética y los objetivos de conversión antes de avanzar.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 03 -->
+      <div class="process-step reveal">
+        <div class="process-step-divider" style="background: rgba(212,160,32,.16);"></div>
+        <div class="process-step-row">
+          <div class="process-step-left">
+            <span class="process-step-num">03</span>
+            <h3 class="process-step-title">Diseñar</h3>
+          </div>
+          <p class="process-step-desc">
+            El diseño nace de la estrategia. Cada decisión visual tiene una razón. Exploramos, iteramos y refinamos hasta que cada pantalla comunique exactamente lo que necesita.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 04 -->
+      <div class="process-step reveal">
+        <div class="process-step-divider" style="background: rgba(212,160,32,.16);"></div>
+        <div class="process-step-row">
+          <div class="process-step-left">
+            <span class="process-step-num">04</span>
+            <h3 class="process-step-title">Construir</h3>
+          </div>
+          <p class="process-step-desc">
+            Desarrollamos el sitio con precisión técnica. Código limpio, rendimiento optimizado, experiencia fluida. Atención al detalle en cada interacción, animación y transición.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 05 -->
+      <div class="process-step reveal">
+        <div class="process-step-divider" style="background: rgba(212,160,32,.16);"></div>
+        <div class="process-step-row">
+          <div class="process-step-left">
+            <span class="process-step-num">05</span>
+            <h3 class="process-step-title">Perfeccionar</h3>
+          </div>
+          <p class="process-step-desc">
+            Antes del lanzamiento, revisamos cada detalle. Pruebas, ajustes, optimizaciones. El estándar no es que funcione — es que sea impecable.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES SECTION
+  ============================================================ -->
+  <section id="services" class="section-services" aria-labelledby="services-heading">
+    <div class="services-vignette-left" aria-hidden="true"></div>
+    <div class="services-vignette-right" aria-hidden="true"></div>
+
+    <div class="fade-top" style="background: linear-gradient(to bottom, rgba(4,4,4,1), transparent);"></div>
+    <div class="fade-bottom" style="background: linear-gradient(to top, rgba(4,4,4,1), transparent);"></div>
+
+    <div class="services-header reveal">
+      <span class="shimmer-label services-eyebrow">Servicios</span>
+      <h2 class="services-h2" id="services-heading">¿Qué podemos construir para tu empresa?</h2>
+    </div>
+
+    <div class="carousel-viewport" id="carouselViewport">
+      <div class="carousel-track" id="carouselTrack">
+
+        <article class="service-card" data-index="0">
+          <div class="card-ghost-num">01</div>
+          <span class="card-category">Identidad Digital</span>
+          <h3 class="card-title">Sitio Web
+Corporativo</h3>
+          <p class="card-subtitle">Presencia digital de alto impacto</p>
+          <p class="card-desc">Diseñamos y desarrollamos tu presencia digital desde cero. Un sitio que refleja el nivel real de tu empresa, genera confianza inmediata y convierte visitas en oportunidades.</p>
+          <div class="card-tags">
+            <span class="card-tag">Diseño</span>
+            <span class="card-tag">Desarrollo</span>
+            <span class="card-tag">CMS</span>
+          </div>
+          <span class="card-arrow">→</span>
+        </article>
+
+        <article class="service-card" data-index="1">
+          <div class="card-ghost-num">02</div>
+          <span class="card-category">Conversión</span>
+          <h3 class="card-title">Landing Page
+de Impacto</h3>
+          <p class="card-subtitle">Una sola página, un solo objetivo</p>
+          <p class="card-desc">Cuando necesitás enfocarte en un servicio, producto o campaña específica. Diseñada para capturar atención y dirigir hacia una acción concreta.</p>
+          <div class="card-tags">
+            <span class="card-tag">Diseño</span>
+            <span class="card-tag">Copy</span>
+            <span class="card-tag">Conversión</span>
+          </div>
+          <span class="card-arrow">→</span>
+        </article>
+
+        <article class="service-card" data-index="2">
+          <div class="card-ghost-num">03</div>
+          <span class="card-category">E-Commerce</span>
+          <h3 class="card-title">Tienda Online
+Premium</h3>
+          <p class="card-subtitle">Vende sin comprometer tu imagen</p>
+          <p class="card-desc">Plataformas de venta online diseñadas para mantener la coherencia visual de tu marca mientras optimizan la experiencia de compra y las conversiones.</p>
+          <div class="card-tags">
+            <span class="card-tag">Diseño</span>
+            <span class="card-tag">Desarrollo</span>
+            <span class="card-tag">Pagos</span>
+          </div>
+          <span class="card-arrow">→</span>
+        </article>
+
+        <article class="service-card" data-index="3">
+          <div class="card-ghost-num">04</div>
+          <span class="card-category">Marca Personal</span>
+          <h3 class="card-title">Presencia
+Personal</h3>
+          <p class="card-subtitle">Tu imagen como activo profesional</p>
+          <p class="card-desc">Para profesionales, consultores y referentes que necesitan una presencia digital que refleje su trayectoria y justifique su posicionamiento en el mercado.</p>
+          <div class="card-tags">
+            <span class="card-tag">Diseño</span>
+            <span class="card-tag">Branding</span>
+            <span class="card-tag">Web</span>
+          </div>
+          <span class="card-arrow">→</span>
+        </article>
+
+        <article class="service-card" data-index="4">
+          <div class="card-ghost-num">05</div>
+          <span class="card-category">Visibilidad</span>
+          <h3 class="card-title">SEO &amp;
+Visibilidad Web</h3>
+          <p class="card-subtitle">Ser encontrado por quien importa</p>
+          <p class="card-desc">Estrategia y ejecución de posicionamiento orgánico para que tu empresa aparezca cuando las personas correctas están buscando lo que ofrecés.</p>
+          <div class="card-tags">
+            <span class="card-tag">SEO</span>
+            <span class="card-tag">Contenido</span>
+            <span class="card-tag">Técnico</span>
+          </div>
+          <span class="card-arrow">→</span>
+        </article>
+
+        <article class="service-card" data-index="5">
+          <div class="card-ghost-num">06</div>
+          <span class="card-category">Producto Digital</span>
+          <h3 class="card-title">Aplicación Web
+a Medida</h3>
+          <p class="card-subtitle">Herramientas que hacen el trabajo</p>
+          <p class="card-desc">Desarrollamos aplicaciones web personalizadas para automatizar procesos, gestionar operaciones o crear nuevas líneas de negocio digitales.</p>
+          <div class="card-tags">
+            <span class="card-tag">React</span>
+            <span class="card-tag">Node.js</span>
+            <span class="card-tag">DB</span>
+          </div>
+          <span class="card-arrow">→</span>
+        </article>
+
+        <article class="service-card" data-index="6">
+          <div class="card-ghost-num">07</div>
+          <span class="card-category">Automatización</span>
+          <h3 class="card-title">Software
+a Medida</h3>
+          <p class="card-subtitle">Tecnología construida para tu empresa</p>
+          <p class="card-desc">Sistemas internos, integraciones y herramientas digitales diseñados específicamente para los procesos únicos de tu empresa.</p>
+          <div class="card-tags">
+            <span class="card-tag">Backend</span>
+            <span class="card-tag">API</span>
+            <span class="card-tag">Integración</span>
+          </div>
+          <span class="card-arrow">→</span>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="carousel-nav" role="navigation" aria-label="Navegación del carrusel">
+      <button class="carousel-btn" id="prevBtn" aria-label="Servicio anterior">&#8592;</button>
+      <span class="carousel-counter" aria-live="polite">
+        <span class="carousel-counter-cur" id="counterCur">01</span>
+        <span class="carousel-counter-sep"> / </span>
+        <span class="carousel-counter-total">07</span>
+      </span>
+      <button class="carousel-btn" id="nextBtn" aria-label="Siguiente servicio">&#8594;</button>
+    </div>
+
+    <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Indicadores del carrusel">
+      <!-- Generated by JS -->
+    </div>
+
+    <p class="services-note reveal">Cada proyecto es único — adaptamos el alcance a tu situación específica.</p>
+  </section>
+
+  <!-- ============================================================
+       APPLY / CONTACT SECTION
+  ============================================================ -->
+  <section id="contact" class="section-apply" aria-labelledby="apply-heading">
+    <div class="apply-glow" aria-hidden="true"></div>
+    <div class="fade-top" style="background: linear-gradient(to bottom, rgba(4,4,4,1), transparent);"></div>
+    <div class="fade-bottom" style="background: linear-gradient(to top, rgba(4,4,4,1), transparent);"></div>
+
+    <div class="apply-eyebrow-row reveal">
+      <div class="apply-eyebrow-line"></div>
+      <span class="shimmer-label apply-eyebrow" style="font-size:9px; letter-spacing:0.42em;">Proceso de Selección</span>
+      <div class="apply-eyebrow-line right"></div>
+    </div>
+
+    <h2 class="apply-h2 reveal" id="apply-heading">
+      Si llegaste hasta acá, probablemente ya entendiste que esto no es para cualquiera.
+    </h2>
+
+    <div class="apply-body reveal">
+      <p>No trabajamos con todo el mundo — y eso no es arrogancia, es cómo hacemos posible el nivel de atención que cada proyecto requiere.</p>
+      <p>Si tu empresa está lista para dar un salto en cómo es percibida, si entendés que el diseño es una inversión y no un gasto, y si buscás un equipo que trate tu proyecto con la misma seriedad con la que vos lo construiste, entonces podríamos trabajar juntos.</p>
+      <p>El proceso comienza con una solicitud. No te vamos a pedir que rellenes formularios de veinte campos. Queremos entenderte.</p>
+    </div>
+
+    <div class="apply-steps reveal">
+      <div class="apply-step-card">
+        <span class="apply-step-num">01</span>
+        <p class="apply-step-title">Aplicación</p>
+        <p class="apply-step-desc">Completás un formulario breve contándonos sobre tu empresa y tu proyecto.</p>
+      </div>
+      <div class="apply-step-card">
+        <span class="apply-step-num">02</span>
+        <p class="apply-step-title">Evaluación</p>
+        <p class="apply-step-desc">Revisamos tu solicitud y evaluamos si podemos añadir valor real a tu situación.</p>
+      </div>
+      <div class="apply-step-card">
+        <span class="apply-step-num">03</span>
+        <p class="apply-step-title">Conversación</p>
+        <p class="apply-step-desc">Si hay fit, agendamos una conversación sin compromiso para conocernos.</p>
+      </div>
+    </div>
+
+    <div class="apply-cta-wrap reveal">
+      <a href="/evaluacion" class="apply-cta">Iniciar proceso →</a>
+      <p class="apply-small">Respondemos cada solicitud en un plazo máximo de 72 horas.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <span class="footer-wordmark">Suitwolf</span>
+    <p class="footer-copy">© 2025 Suitwolf · Todos los derechos reservados</p>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ============================================================
+       1. SCROLL REVEAL
+    ============================================================ */
+    (function() {
+      const revealEls = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      revealEls.forEach(function(el) { observer.observe(el); });
+    })();
+
+    /* ============================================================
+       2. HAMBURGER MENU
+    ============================================================ */
+    (function() {
+      var hamburger = document.getElementById('hamburger');
+      var mobileMenu = document.getElementById('mobileMenu');
+      var mobileLinks = mobileMenu.querySelectorAll('a');
+
+      function toggleMenu() {
+        var isOpen = mobileMenu.classList.toggle('open');
+        hamburger.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen.toString());
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      }
+
+      function closeMenu() {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      hamburger.addEventListener('click', toggleMenu);
+
+      mobileLinks.forEach(function(link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+          closeMenu();
+        }
+      });
+    })();
+
+    /* ============================================================
+       3. SERVICES CAROUSEL
+    ============================================================ */
+    (function() {
+      var track = document.getElementById('carouselTrack');
+      var viewport = document.getElementById('carouselViewport');
+      var prevBtn = document.getElementById('prevBtn');
+      var nextBtn = document.getElementById('nextBtn');
+      var counterCur = document.getElementById('counterCur');
+      var dotsContainer = document.getElementById('carouselDots');
+
+      var cards = Array.from(track.querySelectorAll('.service-card'));
+      var total = cards.length;
+      var activeIndex = 0;
+      var touchStartX = 0;
+      var touchEndX = 0;
+
+      // Build dots
+      cards.forEach(function(_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', 'Ir al servicio ' + (i + 1));
+        dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+        dot.addEventListener('click', function() { goTo(i); });
+        dotsContainer.appendChild(dot);
+      });
+
+      function getCardWidth() {
+        if (cards.length === 0) return 460;
+        return cards[0].getBoundingClientRect().width;
+      }
+
+      function getGap() {
+        // Parse gap from computed style
+        var computed = getComputedStyle(track);
+        return parseFloat(computed.columnGap) || 24;
+      }
+
+      function updateCarousel() {
+        var cardW = getCardWidth();
+        var gap = getGap();
+        var viewportW = viewport.getBoundingClientRect().width;
+
+        // Center the active card in the viewport
+        var offset = (viewportW / 2) - (cardW / 2) - activeIndex * (cardW + gap);
+
+        track.style.transform = 'translateX(' + offset + 'px)';
+
+        // Update card states
+        cards.forEach(function(card, i) {
+          card.classList.toggle('active', i === activeIndex);
+        });
+
+        // Update counter
+        counterCur.textContent = String(activeIndex + 1).padStart(2, '0');
+
+        // Update dots
+        var dots = dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach(function(dot, i) {
+          dot.classList.toggle('active', i === activeIndex);
+          dot.setAttribute('aria-selected', i === activeIndex ? 'true' : 'false');
+        });
+      }
+
+      function goTo(index) {
+        activeIndex = Math.max(0, Math.min(total - 1, index));
+        updateCarousel();
+      }
+
+      prevBtn.addEventListener('click', function() { goTo(activeIndex - 1); });
+      nextBtn.addEventListener('click', function() { goTo(activeIndex + 1); });
+
+      // Keyboard support
+      document.addEventListener('keydown', function(e) {
+        // Only fire if not in an input/textarea
+        if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') return;
+        if (e.key === 'ArrowLeft') goTo(activeIndex - 1);
+        if (e.key === 'ArrowRight') goTo(activeIndex + 1);
+      });
+
+      // Touch / swipe support
+      viewport.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].clientX;
+      }, { passive: true });
+
+      viewport.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].clientX;
+        var diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) goTo(activeIndex + 1);
+          else goTo(activeIndex - 1);
+        }
+      }, { passive: true });
+
+      // Click on card to navigate
+      cards.forEach(function(card, i) {
+        card.addEventListener('click', function() {
+          if (i !== activeIndex) goTo(i);
+        });
+      });
+
+      // Initial render (after layout)
+      window.addEventListener('load', updateCarousel);
+      window.addEventListener('resize', updateCarousel);
+
+      // Also run immediately after DOM parse
+      requestAnimationFrame(function() {
+        requestAnimationFrame(updateCarousel);
+      });
+    })();
+
+    /* ============================================================
+       4. SMOOTH SCROLL for nav links
+    ============================================================ */
+    (function() {
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+          var target = document.querySelector(this.getAttribute('href'));
+          if (!target) return;
+          e.preventDefault();
+          var headerH = 64;
+          var top = target.getBoundingClientRect().top + window.pageYOffset - headerH;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

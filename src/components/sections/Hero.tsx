@@ -31,30 +31,31 @@ export function Hero() {
     >
       <h1 className="sr-only">Agencia de Diseño y Desarrollo Web Premium — Suitwolf</h1>
 
-      {/* Background image */}
+      {/* Background image — full-height cover; objectPosition lifts the wolf
+         (mid-left of the frame) into the upper half, above the headline. */}
       <div
         aria-hidden
         className="hero-image-wrap"
-        style={{ position: "absolute", top: "-10%", left: 0, right: 0, bottom: 0 }}
+        style={{ position: "absolute", inset: 0 }}
       >
         <Image
-          src="/wolf-hero.png"
+          src="/suitwolf-hero.png"
           alt=""
           fill
           priority
           sizes="100vw"
           className="hero-wolf-img"
           style={{
-            objectFit: "contain",
-            objectPosition: "50% 50%",
+            objectFit: "cover",
+            objectPosition: "50% 58%",
           }}
         />
       </div>
 
-      {/* Side fades — aggressive blend of image edges into dark bg */}
+      {/* Side fades — gentle, so the wolf on the left wall is not darkened */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        background: "linear-gradient(to right, rgba(4,4,4,1) 0%, rgba(4,4,4,.92) 18%, rgba(4,4,4,.5) 32%, transparent 46%, transparent 54%, rgba(4,4,4,.5) 68%, rgba(4,4,4,.92) 82%, rgba(4,4,4,1) 100%)",
+        background: "linear-gradient(to right, rgba(4,4,4,.6) 0%, rgba(4,4,4,.2) 10%, transparent 24%, transparent 76%, rgba(4,4,4,.3) 90%, rgba(4,4,4,.7) 100%)",
       }} />
 
       {/* Vignette — edges dark, wolf face area clear */}
@@ -65,8 +66,8 @@ export function Hero() {
 
       {/* Content backdrop — darkens lower section behind text */}
       <div aria-hidden style={{
-        position: "absolute", inset: "18% 0 0 0", pointerEvents: "none",
-        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, rgba(4,4,4,.90) 22%, rgba(4,4,4,.52) 50%, transparent 100%)",
+        position: "absolute", inset: "38% 0 0 0", pointerEvents: "none",
+        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, rgba(4,4,4,.92) 28%, rgba(4,4,4,.55) 55%, transparent 100%)",
       }} />
 
       {/* Bottom seal */}
