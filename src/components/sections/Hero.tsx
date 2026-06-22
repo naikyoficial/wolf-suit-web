@@ -110,103 +110,132 @@ export function Hero() {
         }}
       >
 
-        {/* Editorial headline — Figma layout */}
+        {/* ── Editorial headline (Figma-faithful) ── */}
 
-        {/* Row 1–2: "¿Tu sitio web refleja" + "El" */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
+        {/* "¿TU SITIO WEB REFLEJA" */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.5, ease: EASE }}
-          style={{ lineHeight: 1.15 }}
+          transition={{ duration: 0.8, delay: 0.44, ease: EASE }}
+          style={{
+            fontFamily: "var(--ws-hubballi)",
+            fontSize: "clamp(20px, 2.6vw, 40px)",
+            letterSpacing: ".06em",
+            lineHeight: 1.0,
+            color: "rgba(240,235,225,.88)",
+            textTransform: "uppercase",
+            margin: 0,
+          }}
         >
-          <div style={{
-            fontFamily: "var(--ws-hubballi)",
-            fontSize: "clamp(18px, 2.2vw, 34px)",
-            letterSpacing: ".06em",
-            color: "rgba(235,230,220,.82)",
-            textTransform: "uppercase",
-            textShadow: "0 2px 20px rgba(0,0,0,.8)",
-          }}>
-            ¿Tu sitio web refleja
-          </div>
-          <div style={{
-            fontFamily: "var(--ws-hubballi)",
-            fontSize: "clamp(18px, 2.2vw, 34px)",
-            letterSpacing: ".06em",
-            color: "rgba(235,230,220,.82)",
-            textTransform: "uppercase",
-            textShadow: "0 2px 20px rgba(0,0,0,.8)",
-          }}>
-            El
-          </div>
-        </motion.div>
+          ¿Tu sitio web refleja
+        </motion.p>
 
-        {/* Row 3: "NIVEL" — Iceland, large, gold */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
+        {/* "EL" — indented ~45% right, nearly touching line above */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.68, ease: EASE }}
+          transition={{ duration: 0.8, delay: 0.52, ease: EASE }}
+          style={{
+            fontFamily: "var(--ws-hubballi)",
+            fontSize: "clamp(20px, 2.6vw, 40px)",
+            letterSpacing: ".06em",
+            lineHeight: 0.95,
+            color: "rgba(240,235,225,.88)",
+            textTransform: "uppercase",
+            margin: 0,
+            paddingLeft: "clamp(100px, 13vw, 200px)",
+          }}
         >
-          <div style={{
+          El
+        </motion.p>
+
+        {/* "NIVEL" — Iceland, very large, gold */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.60, ease: EASE }}
+          style={{
             fontFamily: "var(--ws-iceland)",
-            fontSize: "clamp(72px, 9.5vw, 140px)",
-            letterSpacing: ".02em",
-            lineHeight: 0.88,
+            fontSize: "clamp(78px, 10vw, 148px)",
+            letterSpacing: ".01em",
+            lineHeight: 0.84,
             color: "#D4A020",
             textTransform: "uppercase",
-            textShadow: "0 2px 32px rgba(212,160,32,.25)",
-          }}>
-            Nivel
-          </div>
-          {/* Hand-drawn swoosh */}
-          <svg
-            viewBox="0 0 340 28"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden
-            style={{ display: "block", width: "clamp(140px, 18vw, 270px)", height: "auto", marginTop: "clamp(2px, 0.4vw, 6px)", marginBottom: "clamp(4px, 0.6vw, 10px)" }}
-          >
-            <path
-              d="M4 19 C 28 7, 65 26, 105 14 C 145 2, 182 24, 225 13 C 258 4, 295 21, 322 12 C 332 9, 338 13, 336 16"
-              stroke="#D4A020"
-              strokeWidth="2.8"
-              strokeLinecap="round"
-              fill="none"
-            />
-          </svg>
-        </motion.div>
-
-        {/* Row 4–5: "De tu" + "Empresa?" */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.84, ease: EASE }}
-          style={{ marginBottom: "clamp(28px, 4vw, 52px)" }}
+            margin: 0,
+            textShadow: "0 2px 32px rgba(212,160,32,.2)",
+          }}
         >
-          <div style={{
+          Nivel
+        </motion.p>
+
+        {/* Swoosh — hand-drawn wave under NIVEL */}
+        <motion.svg
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.7, delay: 0.72, ease: EASE }}
+          viewBox="0 0 380 32"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden
+          style={{
+            display: "block",
+            width: "clamp(150px, 19vw, 290px)",
+            height: "auto",
+            marginTop: "clamp(1px, 0.2vw, 4px)",
+            marginBottom: "clamp(1px, 0.2vw, 4px)",
+            transformOrigin: "left center",
+          }}
+        >
+          <path
+            d="M 4 22 Q 40 6, 82 19 Q 124 32, 168 15 Q 212 -1, 258 16 Q 294 28, 334 13 Q 356 6, 376 18"
+            stroke="#D4A020"
+            strokeWidth="3"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </motion.svg>
+
+        {/* "DE TU" */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.80, ease: EASE }}
+          style={{
             fontFamily: "var(--ws-hubballi)",
-            fontSize: "clamp(18px, 2.2vw, 34px)",
+            fontSize: "clamp(20px, 2.6vw, 40px)",
             letterSpacing: ".06em",
-            lineHeight: 1.2,
-            color: "rgba(235,230,220,.82)",
+            lineHeight: 1.0,
+            color: "rgba(240,235,225,.88)",
             textTransform: "uppercase",
-            textShadow: "0 2px 20px rgba(0,0,0,.8)",
-          }}>
-            De tu
-          </div>
-          <div style={{
+            margin: 0,
+          }}
+        >
+          De tu
+        </motion.p>
+
+        {/* "EMPRESA?" — Kanit 800, tilted +3deg, very large */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.88, ease: EASE }}
+          style={{
             fontFamily: "var(--ws-kanit)",
-            fontSize: "clamp(54px, 7vw, 104px)",
+            fontSize: "clamp(58px, 7.5vw, 112px)",
             fontWeight: 800,
             letterSpacing: "-.01em",
-            lineHeight: 0.92,
+            lineHeight: 0.88,
             color: "#f5f3ef",
             textTransform: "uppercase",
-            textShadow: "0 2px 28px rgba(0,0,0,.7)",
-          }}>
-            Empresa?
-          </div>
-        </motion.div>
+            margin: 0,
+            marginBottom: "clamp(28px, 4vw, 52px)",
+            display: "inline-block",
+            transform: "rotate(3deg)",
+            transformOrigin: "left bottom",
+            textShadow: "0 2px 24px rgba(0,0,0,.55)",
+          }}
+        >
+          Empresa?
+        </motion.p>
 
         {/* Tags */}
         <motion.div
