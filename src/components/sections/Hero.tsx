@@ -31,8 +31,9 @@ export function Hero() {
     >
       <h1 className="sr-only">Agencia de Diseño y Desarrollo Web Premium — Suitwolf</h1>
 
-      {/* Background image — full-height cover; objectPosition lifts the wolf
-         (mid-left of the frame) into the upper half, above the headline. */}
+      {/* Background image — scale(1.5) from left origin shifts the wolf
+         (left third of the raw image) into the horizontal centre of the viewport.
+         Section overflow:hidden clips the right/bottom excess. */}
       <div
         aria-hidden
         className="hero-image-wrap"
@@ -47,27 +48,17 @@ export function Hero() {
           className="hero-wolf-img"
           style={{
             objectFit: "cover",
-            objectPosition: "50% 58%",
+            objectPosition: "50% 44%",
+            transform: "scale(1.5)",
+            transformOrigin: "left 36%",
           }}
         />
       </div>
 
-      {/* Side fades — gentle, so the wolf on the left wall is not darkened */}
-      <div aria-hidden style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
-        background: "linear-gradient(to right, rgba(4,4,4,.6) 0%, rgba(4,4,4,.2) 10%, transparent 24%, transparent 76%, rgba(4,4,4,.3) 90%, rgba(4,4,4,.7) 100%)",
-      }} />
-
-      {/* Vignette — edges dark, wolf face area clear */}
-      <div aria-hidden style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 90% 80% at 50% 36%, rgba(4,4,4,.04) 0%, rgba(4,4,4,.48) 62%, rgba(4,4,4,.97) 100%)",
-      }} />
-
       {/* Content backdrop — darkens lower section behind text */}
       <div aria-hidden style={{
-        position: "absolute", inset: "38% 0 0 0", pointerEvents: "none",
-        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, rgba(4,4,4,.92) 28%, rgba(4,4,4,.55) 55%, transparent 100%)",
+        position: "absolute", inset: "42% 0 0 0", pointerEvents: "none",
+        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, rgba(4,4,4,.90) 30%, rgba(4,4,4,.45) 60%, transparent 100%)",
       }} />
 
       {/* Bottom seal */}

@@ -232,10 +232,12 @@ body { scrollbar-width: none; }
     background-position: 50% center !important;
   }
 
-  /* Hero: cover the full frame with the wolf instead of contain (avoids empty black space) */
+  /* Hero: cover the full frame; reset desktop scale/origin so mobile shows the full image */
   .hero-wolf-img {
     object-fit: cover !important;
     object-position: 50% 18% !important;
+    transform: none !important;
+    transform-origin: initial !important;
   }
 
   /* Grain overlay's mix-blend + fixed layer forces continuous re-compositing on
