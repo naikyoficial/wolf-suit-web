@@ -51,17 +51,6 @@ export function Hero() {
         />
       </div>
 
-      {/* Bottom fade — single soft gradient, starts low so most of the image shows clean */}
-      <div aria-hidden style={{
-        position: "absolute", bottom: 0, left: 0, right: 0, height: "55%", pointerEvents: "none",
-        background: "linear-gradient(to top, rgba(4,4,4,1) 0%, rgba(4,4,4,.85) 20%, rgba(4,4,4,.55) 45%, rgba(4,4,4,.18) 70%, transparent 100%)",
-      }} />
-
-      {/* Top gradient — blends into navbar */}
-      <div aria-hidden style={{
-        position: "absolute", top: 0, left: 0, right: 0, height: "20%", pointerEvents: "none",
-        background: "linear-gradient(to bottom, rgba(4,4,4,.55) 0%, transparent 100%)",
-      }} />
 
       {/* FX — desktop only (HeroFx returns null on touch) */}
       <HeroFx />
