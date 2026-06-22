@@ -31,9 +31,7 @@ export function Hero() {
     >
       <h1 className="sr-only">Agencia de Diseño y Desarrollo Web Premium — Suitwolf</h1>
 
-      {/* Background image — scale(1.5) from left origin shifts the wolf
-         (left third of the raw image) into the horizontal centre of the viewport.
-         Section overflow:hidden clips the right/bottom excess. */}
+      {/* Background image — no transforms, pure objectFit cover for original quality */}
       <div
         aria-hidden
         className="hero-image-wrap"
@@ -49,8 +47,6 @@ export function Hero() {
           style={{
             objectFit: "cover",
             objectPosition: "50% 44%",
-            transform: "scale(1.5)",
-            transformOrigin: "left 36%",
           }}
         />
       </div>
