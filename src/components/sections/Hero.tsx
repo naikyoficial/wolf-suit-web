@@ -46,15 +46,15 @@ export function Hero() {
           className="hero-wolf-img"
           style={{
             objectFit: "cover",
-            objectPosition: "38% 6%",
+            objectPosition: "42% 5%",
           }}
         />
       </div>
 
-      {/* Side fades — softened so the image breathes at the edges */}
+      {/* Side fades — left very soft to let wolf show, right slightly stronger */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        background: "linear-gradient(to right, rgba(4,4,4,.85) 0%, rgba(4,4,4,.5) 12%, transparent 28%, transparent 72%, rgba(4,4,4,.5) 88%, rgba(4,4,4,.85) 100%)",
+        background: "linear-gradient(to right, rgba(4,4,4,.55) 0%, rgba(4,4,4,.15) 8%, transparent 18%, transparent 72%, rgba(4,4,4,.5) 88%, rgba(4,4,4,.85) 100%)",
       }} />
 
       {/* Vignette — edges dark, wolf face area clear */}
