@@ -110,132 +110,147 @@ export function Hero() {
         }}
       >
 
-        {/* ── Editorial headline (Figma-faithful) ── */}
-
-        {/* "¿TU SITIO WEB REFLEJA" */}
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.44, ease: EASE }}
+        {/* ── Editorial headline — fixed-proportion artboard ──
+            Every word is absolutely positioned inside a container whose width
+            drives both the font sizes (cqw units) and the % offsets, so the
+            EXACT layout from the Figma comp is preserved identically on desktop
+            and mobile — it just scales as a single unit. */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          aria-label="¿Tu sitio web refleja el nivel de tu empresa?"
           style={{
-            fontFamily: "var(--ws-hubballi)",
-            fontSize: "clamp(20px, 2.6vw, 40px)",
-            letterSpacing: ".06em",
-            lineHeight: 1.0,
-            color: "rgba(240,235,225,.88)",
-            textTransform: "uppercase",
-            margin: 0,
+            position: "relative",
+            containerType: "inline-size",
+            width: "100%",
+            aspectRatio: "100 / 82",
+            marginBottom: "clamp(18px, 2.6vw, 40px)",
           }}
         >
-          ¿Tu sitio web refleja
-        </motion.p>
+          {/* "¿TU SITIO WEB REFLEJA" */}
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.44, ease: EASE }}
+            style={{
+              position: "absolute", left: "1.5%", top: "11%",
+              fontFamily: "var(--ws-hubballi)",
+              fontSize: "8cqw",
+              letterSpacing: ".03em",
+              lineHeight: 1,
+              whiteSpace: "nowrap",
+              color: "rgba(240,235,225,.9)",
+              textTransform: "uppercase",
+            }}
+          >
+            ¿Tu sitio web refleja
+          </motion.span>
 
-        {/* "EL" — indented ~45% right, nearly touching line above */}
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.52, ease: EASE }}
-          style={{
-            fontFamily: "var(--ws-hubballi)",
-            fontSize: "clamp(20px, 2.6vw, 40px)",
-            letterSpacing: ".06em",
-            lineHeight: 0.95,
-            color: "rgba(240,235,225,.88)",
-            textTransform: "uppercase",
-            margin: 0,
-            paddingLeft: "clamp(100px, 13vw, 200px)",
-          }}
-        >
-          El
-        </motion.p>
+          {/* "EL" — sits under "SITIO" */}
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.52, ease: EASE }}
+            style={{
+              position: "absolute", left: "18%", top: "25%",
+              fontFamily: "var(--ws-hubballi)",
+              fontSize: "7.6cqw",
+              letterSpacing: ".03em",
+              lineHeight: 1,
+              whiteSpace: "nowrap",
+              color: "rgba(240,235,225,.9)",
+              textTransform: "uppercase",
+            }}
+          >
+            El
+          </motion.span>
 
-        {/* "NIVEL" — Iceland, very large, gold */}
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.60, ease: EASE }}
-          style={{
-            fontFamily: "var(--ws-iceland)",
-            fontSize: "clamp(78px, 10vw, 148px)",
-            letterSpacing: ".01em",
-            lineHeight: 0.84,
-            color: "#D4A020",
-            textTransform: "uppercase",
-            margin: 0,
-            textShadow: "0 2px 32px rgba(212,160,32,.2)",
-          }}
-        >
-          Nivel
-        </motion.p>
+          {/* "NIVEL" — aligned with the "i" of SITIO */}
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.60, ease: EASE }}
+            style={{
+              position: "absolute", left: "30%", top: "28%",
+              fontFamily: "var(--ws-iceland)",
+              fontSize: "18cqw",
+              letterSpacing: ".01em",
+              lineHeight: 1,
+              whiteSpace: "nowrap",
+              color: "#D4A020",
+              textTransform: "uppercase",
+              textShadow: "0 2px 32px rgba(212,160,32,.2)",
+            }}
+          >
+            Nivel
+          </motion.span>
 
-        {/* Swoosh — hand-drawn wave under NIVEL */}
-        <motion.svg
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.7, delay: 0.72, ease: EASE }}
-          viewBox="0 0 380 32"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden
-          style={{
-            display: "block",
-            width: "clamp(150px, 19vw, 290px)",
-            height: "auto",
-            marginTop: "clamp(1px, 0.2vw, 4px)",
-            marginBottom: "clamp(1px, 0.2vw, 4px)",
-            transformOrigin: "left center",
-          }}
-        >
-          <path
-            d="M 4 22 Q 40 6, 82 19 Q 124 32, 168 15 Q 212 -1, 258 16 Q 294 28, 334 13 Q 356 6, 376 18"
-            stroke="#D4A020"
-            strokeWidth="3"
-            strokeLinecap="round"
+          {/* Hand-drawn swoosh under NIVEL */}
+          <motion.svg
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.7, delay: 0.72, ease: EASE }}
+            viewBox="0 0 380 32"
             fill="none"
-          />
-        </motion.svg>
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden
+            style={{
+              position: "absolute", left: "31%", top: "47%",
+              width: "50cqw", height: "auto",
+              transformOrigin: "left center",
+            }}
+          >
+            <path
+              d="M 4 22 Q 40 6, 82 19 Q 124 32, 168 15 Q 212 -1, 258 16 Q 294 28, 334 13 Q 356 6, 376 18"
+              stroke="#D4A020"
+              strokeWidth="3"
+              strokeLinecap="round"
+              fill="none"
+            />
+          </motion.svg>
 
-        {/* "DE TU" */}
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.80, ease: EASE }}
-          style={{
-            fontFamily: "var(--ws-hubballi)",
-            fontSize: "clamp(20px, 2.6vw, 40px)",
-            letterSpacing: ".06em",
-            lineHeight: 1.0,
-            color: "rgba(240,235,225,.88)",
-            textTransform: "uppercase",
-            margin: 0,
-          }}
-        >
-          De tu
-        </motion.p>
+          {/* "DE TU" */}
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.80, ease: EASE }}
+            style={{
+              position: "absolute", left: "36%", top: "60%",
+              fontFamily: "var(--ws-hubballi)",
+              fontSize: "8cqw",
+              letterSpacing: ".03em",
+              lineHeight: 1,
+              whiteSpace: "nowrap",
+              color: "rgba(240,235,225,.9)",
+              textTransform: "uppercase",
+            }}
+          >
+            De tu
+          </motion.span>
 
-        {/* "EMPRESA?" — Kanit 800, tilted +3deg, very large */}
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.88, ease: EASE }}
-          style={{
-            fontFamily: "var(--ws-kanit)",
-            fontSize: "clamp(58px, 7.5vw, 112px)",
-            fontWeight: 800,
-            letterSpacing: "-.01em",
-            lineHeight: 0.88,
-            color: "#f5f3ef",
-            textTransform: "uppercase",
-            margin: 0,
-            marginBottom: "clamp(28px, 4vw, 52px)",
-            display: "inline-block",
-            transform: "rotate(3deg)",
-            transformOrigin: "left bottom",
-            textShadow: "0 2px 24px rgba(0,0,0,.55)",
-          }}
-        >
-          Empresa?
-        </motion.p>
+          {/* "EMPRESA?" — tilted */}
+          <motion.span
+            initial={{ opacity: 0, y: 10, rotate: 3 }}
+            animate={{ opacity: 1, y: 0, rotate: 3 }}
+            transition={{ duration: 0.8, delay: 0.88, ease: EASE }}
+            style={{
+              position: "absolute", left: "18%", top: "72%",
+              fontFamily: "var(--ws-kanit)",
+              fontSize: "13.5cqw",
+              fontWeight: 800,
+              letterSpacing: "-.01em",
+              lineHeight: 1,
+              whiteSpace: "nowrap",
+              color: "#f5f3ef",
+              textTransform: "uppercase",
+              transformOrigin: "left bottom",
+              textShadow: "0 2px 24px rgba(0,0,0,.55)",
+            }}
+          >
+            Empresa?
+          </motion.span>
+        </motion.div>
 
         {/* Tags */}
         <motion.div
