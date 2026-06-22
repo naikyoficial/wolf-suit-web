@@ -7,7 +7,26 @@ import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
 import { useMobile }    from "@/hooks/useMobile";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
-const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
+
+/* Corner tick helper — renders two border sides only */
+function CornerTick({ pos }: { pos: "tl" | "tr" | "bl" | "br" }) {
+  const size = 22;
+  const color = "1px solid #b8954c";
+  const style: React.CSSProperties = {
+    position: "absolute",
+    width: size,
+    height: size,
+    borderTop:    (pos === "tl" || pos === "tr") ? color : undefined,
+    borderBottom: (pos === "bl" || pos === "br") ? color : undefined,
+    borderLeft:   (pos === "tl" || pos === "bl") ? color : undefined,
+    borderRight:  (pos === "tr" || pos === "br") ? color : undefined,
+    top:    (pos === "tl" || pos === "tr") ? -1 : undefined,
+    bottom: (pos === "bl" || pos === "br") ? -1 : undefined,
+    left:   (pos === "tl" || pos === "bl") ? -1 : undefined,
+    right:  (pos === "tr" || pos === "br") ? -1 : undefined,
+  };
+  return <span aria-hidden style={style} />;
+}
 
 export function Duality() {
   const isMobile = useMobile();
@@ -16,7 +35,8 @@ export function Duality() {
       id="duality"
       className="relative"
       style={{
-        padding: "clamp(48px, 7vh, 160px) clamp(1.5rem, 8vw, 7.5rem)",
+        paddingBlock: "clamp(80px, 12vh, 180px)",
+        paddingInline: "clamp(1.5rem, 8vw, 7.5rem)",
         zIndex: 10,
         background: "rgba(7,6,4,.8)",
         textAlign: "center",
@@ -25,7 +45,7 @@ export function Duality() {
       {/* Atmosphere */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 55% 45% at 50% 50%, rgba(140,85,5,.08) 0%, transparent 70%)",
+        background: "radial-gradient(ellipse 55% 45% at 50% 50%, rgba(140,85,5,.07) 0%, transparent 70%)",
       }} />
       {/* Top fade */}
       <div aria-hidden style={{
@@ -40,52 +60,81 @@ export function Duality() {
         pointerEvents: "none", zIndex: 20,
       }} />
 
-      <div className="w-full max-w-[1100px] mx-auto" style={{ position: "relative", zIndex: 1 }}>
+      {/* ── Architectural frame ── */}
+      <div
+        style={{
+          maxWidth: 1080,
+          margin: "0 auto",
+          position: "relative",
+          zIndex: 1,
+          background: "linear-gradient(160deg, #161616, #0e0e0e)",
+          border: "1px solid #262626",
+          padding: "clamp(48px, 7vw, 100px) clamp(28px, 7vw, 90px)",
+        }}
+      >
+        {/* Radial glow behind frame content */}
+        <div aria-hidden style={{
+          position: "absolute", inset: 0, pointerEvents: "none",
+          background: "radial-gradient(ellipse at 50% 30%, rgba(194,152,74,.05), transparent 60%)",
+          borderRadius: "inherit",
+        }} />
+
+        {/* Corner ticks */}
+        <CornerTick pos="tl" />
+        <CornerTick pos="tr" />
+        <CornerTick pos="bl" />
+        <CornerTick pos="br" />
+
+        {/* Vertical accent line — centered at top of frame */}
+        <div aria-hidden style={{
+          position: "absolute",
+          top: -36,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: 1,
+          height: 36,
+          background: "linear-gradient(to bottom, transparent, #b8954c)",
+        }} />
 
         {/* Eyebrow */}
-        <Reveal y={16} blur={4} style={{ marginBottom: "clamp(24px, 3.5vh, 52px)" }}>
+        <Reveal y={16} blur={4} style={{ marginBottom: "clamp(24px, 3.5vh, 52px)", position: "relative", zIndex: 1 }}>
           <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".52em", textTransform: "uppercase" }}>
             Dualidad
           </ShimmerLabel>
         </Reveal>
 
-        {/* Line 1 — contrast statement */}
-        <div style={{ marginBottom: 12 }}>
+        {/* Line 1 — dimmed / receding */}
+        <div style={{ marginBottom: 10, position: "relative", zIndex: 1 }}>
           <SplitWords
             as="h2"
             delay={0}
             stagger={0.032}
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(36px, 5.5vw, 80px)",
-              fontWeight: 300,
+              fontSize: "clamp(32px, 5.4vw, 76px)",
+              fontWeight: 400,
               lineHeight: 1.05,
               letterSpacing: "-.03em",
-              color: "var(--color-text-2)",
+              color: "#56544f",
             }}
           >
             Una empresa pequeña puede parecer líder de su sector.
           </SplitWords>
         </div>
 
-        {/* Line 2 — counter — gold shimmer */}
-        <div style={{ marginBottom: "clamp(16px, 2.5vh, 40px)" }}>
+        {/* Line 2 — dominant / white */}
+        <div style={{ marginBottom: "clamp(16px, 2.5vh, 40px)", position: "relative", zIndex: 1 }}>
           <SplitWords
             as="h2"
             delay={0.12}
             stagger={0.028}
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(36px, 5.5vw, 80px)",
-              fontWeight: 300,
-              lineHeight: 1.05,
+              fontSize: "clamp(34px, 5.6vw, 82px)",
+              fontWeight: 600,
+              lineHeight: 1.03,
               letterSpacing: "-.03em",
-              background: GOLD,
-              backgroundSize: "260% 100%",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              animation: "metalShimmer 10s ease-in-out infinite",
+              color: "#f5f3ef",
             }}
           >
             Una gran empresa puede parecer amateur.
@@ -93,7 +142,7 @@ export function Duality() {
         </div>
 
         {/* Pivot line */}
-        <div style={{ marginBottom: "clamp(22px, 3.5vh, 56px)" }}>
+        <div style={{ marginBottom: "clamp(22px, 3.5vh, 56px)", position: "relative", zIndex: 1 }}>
           <SplitWords
             as="p"
             delay={0.22}
@@ -111,25 +160,23 @@ export function Duality() {
           </SplitWords>
         </div>
 
-        {/* Gold line — animated draw */}
-        <Reveal delay={0.6} y={0} blur={0} style={{ marginBottom: "clamp(18px, 2.8vh, 44px)" }}>
+        {/* Gold separator — full bleed within frame */}
+        <Reveal delay={0.6} y={0} blur={0} style={{ marginBottom: "clamp(18px, 2.8vh, 44px)", position: "relative", zIndex: 1 }}>
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={isMobile ? { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const } : { duration: 1.1, delay: 0.7, ease: EASE }}
             style={{
-              width: 44, height: 1, margin: "0 auto",
-              background: GOLD,
-              backgroundSize: "260% 100%",
-              animation: "metalShimmer 8s ease-in-out infinite",
+              height: 1,
+              background: "linear-gradient(90deg, transparent, #c2984a, transparent)",
               transformOrigin: "center",
             }}
           />
         </Reveal>
 
         {/* Narrative paragraph */}
-        <Reveal delay={0.75} y={24} blur={6} style={{ marginBottom: "clamp(24px, 4vh, 64px)" }}>
+        <Reveal delay={0.75} y={24} blur={6} style={{ marginBottom: "clamp(24px, 4vh, 64px)", position: "relative", zIndex: 1 }}>
           <p style={{
             fontSize: 17,
             color: "var(--color-text-3)",
@@ -145,7 +192,7 @@ export function Duality() {
         </Reveal>
 
         {/* Closing statement */}
-        <Reveal delay={0.95} y={20} blur={5}>
+        <Reveal delay={0.95} y={20} blur={5} style={{ position: "relative", zIndex: 1 }}>
           <p style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(20px, 2.4vw, 32px)",
@@ -156,11 +203,11 @@ export function Duality() {
             maxWidth: 680,
             margin: "0 auto",
           }}>
-            Tu empresa no necesita ser la número uno para verse como tal.
-            Solo necesita el traje correcto.
+            Tu empresa no necesita ser la número uno para verse como tal.{" "}
+            Solo necesita{" "}
+            <em style={{ color: "#d8b25f", fontStyle: "italic" }}>el traje correcto</em>.
           </p>
         </Reveal>
-
       </div>
     </section>
   );
