@@ -38,7 +38,7 @@ export function Hero() {
         style={{ position: "absolute", inset: 0 }}
       >
         <Image
-          src="/suitwolf-hero.png"
+          src="/suitwolf-hero-v2.png"
           alt=""
           fill
           priority
