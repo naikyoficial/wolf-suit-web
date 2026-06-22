@@ -74,7 +74,6 @@ export function Duality() {
           margin: "0 auto",
           position: "relative",
           zIndex: 1,
-          overflow: "hidden",
           background: "linear-gradient(160deg, #161614 0%, #0d0d0b 100%)",
           border: "1px solid rgba(255,255,255,.07)",
           boxShadow: [
@@ -84,16 +83,6 @@ export function Duality() {
           padding: "clamp(48px, 7vw, 100px) clamp(28px, 7vw, 90px)",
         }}
       >
-        {/* Texture image — same as section bg but inside the card */}
-        <Image
-          src="/dualidad-bg.png"
-          alt=""
-          fill
-          sizes="(max-width: 1080px) 100vw, 1080px"
-          style={{ objectFit: "cover", objectPosition: "50% 50%", opacity: 0.11, zIndex: 0 }}
-          aria-hidden
-        />
-
         {/* Corner ticks */}
         <CornerTick pos="tl" />
         <CornerTick pos="tr" />
