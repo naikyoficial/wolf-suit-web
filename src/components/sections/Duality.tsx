@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Reveal }       from "@/components/ui/Reveal";
 import { SplitWords }   from "@/components/ui/SplitWords";
@@ -40,8 +41,19 @@ export function Duality() {
         zIndex: 10,
         background: "rgba(7,6,4,.8)",
         textAlign: "center",
+        overflow: "hidden",
       }}
     >
+      {/* Background image */}
+      <Image
+        src="/dualidad-suitwolf.png"
+        alt=""
+        fill
+        sizes="100vw"
+        style={{ objectFit: "cover", objectPosition: "50% 50%", opacity: 0.22 }}
+        aria-hidden
+      />
+
       {/* Atmosphere */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, pointerEvents: "none",
