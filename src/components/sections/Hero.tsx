@@ -52,6 +52,12 @@ export function Hero() {
       </div>
 
 
+      {/* Bottom fade — soft rise from black so the title reads clearly */}
+      <div aria-hidden style={{
+        position: "absolute", bottom: 0, left: 0, right: 0, height: "50%", pointerEvents: "none",
+        background: "linear-gradient(to top, rgba(4,4,4,.95) 0%, rgba(4,4,4,.6) 25%, rgba(4,4,4,.2) 55%, transparent 100%)",
+      }} />
+
       {/* FX — desktop only (HeroFx returns null on touch) */}
       <HeroFx />
 
