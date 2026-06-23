@@ -163,7 +163,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.52, ease: EASE }}
             style={{
-              position: "absolute", left: "4%", top: "31%",
+              position: "absolute", left: "8%", top: "31%",
               fontFamily: "var(--ws-iceland)",
               fontSize: "9cqw",
               letterSpacing: ".03em",
@@ -232,14 +232,14 @@ export function Hero() {
             style={{
               position: "absolute", left: "19%", top: "41%",
               width: "46cqw",
-              aspectRatio: "1371 / 175",
+              aspectRatio: "1371 / 150",
               transformOrigin: "left center",
               background: GOLD_NIVEL,
               backgroundSize: "200% 100%",
               WebkitMaskImage: "url(/swoosh.png)",
               maskImage: "url(/swoosh.png)",
-              WebkitMaskSize: "contain",
-              maskSize: "contain",
+              WebkitMaskSize: "100% 100%",
+              maskSize: "100% 100%",
               WebkitMaskRepeat: "no-repeat",
               maskRepeat: "no-repeat",
               WebkitMaskPosition: "left center",
