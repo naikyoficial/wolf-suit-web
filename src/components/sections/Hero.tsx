@@ -9,10 +9,7 @@ const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
 const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #9A6E12 22%, #D4A020 44%, #F0C840 52%, #D4A020 60%, #9A6E12 78%, #5A3C0A 100%)";
 
-// Warm amber/orange gold for the large "NIVEL" word and the swoosh — tuned to
-// match the fiery backlight glow behind the wolf in the hero image. Keeps a
-// brighter shimmer highlight in the centre; edges stay a deep burnt amber.
-const GOLD_NIVEL = "linear-gradient(95deg, #9C5E16 0%, #CC822A 26%, #F2B04A 50%, #CC822A 74%, #9C5E16 100%)";
+const GOLD_NIVEL = "linear-gradient(95deg, #B8820A 0%, #D4A020 28%, #F0CC50 50%, #D4A020 72%, #B8820A 100%)";
 
 const TAGS = ["Diseño y Desarrollo Web", "E-commerce", "Software a Medida"];
 
