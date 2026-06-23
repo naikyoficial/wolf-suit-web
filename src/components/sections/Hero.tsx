@@ -230,9 +230,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.76, ease: EASE }}
             aria-hidden
             style={{
-              position: "absolute", left: "19%", top: "43%",
-              width: "47cqw",
-              aspectRatio: "1371 / 214",
+              position: "absolute", left: "19%", top: "41%",
+              width: "46cqw",
+              aspectRatio: "1371 / 175",
               transformOrigin: "left center",
               background: GOLD_NIVEL,
               backgroundSize: "200% 100%",
