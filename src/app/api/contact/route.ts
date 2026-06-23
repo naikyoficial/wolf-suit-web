@@ -10,11 +10,24 @@ const QUESTIONS: { id: string; label: string; emoji: string }[] = [
 ];
 
 export async function POST(request: Request) {
+  console.log("[contact] POST received");
+  console.log("[contact] RESEND_API_KEY set:", !!process.env.RESEND_API_KEY);
+
   const resend = new Resend(process.env.RESEND_API_KEY);
-  const body = await request.json();
-  const { name, email, company, role, vision, answers } = body;
+
+  let body: Record<string, unknown>;
+  try {
+    body = await request.json();
+  } catch (e) {
+    console.error("[contact] JSON parse error:", e);
+    return NextResponse.json({ error: "JSON inválido" }, { status: 400 });
+  }
+
+  const { name, email, company, role, vision, answers } = body as Record<string, string>;
+  console.log("[contact] fields:", { name: !!name, email: !!email, company: !!company, vision: !!vision });
 
   if (!name || !email || !company || !vision) {
+    console.error("[contact] Missing required fields");
     return NextResponse.json({ error: "Faltan campos obligatorios" }, { status: 400 });
   }
 
@@ -188,9 +201,10 @@ export async function POST(request: Request) {
   });
 
   if (error) {
-    console.error("Resend error:", error);
-    return NextResponse.json({ error: "No se pudo enviar el email" }, { status: 500 });
+    console.error("[contact] Resend error:", JSON.stringify(error));
+    return NextResponse.json({ error: "No se pudo enviar el email", detail: error }, { status: 500 });
   }
 
+  console.log("[contact] Email sent OK");
   return NextResponse.json({ ok: true });
 }
