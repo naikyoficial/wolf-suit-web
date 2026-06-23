@@ -151,17 +151,14 @@ export function Navbar() {
         </nav>
 
         {/* Right side */}
-        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16 }}>
-          {/* Desktop CTA */}
-          <CtaButton />
-
+        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center" }}>
           {/* Hamburger — mobile only */}
           <button
-            className="md:hidden"
+            className="md:hidden flex flex-col justify-center items-center"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={menuOpen}
-            style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 5, width: 36, height: 36, flexShrink: 0 }}
+            style={{ gap: 5, width: 36, height: 36, flexShrink: 0 }}
           >
             <span style={{
               width: 20, height: 1,
@@ -278,48 +275,6 @@ export function Navbar() {
               ))}
             </nav>
 
-            {/* Mobile CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.42, ease: EASE }}
-              style={{
-                padding: "0 clamp(1.5rem,8vw,7.5rem) clamp(40px,6vh,64px)",
-                display: "flex",
-                justifyContent: "center",
-                position: "relative",
-                zIndex: 1,
-              }}
-            >
-              <div style={{
-                padding: "1px",
-                background: GOLD,
-                backgroundSize: "280% 100%",
-                animation: "metalShimmer 5s ease-in-out infinite",
-              }}>
-                <Link
-                  href="/evaluacion"
-                  onClick={() => setMenuOpen(false)}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 20,
-                    padding: "18px 40px",
-                    background: "#060606",
-                    color: "var(--color-text)",
-                    fontSize: 10,
-                    letterSpacing: ".32em",
-                    textTransform: "uppercase",
-                    textDecoration: "none",
-                  }}
-                >
-                  Iniciar proceso
-                  <span style={{ display: "inline-flex", alignItems: "center", position: "relative", width: 20, height: 1, background: "currentColor", flexShrink: 0 }}>
-                    <span style={{ position: "absolute", right: -1, top: -3, width: 5, height: 5, borderRight: "1px solid currentColor", borderTop: "1px solid currentColor", transform: "rotate(45deg)" }} />
-                  </span>
-                </Link>
-              </div>
-            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -327,54 +282,3 @@ export function Navbar() {
   );
 }
 
-function CtaButton() {
-  const [hov, setHov] = useState(false);
-  return (
-    <div
-      className="hidden md:inline-block"
-      style={{
-        padding: "1px",
-        background: GOLD,
-        backgroundSize: "280% 100%",
-        animation: "metalShimmer 5s ease-in-out infinite",
-      }}
-    >
-      <Link
-        href="/evaluacion"
-        onMouseEnter={() => setHov(true)}
-        onMouseLeave={() => setHov(false)}
-        data-cursor-hover
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 14,
-          padding: "9px 20px",
-          background: hov ? "var(--color-gold)" : "#060606",
-          color: hov ? "#080808" : "rgba(240,235,225,.85)",
-          fontSize: 10,
-          letterSpacing: ".22em",
-          textTransform: "uppercase",
-          textDecoration: "none",
-          transition: "background .35s, color .35s",
-        }}
-      >
-        Iniciar proceso
-        <span style={{
-          display: "inline-flex", alignItems: "center", position: "relative",
-          width: 16, height: 1,
-          background: hov ? "#080808" : "rgba(212,160,32,.7)",
-          flexShrink: 0,
-          transition: "background .35s",
-        }}>
-          <span style={{
-            position: "absolute", right: -1, top: -3, width: 5, height: 5,
-            borderRight: `1px solid ${hov ? "#080808" : "rgba(212,160,32,.7)"}`,
-            borderTop: `1px solid ${hov ? "#080808" : "rgba(212,160,32,.7)"}`,
-            transform: "rotate(45deg)",
-            transition: "border-color .35s",
-          }} />
-        </span>
-      </Link>
-    </div>
-  );
-}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { HeroFx } from "@/components/sections/HeroFx";
@@ -16,6 +16,7 @@ const TAGS = ["Diseño y Desarrollo Web", "E-commerce", "Software a Medida"];
 
 export function Hero() {
   const isMobile = useMobile();
+  const [ctaHov, setCtaHov] = useState(false);
   const { scrollY } = useScroll();
   const contentOp = useTransform(scrollY, [0, 400], [1, 0]);
   const contentY  = useTransform(scrollY, [0, 500], [0, -52]);
@@ -357,7 +358,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.0, delay: 1.2, ease: EASE }}
-          style={{ width: "100%", textAlign: "center", marginBottom: "clamp(30px, 4.2vw, 56px)" }}
+          style={{ width: "100%", textAlign: "center", marginBottom: "clamp(48px, 6vw, 80px)" }}
         >
           <span style={{
             fontSize: "clamp(10px, 0.82vw, 13px)", letterSpacing: ".28em", textTransform: "uppercase",
@@ -379,33 +380,58 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* Scroll cue */}
+        {/* CTA — Solicitar evaluación */}
         <motion.div
-          initial={{ opacity: 0, y: 8 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.4, delay: 1.5 }}
-          className="hidden sm:flex"
-          style={{ flexDirection: "column", alignItems: "center", gap: 10 }}
+          transition={{ duration: 1.0, delay: 1.45, ease: EASE }}
         >
-          <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, rgba(212,160,32,.35), transparent)" }} />
-          <span style={{
-            fontSize: "clamp(9px, 0.66vw, 11px)",
-            letterSpacing: ".55em",
-            textTransform: "uppercase",
+          <div style={{
+            padding: "1px",
             background: GOLD,
-            backgroundSize: "260% 100%",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            animation: "metalShimmer 13s ease-in-out infinite",
+            backgroundSize: "280% 100%",
+            animation: "metalShimmer 5s ease-in-out infinite",
           }}>
-            Continuar
-          </span>
-          <motion.div
-            animate={{ y: [0, 5, 0] }}
-            transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
-            style={{ width: 1, height: 16, background: "linear-gradient(to bottom, rgba(212,160,32,.25), transparent)" }}
-          />
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              onMouseEnter={() => setCtaHov(true)}
+              onMouseLeave={() => setCtaHov(false)}
+              data-cursor-hover
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 20,
+                padding: "18px 44px",
+                background: ctaHov ? "var(--color-gold)" : "#060606",
+                color: ctaHov ? "#080808" : "var(--color-text)",
+                fontSize: 10,
+                letterSpacing: ".32em",
+                textTransform: "uppercase",
+                textDecoration: "none",
+                transition: "background .38s, color .38s",
+              }}
+            >
+              Solicitar evaluación
+              <span style={{
+                position: "relative", display: "inline-flex", alignItems: "center",
+                width: ctaHov ? 32 : 20, height: 1,
+                background: "currentColor", flexShrink: 0,
+                transition: "width .38s",
+              }}>
+                <span style={{
+                  position: "absolute", right: -1, top: -3,
+                  width: 6, height: 6,
+                  borderRight: "1px solid currentColor",
+                  borderTop: "1px solid currentColor",
+                  transform: "rotate(45deg)",
+                }} />
+              </span>
+            </a>
+          </div>
         </motion.div>
 
       </motion.div>
