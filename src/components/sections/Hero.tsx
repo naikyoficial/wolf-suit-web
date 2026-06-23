@@ -115,7 +115,7 @@ export function Hero() {
           alignItems: "center",
           textAlign: "center",
           width: "100%",
-          maxWidth: isMobile ? "100%" : "clamp(360px, 56vw, 880px)",
+          maxWidth: isMobile ? "100%" : "clamp(380px, 64vw, 1020px)",
           paddingBottom: "clamp(20px, 3vh, 48px)",
           paddingLeft:  isMobile ? "clamp(1.5rem, 8vw, 9rem)" : "clamp(2rem, 10vw, 12rem)",
           paddingRight: isMobile ? "clamp(1.5rem, 8vw, 9rem)" : "1.5rem",
