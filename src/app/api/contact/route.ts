@@ -15,7 +15,7 @@ export async function POST(request: Request) {
 
   const resend = new Resend(process.env.RESEND_API_KEY);
 
-  let body: Record<string, unknown>;
+  let body: { name?: string; email?: string; company?: string; role?: string; vision?: string; answers?: Record<string, string> };
   try {
     body = await request.json();
   } catch (e) {
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "JSON inválido" }, { status: 400 });
   }
 
-  const { name, email, company, role, vision, answers } = body as Record<string, string>;
+  const { name, email, company, role, vision, answers } = body;
   console.log("[contact] fields:", { name: !!name, email: !!email, company: !!company, vision: !!vision });
 
   if (!name || !email || !company || !vision) {
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
   }
 
   const answerRows = QUESTIONS.map(({ id, label, emoji }) => {
-    const answer = (answers as Record<string, string>)?.[id] ?? "—";
+    const answer = answers?.[id] ?? "—";
     return `
       <tr>
         <td style="padding:16px 24px;border-bottom:1px solid #1E1E1C;vertical-align:top;width:40%">
@@ -176,7 +176,7 @@ export async function POST(request: Request) {
     "",
     "📋 EVALUACIÓN COMPLETADA",
     ...QUESTIONS.map(({ id, label }) =>
-      `${label}: ${(answers as Record<string, string>)?.[id] ?? "—"}`
+      `${label}: ${answers?.[id] ?? "—"}`
     ),
     "",
     "💭 VISIÓN DEL PROYECTO",
