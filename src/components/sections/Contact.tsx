@@ -109,13 +109,17 @@ export function Contact() {
     e.preventDefault();
     setSubmitting(true);
     try {
-      await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, company, role, vision, answers }),
       });
-    } catch {
-      // still show confirmation — email failure shouldn't block UX
+      if (!res.ok) {
+        const body = await res.text();
+        console.error("[Contact] API error", res.status, body);
+      }
+    } catch (err) {
+      console.error("[Contact] Network error", err);
     }
     setSubmitting(false);
     goTo("confirmed");
