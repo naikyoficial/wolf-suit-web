@@ -1,9 +1,8 @@
 import { Hero }        from "@/components/sections/Hero";
 import { Duality }     from "@/components/sections/Duality";
 import { Philosophy }  from "@/components/sections/Philosophy";
-import { Pillars }     from "@/components/sections/Pillars";
-import { Process }     from "@/components/sections/Process";
 import { Services }    from "@/components/sections/Services";
+import { WolfSystem }  from "@/components/sections/WolfSystem";
 import { Apply }       from "@/components/sections/Apply";
 
 export default function HomePage() {
@@ -12,9 +11,8 @@ export default function HomePage() {
       <Hero />
       <Duality />
       <Philosophy />
-      <Pillars />
-      <Process />
       <Services />
+      <WolfSystem />
       <Apply />
     </main>
   );

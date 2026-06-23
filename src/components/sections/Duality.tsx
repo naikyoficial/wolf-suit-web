@@ -8,6 +8,7 @@ import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
 import { useMobile }    from "@/hooks/useMobile";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
+const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
 
 export function Duality() {
   const isMobile = useMobile();
@@ -24,15 +25,22 @@ export function Duality() {
         overflow: "hidden",
       }}
     >
-      {/* Texture — barely perceptible, adds depth without competing */}
+      {/* Texture */}
       <Image
         src="/dualidad-bg.png"
         alt=""
         fill
         sizes="100vw"
-        style={{ objectFit: "cover", objectPosition: "50% 50%", opacity: 0.05 }}
+        style={{ objectFit: "cover", objectPosition: "50% 50%", opacity: 0.06 }}
         aria-hidden
       />
+
+      {/* Warm center glow — lifts text off pure black */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse 70% 55% at 50% 50%, rgba(168,108,5,.07) 0%, transparent 70%)",
+        zIndex: 1,
+      }} />
 
       {/* Edge fades */}
       <div aria-hidden style={{
@@ -46,7 +54,7 @@ export function Duality() {
         pointerEvents: "none", zIndex: 2,
       }} />
 
-      {/* Open editorial column — no card, typography is the design */}
+      {/* Editorial column */}
       <div style={{ maxWidth: 800, margin: "0 auto", position: "relative", zIndex: 3 }}>
 
         {/* Eyebrow */}
@@ -68,7 +76,7 @@ export function Duality() {
               fontWeight: 300,
               lineHeight: 1.03,
               letterSpacing: "-.025em",
-              color: "rgba(255,255,255,.36)",
+              color: "rgba(255,255,255,.55)",
             }}
           >
             Una empresa pequeña puede parecer líder de su sector.
@@ -87,7 +95,7 @@ export function Duality() {
               fontWeight: 700,
               lineHeight: 1.03,
               letterSpacing: "-.025em",
-              color: "#f5f3ef",
+              color: "#ffffff",
             }}
           >
             Una gran empresa puede parecer amateur.
@@ -95,7 +103,7 @@ export function Duality() {
         </div>
 
         {/* Gold rule */}
-        <Reveal delay={0.36} y={0} blur={0} style={{ marginBottom: "clamp(40px, 6vh, 88px)" }}>
+        <Reveal delay={0.36} y={0} blur={0} style={{ marginBottom: "clamp(36px, 5.5vh, 72px)" }}>
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
@@ -105,38 +113,34 @@ export function Duality() {
               : { duration: 1.3, delay: 0.36, ease: EASE }
             }
             style={{
-              width: 48, height: 1, margin: "0 auto",
-              background: "linear-gradient(90deg, transparent, #c2984a, transparent)",
+              width: 56, height: 1, margin: "0 auto",
+              background: GOLD, backgroundSize: "260% 100%",
+              animation: "metalShimmer 8s ease-in-out infinite",
               transformOrigin: "center",
             }}
           />
         </Reveal>
 
-        {/* Pivot — italic, editorial voice */}
-        <div style={{ marginBottom: "clamp(36px, 5.5vh, 72px)" }}>
-          <SplitWords
-            as="p"
-            delay={0.48}
-            stagger={0.020}
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(22px, 2.8vw, 40px)",
-              fontWeight: 300,
-              fontStyle: "italic",
-              lineHeight: 1.22,
-              letterSpacing: "-.012em",
-              color: "rgba(240,235,225,.82)",
-            }}
-          >
+        {/* Pivot — "La diferencia está..." — Reveal for guaranteed visibility */}
+        <Reveal delay={0.48} y={22} blur={4} style={{ marginBottom: "clamp(36px, 5.5vh, 72px)" }}>
+          <p style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(24px, 3vw, 44px)",
+            fontWeight: 300,
+            fontStyle: "italic",
+            lineHeight: 1.18,
+            letterSpacing: "-.015em",
+            color: "rgba(240,235,225,.88)",
+          }}>
             La diferencia está en cómo se presenta al mundo.
-          </SplitWords>
-        </div>
+          </p>
+        </Reveal>
 
-        {/* Body — Inter via --font-body, max contrast with Cormorant display */}
-        <Reveal delay={0.68} y={18} blur={5} style={{ marginBottom: "clamp(36px, 5.5vh, 72px)" }}>
+        {/* Body */}
+        <Reveal delay={0.64} y={18} blur={5} style={{ marginBottom: "clamp(36px, 5.5vh, 72px)" }}>
           <p style={{
             fontSize: "clamp(14px, 1.05vw, 17px)",
-            color: "var(--color-text-3)",
+            color: "var(--color-text-2)",
             lineHeight: 1.95,
             maxWidth: 460,
             margin: "0 auto",
@@ -148,13 +152,13 @@ export function Duality() {
           </p>
         </Reveal>
 
-        {/* Closing — very quiet, lets the em gold carry it */}
-        <Reveal delay={0.92} y={14} blur={4}>
+        {/* Closing */}
+        <Reveal delay={0.84} y={14} blur={4}>
           <p style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(20px, 2.5vw, 36px)",
             fontWeight: 300,
-            color: "rgba(236,232,223,.52)",
+            color: "rgba(236,232,223,.60)",
             letterSpacing: "-.012em",
             lineHeight: 1.28,
             maxWidth: 620,
@@ -162,7 +166,7 @@ export function Duality() {
           }}>
             Tu empresa no necesita ser la número uno para verse como tal.{" "}
             Solo necesita{" "}
-            <em style={{ color: "#d8b25f", fontStyle: "italic", opacity: 0.9 }}>el traje correcto</em>.
+            <em style={{ color: "#d4a020", fontStyle: "italic" }}>el traje correcto</em>.
           </p>
         </Reveal>
 
