@@ -9,9 +9,10 @@ const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
 const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #9A6E12 22%, #D4A020 44%, #F0C840 52%, #D4A020 60%, #9A6E12 78%, #5A3C0A 100%)";
 
-// Brighter, more uniform gold for the large "NIVEL" word — keeps a shimmer
-// highlight in the centre but the edges stay a saturated gold (not dark brown).
-const GOLD_NIVEL = "linear-gradient(95deg, #D4A020 0%, #F0C840 28%, #FFE87A 50%, #F0C840 72%, #D4A020 100%)";
+// Warm amber/orange gold for the large "NIVEL" word and the swoosh — tuned to
+// match the fiery backlight glow behind the wolf in the hero image. Keeps a
+// brighter shimmer highlight in the centre; edges stay a deep burnt amber.
+const GOLD_NIVEL = "linear-gradient(95deg, #9C5E16 0%, #CC822A 26%, #F2B04A 50%, #CC822A 74%, #9C5E16 100%)";
 
 const TAGS = ["Diseño y Desarrollo Web", "E-commerce", "Software a Medida"];
 
@@ -197,7 +198,7 @@ export function Hero() {
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
               animation: "metalShimmer 13s ease-in-out infinite",
-              filter: "drop-shadow(0 2px 22px rgba(240,200,60,.45))",
+              filter: "drop-shadow(0 2px 22px rgba(230,150,55,.5))",
             }}
           >
             Nivel
@@ -213,8 +214,8 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.72, ease: EASE }}
             aria-hidden
             style={{
-              position: "absolute", left: "29%", top: "52%",
-              width: "54cqw",
+              position: "absolute", left: "29%", top: "49%",
+              width: "52cqw",
               aspectRatio: "1371 / 214",
               transformOrigin: "left center",
               background: GOLD_NIVEL,
@@ -228,7 +229,7 @@ export function Hero() {
               WebkitMaskPosition: "left center",
               maskPosition: "left center",
               animation: "metalShimmer 13s ease-in-out infinite",
-              filter: "drop-shadow(0 1px 10px rgba(240,200,60,.28))",
+              filter: "drop-shadow(0 1px 10px rgba(230,150,55,.32))",
             }}
           />
 
