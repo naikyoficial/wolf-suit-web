@@ -68,7 +68,7 @@ export function Duality() {
               fontWeight: 300,
               lineHeight: 1.03,
               letterSpacing: "-.025em",
-              color: "rgba(255,255,255,.18)",
+              color: "rgba(255,255,255,.36)",
             }}
           >
             Una empresa pequeña puede parecer líder de su sector.
@@ -125,7 +125,7 @@ export function Duality() {
               fontStyle: "italic",
               lineHeight: 1.22,
               letterSpacing: "-.012em",
-              color: "rgba(240,235,225,.52)",
+              color: "rgba(240,235,225,.82)",
             }}
           >
             La diferencia está en cómo se presenta al mundo.
@@ -154,7 +154,7 @@ export function Duality() {
             fontFamily: "var(--font-display)",
             fontSize: "clamp(20px, 2.5vw, 36px)",
             fontWeight: 300,
-            color: "rgba(236,232,223,.34)",
+            color: "rgba(236,232,223,.52)",
             letterSpacing: "-.012em",
             lineHeight: 1.28,
             maxWidth: 620,
