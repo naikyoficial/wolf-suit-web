@@ -12,6 +12,5 @@ export const NAV_LINKS = [
   { label: "Filosofía", href: "#philosophy" },
   { label: "Dualidad",  href: "#duality" },
   { label: "Servicios", href: "#services" },
-  { label: "Proceso",   href: "#process" },
-  { label: "Enfoque",   href: "#pillars" },
+  { label: "Sistema",   href: "#sistema" },
 ] as const;
