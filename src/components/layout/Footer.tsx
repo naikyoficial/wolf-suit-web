@@ -24,3 +24,5 @@ export function Footer() {
     </footer>
   );
 }
+
+export { CraftedBy } from "@/components/ui/CraftedBy";
