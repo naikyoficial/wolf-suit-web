@@ -108,8 +108,8 @@ export function Hero() {
           zIndex: 10,
           display: "flex",
           flexDirection: "column",
-          alignItems: isMobile ? "center" : "flex-start",
-          textAlign: isMobile ? "center" : "left",
+          alignItems: "center",
+          textAlign: "center",
           width: "100%",
           maxWidth: isMobile ? "100%" : "clamp(360px, 56vw, 880px)",
           paddingBottom: "clamp(20px, 3vh, 48px)",
@@ -327,7 +327,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 1.4 }}
           className="hidden sm:flex"
-          style={{ flexDirection: "column", alignItems: "flex-start", gap: 10 }}
+          style={{ flexDirection: "column", alignItems: "center", gap: 10 }}
         >
           <div style={{ width: 1, height: 28, background: "linear-gradient(to bottom, rgba(212,160,32,.45), transparent)" }} />
           <span style={{
