@@ -203,38 +203,34 @@ export function Hero() {
             Nivel
           </motion.span>
 
-          {/* Hand-drawn brush swoosh under NIVEL — filled, variable width:
-              thick on the left, tapering into a thin rising tail on the right */}
-          <motion.svg
+          {/* Hand-drawn brush swoosh under NIVEL — the real PNG stroke
+              recoloured to the NIVEL gold: the PNG alpha is used as a mask and
+              filled with the GOLD_NIVEL gradient (+ shimmer), so the exact
+              brush shape & texture are kept while the colour matches NIVEL. */}
+          <motion.div
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 0.8, delay: 0.72, ease: EASE }}
-            viewBox="0 0 400 48"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
             aria-hidden
             style={{
-              position: "absolute", left: "30%", top: "53%",
-              width: "52cqw", height: "auto",
+              position: "absolute", left: "29%", top: "52%",
+              width: "54cqw",
+              aspectRatio: "1371 / 214",
               transformOrigin: "left center",
+              background: GOLD_NIVEL,
+              backgroundSize: "200% 100%",
+              WebkitMaskImage: "url(/swoosh.png)",
+              maskImage: "url(/swoosh.png)",
+              WebkitMaskSize: "contain",
+              maskSize: "contain",
+              WebkitMaskRepeat: "no-repeat",
+              maskRepeat: "no-repeat",
+              WebkitMaskPosition: "left center",
+              maskPosition: "left center",
+              animation: "metalShimmer 13s ease-in-out infinite",
               filter: "drop-shadow(0 1px 10px rgba(240,200,60,.28))",
             }}
-          >
-            <path
-              d="M 12 35
-                 C 30 22, 45 19, 60 19
-                 C 95 20, 120 19, 140 20
-                 C 175 22, 195 24, 220 25
-                 C 255 23, 280 21, 300 20
-                 C 330 17, 360 13, 388 9
-                 C 360 16, 330 21, 300 24
-                 C 280 26, 255 28, 220 30
-                 C 195 32, 175 34, 140 36
-                 C 120 37, 95 38, 60 38
-                 C 45 38, 30 38, 12 35 Z"
-              fill="#F0C840"
-            />
-          </motion.svg>
+          />
 
           {/* "DE TU" */}
           <motion.span
