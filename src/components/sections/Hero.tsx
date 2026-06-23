@@ -143,9 +143,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.44, ease: EASE }}
             style={{
               position: "absolute", left: "0%", top: "13%",
-              fontFamily: "var(--ws-hubballi)",
-              fontSize: "8cqw",
-              letterSpacing: ".03em",
+              fontFamily: "var(--ws-jockey)",
+              fontSize: "6.8cqw",
+              letterSpacing: ".04em",
               lineHeight: 1,
               whiteSpace: "nowrap",
               color: "rgba(240,235,225,.9)",
