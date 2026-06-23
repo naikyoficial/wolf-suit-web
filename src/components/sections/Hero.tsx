@@ -134,55 +134,55 @@ export function Hero() {
             position: "relative",
             containerType: "inline-size",
             width: "100%",
-            aspectRatio: "100 / 68",
+            aspectRatio: "100 / 61",
             marginBottom: "clamp(16px, 2.2vw, 34px)",
           }}
         >
-          {/* "¿TU SITIO WEB REFLEJA" */}
+          {/* "¿TU SITIO WEB REFLEJA" — top line */}
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.44, ease: EASE }}
             style={{
-              position: "absolute", left: "4%", top: "10%",
-              fontFamily: "var(--ws-jockey)",
-              fontSize: "9.5cqw",
-              letterSpacing: ".01em",
+              position: "absolute", left: "8%", top: "11%",
+              fontFamily: "var(--ws-iceland)",
+              fontSize: "9.2cqw",
+              letterSpacing: ".03em",
               lineHeight: 1,
               whiteSpace: "nowrap",
-              color: "rgba(250,247,242,.97)",
+              color: "rgba(248,245,240,.96)",
               textTransform: "uppercase",
             }}
           >
             ¿Tu sitio web refleja
           </motion.span>
 
-          {/* "EL" — sits under "SITIO" */}
+          {/* "EL" — left of NIVEL */}
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.52, ease: EASE }}
             style={{
-              position: "absolute", left: "18%", top: "23%",
-              fontFamily: "var(--ws-hubballi)",
-              fontSize: "7.6cqw",
+              position: "absolute", left: "4%", top: "31%",
+              fontFamily: "var(--ws-iceland)",
+              fontSize: "9cqw",
               letterSpacing: ".03em",
               lineHeight: 1,
               whiteSpace: "nowrap",
-              color: "rgba(240,235,225,.9)",
+              color: "rgba(248,245,240,.96)",
               textTransform: "uppercase",
             }}
           >
             El
           </motion.span>
 
-          {/* "NIVEL" — aligned with the "i" of SITIO */}
+          {/* "NIVEL" — large centre word */}
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.60, ease: EASE }}
             style={{
-              position: "absolute", left: "30%", top: "25%",
+              position: "absolute", left: "19%", top: "21%",
               fontFamily: "var(--ws-iceland)",
               fontSize: "18cqw",
               letterSpacing: ".01em",
@@ -201,6 +201,25 @@ export function Hero() {
             Nivel
           </motion.span>
 
+          {/* "DE TU" — right of NIVEL, same line */}
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.68, ease: EASE }}
+            style={{
+              position: "absolute", left: "66%", top: "31%",
+              fontFamily: "var(--ws-iceland)",
+              fontSize: "9cqw",
+              letterSpacing: ".03em",
+              lineHeight: 1,
+              whiteSpace: "nowrap",
+              color: "rgba(248,245,240,.96)",
+              textTransform: "uppercase",
+            }}
+          >
+            De tu
+          </motion.span>
+
           {/* Hand-drawn brush swoosh under NIVEL — the real PNG stroke
               recoloured to the NIVEL gold: the PNG alpha is used as a mask and
               filled with the GOLD_NIVEL gradient (+ shimmer), so the exact
@@ -208,11 +227,11 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.72, ease: EASE }}
+            transition={{ duration: 0.8, delay: 0.76, ease: EASE }}
             aria-hidden
             style={{
-              position: "absolute", left: "29%", top: "40%",
-              width: "52cqw",
+              position: "absolute", left: "19%", top: "43%",
+              width: "47cqw",
               aspectRatio: "1371 / 214",
               transformOrigin: "left center",
               background: GOLD_NIVEL,
@@ -230,41 +249,20 @@ export function Hero() {
             }}
           />
 
-          {/* "DE TU" */}
+          {/* "EMPRESA?" — bottom line, straight */}
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.80, ease: EASE }}
+            transition={{ duration: 0.8, delay: 0.84, ease: EASE }}
             style={{
-              position: "absolute", left: "36%", top: "50%",
-              fontFamily: "var(--ws-hubballi)",
-              fontSize: "8cqw",
-              letterSpacing: ".03em",
+              position: "absolute", left: "8%", top: "49%",
+              fontFamily: "var(--ws-iceland)",
+              fontSize: "14cqw",
+              letterSpacing: ".01em",
               lineHeight: 1,
               whiteSpace: "nowrap",
-              color: "rgba(240,235,225,.9)",
+              color: "rgba(248,245,240,.96)",
               textTransform: "uppercase",
-            }}
-          >
-            De tu
-          </motion.span>
-
-          {/* "EMPRESA?" — tilted */}
-          <motion.span
-            initial={{ opacity: 0, y: 10, rotate: -3 }}
-            animate={{ opacity: 1, y: 0, rotate: -3 }}
-            transition={{ duration: 0.8, delay: 0.88, ease: EASE }}
-            style={{
-              position: "absolute", left: "18%", top: "65%",
-              fontFamily: "var(--ws-kanit)",
-              fontSize: "13.5cqw",
-              fontWeight: 800,
-              letterSpacing: "-.01em",
-              lineHeight: 1,
-              whiteSpace: "nowrap",
-              color: "#f5f3ef",
-              textTransform: "uppercase",
-              transformOrigin: "left bottom",
               textShadow: "0 2px 24px rgba(0,0,0,.55)",
             }}
           >
