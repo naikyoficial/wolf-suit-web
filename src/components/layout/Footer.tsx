@@ -1,4 +1,5 @@
 import { SITE } from "@/config/site";
+import { CraftedBy } from "@/components/ui/CraftedBy";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -21,8 +22,7 @@ export function Footer() {
       <p style={{ fontSize: 11, color: "var(--color-text-4)", letterSpacing: ".1em" }}>
         &copy; {year} {SITE.name} &middot; Todos los derechos reservados
       </p>
+      <CraftedBy />
     </footer>
   );
 }
-
-export { CraftedBy } from "@/components/ui/CraftedBy";
