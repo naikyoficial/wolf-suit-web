@@ -9,6 +9,10 @@ const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
 const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #9A6E12 22%, #D4A020 44%, #F0C840 52%, #D4A020 60%, #9A6E12 78%, #5A3C0A 100%)";
 
+// Brighter, more uniform gold for the large "NIVEL" word — keeps a shimmer
+// highlight in the centre but the edges stay a saturated gold (not dark brown).
+const GOLD_NIVEL = "linear-gradient(95deg, #D4A020 0%, #F0C840 28%, #FFE87A 50%, #F0C840 72%, #D4A020 100%)";
+
 const TAGS = ["Diseño y Desarrollo Web", "E-commerce", "Software a Medida"];
 
 export function Hero() {
@@ -144,11 +148,11 @@ export function Hero() {
             style={{
               position: "absolute", left: "0%", top: "13%",
               fontFamily: "var(--ws-jockey)",
-              fontSize: "6.8cqw",
-              letterSpacing: ".04em",
+              fontSize: "7.4cqw",
+              letterSpacing: ".01em",
               lineHeight: 1,
               whiteSpace: "nowrap",
-              color: "rgba(240,235,225,.9)",
+              color: "rgba(250,247,242,.97)",
               textTransform: "uppercase",
             }}
           >
@@ -187,13 +191,13 @@ export function Hero() {
               lineHeight: 1,
               whiteSpace: "nowrap",
               textTransform: "uppercase",
-              background: GOLD,
-              backgroundSize: "260% 100%",
+              background: GOLD_NIVEL,
+              backgroundSize: "200% 100%",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
               animation: "metalShimmer 13s ease-in-out infinite",
-              filter: "drop-shadow(0 2px 20px rgba(212,160,32,.4))",
+              filter: "drop-shadow(0 2px 22px rgba(240,200,60,.45))",
             }}
           >
             Nivel
