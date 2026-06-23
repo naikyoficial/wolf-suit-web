@@ -184,11 +184,11 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.60, ease: EASE }}
             style={{
-              position: "absolute", left: "19%", top: "21%",
+              position: "absolute", left: "19%", top: "23%",
               fontFamily: "var(--ws-cormorant)",
               fontWeight: 700,
               fontStyle: "italic",
-              fontSize: "20cqw",
+              fontSize: "17cqw",
               letterSpacing: ".01em",
               lineHeight: 1,
               whiteSpace: "nowrap",
