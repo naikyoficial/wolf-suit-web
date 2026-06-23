@@ -163,7 +163,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.52, ease: EASE }}
             style={{
-              position: "absolute", left: "18%", top: "28%",
+              position: "absolute", left: "18%", top: "25%",
               fontFamily: "var(--ws-hubballi)",
               fontSize: "7.6cqw",
               letterSpacing: ".03em",
@@ -182,7 +182,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.60, ease: EASE }}
             style={{
-              position: "absolute", left: "30%", top: "31%",
+              position: "absolute", left: "30%", top: "27%",
               fontFamily: "var(--ws-iceland)",
               fontSize: "18cqw",
               letterSpacing: ".01em",
@@ -211,7 +211,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.72, ease: EASE }}
             aria-hidden
             style={{
-              position: "absolute", left: "29%", top: "49%",
+              position: "absolute", left: "29%", top: "46%",
               width: "52cqw",
               aspectRatio: "1371 / 214",
               transformOrigin: "left center",
@@ -236,7 +236,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.80, ease: EASE }}
             style={{
-              position: "absolute", left: "36%", top: "60%",
+              position: "absolute", left: "36%", top: "57%",
               fontFamily: "var(--ws-hubballi)",
               fontSize: "8cqw",
               letterSpacing: ".03em",
@@ -255,7 +255,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0, rotate: -3 }}
             transition={{ duration: 0.8, delay: 0.88, ease: EASE }}
             style={{
-              position: "absolute", left: "18%", top: "75%",
+              position: "absolute", left: "18%", top: "72%",
               fontFamily: "var(--ws-kanit)",
               fontSize: "13.5cqw",
               fontWeight: 800,
