@@ -132,8 +132,8 @@ export function Hero() {
             position: "relative",
             containerType: "inline-size",
             width: "100%",
-            aspectRatio: "100 / 82",
-            marginBottom: "clamp(18px, 2.6vw, 40px)",
+            aspectRatio: "100 / 68",
+            marginBottom: "clamp(16px, 2.2vw, 34px)",
           }}
         >
           {/* "¿TU SITIO WEB REFLEJA" */}
@@ -142,7 +142,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.44, ease: EASE }}
             style={{
-              position: "absolute", left: "1.5%", top: "11%",
+              position: "absolute", left: "0%", top: "13%",
               fontFamily: "var(--ws-hubballi)",
               fontSize: "8cqw",
               letterSpacing: ".03em",
@@ -161,7 +161,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.52, ease: EASE }}
             style={{
-              position: "absolute", left: "18%", top: "25%",
+              position: "absolute", left: "18%", top: "28%",
               fontFamily: "var(--ws-hubballi)",
               fontSize: "7.6cqw",
               letterSpacing: ".03em",
@@ -180,7 +180,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.60, ease: EASE }}
             style={{
-              position: "absolute", left: "30%", top: "28%",
+              position: "absolute", left: "30%", top: "31%",
               fontFamily: "var(--ws-iceland)",
               fontSize: "18cqw",
               letterSpacing: ".01em",
@@ -209,7 +209,7 @@ export function Hero() {
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden
             style={{
-              position: "absolute", left: "31%", top: "47%",
+              position: "absolute", left: "31%", top: "54%",
               width: "50cqw", height: "auto",
               transformOrigin: "left center",
             }}
@@ -229,7 +229,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.80, ease: EASE }}
             style={{
-              position: "absolute", left: "36%", top: "52%",
+              position: "absolute", left: "36%", top: "60%",
               fontFamily: "var(--ws-hubballi)",
               fontSize: "8cqw",
               letterSpacing: ".03em",
@@ -248,7 +248,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0, rotate: -3 }}
             transition={{ duration: 0.8, delay: 0.88, ease: EASE }}
             style={{
-              position: "absolute", left: "18%", top: "64%",
+              position: "absolute", left: "18%", top: "75%",
               fontFamily: "var(--ws-kanit)",
               fontSize: "13.5cqw",
               fontWeight: 800,
