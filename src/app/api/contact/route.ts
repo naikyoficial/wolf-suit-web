@@ -177,8 +177,10 @@ export async function POST(request: Request) {
     .join("\n");
 
   const { error } = await resend.emails.send({
-    from: "SuitWolf <noreply@suitwolf.com>",
-    to: ["proyectos@suitwolf.com"],
+    // onboarding@resend.dev is Resend's pre-verified domain — works without DNS setup.
+    // Switch to "SuitWolf <noreply@suitwolf.com>" once suitwolf.com is verified in Resend.
+    from: "SuitWolf <onboarding@resend.dev>",
+    to: ["proyectos@suitwolf.com", "naikymusic.contact@gmail.com"],
     replyTo: email,
     subject: `🐺 Nueva solicitud · ${company} — ${name}`,
     html,
