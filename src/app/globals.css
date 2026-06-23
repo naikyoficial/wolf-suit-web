@@ -200,6 +200,18 @@ body { scrollbar-width: none; }
   from { background-position: 100% center; }
   to   { background-position: -100% center; }
 }
+/* Single unidirectional light sweep — polished metal feel, not neon.
+   Light enters from right, travels across, then rests for most of the cycle. */
+@keyframes goldSweep {
+  0%, 6%  { background-position: 220% center; }
+  42%     { background-position: -120% center; }
+  100%    { background-position: -120% center; }
+}
+/* Halo breathing — imperceptible scale/opacity pulse, 14 s cycle */
+@keyframes haloBreath {
+  0%, 100% { opacity: .75; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.03); }
+}
 @keyframes traceContour {
   from { stroke-dashoffset: 0; }
   to   { stroke-dashoffset: -1150; }

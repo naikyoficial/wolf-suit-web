@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { HeroFx } from "@/components/sections/HeroFx";
@@ -19,6 +20,40 @@ export function Hero() {
   const contentOp = useTransform(scrollY, [0, 400], [1, 0]);
   const contentY  = useTransform(scrollY, [0, 500], [0, -52]);
 
+  // Wolf parallax — tracks cursor, max ±7px x / ±4px y, lerp at 4% per frame
+  const wolfRef = useRef<HTMLDivElement>(null);
+  const px = useRef({ tx: 0, ty: 0, cx: 0, cy: 0, raf: 0 });
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const p = px.current;
+
+    const onMove = (e: MouseEvent) => {
+      p.tx = ((e.clientX / window.innerWidth)  * 2 - 1) * 7;
+      p.ty = ((e.clientY / window.innerHeight) * 2 - 1) * 4;
+    };
+
+    const tick = () => {
+      p.cx += (p.tx - p.cx) * 0.04;
+      p.cy += (p.ty - p.cy) * 0.04;
+      wolfRef.current?.style.setProperty(
+        "transform",
+        `translate(${p.cx.toFixed(2)}px,${p.cy.toFixed(2)}px) scale(1.04)`
+      );
+      p.raf = requestAnimationFrame(tick);
+    };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    p.raf = requestAnimationFrame(tick);
+
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(p.raf);
+    };
+  }, []);
+
   return (
     <section
       style={{
@@ -34,11 +69,13 @@ export function Hero() {
     >
       <h1 className="sr-only">Agencia de Diseño y Desarrollo Web Premium — Suitwolf</h1>
 
-      {/* Wolf image — desktop: right 68% only so the wolf sits in the blue zone.
-          Mobile: full width, wolf centered via globals.css override. */}
+      {/* Wolf image — desktop: right 68% only. Mobile: full width via globals.css.
+          willChange promotes to its own GPU layer for parallax compositing. */}
       <div
+        ref={wolfRef}
         aria-hidden
         className="hero-image-wrap absolute inset-0 sm:left-[32%]"
+        style={{ willChange: "transform", transform: "scale(1.04)" }}
       >
         <Image
           src="/suitwolf-hero-v4.png"
@@ -51,6 +88,17 @@ export function Hero() {
           style={{ objectFit: "cover", objectPosition: "50% 38%" }}
         />
       </div>
+
+      {/* Halo breathing — radial glow that mirrors the wolf's golden backlight.
+          Scale 1→1.03 over 14 s; opacity 0.75→1. Imperceptible in isolation. */}
+      <div aria-hidden style={{
+        position: "absolute", top: "10%", right: "5%",
+        width: "50%", height: "62%",
+        background: "radial-gradient(ellipse at 48% 40%, rgba(178,122,18,.11) 0%, rgba(178,122,18,.04) 48%, transparent 70%)",
+        animation: "haloBreath 14s ease-in-out infinite",
+        pointerEvents: "none", zIndex: 2,
+        willChange: "transform, opacity",
+      }} />
 
       {/* Desktop: gradient bridge — blends black left area into the wolf image */}
       <div aria-hidden className="hidden sm:block" style={{
@@ -81,8 +129,7 @@ export function Hero() {
         background: "linear-gradient(to top, rgba(8,8,8,.98) 0%, rgba(8,8,8,.45) 40%, transparent 100%)",
       }} />
 
-      {/* Mobile: gentle full-frame veil + heavier bottom fade so the wolf
-          recedes behind the title instead of clashing with it */}
+      {/* Mobile: gentle full-frame veil + heavier bottom fade */}
       {isMobile && (
         <>
           <div aria-hidden style={{
@@ -98,7 +145,7 @@ export function Hero() {
         </>
       )}
 
-      {/* Gold particles — right side only */}
+      {/* Gold particles — sparse, slow, atmospheric only */}
       <HeroFx />
 
       {/* Content */}
@@ -128,7 +175,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
           aria-label="¿Tu sitio web refleja el nivel de tu empresa?"
           style={{
             position: "relative",
@@ -140,18 +187,18 @@ export function Hero() {
         >
           {/* "¿TU SITIO WEB REFLEJA" — top line */}
           <motion.span
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.44, ease: EASE }}
+            transition={{ duration: 0.9, delay: 0.44, ease: EASE }}
             style={{
               position: "absolute", left: "8%", top: "11%",
               fontFamily: "var(--ws-cormorant)",
               fontWeight: 700,
               fontSize: "7cqw",
-              letterSpacing: ".06em",
+              letterSpacing: ".07em",
               lineHeight: 1,
               whiteSpace: "nowrap",
-              color: "rgba(248,245,240,.96)",
+              color: "rgba(248,245,240,.93)",
               textTransform: "uppercase",
             }}
           >
@@ -160,29 +207,30 @@ export function Hero() {
 
           {/* "EL" — left of NIVEL */}
           <motion.span
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.52, ease: EASE }}
+            transition={{ duration: 0.9, delay: 0.56, ease: EASE }}
             style={{
               position: "absolute", left: "8%", top: "36%",
               fontFamily: "var(--ws-inter)",
-              fontWeight: 500,
+              fontWeight: 400,
               fontSize: "7cqw",
-              letterSpacing: ".08em",
+              letterSpacing: ".1em",
               lineHeight: 1,
               whiteSpace: "nowrap",
-              color: "rgba(248,245,240,.75)",
+              color: "rgba(248,245,240,.6)",
               textTransform: "uppercase",
             }}
           >
             El
           </motion.span>
 
-          {/* "NIVEL" — large centre word */}
+          {/* "NIVEL" — single unidirectional light sweep (goldSweep).
+              Feels like a shaft of light crossing polished metal once every 14 s. */}
           <motion.span
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.60, ease: EASE }}
+            transition={{ duration: 0.9, delay: 0.64, ease: EASE }}
             style={{
               position: "absolute", left: "21.4%", top: "23%",
               fontFamily: "var(--ws-cormorant)",
@@ -194,12 +242,12 @@ export function Hero() {
               whiteSpace: "nowrap",
               textTransform: "uppercase",
               background: GOLD_NIVEL,
-              backgroundSize: "200% 100%",
+              backgroundSize: "240% 100%",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              animation: "metalShimmer 13s ease-in-out infinite",
-              filter: "drop-shadow(0 2px 22px rgba(230,150,55,.5))",
+              animation: "goldSweep 14s ease-in-out infinite",
+              filter: "drop-shadow(0 1px 6px rgba(200,140,20,.18))",
             }}
           >
             Nivel
@@ -207,32 +255,29 @@ export function Hero() {
 
           {/* "DE TU" — right of NIVEL, same line */}
           <motion.span
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.68, ease: EASE }}
+            transition={{ duration: 0.9, delay: 0.72, ease: EASE }}
             style={{
               position: "absolute", left: "71%", top: "36%",
               fontFamily: "var(--ws-inter)",
-              fontWeight: 500,
+              fontWeight: 400,
               fontSize: "7cqw",
-              letterSpacing: ".08em",
+              letterSpacing: ".1em",
               lineHeight: 1,
               whiteSpace: "nowrap",
-              color: "rgba(248,245,240,.75)",
+              color: "rgba(248,245,240,.6)",
               textTransform: "uppercase",
             }}
           >
             De tu
           </motion.span>
 
-          {/* Hand-drawn brush swoosh under NIVEL — the real PNG stroke
-              recoloured to the NIVEL gold: the PNG alpha is used as a mask and
-              filled with the GOLD_NIVEL gradient (+ shimmer), so the exact
-              brush shape & texture are kept while the colour matches NIVEL. */}
+          {/* Swoosh — same goldSweep, phase-offset so it doesn't sync with NIVEL */}
           <motion.div
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.76, ease: EASE }}
+            transition={{ duration: 0.9, delay: 0.80, ease: EASE }}
             aria-hidden
             style={{
               position: "absolute", left: "21.4%", top: "46%",
@@ -240,7 +285,7 @@ export function Hero() {
               aspectRatio: "1371 / 150",
               transformOrigin: "left center",
               background: GOLD_NIVEL,
-              backgroundSize: "200% 100%",
+              backgroundSize: "240% 100%",
               WebkitMaskImage: "url(/swoosh.png)",
               maskImage: "url(/swoosh.png)",
               WebkitMaskSize: "100% 100%",
@@ -249,27 +294,28 @@ export function Hero() {
               maskRepeat: "no-repeat",
               WebkitMaskPosition: "left center",
               maskPosition: "left center",
-              animation: "metalShimmer 13s ease-in-out infinite",
-              filter: "drop-shadow(0 1px 10px rgba(230,150,55,.32))",
+              animation: "goldSweep 14s ease-in-out infinite",
+              animationDelay: "-4s",
+              filter: "drop-shadow(0 1px 5px rgba(200,140,20,.14))",
             }}
           />
 
-          {/* "EMPRESA?" — bottom line, straight */}
+          {/* "EMPRESA?" — bottom line */}
           <motion.span
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.84, ease: EASE }}
+            transition={{ duration: 0.9, delay: 0.88, ease: EASE }}
             style={{
               position: "absolute", left: "8%", top: "56%",
               fontFamily: "var(--ws-cormorant)",
               fontWeight: 700,
               fontSize: "16cqw",
-              letterSpacing: ".04em",
+              letterSpacing: ".05em",
               lineHeight: 1,
               whiteSpace: "nowrap",
               color: "rgba(248,245,240,.96)",
               textTransform: "uppercase",
-              textShadow: "0 2px 24px rgba(0,0,0,.55)",
+              textShadow: "0 2px 20px rgba(0,0,0,.45)",
             }}
           >
             Empresa?
@@ -278,9 +324,9 @@ export function Hero() {
 
         {/* Tags */}
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.95, ease: EASE }}
+          transition={{ duration: 1.0, delay: 1.0, ease: EASE }}
           className="hidden sm:flex"
           style={{ width: "100%", justifyContent: "center", alignItems: "center", gap: 14, marginBottom: "clamp(18px, 2.6vw, 32px)" }}
         >
@@ -288,17 +334,17 @@ export function Hero() {
             <span key={tag} style={{ display: "flex", alignItems: "center", gap: 14 }}>
               <span style={{
                 fontSize: "clamp(10px, 0.82vw, 13px)",
-                letterSpacing: ".34em",
+                letterSpacing: ".38em",
                 textTransform: "uppercase",
-                color: "rgba(185,180,170,.58)",
+                color: "rgba(185,180,170,.48)",
                 whiteSpace: "nowrap",
               }}>
                 {tag}
               </span>
               {i < TAGS.length - 1 && (
                 <span style={{
-                  width: 3, height: 3, borderRadius: "50%",
-                  background: "rgba(185,180,170,.32)",
+                  width: 2, height: 2, borderRadius: "50%",
+                  background: "rgba(185,180,170,.24)",
                   display: "inline-block", flexShrink: 0,
                 }} />
               )}
@@ -308,26 +354,26 @@ export function Hero() {
 
         {/* Sub */}
         <motion.div
-          initial={{ opacity: 0, y: 6 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.15, ease: EASE }}
+          transition={{ duration: 1.0, delay: 1.2, ease: EASE }}
           style={{ width: "100%", textAlign: "center", marginBottom: "clamp(30px, 4.2vw, 56px)" }}
         >
           <span style={{
-            fontSize: "clamp(10px, 0.82vw, 13px)", letterSpacing: ".26em", textTransform: "uppercase",
-            color: "rgba(195,188,174,.55)",
+            fontSize: "clamp(10px, 0.82vw, 13px)", letterSpacing: ".28em", textTransform: "uppercase",
+            color: "rgba(195,188,174,.45)",
           }}>
             Agencia digital de{" "}
           </span>
           <span style={{
-            fontSize: "clamp(10px, 0.82vw, 13px)", letterSpacing: ".26em", textTransform: "uppercase",
+            fontSize: "clamp(10px, 0.82vw, 13px)", letterSpacing: ".28em", textTransform: "uppercase",
             background: GOLD,
             backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
-            animation: "metalShimmer 13s ease-in-out infinite",
-            animationDelay: "-5s",
+            animation: "metalShimmer 15s ease-in-out infinite",
+            animationDelay: "-6s",
           }}>
             alto nivel
           </span>
@@ -335,13 +381,13 @@ export function Hero() {
 
         {/* Scroll cue */}
         <motion.div
-          initial={{ opacity: 0, y: 6 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 1.4 }}
+          transition={{ duration: 1.4, delay: 1.5 }}
           className="hidden sm:flex"
           style={{ flexDirection: "column", alignItems: "center", gap: 10 }}
         >
-          <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, rgba(212,160,32,.45), transparent)" }} />
+          <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, rgba(212,160,32,.35), transparent)" }} />
           <span style={{
             fontSize: "clamp(9px, 0.66vw, 11px)",
             letterSpacing: ".55em",
@@ -351,14 +397,14 @@ export function Hero() {
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
-            animation: "metalShimmer 11s ease-in-out infinite",
+            animation: "metalShimmer 13s ease-in-out infinite",
           }}>
             Continuar
           </span>
           <motion.div
             animate={{ y: [0, 5, 0] }}
-            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-            style={{ width: 1, height: 16, background: "linear-gradient(to bottom, rgba(212,160,32,.3), transparent)" }}
+            transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+            style={{ width: 1, height: 16, background: "linear-gradient(to bottom, rgba(212,160,32,.25), transparent)" }}
           />
         </motion.div>
 

@@ -35,14 +35,15 @@ export function HeroFx() {
     // Spawn only in the right 55% — wolf territory
     const spawnX = () => w * 0.45 + Math.random() * w * 0.55;
 
+    // 11 particles (≈70% fewer than original 38) — sparse, slow, atmospheric
     type P = { x: number; y: number; r: number; speed: number; drift: number; op: number; opDir: number };
-    const particles: P[] = Array.from({ length: 38 }, () => ({
+    const particles: P[] = Array.from({ length: 11 }, () => ({
       x:     spawnX(),
       y:     Math.random() * h,
-      r:     Math.random() * 1.2 + 0.2,
-      speed: Math.random() * 0.22 + 0.04,
-      drift: (Math.random() - 0.5) * 0.08,
-      op:    Math.random() * 0.35 + 0.05,
+      r:     Math.random() * 0.9 + 0.2,
+      speed: Math.random() * 0.10 + 0.02,
+      drift: (Math.random() - 0.5) * 0.04,
+      op:    Math.random() * 0.10 + 0.02,
       opDir: Math.random() > 0.5 ? 1 : -1,
     }));
 
@@ -52,9 +53,9 @@ export function HeroFx() {
       for (const p of particles) {
         p.y  -= p.speed;
         p.x  += p.drift;
-        p.op += p.opDir * 0.003;
-        if (p.op > 0.48) p.opDir = -1;
-        if (p.op < 0.03) p.opDir =  1;
+        p.op += p.opDir * 0.0012;
+        if (p.op > 0.16) p.opDir = -1;
+        if (p.op < 0.01) p.opDir =  1;
         if (p.y < -4) { p.y = h + 4; p.x = spawnX(); }
         if (p.x < w * 0.44 || p.x > w + 4) p.x = spawnX();
         ctx.beginPath();

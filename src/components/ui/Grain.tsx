@@ -36,7 +36,7 @@ export function Grain() {
     <div
       aria-hidden
       className="grain-overlay fixed inset-0 pointer-events-none"
-      style={{ zIndex: 9992, opacity: 0.055, mixBlendMode: "overlay" }}
+      style={{ zIndex: 9992, opacity: 0.022, mixBlendMode: "overlay" }}
     >
       <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
         <defs>
