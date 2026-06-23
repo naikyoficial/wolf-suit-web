@@ -180,7 +180,7 @@ export async function POST(request: Request) {
     // onboarding@resend.dev is Resend's pre-verified domain — works without DNS setup.
     // Switch to "SuitWolf <noreply@suitwolf.com>" once suitwolf.com is verified in Resend.
     from: "SuitWolf <onboarding@resend.dev>",
-    to: ["proyectos@suitwolf.com", "naikymusic.contact@gmail.com"],
+    to: ["proyectos@suitwolf.com"],
     replyTo: email,
     subject: `🐺 Nueva solicitud · ${company} — ${name}`,
     html,
