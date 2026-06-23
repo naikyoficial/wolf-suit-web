@@ -147,7 +147,7 @@ export function Hero() {
               position: "absolute", left: "8%", top: "11%",
               fontFamily: "var(--ws-cormorant)",
               fontWeight: 700,
-              fontSize: "10cqw",
+              fontSize: "7cqw",
               letterSpacing: ".06em",
               lineHeight: 1,
               whiteSpace: "nowrap",
@@ -164,7 +164,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.52, ease: EASE }}
             style={{
-              position: "absolute", left: "8%", top: "35%",
+              position: "absolute", left: "8%", top: "36%",
               fontFamily: "var(--ws-inter)",
               fontWeight: 500,
               fontSize: "7cqw",
@@ -211,7 +211,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.68, ease: EASE }}
             style={{
-              position: "absolute", left: "68%", top: "35%",
+              position: "absolute", left: "71%", top: "36%",
               fontFamily: "var(--ws-inter)",
               fontWeight: 500,
               fontSize: "7cqw",
@@ -235,7 +235,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.76, ease: EASE }}
             aria-hidden
             style={{
-              position: "absolute", left: "19%", top: "41%",
+              position: "absolute", left: "19%", top: "46%",
               width: "46cqw",
               aspectRatio: "1371 / 150",
               transformOrigin: "left center",
@@ -260,7 +260,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.84, ease: EASE }}
             style={{
-              position: "absolute", left: "8%", top: "52%",
+              position: "absolute", left: "8%", top: "56%",
               fontFamily: "var(--ws-cormorant)",
               fontWeight: 700,
               fontSize: "16cqw",
