@@ -7,7 +7,7 @@
 /* ─── Fuentes (referenciadas desde next/font) ─── */
 @theme inline {
   --font-display: var(--ws-cormorant);
-  --font-body:    var(--ws-dm-sans);
+  --font-body:    var(--ws-inter);
   --font-mono:    ui-monospace, 'JetBrains Mono', 'Fira Code', monospace;
 }
 

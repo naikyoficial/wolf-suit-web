@@ -94,8 +94,9 @@ export function Pillars() {
                   padding: "clamp(24px, 4vw, 44px)",
                   height: "100%",
                   background: hovered === i ? "#0d0d0d" : "#070707",
-                  border: `1px solid ${hovered === i ? "rgba(212,160,32,.28)" : "transparent"}`,
-                  transition: "background .4s, border-color .4s",
+                  border: `1px solid ${hovered === i ? "rgba(212,160,32,.40)" : "rgba(212,160,32,.10)"}`,
+                  boxShadow: hovered === i ? "inset 0 1px 0 rgba(212,160,32,.15), 0 0 28px rgba(0,0,0,.3)" : "inset 0 1px 0 rgba(212,160,32,.05)",
+                  transition: "background .5s, border-color .5s, box-shadow .5s",
                   cursor: "default",
                 }}
               >
@@ -104,11 +105,11 @@ export function Pillars() {
                 <p style={{ fontSize: 13, lineHeight: 1.85, color: "var(--color-text-3)", whiteSpace: "pre-line" }}>{p.body}</p>
                 <div style={{
                   marginTop: 28,
-                  width: hovered === i ? 44 : 24,
+                  width: hovered === i ? 48 : 28,
                   height: 1,
-                  background: "var(--color-gold)",
-                  opacity: hovered === i ? .8 : .4,
-                  transition: "width .4s, opacity .4s",
+                  background: "linear-gradient(90deg, rgba(212,160,32,.9), rgba(212,160,32,.3))",
+                  opacity: hovered === i ? 1 : .55,
+                  transition: "width .5s, opacity .5s",
                 }} />
               </TiltCard>
             </motion.div>
