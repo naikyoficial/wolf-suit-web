@@ -184,7 +184,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.60, ease: EASE }}
             style={{
-              position: "absolute", left: "19%", top: "23%",
+              position: "absolute", left: "21.4%", top: "23%",
               fontFamily: "var(--ws-cormorant)",
               fontWeight: 700,
               fontStyle: "italic",
@@ -235,8 +235,8 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.76, ease: EASE }}
             aria-hidden
             style={{
-              position: "absolute", left: "19%", top: "46%",
-              width: "46cqw",
+              position: "absolute", left: "21.4%", top: "46%",
+              width: "45.5cqw",
               aspectRatio: "1371 / 150",
               transformOrigin: "left center",
               background: GOLD_NIVEL,
