@@ -146,7 +146,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.44, ease: EASE }}
             style={{
-              position: "absolute", left: "0%", top: "12%",
+              position: "absolute", left: "4%", top: "12%",
               fontFamily: "var(--ws-jockey)",
               fontSize: "9.5cqw",
               letterSpacing: ".01em",
