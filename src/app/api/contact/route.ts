@@ -1,4 +1,4 @@
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
 const QUESTIONS: { id: string; label: string; emoji: string }[] = [
@@ -11,9 +11,8 @@ const QUESTIONS: { id: string; label: string; emoji: string }[] = [
 
 export async function POST(request: Request) {
   console.log("[contact] POST received");
-  console.log("[contact] RESEND_API_KEY set:", !!process.env.RESEND_API_KEY);
-
-  const resend = new Resend(process.env.RESEND_API_KEY);
+  console.log("[contact] GMAIL_USER set:", !!process.env.GMAIL_USER);
+  console.log("[contact] GMAIL_APP_PASSWORD set:", !!process.env.GMAIL_APP_PASSWORD);
 
   let body: { name?: string; email?: string; company?: string; role?: string; vision?: string; answers?: Record<string, string> };
   try {
@@ -189,20 +188,28 @@ export async function POST(request: Request) {
     .filter((l) => l !== "")
     .join("\n");
 
-  const { error } = await resend.emails.send({
-    // onboarding@resend.dev is Resend's pre-verified domain — works without DNS setup.
-    // Switch to "SuitWolf <noreply@suitwolf.com>" once suitwolf.com is verified in Resend.
-    from: "SuitWolf <onboarding@resend.dev>",
-    to: ["naikymusic.contact@gmail.com"],
-    replyTo: email,
-    subject: `🐺 Nueva solicitud · ${company} — ${name}`,
-    html,
-    text,
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
   });
 
-  if (error) {
-    console.error("[contact] Resend error:", JSON.stringify(error));
-    return NextResponse.json({ error: "No se pudo enviar el email", detail: error }, { status: 500 });
+  try {
+    await transporter.sendMail({
+      from: `"SuitWolf Studio" <${process.env.GMAIL_USER}>`,
+      to: process.env.GMAIL_USER,
+      replyTo: email,
+      subject: `🐺 Nueva solicitud · ${company} — ${name}`,
+      html,
+      text,
+    });
+  } catch (err) {
+    console.error("[contact] SMTP error:", err);
+    return NextResponse.json({ error: "No se pudo enviar el email", detail: String(err) }, { status: 500 });
   }
 
   console.log("[contact] Email sent OK");
