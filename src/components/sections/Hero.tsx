@@ -203,27 +203,36 @@ export function Hero() {
             Nivel
           </motion.span>
 
-          {/* Hand-drawn swoosh under NIVEL */}
+          {/* Hand-drawn brush swoosh under NIVEL — filled, variable width:
+              thick on the left, tapering into a thin rising tail on the right */}
           <motion.svg
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ duration: 0.7, delay: 0.72, ease: EASE }}
-            viewBox="0 0 380 32"
+            transition={{ duration: 0.8, delay: 0.72, ease: EASE }}
+            viewBox="0 0 400 48"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden
             style={{
-              position: "absolute", left: "31%", top: "54%",
-              width: "50cqw", height: "auto",
+              position: "absolute", left: "30%", top: "53%",
+              width: "52cqw", height: "auto",
               transformOrigin: "left center",
+              filter: "drop-shadow(0 1px 10px rgba(240,200,60,.28))",
             }}
           >
             <path
-              d="M 4 22 Q 40 6, 82 19 Q 124 32, 168 15 Q 212 -1, 258 16 Q 294 28, 334 13 Q 356 6, 376 18"
-              stroke="#D4A020"
-              strokeWidth="3"
-              strokeLinecap="round"
-              fill="none"
+              d="M 12 35
+                 C 30 22, 45 19, 60 19
+                 C 95 20, 120 19, 140 20
+                 C 175 22, 195 24, 220 25
+                 C 255 23, 280 21, 300 20
+                 C 330 17, 360 13, 388 9
+                 C 360 16, 330 21, 300 24
+                 C 280 26, 255 28, 220 30
+                 C 195 32, 175 34, 140 36
+                 C 120 37, 95 38, 60 38
+                 C 45 38, 30 38, 12 35 Z"
+              fill="#F0C840"
             />
           </motion.svg>
 
@@ -275,22 +284,23 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.95, ease: EASE }}
           className="hidden sm:flex"
-          style={{ alignItems: "center", gap: 10, marginBottom: "clamp(16px, 2.4vw, 28px)" }}
+          style={{ width: "100%", justifyContent: "center", alignItems: "center", gap: 14, marginBottom: "clamp(18px, 2.6vw, 32px)" }}
         >
           {TAGS.map((tag, i) => (
-            <span key={tag} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <span key={tag} style={{ display: "flex", alignItems: "center", gap: 14 }}>
               <span style={{
-                fontSize: 9,
-                letterSpacing: ".42em",
+                fontSize: "clamp(10px, 0.82vw, 13px)",
+                letterSpacing: ".34em",
                 textTransform: "uppercase",
-                color: "rgba(180,175,165,.52)",
+                color: "rgba(185,180,170,.58)",
+                whiteSpace: "nowrap",
               }}>
                 {tag}
               </span>
               {i < TAGS.length - 1 && (
                 <span style={{
-                  width: 2, height: 2, borderRadius: "50%",
-                  background: "rgba(180,175,165,.28)",
+                  width: 3, height: 3, borderRadius: "50%",
+                  background: "rgba(185,180,170,.32)",
                   display: "inline-block", flexShrink: 0,
                 }} />
               )}
@@ -303,16 +313,16 @@ export function Hero() {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 1.15, ease: EASE }}
-          style={{ marginBottom: "clamp(28px, 4vw, 52px)" }}
+          style={{ width: "100%", textAlign: "center", marginBottom: "clamp(30px, 4.2vw, 56px)" }}
         >
           <span style={{
-            fontSize: 9, letterSpacing: ".28em", textTransform: "uppercase",
-            color: "rgba(190,182,168,.48)",
+            fontSize: "clamp(10px, 0.82vw, 13px)", letterSpacing: ".26em", textTransform: "uppercase",
+            color: "rgba(195,188,174,.55)",
           }}>
             Agencia digital de{" "}
           </span>
           <span style={{
-            fontSize: 9, letterSpacing: ".28em", textTransform: "uppercase",
+            fontSize: "clamp(10px, 0.82vw, 13px)", letterSpacing: ".26em", textTransform: "uppercase",
             background: GOLD,
             backgroundSize: "260% 100%",
             WebkitBackgroundClip: "text",
@@ -333,9 +343,9 @@ export function Hero() {
           className="hidden sm:flex"
           style={{ flexDirection: "column", alignItems: "center", gap: 10 }}
         >
-          <div style={{ width: 1, height: 28, background: "linear-gradient(to bottom, rgba(212,160,32,.45), transparent)" }} />
+          <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, rgba(212,160,32,.45), transparent)" }} />
           <span style={{
-            fontSize: 8,
+            fontSize: "clamp(9px, 0.66vw, 11px)",
             letterSpacing: ".55em",
             textTransform: "uppercase",
             background: GOLD,
