@@ -145,9 +145,10 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.44, ease: EASE }}
             style={{
               position: "absolute", left: "8%", top: "11%",
-              fontFamily: "var(--ws-iceland)",
-              fontSize: "9.2cqw",
-              letterSpacing: ".03em",
+              fontFamily: "var(--ws-cormorant)",
+              fontWeight: 700,
+              fontSize: "10cqw",
+              letterSpacing: ".06em",
               lineHeight: 1,
               whiteSpace: "nowrap",
               color: "rgba(248,245,240,.96)",
@@ -163,13 +164,14 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.52, ease: EASE }}
             style={{
-              position: "absolute", left: "8%", top: "31%",
-              fontFamily: "var(--ws-iceland)",
-              fontSize: "9cqw",
-              letterSpacing: ".03em",
+              position: "absolute", left: "8%", top: "35%",
+              fontFamily: "var(--ws-inter)",
+              fontWeight: 500,
+              fontSize: "7cqw",
+              letterSpacing: ".08em",
               lineHeight: 1,
               whiteSpace: "nowrap",
-              color: "rgba(248,245,240,.96)",
+              color: "rgba(248,245,240,.75)",
               textTransform: "uppercase",
             }}
           >
@@ -183,8 +185,10 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.60, ease: EASE }}
             style={{
               position: "absolute", left: "19%", top: "21%",
-              fontFamily: "var(--ws-iceland)",
-              fontSize: "18cqw",
+              fontFamily: "var(--ws-cormorant)",
+              fontWeight: 700,
+              fontStyle: "italic",
+              fontSize: "20cqw",
               letterSpacing: ".01em",
               lineHeight: 1,
               whiteSpace: "nowrap",
@@ -207,13 +211,14 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.68, ease: EASE }}
             style={{
-              position: "absolute", left: "66%", top: "31%",
-              fontFamily: "var(--ws-iceland)",
-              fontSize: "9cqw",
-              letterSpacing: ".03em",
+              position: "absolute", left: "68%", top: "35%",
+              fontFamily: "var(--ws-inter)",
+              fontWeight: 500,
+              fontSize: "7cqw",
+              letterSpacing: ".08em",
               lineHeight: 1,
               whiteSpace: "nowrap",
-              color: "rgba(248,245,240,.96)",
+              color: "rgba(248,245,240,.75)",
               textTransform: "uppercase",
             }}
           >
@@ -255,10 +260,11 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.84, ease: EASE }}
             style={{
-              position: "absolute", left: "8%", top: "49%",
-              fontFamily: "var(--ws-iceland)",
-              fontSize: "14cqw",
-              letterSpacing: ".01em",
+              position: "absolute", left: "8%", top: "52%",
+              fontFamily: "var(--ws-cormorant)",
+              fontWeight: 700,
+              fontSize: "16cqw",
+              letterSpacing: ".04em",
               lineHeight: 1,
               whiteSpace: "nowrap",
               color: "rgba(248,245,240,.96)",

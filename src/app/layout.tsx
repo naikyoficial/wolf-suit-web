@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, DM_Sans, Hubballi, Iceland, Kanit, Jockey_One } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans, Hubballi, Iceland, Inter, Kanit, Jockey_One } from "next/font/google";
 import { Navbar }         from "@/components/layout/Navbar";
 import { Footer }         from "@/components/layout/Footer";
 import { SmoothScroll }   from "@/components/layout/SmoothScroll";
@@ -13,8 +13,16 @@ import "./globals.css";
 const cormorant = Cormorant_Garamond({
   variable: "--ws-cormorant",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
+  display: "swap",
+  preload: true,
+});
+
+const inter = Inter({
+  variable: "--ws-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
   display: "swap",
   preload: true,
 });
@@ -121,7 +129,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${cormorant.variable} ${dmSans.variable} ${hubballi.variable} ${iceland.variable} ${kanit.variable} ${jockeyOne.variable} h-full`}
+      className={`${cormorant.variable} ${dmSans.variable} ${hubballi.variable} ${iceland.variable} ${inter.variable} ${kanit.variable} ${jockeyOne.variable} h-full`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-surface text-text antialiased">
