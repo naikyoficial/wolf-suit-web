@@ -525,12 +525,49 @@ export function Contact() {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1.1 }}>
               <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, rgba(212,160,32,.3), transparent)", margin: "0 auto 24px" }} />
               <p style={{ fontSize: 12, color: "var(--color-text-4)", lineHeight: 1.95 }}>
-                Trabajamos con una cantidad limitada de proyectos para garantizar<br />
-                el nivel de atención y excelencia que define a SuitWolf.
+                Trabajamos con una cantidad limitada de proyectos para garantizar el nivel de atención y excelencia que define a SuitWolf.
               </p>
-              <p style={{ fontSize: 10, letterSpacing: ".1em", color: "rgba(212,160,32,.25)", marginTop: 12 }}>
+              <p style={{ fontSize: 10, letterSpacing: ".1em", color: "rgba(212,160,32,.25)", marginTop: 12, marginBottom: 40 }}>
                 Respondemos cada aplicación en un plazo máximo de 72 horas.
               </p>
+
+              {/* Back to top */}
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                style={{
+                  display: "inline-flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 8,
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: 0,
+                }}
+              >
+                <span style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: 36,
+                  height: 36,
+                  border: "1px solid rgba(212,160,32,.22)",
+                  color: "rgba(212,160,32,.55)",
+                  fontSize: 14,
+                  lineHeight: 1,
+                  transition: "border-color .3s, color .3s",
+                }}>
+                  ↑
+                </span>
+                <span style={{
+                  fontSize: 9,
+                  letterSpacing: ".32em",
+                  textTransform: "uppercase",
+                  color: "rgba(200,195,185,.3)",
+                }}>
+                  Volver al inicio
+                </span>
+              </button>
             </motion.div>
           </motion.div>
         )}
