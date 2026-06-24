@@ -98,9 +98,9 @@ function PlusIcon({ open }: { open: boolean }) {
 
 export function Services() {
   const isMobile = useMobile();
-  const [active, setActive] = useState<number | null>(0);
+  const [active, setActive] = useState<number | null>(null);
 
-  const toggle = (i: number) => setActive(i);
+  const toggle = (i: number) => setActive(prev => prev === i ? null : i);
 
   return (
     <section
