@@ -82,7 +82,7 @@ export function Philosophy() {
           </Reveal>
 
           <Reveal delay={0.95} y={16} blur={4}>
-            <p style={{ fontSize: 15, color: "var(--color-text-4)", lineHeight: 1.85, letterSpacing: ".005em" }}>
+            <p style={{ fontSize: 15, color: "rgba(210,205,195,.72)", lineHeight: 1.85, letterSpacing: ".005em" }}>
               Nuestro trabajo existe para cerrar una sola brecha: la distancia entre lo que tu empresa realmente es y lo que el mundo percibe hoy.
             </p>
           </Reveal>
