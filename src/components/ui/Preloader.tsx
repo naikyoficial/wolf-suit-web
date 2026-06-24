@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useMobile } from "@/hooks/useMobile";
 
 const LETTERS = "SUITWOLF".split("");
 const EASE    = [0.16, 1.0, 0.3, 1.0] as const;
@@ -9,11 +10,12 @@ const CURTAIN = [0.77, 0.0, 0.18, 1.0] as const;
 
 export function Preloader() {
   const [phase, setPhase] = useState<"show" | "exit" | "gone">("show");
+  const isMobile = useMobile();
 
   useEffect(() => {
     const touch = window.matchMedia("(pointer: coarse)").matches;
-    const t1 = setTimeout(() => setPhase("exit"), touch ? 500 : 1200);
-    const t2 = setTimeout(() => setPhase("gone"), touch ? 900 : 2200);
+    const t1 = setTimeout(() => setPhase("exit"), touch ? 2200 : 1200);
+    const t2 = setTimeout(() => setPhase("gone"), touch ? 3400 : 2200);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
@@ -42,10 +44,10 @@ export function Preloader() {
           <motion.div
             exit={{ opacity: 0, transition: { duration: 0.3 } }}
             className="absolute inset-0 flex flex-col items-center justify-center"
-            style={{ zIndex: 1 }}
+            style={{ zIndex: 1, padding: "0 clamp(1rem, 6vw, 4rem)" }}
           >
             {/* Letters */}
-            <div style={{ display: "flex", alignItems: "baseline" }}>
+            <div style={{ display: "flex", alignItems: "baseline", justifyContent: "center" }}>
               {LETTERS.map((letter, i) => (
                 <motion.span
                   key={i}
@@ -54,9 +56,9 @@ export function Preloader() {
                   transition={{ duration: 0.65, delay: 0.15 + i * 0.065, ease: EASE }}
                   style={{
                     fontFamily: "var(--font-display)",
-                    fontSize: "clamp(52px, 6.5vw, 88px)",
+                    fontSize: isMobile ? 32 : "clamp(52px, 6.5vw, 88px)",
                     fontWeight: 300,
-                    letterSpacing: ".42em",
+                    letterSpacing: isMobile ? ".22em" : ".42em",
                     color: "#ece8df",
                     display: "inline-block",
                     minWidth: letter === " " ? ".4em" : undefined,
@@ -75,7 +77,7 @@ export function Preloader() {
               style={{
                 height: 1,
                 width: "100%",
-                maxWidth: 480,
+                maxWidth: isMobile ? 240 : 480,
                 background: "linear-gradient(90deg, transparent, rgba(212,160,32,.7), transparent)",
                 marginTop: 18,
                 transformOrigin: "center",
@@ -89,10 +91,11 @@ export function Preloader() {
               transition={{ duration: 0.9, delay: 1.6 }}
               style={{
                 marginTop: 18,
-                fontSize: 10,
+                fontSize: isMobile ? 8 : 10,
                 letterSpacing: ".38em",
                 textTransform: "uppercase",
                 color: "rgba(212,160,32,.45)",
+                textAlign: "center",
               }}
             >
               Diseño · Estrategia · Tecnología
