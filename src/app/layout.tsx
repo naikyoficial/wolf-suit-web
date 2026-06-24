@@ -71,24 +71,27 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Suitwolf — Diseño Web Premium y Estrategia de Percepción",
+    default: "Suitwolf — Agencia de Diseño Web y Desarrollo para Empresas",
     template: "%s — Suitwolf",
   },
   description:
-    "Suitwolf es una firma de diseño estratégico que construye identidades digitales premium para empresas ambiciosas. Sin templates. Todo desde cero. Diseño web, branding y estrategia de percepción.",
+    "Agencia de diseño web profesional para empresas que exigen alto nivel. Sitios web a medida, e-commerce, landing pages y software personalizado. Sin templates — todo construido desde cero.",
   keywords: [
-    "diseño web premium",
-    "agencia de diseño sin templates",
-    "branding premium",
-    "identidad de marca a medida",
-    "diseño web personalizado",
-    "estrategia de percepción",
-    "agencia digital elite",
-    "experiencias digitales de alto nivel",
-    "diseño web desde cero",
-    "agencia de branding",
-    "percepción de valor empresas",
+    "agencia de diseño web",
     "diseño web profesional",
+    "diseño web para empresas",
+    "desarrollo web a medida",
+    "agencia digital premium",
+    "diseño web premium",
+    "e-commerce profesional",
+    "tienda online a medida",
+    "landing page profesional",
+    "software a medida",
+    "sitio web para empresas",
+    "agencia web",
+    "desarrollo web profesional",
+    "diseño web sin templates",
+    "páginas web para empresas",
   ],
   authors: [{ name: "Suitwolf" }],
   creator: "Suitwolf",
@@ -97,15 +100,15 @@ export const metadata: Metadata = {
     locale: "es_419",
     url: "https://suitwolf.com",
     siteName: "Suitwolf",
-    title: "Suitwolf — Diseño Web Premium y Estrategia de Percepción",
+    title: "Suitwolf — Agencia de Diseño Web y Desarrollo para Empresas",
     description:
-      "Sin templates. Sin atajos. Identidades digitales construidas desde cero para empresas que quieren verse en la categoría donde pertenecen.",
+      "Diseño web profesional, e-commerce y software a medida para empresas que quieren destacar. Sin templates — todo construido desde cero.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Suitwolf — Diseño Web Premium y Estrategia de Percepción",
+    title: "Suitwolf — Agencia de Diseño Web y Desarrollo para Empresas",
     description:
-      "Sin templates. Sin atajos. Identidades digitales construidas desde cero para empresas que quieren verse en la categoría donde pertenecen.",
+      "Diseño web profesional, e-commerce y software a medida para empresas que quieren destacar. Sin templates — todo construido desde cero.",
   },
   robots: {
     index: true,
@@ -138,24 +141,32 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
+              "@type": "ProfessionalService",
               name: "Suitwolf",
               url: "https://suitwolf.com",
               description:
-                "Firma de diseño estratégico especializada en identidades digitales premium para empresas ambiciosas. Sin templates — todo construido desde cero.",
+                "Agencia de diseño web profesional para empresas. Sitios web a medida, e-commerce, landing pages y software personalizado. Sin templates.",
+              priceRange: "$$$$",
               knowsAbout: [
-                "Diseño web premium",
-                "Branding a medida",
-                "Estrategia de percepción",
-                "Identidad visual",
-                "Desarrollo web de alto estándar",
+                "Diseño web profesional",
+                "Desarrollo web a medida",
+                "E-commerce",
+                "Landing pages de alta conversión",
+                "Software a medida",
+                "SEO técnico",
+                "Branding digital",
               ],
-              serviceType: [
-                "Diseño de identidad corporativa",
-                "Desarrollo web personalizado",
-                "Estrategia de marca",
-                "Branding premium",
-              ],
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "Servicios de diseño y desarrollo web",
+                itemListElement: [
+                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sitio Web Corporativo a Medida" } },
+                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "E-commerce y Tienda Online" } },
+                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Landing Page de Alta Conversión" } },
+                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Software a Medida" } },
+                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "SEO y Posicionamiento Web" } },
+                ],
+              },
             }),
           }}
         />
