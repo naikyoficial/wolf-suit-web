@@ -100,7 +100,7 @@ export function Services() {
   const isMobile = useMobile();
   const [active, setActive] = useState<number | null>(0);
 
-  const toggle = (i: number) => setActive(prev => prev === i ? null : i);
+  const toggle = (i: number) => setActive(i);
 
   return (
     <section
