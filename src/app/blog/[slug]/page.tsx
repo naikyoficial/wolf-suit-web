@@ -113,6 +113,7 @@ const mdxComponents = {
   ),
   ArticleImage,
   ArticleCallout,
+  ArticleCTA,
   hr: () => (
     <hr style={{
       border: "none",
@@ -276,7 +277,6 @@ export default async function ArticlePage(
           components={mdxComponents}
         />
 
-        <ArticleCTA variant="mid" />
         <ArticleCTA variant="end" />
       </article>
 
