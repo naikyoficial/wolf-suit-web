@@ -13,4 +13,5 @@ export const NAV_LINKS = [
   { label: "Dualidad",  href: "#duality" },
   { label: "Servicios", href: "#services" },
   { label: "Sistema",   href: "#sistema" },
+  { label: "Blog",      href: "/blog" },
 ] as const;
