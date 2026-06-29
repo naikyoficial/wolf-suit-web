@@ -1,23 +1,12 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import type { PostMeta, Post } from "./blog-types";
+
+export type { PostMeta, Post };
+export { formatDate } from "./blog-types";
 
 const POSTS_DIR = path.join(process.cwd(), "src/content/blog");
-
-export interface PostMeta {
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  date: string;
-  readingTime: number;
-  coverImage: string;
-  featured?: boolean;
-}
-
-export interface Post extends PostMeta {
-  content: string;
-}
 
 function calcReadingTime(content: string): number {
   const words = content.trim().split(/\s+/).length;
@@ -62,12 +51,4 @@ export function getPost(slug: string): Post {
     featured: (data.featured as boolean) ?? false,
     content,
   };
-}
-
-export function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString("es-AR", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
 }

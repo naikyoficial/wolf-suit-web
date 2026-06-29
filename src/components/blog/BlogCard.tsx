@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import { CategoryBadge } from "./CategoryBadge";
-import type { PostMeta } from "@/lib/blog";
-import { formatDate } from "@/lib/blog";
+import type { PostMeta } from "@/lib/blog-types";
+import { formatDate } from "@/lib/blog-types";
 
 export function BlogCard({ post }: { post: PostMeta }) {
   const [hov, setHov] = useState(false);

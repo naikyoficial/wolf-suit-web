@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import { CategoryBadge } from "./CategoryBadge";
-import type { PostMeta } from "@/lib/blog";
-import { formatDate } from "@/lib/blog";
+import type { PostMeta } from "@/lib/blog-types";
+import { formatDate } from "@/lib/blog-types";
 
 const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
 
