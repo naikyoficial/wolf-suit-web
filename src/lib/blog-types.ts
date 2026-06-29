@@ -20,3 +20,11 @@ export function formatDate(dateStr: string): string {
     year: "numeric",
   });
 }
+
+export function formatDateShort(dateStr: string): string {
+  const d = new Date(dateStr);
+  const day = d.getDate();
+  const month = d.toLocaleDateString("es-AR", { month: "short" }).toUpperCase().replace(".", "");
+  const year = d.getFullYear();
+  return `${day} ${month}, ${year}`;
+}

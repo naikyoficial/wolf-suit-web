@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/blog";
-import { FeaturedPost } from "@/components/blog/FeaturedPost";
-import { BlogCard } from "@/components/blog/BlogCard";
+import { BlogContent } from "@/components/blog/BlogContent";
 
 export const metadata: Metadata = {
   title: "Blog — Diseño Web, SEO y Estrategia Digital",
@@ -20,106 +19,157 @@ const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C8
 
 export default function BlogPage() {
   const posts = getAllPosts();
-  const featured = posts.find((p) => p.featured) ?? posts[0];
-  const rest = posts.filter((p) => p.slug !== featured?.slug);
-
-  if (!featured) return null;
 
   return (
-    <main style={{ background: "#050403", minHeight: "100vh" }}>
+    <main style={{ background: "#060504", minHeight: "100vh" }}>
 
       {/* ── Hero ── */}
       <section style={{
         position: "relative",
-        padding: "clamp(80px,12vh,140px) clamp(1.5rem,8vw,7.5rem) clamp(56px,8vh,96px)",
+        padding: "clamp(72px,10vh,120px) clamp(1.5rem,8vw,7.5rem) clamp(56px,7vh,88px)",
         overflow: "hidden",
-      }}>
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "clamp(32px,5vw,80px)",
+        alignItems: "center",
+      }}
+        className="blog-hero"
+      >
         {/* Atmosphere */}
         <div aria-hidden style={{
           position: "absolute", inset: 0, pointerEvents: "none",
-          background: "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(168,108,5,.09) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse 60% 70% at 20% 50%, rgba(168,108,5,.08) 0%, transparent 70%)",
         }} />
         <div aria-hidden style={{
-          position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.2,
+          position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.15,
           backgroundImage: "radial-gradient(circle, rgba(212,160,32,.07) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
         }} />
+        {/* Bottom border */}
+        <div aria-hidden style={{
+          position: "absolute", bottom: 0, left: 0, right: 0, height: 1,
+          background: "linear-gradient(to right, transparent, rgba(212,160,32,.12), transparent)",
+        }} />
 
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto" }}>
-          {/* Eyebrow */}
-          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 28 }}>
-            <div style={{ width: 32, height: 1, background: "linear-gradient(to right, transparent, rgba(212,160,32,.4))" }} />
+        {/* Left: text */}
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 28 }}>
             <span style={{
-              fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase",
+              fontSize: 9, letterSpacing: ".48em", textTransform: "uppercase",
               background: GOLD, backgroundSize: "260% 100%",
               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
               backgroundClip: "text", animation: "metalShimmer 10s ease-in-out infinite",
             }}>
               Blog
             </span>
-            <div style={{ width: 32, height: 1, background: "linear-gradient(to left, transparent, rgba(212,160,32,.4))" }} />
+            <div style={{ width: 28, height: 1, background: "rgba(212,160,32,.3)" }} />
           </div>
 
           <h1 style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(40px,5.5vw,80px)",
+            fontSize: "clamp(38px,5vw,72px)",
             fontWeight: 300,
-            lineHeight: 1.05,
+            lineHeight: 1.06,
             letterSpacing: "-.028em",
             color: "var(--color-text)",
-            marginBottom: 20,
+            marginBottom: 24,
           }}>
-            Ideas que posicionan
+            Conocimiento que construye{" "}
+            <span style={{
+              background: GOLD, backgroundSize: "260% 100%",
+              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+              backgroundClip: "text", animation: "metalShimmer 7s ease-in-out infinite",
+              fontStyle: "italic",
+            }}>
+              resultados.
+            </span>
           </h1>
+
           <p style={{
-            fontSize: "clamp(14px,1.1vw,17px)",
+            fontSize: "clamp(13px,1.1vw,16px)",
             color: "var(--color-text-3)",
-            lineHeight: 1.75,
-            maxWidth: 480,
+            lineHeight: 1.8,
+            marginBottom: 36,
+            maxWidth: 380,
           }}>
-            Estrategia digital, diseño web y SEO para empresas que quieren destacar. Sin relleno — solo lo que realmente funciona.
+            Estrategias, tendencias y metodologías para empresas que buscan liderar en el mundo digital.
           </p>
+
+          <a
+            href="#articulos"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 16,
+              padding: "14px 28px",
+              border: "1px solid rgba(212,160,32,.35)",
+              color: "rgba(240,235,225,.75)",
+              fontSize: 9,
+              letterSpacing: ".32em",
+              textTransform: "uppercase",
+              textDecoration: "none",
+              transition: "border-color .3s, color .3s",
+            }}
+          >
+            Explorar artículos
+            <span style={{
+              display: "inline-flex", alignItems: "center", position: "relative",
+              width: 18, height: 1, background: "currentColor", flexShrink: 0,
+            }}>
+              <span style={{
+                position: "absolute", right: -1, top: -3,
+                width: 5, height: 5,
+                borderRight: "1px solid currentColor",
+                borderTop: "1px solid currentColor",
+                transform: "rotate(45deg)",
+              }} />
+            </span>
+          </a>
+        </div>
+
+        {/* Right: decorative placeholder (user adds image later) */}
+        <div style={{
+          position: "relative", zIndex: 1,
+          height: "clamp(280px,38vh,460px)",
+          border: "1px solid rgba(212,160,32,.08)",
+          background: "radial-gradient(ellipse 80% 70% at 60% 40%, rgba(168,108,5,.1) 0%, rgba(6,5,4,1) 70%)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden",
+        }}
+          className="blog-hero-image"
+        >
+          {/* Decorative text */}
+          <div style={{ textAlign: "center", userSelect: "none", opacity: 0.35 }}>
+            {["IDENTIDAD", "PERCEPCIÓN", "EXCELENCIA"].map((word, i) => (
+              <p key={word} style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(14px,1.5vw,20px)",
+                fontWeight: 300,
+                letterSpacing: ".35em",
+                color: "rgba(212,160,32,.6)",
+                margin: "8px 0",
+                animationDelay: `${i * 0.3}s`,
+              }}>
+                {word}
+              </p>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── Content ── */}
-      <section style={{
-        padding: "0 clamp(1.5rem,8vw,7.5rem) clamp(80px,12vh,140px)",
-        maxWidth: "calc(1100px + clamp(3rem,16vw,15rem))",
-        margin: "0 auto",
-      }}>
+      {/* ── Filter + Cards + Newsletter ── */}
+      <div id="articulos">
+        <BlogContent posts={posts} />
+      </div>
 
-        {/* Featured */}
-        <FeaturedPost post={featured} />
-
-        {/* Grid */}
-        {rest.length > 0 && (
-          <>
-            <div style={{
-              display: "flex", alignItems: "center", gap: 16,
-              marginBottom: "clamp(32px,4vh,48px)",
-            }}>
-              <span style={{
-                fontSize: 9, letterSpacing: ".42em", textTransform: "uppercase",
-                color: "rgba(180,174,164,.35)",
-              }}>
-                Más artículos
-              </span>
-              <div style={{ flex: 1, height: 1, background: "rgba(212,160,32,.08)" }} />
-            </div>
-
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(min(100%,340px), 1fr))",
-              gap: "clamp(16px,2vw,24px)",
-            }}>
-              {rest.map((post) => (
-                <BlogCard key={post.slug} post={post} />
-              ))}
-            </div>
-          </>
-        )}
-      </section>
+      <style>{`
+        @media (max-width: 768px) {
+          .blog-hero { grid-template-columns: 1fr !important; }
+          .blog-hero-image { display: none !important; }
+        }
+      `}</style>
     </main>
   );
 }
