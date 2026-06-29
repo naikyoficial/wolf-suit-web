@@ -5,6 +5,8 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPost, formatDate } from "@/lib/blog";
 import { CategoryBadge } from "@/components/blog/CategoryBadge";
 import { ArticleCTA } from "@/components/blog/ArticleCTA";
+import { ArticleImage } from "@/components/blog/ArticleImage";
+import { ArticleCallout } from "@/components/blog/ArticleCallout";
 import { BlogCard } from "@/components/blog/BlogCard";
 
 export async function generateStaticParams() {
@@ -72,11 +74,14 @@ const mdxComponents = {
   strong: (props: React.HTMLAttributes<HTMLElement>) => (
     <strong {...props} style={{ color: "rgba(240,235,225,.95)", fontWeight: 500 }} />
   ),
-  ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
-    <ul {...props} style={{ paddingLeft: 0, listStyle: "none", marginBottom: 24 }} />
+  ul: ({ children }: { children?: React.ReactNode }) => (
+    <ul style={{ paddingLeft: 0, listStyle: "none", marginBottom: 24 }}>{children}</ul>
   ),
-  li: (props: React.HTMLAttributes<HTMLLIElement>) => (
-    <li {...props} style={{
+  ol: ({ children }: { children?: React.ReactNode }) => (
+    <ol style={{ paddingLeft: 0, listStyle: "none", marginBottom: 24, counterReset: "li" }}>{children}</ol>
+  ),
+  li: ({ children }: { children?: React.ReactNode }) => (
+    <li style={{
       fontSize: "clamp(15px,1.1vw,17px)",
       color: "rgba(210,205,195,.78)",
       lineHeight: 1.9,
@@ -90,9 +95,24 @@ const mdxComponents = {
         background: "rgba(212,160,32,.5)",
         display: "inline-block",
       }} />
-      {(props as { children?: React.ReactNode }).children}
+      {children}
     </li>
   ),
+  blockquote: ({ children }: { children?: React.ReactNode }) => (
+    <blockquote style={{
+      margin: "clamp(32px,4vh,48px) 0",
+      paddingLeft: "clamp(20px,3vw,32px)",
+      borderLeft: "3px solid rgba(212,160,32,.35)",
+      fontSize: "clamp(16px,1.2vw,19px)",
+      fontFamily: "var(--font-display)",
+      fontWeight: 300,
+      fontStyle: "italic",
+      color: "rgba(220,215,205,.75)",
+      lineHeight: 1.75,
+    }}>{children}</blockquote>
+  ),
+  ArticleImage,
+  ArticleCallout,
   hr: () => (
     <hr style={{
       border: "none",

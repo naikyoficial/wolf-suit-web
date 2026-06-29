@@ -8,7 +8,7 @@ import { NewsletterSection } from "./NewsletterSection";
 import type { PostMeta } from "@/lib/blog-types";
 
 const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 12;
 
 export function BlogContent({ posts }: { posts: PostMeta[] }) {
   const [activeCategory, setActiveCategory] = useState("todos");

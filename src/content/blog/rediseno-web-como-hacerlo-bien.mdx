@@ -7,19 +7,26 @@ featured: false
 coverImage: ""
 ---
 
-Hay empresas que invierten $15.000 en un rediseño web y, seis meses después, tienen menos tráfico que antes, peores conversiones, y URLs rotas que Google ya no encuentra. No porque la agencia hizo un trabajo malo visualmente — el diseño puede ser espectacular. Sino porque nadie planificó la migración correctamente.
+Hay empresas que invierten $15.000 en un rediseño web y, seis meses después, tienen menos tráfico que antes, peores conversiones, y URLs rotas que Google ya no encuentra.
 
-El rediseño web es una de las decisiones más impactantes que puede tomar una empresa online. Y también una de las que más se subestima.
+No porque la agencia haya hecho un trabajo visualmente malo — el diseño puede ser espectacular. Sino porque nadie planificó la migración correctamente. El rediseño web es una de las decisiones más impactantes que puede tomar una empresa online. Y también una de las que más se subestima.
+
+<ArticleImage
+  alt="Gráfico de Google Search Console mostrando caída abrupta del 60% en tráfico orgánico el día después del lanzamiento de un nuevo sitio — resultado de rediseño sin redirecciones"
+  caption="Este gráfico es una historia real. El rediseño se vio hermoso el día que se lanzó. Seis semanas después, el tráfico orgánico cayó un 60% sin haberse recuperado."
+/>
 
 ## Por qué los rediseños fallan
 
 ### Motivo 1: No se preserva la estructura de URLs
 
-Este es el error más costoso y el más común. Cuando una empresa cambia de plataforma o rediseña su sitio, frecuentemente las URLs cambian. Una página que antes era `/servicios/diseno-web` ahora es `/servicios/web-design` o simplemente `/diseno`.
+Este es el error más costoso y el más común. Cuando una empresa cambia de plataforma o rediseña su sitio, frecuentemente las URLs cambian sin avisar.
 
-El problema: Google tenía indexada la URL anterior. Tenía autoridad acumulada, backlinks apuntando a ella, historial de clics. Cuando esa URL desaparece sin una redirección 301 (permanente), todo ese valor se evapora.
+Una página que antes era `/servicios/diseno-web` ahora es `/servicios/web-design` o simplemente `/diseno`. El problema: Google tenía indexada la URL anterior. Tenía autoridad acumulada, backlinks apuntando a ella, historial de clics. Cuando esa URL desaparece sin una redirección 301 (permanente), todo ese valor se evapora.
 
-Empresas que lo hacen bien mantienen exactamente las mismas URLs, o configuran redirecciones 301 de cada URL antigua a su equivalente nueva. Las que lo hacen mal simplemente lanzan el nuevo sitio y descubren seis meses después que perdieron el 60% del tráfico orgánico.
+<ArticleCallout type="warning">
+Las empresas que preservan las URLs exactas o configuran redirecciones 301 correctas mantienen el 90-95% de su posicionamiento orgánico post-rediseño. Las que no lo hacen pueden perder entre el 40% y el 80% de su tráfico orgánico en las semanas siguientes al lanzamiento.
+</ArticleCallout>
 
 ### Motivo 2: Se rediseña por estética, no por estrategia
 
@@ -29,25 +36,30 @@ Un rediseño exitoso empieza con preguntas como:
 - ¿Qué páginas generan más conversiones actualmente?
 - ¿Qué rutas sigue el usuario antes de contactarnos?
 - ¿Qué contenido atrae más tráfico orgánico?
-- ¿Qué elementos del sitio actual generan fricción?
+- ¿Qué elementos del sitio actual están generando fricción?
 
-Sin responder estas preguntas, el rediseño parte de suposiciones. Y las suposiciones suelen estar equivocadas.
+Sin responder estas preguntas con datos, el rediseño parte de suposiciones. Y las suposiciones suelen estar equivocadas.
 
 ### Motivo 3: No se migran los metadatos SEO
 
-Cada página tiene metadatos: título, descripción, etiquetas canónicas, datos estructurados. Si en el rediseño esos metadatos no se transfieren correctamente a las nuevas páginas, Google recibe señales confusas sobre de qué trata cada página.
+Cada página tiene metadatos: título, descripción, etiquetas canónicas, datos estructurados. Si en el rediseño esos metadatos no se transfieren correctamente, Google recibe señales confusas sobre de qué trata cada página.
 
-El resultado: pérdida de posicionamiento para keywords que ya tenías ganadas.
+El resultado: pérdida de posicionamiento para keywords que ya tenías ganadas — a veces en cuestión de días.
 
-### Motivo 4: El contenido que funcionaba desaparece
+<ArticleImage
+  alt="Captura de código mostrando página nueva sin meta tags vs página anterior con título, descripción y datos estructurados correctamente configurados — el impacto en cómo Google procesa la página"
+  caption="Los metadatos no son visibles para el usuario, pero son el primer lenguaje que lee Google. Migrarlos correctamente es tan importante como el diseño visual."
+/>
 
-En muchos rediseños, las empresas aprovechan para "limpiar" el contenido. Se eliminan páginas que "parecían irrelevantes" sin revisar si tenían tráfico orgánico o backlinks. Se reescribe texto que estaba posicionado para keywords específicas.
+### Motivo 4: Se elimina contenido que tenía tráfico
 
-Si una página recibía 500 visitas mensuales orgánicas y la eliminás sin análisis previo, acabás de borrar 500 visitantes mensuales de tu canal más rentable.
+En muchos rediseños, las empresas aprovechan para "limpiar" el sitio. Se eliminan páginas que "parecían irrelevantes" sin revisar si tenían tráfico orgánico o backlinks.
+
+Si una página recibía 500 visitas mensuales orgánicas y la eliminás sin análisis previo, acabás de borrar 500 visitantes mensuales de tu canal más rentable. Multiplicado por todas las páginas eliminadas sin análisis, el impacto puede ser devastador.
 
 ### Motivo 5: No se testea antes de lanzar
 
-Errores de formularios que no envían, botones que no funcionan en móvil, imágenes que no cargan en Safari, JavaScript que rompe en Firefox. En sitios complejos, los errores de compatibilidad son inevitables — pero detectables si se testea bien antes de lanzar.
+Errores de formularios que no envían, botones que no funcionan en móvil, imágenes que no cargan en Safari, JavaScript que rompe en Firefox. En sitios complejos, los errores de compatibilidad son inevitables — pero detectables si se testea bien antes del lanzamiento.
 
 Lanzar sin testing exhaustivo significa que tus visitantes reales descubren los bugs antes que vos.
 
@@ -55,62 +67,63 @@ Lanzar sin testing exhaustivo significa que tus visitantes reales descubren los 
 
 ### Paso 1: Auditoría completa del sitio actual
 
-Antes de tocar nada, necesitás saber qué tenés:
+Antes de tocar nada, necesitás saber qué tenés y qué está funcionando.
 
-**Inventario de URLs**: Lista de todas las URLs indexadas en Google. Podés obtenerla desde Google Search Console (cobertura → páginas indexadas) o usando herramientas como Screaming Frog.
+**Inventario de URLs:** Lista de todas las URLs indexadas en Google. Podés obtenerla desde Google Search Console (Cobertura → Páginas indexadas).
 
-**Mapa de tráfico**: ¿Qué páginas reciben más visitas orgánicas? ¿Qué páginas tienen más backlinks? Esas son las que tenés que proteger más en el rediseño.
+**Mapa de tráfico:** ¿Qué páginas reciben más visitas orgánicas? ¿Qué páginas tienen más backlinks externos? Esas son las que tenés que proteger más en el rediseño.
 
-**Análisis de conversiones**: ¿Qué páginas generan más leads o ventas? No podés rediseñarlas sin entender qué elemento actual está funcionando.
+**Análisis de conversiones:** ¿Qué páginas generan más leads o ventas? No podés rediseñarlas sin entender primero qué elemento actual está funcionando para no destruirlo.
 
-**Keywords posicionadas**: ¿Para qué términos ya aparecés en Google? El nuevo sitio debe seguir teniendo contenido optimizado para esas keywords.
+<ArticleImage
+  alt="Hoja de cálculo de inventario de URLs con columnas: URL actual, tráfico mensual, backlinks, posición en keywords, URL equivalente en nuevo sitio, tipo de redirección"
+  caption="Este documento existe antes de que el nuevo sitio se empiece a construir. Es el mapa que determina qué URLs preservar y cuáles redirigir hacia dónde."
+/>
 
-### Paso 2: Mapeo de redirecciones
+### Paso 2: Mapeo de redirecciones antes de diseñar
 
 Antes de empezar el diseño, trazá un mapa de qué URL actual va a qué URL nueva. Si van a cambiar, cada una necesita una redirección 301.
 
-Este documento existe antes de que el nuevo sitio se empiece a construir, no después.
+Este documento existe antes de que el nuevo sitio se empiece a construir, no después. Las redirecciones no son algo que se agrega el día del lanzamiento — son parte de la arquitectura del proyecto.
 
-### Paso 3: Preservá los metadatos críticos
+### Paso 3: Preservar los metadatos críticos
 
 Para cada página importante, documentá:
 - Título actual (meta title)
 - Descripción actual (meta description)
 - H1 actual
-- Palabras clave para las que está posicionada
+- Keywords para las que está posicionada
 
-El nuevo sitio debe tener estos metadatos al menos como punto de partida. Podés mejorarlos — pero no los podés ignorar.
+El nuevo sitio debe tener estos metadatos como punto de partida. Podés mejorarlos — pero no podés ignorarlos ni empezar de cero.
 
-### Paso 4: Ambiente de staging, no producción
+<ArticleCallout type="tip">
+Google generalmente tarda entre 2 y 8 semanas en re-indexar completamente un sitio rediseñado. Durante ese período, el tráfico puede fluctuar. Si las redirecciones están bien configuradas y el contenido se preservó correctamente, debería normalizarse. Si no se tomaron estas precauciones, la caída puede ser permanente.
+</ArticleCallout>
 
-El nuevo sitio se construye en un servidor separado, no encima del sitio live. Solo cuando está completamente terminado y testeado, se hace la migración al dominio principal.
+### Paso 4: Staging y testing antes del lanzamiento
 
-Durante la construcción, el ambiente de staging debe estar bloqueado para bots (con una directiva noindex) para que Google no indexe el trabajo en progreso.
+El nuevo sitio se construye en un servidor separado (ambiente de staging), no encima del sitio live. Solo cuando está completamente terminado y testeado, se hace la migración al dominio principal.
 
-### Paso 5: Lanzamiento controlado y monitoreo
+Durante la construcción, el ambiente de staging debe estar bloqueado para bots (con una directiva `noindex`) para que Google no indexe el trabajo en progreso.
 
-El día del lanzamiento no es el final — es el inicio del período de monitoreo más crítico. Las primeras 4 semanas post-lanzamiento deben incluir:
+### Paso 5: Monitoreo intensivo post-lanzamiento
 
-- Revisión diaria de Google Search Console para detectar errores 404, pérdida de indexación, o drops de ranking
-- Revisión de Analytics para comparar tráfico orgánico con períodos equivalentes
-- Testeo de todos los formularios y CTAs
+Las primeras 4-6 semanas post-lanzamiento son el período más crítico. Lo que hay que monitorear diariamente:
+
+- Google Search Console: errores 404, pérdida de indexación, drops de ranking
+- Analytics: tráfico orgánico vs períodos equivalentes anteriores
+- Formularios y CTAs: ¿siguen funcionando correctamente?
 
 Si aparecen drops de tráfico, hay que actuar rápido. Un ranking que cae puede recuperarse en semanas si se corrige el error. Si se deja pasar meses, la recuperación puede tardar mucho más.
 
 ## ¿Cuándo SÍ conviene rediseñar?
 
-Hay señales claras de que es momento de rediseñar:
-
-- El sitio tiene más de 4-5 años y no es mobile-first
-- El tiempo de carga es consistentemente superior a 3 segundos y las correcciones técnicas ya alcanzaron su techo
-- La tasa de conversión es significativamente menor al promedio de la industria y el problema está identificado como el diseño
-- La plataforma actual limita las funcionalidades que necesitás
+Señales claras de que es momento:
+- El sitio tiene más de 4-5 años y no está diseñado para mobile-first
+- La velocidad de carga es consistentemente mala y las correcciones técnicas llegaron a su techo
 - La identidad visual de la empresa cambió significativamente
+- La plataforma actual limita las funcionalidades necesarias
 
-Lo que NO es razón suficiente: "el diseño se ve viejo". Si el sitio funciona, convierte, y está posicionado, la modernización visual puede hacerse con cambios graduales, no con un rediseño total.
+Lo que NO es razón suficiente para un rediseño completo: "el diseño se ve viejo". Si el sitio funciona, convierte, y está posicionado, la actualización visual puede hacerse con cambios graduales — sin los riesgos de un rediseño total.
 
-## Conclusión
-
-Un rediseño web bien ejecutado puede multiplicar las conversiones, mejorar el posicionamiento, y fortalecer la percepción de la marca. Un rediseño mal ejecutado puede deshacer años de trabajo SEO en semanas.
-
-La diferencia está en la planificación previa, no en el trabajo de diseño. La parte visual es la más visible — pero la parte técnica y estratégica es la que determina el resultado.
+La clave es que cualquier rediseño debe ser una decisión estratégica basada en datos, no una decisión estética basada en que el CEO vio el sitio de la competencia.
