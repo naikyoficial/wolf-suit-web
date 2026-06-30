@@ -7,7 +7,9 @@ import { CategoryBadge } from "@/components/blog/CategoryBadge";
 import { ArticleCTA } from "@/components/blog/ArticleCTA";
 import { ArticleImage } from "@/components/blog/ArticleImage";
 import { ArticleCallout } from "@/components/blog/ArticleCallout";
-import { BlogCard } from "@/components/blog/BlogCard";
+import { ArticleSidebar } from "@/components/blog/ArticleSidebar";
+import { ShareRow } from "@/components/blog/ShareRow";
+import { WolfMark } from "@/components/blog/WolfMark";
 
 export async function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
@@ -42,37 +44,37 @@ const mdxComponents = {
   h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2 {...props} style={{
       fontFamily: "var(--font-display)",
-      fontSize: "clamp(24px,2.5vw,36px)",
+      fontSize: "clamp(24px,2.4vw,34px)",
       fontWeight: 300,
       lineHeight: 1.15,
       letterSpacing: "-.022em",
       color: "var(--color-text)",
-      marginTop: "clamp(48px,6vh,72px)",
+      marginTop: "clamp(44px,5.5vh,68px)",
       marginBottom: 20,
     }} />
   ),
   h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3 {...props} style={{
       fontFamily: "var(--font-display)",
-      fontSize: "clamp(20px,2vw,28px)",
+      fontSize: "clamp(19px,1.8vw,25px)",
       fontWeight: 300,
       lineHeight: 1.2,
       letterSpacing: "-.018em",
       color: "rgba(240,235,225,.9)",
-      marginTop: "clamp(32px,4vh,48px)",
+      marginTop: "clamp(30px,4vh,44px)",
       marginBottom: 14,
     }} />
   ),
   p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p {...props} style={{
-      fontSize: "clamp(15px,1.1vw,17px)",
+      fontSize: "clamp(15px,1.05vw,17px)",
       color: "rgba(210,205,195,.78)",
       lineHeight: 1.95,
       marginBottom: 24,
     }} />
   ),
   strong: (props: React.HTMLAttributes<HTMLElement>) => (
-    <strong {...props} style={{ color: "rgba(240,235,225,.95)", fontWeight: 500 }} />
+    <strong {...props} style={{ color: "rgba(240,210,140,.95)", fontWeight: 500 }} />
   ),
   ul: ({ children }: { children?: React.ReactNode }) => (
     <ul style={{ paddingLeft: 0, listStyle: "none", marginBottom: 24 }}>{children}</ul>
@@ -82,7 +84,7 @@ const mdxComponents = {
   ),
   li: ({ children }: { children?: React.ReactNode }) => (
     <li style={{
-      fontSize: "clamp(15px,1.1vw,17px)",
+      fontSize: "clamp(15px,1.05vw,17px)",
       color: "rgba(210,205,195,.78)",
       lineHeight: 1.9,
       paddingLeft: 24,
@@ -100,16 +102,27 @@ const mdxComponents = {
   ),
   blockquote: ({ children }: { children?: React.ReactNode }) => (
     <blockquote style={{
-      margin: "clamp(32px,4vh,48px) 0",
-      paddingLeft: "clamp(20px,3vw,32px)",
-      borderLeft: "3px solid rgba(212,160,32,.35)",
-      fontSize: "clamp(16px,1.2vw,19px)",
+      position: "relative",
+      margin: "clamp(36px,5vh,56px) 0",
+      padding: "clamp(24px,3vw,36px) clamp(24px,3vw,40px)",
+      borderLeft: "2px solid rgba(212,160,32,.45)",
+      background: "rgba(212,160,32,.035)",
+      fontSize: "clamp(17px,1.3vw,21px)",
       fontFamily: "var(--font-display)",
       fontWeight: 300,
       fontStyle: "italic",
-      color: "rgba(220,215,205,.75)",
-      lineHeight: 1.75,
-    }}>{children}</blockquote>
+      color: "rgba(235,228,212,.82)",
+      lineHeight: 1.6,
+    }}>
+      <span aria-hidden style={{
+        position: "absolute", top: 6, left: "clamp(20px,2.6vw,32px)",
+        fontFamily: "var(--font-display)", fontSize: 56, lineHeight: 1,
+        color: "rgba(212,160,32,.28)",
+      }}>
+        &ldquo;
+      </span>
+      <div style={{ position: "relative", paddingTop: 18 }}>{children}</div>
+    </blockquote>
   ),
   ArticleImage,
   ArticleCallout,
@@ -124,6 +137,22 @@ const mdxComponents = {
   ),
 };
 
+function NavArrow({ dir }: { dir: "prev" | "next" }) {
+  return (
+    <span style={{
+      display: "inline-flex", alignItems: "center", position: "relative",
+      width: 18, height: 1, background: "rgba(212,160,32,.5)", flexShrink: 0,
+      transform: dir === "prev" ? "scaleX(-1)" : "none",
+    }}>
+      <span style={{
+        position: "absolute", right: -1, top: -3, width: 5, height: 5,
+        borderRight: "1px solid rgba(212,160,32,.5)", borderTop: "1px solid rgba(212,160,32,.5)",
+        transform: "rotate(45deg)",
+      }} />
+    </span>
+  );
+}
+
 export default async function ArticlePage(
   { params }: { params: Promise<{ slug: string }> }
 ) {
@@ -137,13 +166,20 @@ export default async function ArticlePage(
   }
 
   const allPosts = getAllPosts();
-  const related = allPosts
-    .filter((p) => p.slug !== slug && p.category === post.category)
-    .slice(0, 2);
-  const fallbackRelated = allPosts
-    .filter((p) => p.slug !== slug)
-    .slice(0, 2 - related.length);
-  const relatedPosts = [...related, ...fallbackRelated];
+  const idx = allPosts.findIndex((p) => p.slug === slug);
+  const prevPost = idx >= 0 && idx < allPosts.length - 1 ? allPosts[idx + 1] : null;
+  const nextPost = idx > 0 ? allPosts[idx - 1] : null;
+
+  const recentPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 5);
+
+  const categories = Object.entries(
+    allPosts.reduce<Record<string, number>>((acc, p) => {
+      acc[p.category] = (acc[p.category] ?? 0) + 1;
+      return acc;
+    }, {})
+  )
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -152,162 +188,215 @@ export default async function ArticlePage(
     description: post.excerpt,
     datePublished: post.date,
     author: { "@type": "Organization", name: "SuitWolf" },
-    publisher: {
-      "@type": "Organization",
-      name: "SuitWolf",
-      url: "https://suitwolf.com",
-    },
+    publisher: { "@type": "Organization", name: "SuitWolf", url: "https://suitwolf.com" },
   };
 
   return (
     <main style={{ background: "#050403", minHeight: "100vh" }}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* ── Header ── */}
-      <header style={{
-        position: "relative",
-        padding: "clamp(72px,10vh,120px) clamp(1.5rem,8vw,7.5rem) clamp(48px,6vh,80px)",
-        overflow: "hidden",
-      }}>
+      {/* ══ Header ══ */}
+      <header style={{ position: "relative", overflow: "hidden" }}>
         <div aria-hidden style={{
           position: "absolute", inset: 0, pointerEvents: "none",
-          background: "radial-gradient(ellipse 70% 55% at 50% 0%, rgba(168,108,5,.08) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse 55% 60% at 78% 30%, rgba(168,108,5,.12) 0%, transparent 68%)",
         }} />
         <div aria-hidden style={{
           position: "absolute", bottom: 0, left: 0, right: 0, height: 1,
-          background: "linear-gradient(to right, transparent, rgba(212,160,32,.12), transparent)",
+          background: "linear-gradient(to right, transparent, rgba(212,160,32,.14), transparent)",
         }} />
 
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 780, margin: "0 auto" }}>
-          {/* Breadcrumb */}
-          <nav style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 32 }}>
-            <Link href="/" style={{
-              fontSize: 9, letterSpacing: ".3em", textTransform: "uppercase",
-              color: "rgba(180,174,164,.35)", textDecoration: "none",
-              transition: "color .3s",
-            }}>
-              Inicio
-            </Link>
-            <span style={{ color: "rgba(212,160,32,.25)", fontSize: 10 }}>›</span>
-            <Link href="/blog" style={{
-              fontSize: 9, letterSpacing: ".3em", textTransform: "uppercase",
-              color: "rgba(180,174,164,.35)", textDecoration: "none",
-            }}>
-              Blog
-            </Link>
-            <span style={{ color: "rgba(212,160,32,.25)", fontSize: 10 }}>›</span>
-            <span style={{
-              fontSize: 9, letterSpacing: ".3em", textTransform: "uppercase",
-              color: "rgba(212,160,32,.45)",
-            }}>
-              {post.category}
-            </span>
-          </nav>
-
-          <div style={{ marginBottom: 24 }}>
-            <CategoryBadge label={post.category} />
-          </div>
-
-          <h1 style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(30px,4.5vw,64px)",
-            fontWeight: 300,
-            lineHeight: 1.08,
-            letterSpacing: "-.028em",
-            color: "var(--color-text)",
-            marginBottom: 28,
+        <div className="article-shell" style={{ position: "relative", zIndex: 1 }}>
+          <div className="article-header-grid" style={{
+            display: "grid",
+            gridTemplateColumns: "1.05fr 0.95fr",
+            gap: "clamp(36px,5vw,72px)",
+            alignItems: "center",
+            padding: "clamp(40px,7vh,84px) 0 clamp(44px,6vh,72px)",
           }}>
-            {post.title}
-          </h1>
-
-          <p style={{
-            fontSize: "clamp(15px,1.2vw,18px)",
-            color: "var(--color-text-3)",
-            lineHeight: 1.8,
-            marginBottom: 36,
-          }}>
-            {post.excerpt}
-          </p>
-
-          {/* Meta bar */}
-          <div style={{
-            display: "flex", alignItems: "center", flexWrap: "wrap", gap: 20,
-            paddingTop: 24,
-            borderTop: "1px solid rgba(212,160,32,.1)",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <div style={{
-                width: 28, height: 28,
-                border: "1px solid rgba(212,160,32,.25)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 12,
+            {/* Left: title block */}
+            <div>
+              <Link href="/blog" className="back-link" style={{
+                display: "inline-flex", alignItems: "center", gap: 12, marginBottom: "clamp(28px,4vh,44px)",
+                fontSize: 9, letterSpacing: ".3em", textTransform: "uppercase",
+                color: "rgba(180,174,164,.45)", textDecoration: "none",
               }}>
-                🐺
+                <span style={{ position: "relative", display: "inline-flex", alignItems: "center", width: 18, height: 1, background: "currentColor", transform: "scaleX(-1)" }}>
+                  <span style={{ position: "absolute", right: -1, top: -3, width: 5, height: 5, borderRight: "1px solid currentColor", borderTop: "1px solid currentColor", transform: "rotate(45deg)" }} />
+                </span>
+                Volver al blog
+              </Link>
+
+              <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 24 }}>
+                <CategoryBadge label={post.category} />
+                <span style={{ width: 3, height: 3, borderRadius: "50%", background: "rgba(212,160,32,.4)" }} />
+                <span style={{ fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase", color: "rgba(212,160,32,.45)" }}>
+                  {post.readingTime} min lectura
+                </span>
               </div>
-              <span style={{
-                fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase",
-                color: "rgba(200,195,185,.5)",
+
+              <h1 style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(30px,3.6vw,56px)",
+                fontWeight: 300,
+                lineHeight: 1.08,
+                letterSpacing: "-.028em",
+                color: "var(--color-text)",
+                marginBottom: 24,
               }}>
-                SuitWolf Studio
-              </span>
+                {post.title}
+              </h1>
+
+              <p style={{
+                fontSize: "clamp(14px,1.1vw,17px)",
+                color: "var(--color-text-3)",
+                lineHeight: 1.8,
+                marginBottom: "clamp(28px,4vh,40px)",
+                maxWidth: 520,
+              }}>
+                {post.excerpt}
+              </p>
+
+              {/* Author row */}
+              <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                <div style={{
+                  width: 42, height: 42, borderRadius: "50%", flexShrink: 0,
+                  border: "1px solid rgba(212,160,32,.3)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  background: "radial-gradient(circle at 50% 40%, rgba(168,108,5,.18), transparent 70%)",
+                }}>
+                  <WolfMark size={22} />
+                </div>
+                <div>
+                  <p style={{ fontSize: 9, letterSpacing: ".26em", textTransform: "uppercase", color: "rgba(200,195,185,.55)", marginBottom: 5 }}>
+                    Por SuitWolf
+                  </p>
+                  <p style={{ fontSize: 11, letterSpacing: ".05em", color: "var(--color-text-4)" }}>
+                    {formatDate(post.date)}
+                  </p>
+                </div>
+              </div>
             </div>
-            <span style={{ width: 1, height: 14, background: "rgba(212,160,32,.12)" }} />
-            <span style={{ fontSize: 10, letterSpacing: ".1em", color: "var(--color-text-4)" }}>
-              {formatDate(post.date)}
-            </span>
-            <span style={{ width: 1, height: 14, background: "rgba(212,160,32,.12)" }} />
-            <span style={{ fontSize: 10, letterSpacing: ".1em", color: "rgba(212,160,32,.4)" }}>
-              {post.readingTime} min de lectura
-            </span>
+
+            {/* Right: hero visual */}
+            <div className="article-hero-visual" style={{
+              position: "relative",
+              height: "clamp(320px,40vh,480px)",
+              border: "1px solid rgba(212,160,32,.1)",
+              overflow: "hidden",
+              background: post.coverImage ? undefined : "radial-gradient(ellipse 90% 80% at 55% 38%, rgba(168,108,5,.14) 0%, #0A0703 72%)",
+            }}>
+              {post.coverImage ? (
+                <>
+                  <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${post.coverImage})`, backgroundSize: "cover", backgroundPosition: "center" }} />
+                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(5,4,3,.6), transparent 60%)" }} />
+                </>
+              ) : (
+                <>
+                  <div aria-hidden style={{
+                    position: "absolute", inset: 0, opacity: 0.5,
+                    backgroundImage: "radial-gradient(circle, rgba(212,160,32,.08) 1px, transparent 1px)",
+                    backgroundSize: "26px 26px",
+                  }} />
+                  <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 22 }}>
+                    <WolfMark size={84} opacity={0.5} />
+                    <span style={{ fontSize: 10, letterSpacing: ".44em", textTransform: "uppercase", color: "rgba(212,160,32,.4)" }}>
+                      {post.category}
+                    </span>
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </header>
 
-      {/* ── Article body ── */}
-      <article style={{
-        maxWidth: 780,
-        margin: "0 auto",
-        padding: "clamp(40px,6vh,72px) clamp(1.5rem,8vw,7.5rem)",
-      }}>
-        <MDXRemote
-          source={post.content}
-          components={mdxComponents}
-        />
-
-        <ArticleCTA variant="end" />
-      </article>
-
-      {/* ── Related posts ── */}
-      {relatedPosts.length > 0 && (
-        <section style={{
-          padding: "clamp(40px,6vh,72px) clamp(1.5rem,8vw,7.5rem) clamp(80px,10vh,120px)",
-          borderTop: "1px solid rgba(212,160,32,.07)",
-          maxWidth: "calc(780px + clamp(3rem,16vw,15rem))",
-          margin: "0 auto",
+      {/* ══ Body: content + sidebar ══ */}
+      <div className="article-shell">
+        <div className="article-body-grid" style={{
+          display: "grid",
+          gridTemplateColumns: "minmax(0,1fr) clamp(300px,30%,360px)",
+          gap: "clamp(40px,5vw,80px)",
+          padding: "clamp(40px,6vh,72px) 0 clamp(72px,9vh,110px)",
+          alignItems: "start",
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 36 }}>
-            <span style={{
-              fontSize: 9, letterSpacing: ".42em", textTransform: "uppercase",
-              color: "rgba(180,174,164,.35)",
-            }}>
-              Seguí leyendo
-            </span>
-            <div style={{ flex: 1, height: 1, background: "rgba(212,160,32,.08)" }} />
+          {/* Content */}
+          <article style={{ minWidth: 0 }}>
+            <MDXRemote source={post.content} components={mdxComponents} />
+
+            <ArticleCTA variant="end" />
+
+            <ShareRow url={`https://suitwolf.com/blog/${slug}`} title={post.title} />
+
+            {/* Prev / Next */}
+            {(prevPost || nextPost) && (
+              <nav className="article-prevnext" style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "clamp(12px,1.5vw,20px)",
+                marginTop: "clamp(28px,4vh,40px)",
+              }}>
+                {prevPost ? (
+                  <Link href={`/blog/${prevPost.slug}`} className="prevnext-card" style={{
+                    display: "block", padding: "clamp(20px,2vw,26px)",
+                    border: "1px solid rgba(212,160,32,.12)", textDecoration: "none",
+                  }}>
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontSize: 8, letterSpacing: ".3em", textTransform: "uppercase", color: "rgba(180,174,164,.4)", marginBottom: 12 }}>
+                      <NavArrow dir="prev" /> Artículo anterior
+                    </span>
+                    <p style={{ fontFamily: "var(--font-display)", fontSize: 16, fontWeight: 300, lineHeight: 1.3, color: "rgba(240,235,225,.85)", margin: 0 }}>
+                      {prevPost.title}
+                    </p>
+                  </Link>
+                ) : <span />}
+                {nextPost ? (
+                  <Link href={`/blog/${nextPost.slug}`} className="prevnext-card" style={{
+                    display: "block", padding: "clamp(20px,2vw,26px)", textAlign: "right",
+                    border: "1px solid rgba(212,160,32,.12)", textDecoration: "none",
+                  }}>
+                    <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "flex-end", gap: 10, fontSize: 8, letterSpacing: ".3em", textTransform: "uppercase", color: "rgba(180,174,164,.4)", marginBottom: 12 }}>
+                      Siguiente artículo <NavArrow dir="next" />
+                    </span>
+                    <p style={{ fontFamily: "var(--font-display)", fontSize: 16, fontWeight: 300, lineHeight: 1.3, color: "rgba(240,235,225,.85)", margin: 0 }}>
+                      {nextPost.title}
+                    </p>
+                  </Link>
+                ) : <span />}
+              </nav>
+            )}
+          </article>
+
+          {/* Sidebar */}
+          <div className="article-sidebar-col" style={{ position: "sticky", top: 88 }}>
+            <ArticleSidebar recentPosts={recentPosts} categories={categories} />
           </div>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%,320px), 1fr))",
-            gap: "clamp(16px,2vw,24px)",
-          }}>
-            {relatedPosts.map((p) => (
-              <BlogCard key={p.slug} post={p} />
-            ))}
-          </div>
-        </section>
-      )}
+        </div>
+      </div>
+
+      <style>{`
+        .article-shell {
+          max-width: 1180px;
+          margin: 0 auto;
+          padding-left: clamp(1.25rem, 5vw, 4rem);
+          padding-right: clamp(1.25rem, 5vw, 4rem);
+        }
+        .back-link:hover { color: rgba(212,160,32,.8) !important; }
+        .prevnext-card { transition: border-color .3s, background .3s; }
+        .prevnext-card:hover { border-color: rgba(212,160,32,.3) !important; background: rgba(212,160,32,.03); }
+        @media (max-width: 980px) {
+          .article-header-grid { grid-template-columns: 1fr !important; }
+          .article-hero-visual { height: clamp(220px,32vh,320px) !important; order: -1; }
+          .article-body-grid { grid-template-columns: 1fr !important; }
+          .article-sidebar-col { position: static !important; }
+        }
+        @media (max-width: 640px) {
+          .article-end-cta { flex-direction: column !important; align-items: flex-start !important; }
+          .article-end-cta-art { display: none !important; }
+        }
+        @media (max-width: 560px) {
+          .article-prevnext { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </main>
   );
 }

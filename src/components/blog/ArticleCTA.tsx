@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { WolfMark } from "./WolfMark";
 
 const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
 
@@ -67,77 +68,82 @@ export function ArticleCTA({ variant = "mid" }: { variant?: "mid" | "end" }) {
   }
 
   return (
-    <section style={{
-      marginTop: "clamp(56px,8vh,96px)",
-      padding: "clamp(40px,6vw,72px)",
-      background: "rgba(212,160,32,.04)",
-      border: "1px solid rgba(212,160,32,.14)",
-      textAlign: "center",
+    <section className="article-end-cta" style={{
+      marginTop: "clamp(48px,7vh,80px)",
+      padding: "clamp(32px,3.5vw,48px)",
+      background: "linear-gradient(110deg, rgba(212,160,32,.06) 0%, rgba(212,160,32,.02) 55%, transparent 100%)",
+      border: "1px solid rgba(212,160,32,.16)",
       position: "relative",
+      overflow: "hidden",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: "clamp(24px,3vw,48px)",
     }}>
       <div style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 1,
         background: GOLD, backgroundSize: "260% 100%",
         animation: "metalShimmer 6s ease-in-out infinite",
-        opacity: 0.4,
+        opacity: 0.45,
       }} />
-      <p style={{
-        fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase",
-        color: "rgba(212,160,32,.5)", marginBottom: 20,
-      }}>
-        ¿Listo para el siguiente paso?
-      </p>
-      <h3 style={{
-        fontFamily: "var(--font-display)",
-        fontSize: "clamp(26px,3vw,44px)",
-        fontWeight: 300, lineHeight: 1.1,
-        letterSpacing: "-.025em",
-        color: "var(--color-text)",
-        marginBottom: 16,
-      }}>
-        Transformá la presencia digital de tu empresa
-      </h3>
-      <p style={{
-        fontSize: 14, color: "var(--color-text-3)",
-        lineHeight: 1.85, maxWidth: 440, margin: "0 auto 36px",
-      }}>
-        Analizamos tu situación específica y te decimos con honestidad si podemos generar un impacto real.
-      </p>
-      <div style={{
-        display: "inline-block",
-        padding: "1px",
-        background: GOLD,
-        backgroundSize: "280% 100%",
-        animation: "metalShimmer 5s ease-in-out infinite",
-      }}>
+
+      {/* Left: text + button */}
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 460 }}>
+        <p style={{
+          fontSize: 9, letterSpacing: ".42em", textTransform: "uppercase",
+          color: "rgba(212,160,32,.55)", marginBottom: 14,
+        }}>
+          SuitWolf Studio
+        </p>
+        <h3 style={{
+          fontFamily: "var(--font-display)",
+          fontSize: "clamp(22px,2.2vw,32px)",
+          fontWeight: 300, lineHeight: 1.18,
+          letterSpacing: "-.022em",
+          color: "var(--color-text)",
+          marginBottom: 24,
+        }}>
+          ¿Listo para llevar tu presencia digital al siguiente nivel?
+        </h3>
         <Link
           href="/#contact"
           onMouseEnter={() => setHov(true)}
           onMouseLeave={() => setHov(false)}
           style={{
-            display: "inline-flex", alignItems: "center", gap: 20,
-            padding: "18px 44px",
-            background: hov ? "var(--color-gold)" : "#060606",
-            color: hov ? "#080808" : "var(--color-text)",
-            fontSize: 10, letterSpacing: ".32em", textTransform: "uppercase",
+            display: "inline-flex", alignItems: "center", gap: 16,
+            padding: "15px 32px",
+            border: `1px solid ${hov ? "rgba(212,160,32,.6)" : "rgba(212,160,32,.3)"}`,
+            background: hov ? "var(--color-gold)" : "transparent",
+            color: hov ? "#080808" : "rgba(240,230,210,.9)",
+            fontSize: 9, letterSpacing: ".3em", textTransform: "uppercase",
             textDecoration: "none",
-            transition: "background .38s, color .38s",
+            transition: "background .35s, color .35s, border-color .35s",
           }}
         >
-          Solicitar evaluación
+          Hablemos de tu proyecto
           <span style={{
             position: "relative", display: "inline-flex", alignItems: "center",
-            width: 20, height: 1, background: "currentColor", flexShrink: 0,
+            width: 18, height: 1, background: "currentColor", flexShrink: 0,
           }}>
             <span style={{
               position: "absolute", right: -1, top: -3,
-              width: 6, height: 6,
+              width: 5, height: 5,
               borderRight: "1px solid currentColor",
               borderTop: "1px solid currentColor",
               transform: "rotate(45deg)",
             }} />
           </span>
         </Link>
+      </div>
+
+      {/* Right: decorative wolf */}
+      <div className="article-end-cta-art" aria-hidden style={{
+        position: "relative", zIndex: 1, flexShrink: 0,
+        width: 150, height: 150,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        background: "radial-gradient(ellipse 80% 80% at 50% 45%, rgba(168,108,5,.18) 0%, transparent 70%)",
+      }}>
+        <WolfMark size={92} opacity={0.55} />
       </div>
     </section>
   );
