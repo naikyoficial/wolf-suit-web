@@ -137,6 +137,27 @@ body {
   overscroll-behavior-y: none;
 }
 
+/* ─── Lenis smooth-scroll (REQUERIDO) ───
+   Sin estas reglas, el `h-full` (height:100%) del <html> limita la altura que
+   Lenis mide y el scroll se traba a mitad del artículo. `height: auto` deja que
+   el documento crezca con su contenido y Lenis calcule el límite real. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
 /* Selección de texto */
 ::selection {
   background-color: var(--color-gold);

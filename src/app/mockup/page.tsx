@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+// Internal design mockup — near-duplicate of the homepage. Keep it out of the
+// index so it doesn't compete with `/` as duplicate content.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+  alternates: { canonical: "/mockup" },
+};
 
 function SectionTag({ children }: { children: React.ReactNode }) {
   return (

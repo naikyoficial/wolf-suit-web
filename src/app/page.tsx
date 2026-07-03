@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import { Hero }        from "@/components/sections/Hero";
 import { Philosophy }  from "@/components/sections/Philosophy";
 import { Duality }     from "@/components/sections/Duality";
 import { Services }    from "@/components/sections/Services";
 import { WolfSystem }  from "@/components/sections/WolfSystem";
 import { Apply }       from "@/components/sections/Apply";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (
