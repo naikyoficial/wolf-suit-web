@@ -70,6 +70,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://suitwolf.com"),
   title: {
     default: "Suitwolf — Agencia de Diseño Web y Desarrollo para Empresas",
     template: "%s — Suitwolf",
@@ -119,9 +120,10 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
     },
   },
-  alternates: {
-    canonical: "https://suitwolf.com",
-  },
+  // NOTE: no site-wide `alternates.canonical` here — in the App Router a
+  // canonical set on the root layout is inherited by every child page that
+  // doesn't override it, which would point /evaluacion, /mockup, etc. at the
+  // homepage. Each route declares its own canonical instead.
 };
 
 export default function RootLayout({
