@@ -1,175 +1,129 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { Reveal }       from "@/components/ui/Reveal";
-import { SplitWords }   from "@/components/ui/SplitWords";
-import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
-import { useMobile }    from "@/hooks/useMobile";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
+import { DUALITY_CONTENT } from "@/content";
+import { useMobile } from "@/hooks/useMobile";
 
-const EASE = [0.16, 1.0, 0.3, 1.0] as const;
-const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
-
+/* 02 — Dualidad. Dos verdades opuestas que se deslizan en direcciones
+   contrarias con el scroll; una línea dorada las separa. */
 export function Duality() {
+  const ref = useRef<HTMLElement>(null);
   const isMobile = useMobile();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const xA = useTransform(scrollYProgress, [0, 1], [30, -30]);
+  const xB = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+
   return (
     <section
-      id="duality"
-      className="relative"
+      ref={ref}
+      id="dualidad"
       style={{
-        paddingBlock: "clamp(120px, 18vh, 240px)",
-        paddingInline: "clamp(1.5rem, 8vw, 7.5rem)",
-        zIndex: 10,
-        background: "#080808",
-        textAlign: "center",
+        position: "relative",
+        padding: "var(--section-py) var(--section-px)",
+        maxWidth: "var(--grid-max)",
+        margin: "0 auto",
         overflow: "hidden",
       }}
     >
-      {/* Texture */}
-      <Image
-        src="/dualidad-bg.png"
-        alt=""
-        fill
-        sizes="100vw"
-        style={{ objectFit: "cover", objectPosition: "50% 50%", opacity: 0.06 }}
+      <Reveal>
+        <p className="section-index" style={{ marginBottom: "clamp(48px, 8vh, 96px)" }}>
+          02 — Dualidad
+        </p>
+      </Reveal>
+
+      <h2 className="sr-only">La dualidad: parecer y ser</h2>
+
+      {/* Línea A — apagada, plata */}
+      <motion.p
+        style={{
+          x: isMobile ? 0 : xA,
+          fontFamily: "var(--font-display)",
+          fontStyle: "italic",
+          fontSize: "clamp(1.9rem, 4.8vw, 4.6rem)",
+          lineHeight: 1.15,
+          letterSpacing: "-0.01em",
+          color: "rgba(178,192,204,.42)",
+          maxWidth: "16em",
+          margin: 0,
+        }}
+      >
+        {DUALITY_CONTENT.lineA}
+      </motion.p>
+
+      {/* Separador dorado que se dibuja */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true, margin: "-10%" }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         aria-hidden
+        style={{
+          height: 1,
+          width: "min(420px, 60%)",
+          margin: "clamp(30px, 5vh, 56px) 0",
+          background: "linear-gradient(to right, rgba(212,160,32,.85), rgba(212,160,32,.05))",
+          transformOrigin: "left center",
+        }}
       />
 
-      {/* Warm center glow — lifts text off pure black */}
-      <div aria-hidden style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 70% 55% at 50% 50%, rgba(168,108,5,.07) 0%, transparent 70%)",
-        zIndex: 1,
-      }} />
+      {/* Línea B — encendida, blanca, desplazada a la derecha */}
+      <div className="md:ml-[18%]">
+        <motion.p
+          style={{
+            x: isMobile ? 0 : xB,
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(2.2rem, 5.6vw, 5.4rem)",
+            lineHeight: 1.08,
+            letterSpacing: "-0.015em",
+            color: "var(--color-text)",
+            maxWidth: "12em",
+            margin: 0,
+          }}
+        >
+          {DUALITY_CONTENT.lineB}
+        </motion.p>
+      </div>
 
-      {/* Edge fades */}
-      <div aria-hidden style={{
-        position: "absolute", top: 0, left: 0, right: 0, height: 200,
-        background: "linear-gradient(to bottom, rgba(8,8,8,1) 0%, transparent 100%)",
-        pointerEvents: "none", zIndex: 2,
-      }} />
-      <div aria-hidden style={{
-        position: "absolute", bottom: 0, left: 0, right: 0, height: 200,
-        background: "linear-gradient(to top, rgba(8,8,8,1) 0%, transparent 100%)",
-        pointerEvents: "none", zIndex: 2,
-      }} />
-
-      {/* Editorial column */}
-      <div style={{ maxWidth: 800, margin: "0 auto", position: "relative", zIndex: 3 }}>
-
-        {/* Eyebrow */}
-        <Reveal y={14} blur={4} style={{ marginBottom: "clamp(40px, 6vh, 80px)" }}>
-          <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".52em", textTransform: "uppercase" }}>
-            Dualidad
-          </ShimmerLabel>
-        </Reveal>
-
-        {/* Line 1 — ghost / receding */}
-        <div style={{ marginBottom: "clamp(2px, .4vh, 6px)" }}>
-          <SplitWords
-            as="h2"
-            delay={0}
-            stagger={0.026}
+      {/* Cierre — itálica dorada + aside */}
+      <div style={{ marginTop: "clamp(48px, 9vh, 100px)", display: "flex", flexDirection: "column", gap: "clamp(20px, 3vh, 32px)" }}>
+        <Reveal>
+          <p
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(32px, 5.8vw, 84px)",
-              fontWeight: 300,
-              lineHeight: 1.03,
-              letterSpacing: "-.025em",
-              color: "rgba(255,255,255,.55)",
+              fontStyle: "italic",
+              fontSize: "clamp(1.4rem, 2.6vw, 2.4rem)",
+              lineHeight: 1.3,
+              margin: 0,
+              background: "linear-gradient(95deg, #B8820A 0%, #D4A020 30%, #F0CC50 50%, #D4A020 70%, #B8820A 100%)",
+              backgroundSize: "200% 100%",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              paddingRight: "0.06em",
+              width: "fit-content",
             }}
           >
-            Una empresa pequeña puede parecer líder de su sector.
-          </SplitWords>
-        </div>
-
-        {/* Line 2 — dominant */}
-        <div style={{ marginBottom: "clamp(40px, 6vh, 88px)" }}>
-          <SplitWords
-            as="h2"
-            delay={0.08}
-            stagger={0.022}
+            {DUALITY_CONTENT.closing}
+          </p>
+        </Reveal>
+        <Reveal delay={0.12}>
+          <p
             style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(32px, 5.8vw, 84px)",
-              fontWeight: 700,
-              lineHeight: 1.03,
-              letterSpacing: "-.025em",
-              color: "#ffffff",
+              fontSize: "clamp(14px, 1.05vw, 16px)",
+              lineHeight: 1.75,
+              color: "var(--color-text-3)",
+              maxWidth: "34em",
+              margin: 0,
             }}
           >
-            Una gran empresa puede parecer amateur.
-          </SplitWords>
-        </div>
-
-        {/* Gold rule */}
-        <Reveal delay={0.36} y={0} blur={0} style={{ marginBottom: "clamp(36px, 5.5vh, 72px)" }}>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={isMobile
-              ? { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as const }
-              : { duration: 1.3, delay: 0.36, ease: EASE }
-            }
-            style={{
-              width: 56, height: 1, margin: "0 auto",
-              background: GOLD, backgroundSize: "260% 100%",
-              animation: "metalShimmer 8s ease-in-out infinite",
-              transformOrigin: "center",
-            }}
-          />
-        </Reveal>
-
-        {/* Pivot — "La diferencia está..." — Reveal for guaranteed visibility */}
-        <Reveal delay={0.48} y={22} blur={4} style={{ marginBottom: "clamp(36px, 5.5vh, 72px)" }}>
-          <p style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(24px, 3vw, 44px)",
-            fontWeight: 300,
-            fontStyle: "italic",
-            lineHeight: 1.18,
-            letterSpacing: "-.015em",
-            color: "rgba(240,235,225,.88)",
-          }}>
-            La diferencia está en cómo se presenta al mundo.
+            {DUALITY_CONTENT.aside}
           </p>
         </Reveal>
-
-        {/* Body */}
-        <Reveal delay={0.64} y={18} blur={5} style={{ marginBottom: "clamp(36px, 5.5vh, 72px)" }}>
-          <p style={{
-            fontSize: "clamp(14px, 1.05vw, 17px)",
-            color: "var(--color-text-2)",
-            lineHeight: 1.95,
-            maxWidth: 460,
-            margin: "0 auto",
-            letterSpacing: ".005em",
-          }}>
-            Transformamos tu identidad digital en una herramienta de autoridad.
-            Diseño que justifica tu valor. Posicionamiento que abre oportunidades
-            que el precio solo no puede abrir.
-          </p>
-        </Reveal>
-
-        {/* Closing */}
-        <Reveal delay={0.84} y={14} blur={4}>
-          <p style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(20px, 2.5vw, 36px)",
-            fontWeight: 300,
-            color: "rgba(236,232,223,.60)",
-            letterSpacing: "-.012em",
-            lineHeight: 1.28,
-            maxWidth: 620,
-            margin: "0 auto",
-          }}>
-            Tu empresa no necesita ser la número uno para verse como tal.{" "}
-            Solo necesita{" "}
-            <em style={{ color: "#d4a020", fontStyle: "italic" }}>el traje correcto</em>.
-          </p>
-        </Reveal>
-
       </div>
     </section>
   );

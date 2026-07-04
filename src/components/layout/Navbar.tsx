@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS, SITE } from "@/config/site";
@@ -13,7 +14,9 @@ export function Navbar() {
   const [menuOpen,  setMenuOpen]  = useState(false);
   const [scrolled,  setScrolled]  = useState(false);
   const [activeHref, setActiveHref] = useState<string | null>(null);
+  const [ctaHov, setCtaHov] = useState(false);
   const lenis = useLenis();
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 48);
@@ -25,10 +28,12 @@ export function Navbar() {
     setMenuOpen(false);
     const el = document.querySelector(href);
     if (!el) return;
-    lenis
-      ? lenis.scrollTo(el as HTMLElement, { offset: -72 })
-      : el.scrollIntoView({ behavior: "smooth" });
+    if (lenis) lenis.scrollTo(el as HTMLElement, { offset: -72 });
+    else el.scrollIntoView({ behavior: "smooth" });
   }
+
+  // En páginas internas los anchors del home deben volver al home
+  const anchorHref = (href: string) => (pathname === "/" ? href : `/${href}`);
 
   return (
     <>
@@ -61,9 +66,8 @@ export function Navbar() {
           <span
             className="font-display"
             style={{
-              fontSize: 16,
-              fontWeight: 500,
-              letterSpacing: ".36em",
+              fontSize: 17,
+              letterSpacing: ".34em",
               textTransform: "uppercase",
               background: GOLD,
               backgroundSize: "260% 100%",
@@ -77,7 +81,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop nav — truly centered */}
+        {/* Desktop nav — centrado real */}
         <nav
           aria-label="Navegación principal"
           className="hidden md:block"
@@ -92,67 +96,87 @@ export function Navbar() {
               const isHovered = activeHref === link.href;
               return (
                 <li key={link.href} style={{ position: "relative" }}>
-                  {link.href.startsWith("#") ? (
-                    <a
-                      href={link.href}
-                      onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                      onMouseEnter={() => setActiveHref(link.href)}
-                      onMouseLeave={() => setActiveHref(null)}
-                      data-cursor-hover
+                  <a
+                    href={anchorHref(link.href)}
+                    onClick={(e) => {
+                      if (pathname === "/" && link.href.startsWith("#")) {
+                        e.preventDefault();
+                        scrollTo(link.href);
+                      }
+                    }}
+                    onMouseEnter={() => setActiveHref(link.href)}
+                    onMouseLeave={() => setActiveHref(null)}
+                    data-cursor-hover
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: 10,
+                      letterSpacing: ".26em",
+                      textTransform: "uppercase",
+                      color: isHovered ? "rgba(240,235,225,.95)" : "rgba(200,195,185,.45)",
+                      textDecoration: "none",
+                      transition: "color .3s",
+                      display: "block",
+                      paddingBottom: 4,
+                    }}
+                  >
+                    {link.label}
+                    <motion.span
+                      animate={{ scaleX: isHovered ? 1 : 0, opacity: isHovered ? 1 : 0 }}
+                      transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
                       style={{
-                        fontSize: 10,
-                        letterSpacing: ".28em",
-                        textTransform: "uppercase",
-                        color: isHovered ? "rgba(240,235,225,.95)" : "rgba(200,195,185,.45)",
-                        textDecoration: "none",
-                        transition: "color .3s",
                         display: "block",
-                        paddingBottom: 4,
+                        height: 1,
+                        background: "linear-gradient(to right, rgba(212,160,32,.8), rgba(212,160,32,.3))",
+                        transformOrigin: "left",
+                        marginTop: 4,
                       }}
-                    >
-                      {link.label}
-                      {/* Gold underline indicator */}
-                      <motion.span
-                        animate={{ scaleX: isHovered ? 1 : 0, opacity: isHovered ? 1 : 0 }}
-                        transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                        style={{
-                          display: "block",
-                          height: 1,
-                          background: "linear-gradient(to right, rgba(212,160,32,.8), rgba(212,160,32,.3))",
-                          transformOrigin: "left",
-                          marginTop: 4,
-                        }}
-                      />
-                    </a>
-                  ) : (
-                    <Link
-                      href={link.href}
-                      onMouseEnter={() => setActiveHref(link.href)}
-                      onMouseLeave={() => setActiveHref(null)}
-                      data-cursor-hover
-                      style={{
-                        fontSize: 10,
-                        letterSpacing: ".28em",
-                        textTransform: "uppercase",
-                        color: isHovered ? "rgba(240,235,225,.95)" : "rgba(200,195,185,.45)",
-                        textDecoration: "none",
-                        transition: "color .3s",
-                        display: "block",
-                        paddingBottom: 4,
-                      }}
-                    >
-                      {link.label}
-                    </Link>
-                  )}
+                    />
+                  </a>
                 </li>
               );
             })}
           </ul>
         </nav>
 
-        {/* Right side */}
-        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center" }}>
-          {/* Hamburger — mobile only */}
+        {/* Lado derecho — CTA (desktop) + hamburguesa (mobile) */}
+        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 18 }}>
+          <Link
+            href="/evaluacion"
+            data-cursor-hover
+            className="hidden md:inline-flex"
+            onMouseEnter={() => setCtaHov(true)}
+            onMouseLeave={() => setCtaHov(false)}
+            style={{
+              alignItems: "center",
+              gap: 12,
+              padding: "10px 22px",
+              border: `1px solid ${ctaHov ? "rgba(212,160,32,.9)" : "rgba(212,160,32,.4)"}`,
+              background: ctaHov ? "var(--color-gold)" : "rgba(212,160,32,.05)",
+              color: ctaHov ? "#0A0A0A" : "rgba(240,235,225,.85)",
+              fontFamily: "var(--font-mono)",
+              fontSize: 10,
+              letterSpacing: ".26em",
+              textTransform: "uppercase",
+              textDecoration: "none",
+              transition: "background .35s, color .35s, border-color .35s",
+            }}
+          >
+            Evaluación
+            <span aria-hidden style={{
+              position: "relative", display: "inline-flex", alignItems: "center",
+              width: 14, height: 1, background: "currentColor", flexShrink: 0,
+            }}>
+              <span style={{
+                position: "absolute", right: -1, top: -2.5,
+                width: 5, height: 5,
+                borderRight: "1px solid currentColor",
+                borderTop: "1px solid currentColor",
+                transform: "rotate(45deg)",
+              }} />
+            </span>
+          </Link>
+
+          {/* Hamburguesa — solo mobile */}
           <button
             className="md:hidden flex flex-col justify-center items-center"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -185,7 +209,7 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Mobile menu overlay */}
+      {/* Menú mobile */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -196,7 +220,6 @@ export function Navbar() {
             className="md:hidden fixed inset-0 z-[199] flex flex-col"
             style={{ background: "rgba(4,3,2,.99)" }}
           >
-            {/* Atmosphere */}
             <div aria-hidden style={{
               position: "absolute", inset: 0, pointerEvents: "none",
               background: "radial-gradient(ellipse 60% 55% at 50% 50%, rgba(160,95,5,.07) 0%, transparent 68%)",
@@ -207,7 +230,6 @@ export function Navbar() {
               backgroundSize: "28px 28px",
             }} />
 
-            {/* Nav links — vertically centered, large display type */}
             <nav
               aria-label="Menú móvil"
               style={{
@@ -229,56 +251,69 @@ export function Navbar() {
                   transition={{ duration: 0.5, delay: 0.05 + i * 0.08, ease: EASE }}
                   style={{ width: "100%", textAlign: "center" }}
                 >
-                  {/* Thin gold separator */}
                   {i === 0 && (
                     <div style={{ width: 32, height: 1, background: "rgba(212,160,32,.2)", margin: "0 auto 28px" }} />
                   )}
-                  {link.href.startsWith("#") ? (
-                    <a
-                      href={link.href}
-                      onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                      style={{
-                        display: "block",
-                        padding: "14px 0",
-                        fontFamily: "var(--font-display)",
-                        fontSize: "clamp(32px,8vw,52px)",
-                        fontWeight: 300,
-                        letterSpacing: "-.01em",
-                        color: "rgba(240,235,225,.78)",
-                        textDecoration: "none",
-                      }}
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link
-                      href={link.href}
-                      onClick={() => setMenuOpen(false)}
-                      style={{
-                        display: "block",
-                        padding: "14px 0",
-                        fontFamily: "var(--font-display)",
-                        fontSize: "clamp(32px,8vw,52px)",
-                        fontWeight: 300,
-                        letterSpacing: "-.01em",
-                        color: "rgba(240,235,225,.78)",
-                        textDecoration: "none",
-                      }}
-                    >
-                      {link.label}
-                    </Link>
-                  )}
+                  <a
+                    href={anchorHref(link.href)}
+                    onClick={(e) => {
+                      if (pathname === "/" && link.href.startsWith("#")) {
+                        e.preventDefault();
+                        scrollTo(link.href);
+                      } else {
+                        setMenuOpen(false);
+                      }
+                    }}
+                    style={{
+                      display: "block",
+                      padding: "14px 0",
+                      fontFamily: "var(--font-display)",
+                      fontSize: "clamp(32px,8vw,52px)",
+                      letterSpacing: "-.01em",
+                      color: "rgba(240,235,225,.78)",
+                      textDecoration: "none",
+                    }}
+                  >
+                    {link.label}
+                  </a>
                   {i === NAV_LINKS.length - 1 && (
                     <div style={{ width: 32, height: 1, background: "rgba(212,160,32,.2)", margin: "28px auto 0" }} />
                   )}
                 </motion.div>
               ))}
-            </nav>
 
+              {/* CTA del menú mobile */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.05 + NAV_LINKS.length * 0.08 + 0.1, ease: EASE }}
+                style={{ marginTop: 40 }}
+              >
+                <Link
+                  href="/evaluacion"
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 14,
+                    padding: "18px 40px",
+                    background: "var(--color-gold)",
+                    color: "#0A0A0A",
+                    fontFamily: "var(--font-mono)",
+                    fontWeight: 500,
+                    fontSize: 11,
+                    letterSpacing: ".28em",
+                    textTransform: "uppercase",
+                    textDecoration: "none",
+                  }}
+                >
+                  Solicitar evaluación
+                </Link>
+              </motion.div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
     </>
   );
 }
-

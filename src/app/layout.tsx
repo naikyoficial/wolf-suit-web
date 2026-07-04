@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, DM_Sans, Hubballi, Iceland, Inter, Kanit, Jockey_One } from "next/font/google";
+import { Instrument_Serif, Inter, JetBrains_Mono } from "next/font/google";
 import { Navbar }         from "@/components/layout/Navbar";
 import { Footer }         from "@/components/layout/Footer";
 import { SmoothScroll }   from "@/components/layout/SmoothScroll";
@@ -10,10 +10,10 @@ import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { AtmosphericBg }  from "@/components/sections/AtmosphericBg";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--ws-cormorant",
+const instrument = Instrument_Serif({
+  variable: "--ws-instrument",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: "400",
   style: ["normal", "italic"],
   display: "swap",
   preload: true,
@@ -27,39 +27,10 @@ const inter = Inter({
   preload: true,
 });
 
-const dmSans = DM_Sans({
-  variable: "--ws-dm-sans",
+const jetbrains = JetBrains_Mono({
+  variable: "--ws-jbmono",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  display: "swap",
-  preload: true,
-});
-
-const hubballi = Hubballi({
-  variable: "--ws-hubballi",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
-
-const iceland = Iceland({
-  variable: "--ws-iceland",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
-
-const kanit = Kanit({
-  variable: "--ws-kanit",
-  subsets: ["latin"],
-  weight: ["400", "700", "800", "900"],
-  display: "swap",
-});
-
-const jockeyOne = Jockey_One({
-  variable: "--ws-jockey",
-  subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -134,7 +105,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${cormorant.variable} ${dmSans.variable} ${hubballi.variable} ${iceland.variable} ${inter.variable} ${kanit.variable} ${jockeyOne.variable} h-full`}
+      className={`${instrument.variable} ${inter.variable} ${jetbrains.variable} h-full`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-surface text-text antialiased">

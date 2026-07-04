@@ -6,9 +6,9 @@
 
 /* ─── Fuentes (referenciadas desde next/font) ─── */
 @theme inline {
-  --font-display: var(--ws-cormorant);
+  --font-display: var(--ws-instrument);
   --font-body:    var(--ws-inter);
-  --font-mono:    ui-monospace, 'JetBrains Mono', 'Fira Code', monospace;
+  --font-mono:    var(--ws-jbmono), ui-monospace, monospace;
 }
 
 /* ─── Tokens de color (Tailwind utilities + CSS vars) ─── */
@@ -251,6 +251,57 @@ body { scrollbar-width: none; }
   0%, 100% { transform: translate(0, 0) scale(1);    opacity: .03; }
   50%       { transform: translate(30px, 80px) scale(1.14); opacity: .05; }
 }
+/* ─── Editorial utilities (rediseño Awwwards) ─── */
+
+/* Texto en contorno — para marquees y marcas de agua gigantes */
+.text-outline {
+  -webkit-text-stroke: 1px rgba(247, 245, 240, 0.22);
+  color: transparent;
+}
+.text-outline-gold {
+  -webkit-text-stroke: 1px rgba(212, 160, 32, 0.38);
+  color: transparent;
+}
+
+/* Índice de sección — etiqueta mono editorial */
+.section-index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-text-3);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-index::before {
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(212, 160, 32, 0.75), rgba(212, 160, 32, 0.1));
+  flex-shrink: 0;
+}
+
+/* Indicador de scroll — línea que respira hacia abajo */
+@keyframes scrollHint {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  45%  { transform: scaleY(1); transform-origin: top; }
+  55%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* Punto de disponibilidad — pulso lento */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 0 0 rgba(212, 160, 32, 0.5); }
+  60%       { opacity: 0.6; box-shadow: 0 0 0 7px rgba(212, 160, 32, 0); }
+}
+
+/* Marquee vertical lento (banda de servicios) */
+@keyframes marqueeSlow {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 /* ─── Custom cursor — hide native (mouse only) ─── */
 @media (pointer: fine) {
   html, body, * { cursor: none !important; }
