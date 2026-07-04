@@ -150,7 +150,7 @@ export default function RootLayout({
         <ScrollProgress />
         <SmoothScroll>
           <Navbar />
-          <div className="flex-1 pt-16">{children}</div>
+          <div className="flex-1 pt-[72px]">{children}</div>
           <Footer />
         </SmoothScroll>
       </body>

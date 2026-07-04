@@ -61,9 +61,9 @@ function ServiceRow({
           transition={{ duration: 0.45, ease: EASE }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.7rem, 3.8vw, 3.4rem)",
-            lineHeight: 1.05,
-            letterSpacing: "-0.01em",
+            fontSize: "clamp(1.6rem, 3vw, 2.7rem)",
+            lineHeight: 1.12,
+            letterSpacing: "0",
             color: lit ? "rgba(248,245,240,.98)" : "rgba(248,245,240,.6)",
             transition: "color .35s",
             flex: 1,
@@ -233,9 +233,9 @@ export function Services() {
           <h2
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(2.2rem, 5vw, 4.6rem)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.015em",
+              fontSize: "clamp(2.1rem, 3.9vw, 3.6rem)",
+              lineHeight: 1.12,
+              letterSpacing: "-0.005em",
               color: "var(--color-text)",
               margin: 0,
             }}

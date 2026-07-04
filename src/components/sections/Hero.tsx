@@ -25,9 +25,9 @@ function MaskLine({
   gold?: boolean;
 }) {
   return (
-    <span aria-hidden style={{ display: "block", overflow: "hidden", paddingBottom: "0.06em", marginBottom: "-0.06em" }}>
+    <span aria-hidden style={{ display: "block", overflow: "hidden", paddingBottom: "0.14em", marginBottom: "-0.14em" }}>
       <motion.span
-        initial={{ y: "112%" }}
+        initial={{ y: "116%" }}
         animate={{ y: "0%" }}
         transition={{ duration: 1.1, delay, ease: EASE }}
         style={{
@@ -106,7 +106,7 @@ export function Hero() {
     <section
       style={{
         position: "relative",
-        minHeight: "calc(100svh - 4rem)",
+        minHeight: "calc(100svh - 72px)",
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
@@ -240,19 +240,19 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* Titular — Instrument Serif gigante, máscaras por línea */}
+        {/* Titular — Instrument Serif, máscaras por línea */}
         <h1
           aria-label="¿Tu sitio web refleja el nivel de tu empresa?"
           style={{
             fontFamily: "var(--font-display)",
             fontWeight: 400,
-            fontSize: "clamp(2.9rem, 8.3vw, 8.4rem)",
-            lineHeight: 1.0,
-            letterSpacing: "-0.015em",
+            fontSize: "clamp(2.7rem, 6.4vw, 6.4rem)",
+            lineHeight: 1.07,
+            letterSpacing: "-0.005em",
             color: "rgba(248,245,240,.97)",
             margin: 0,
-            marginBottom: "clamp(22px, 3.4vh, 40px)",
-            maxWidth: "12em",
+            marginBottom: "clamp(26px, 3.8vh, 44px)",
+            maxWidth: "13em",
           }}
         >
           <MaskLine delay={0.5}>¿Tu sitio web</MaskLine>

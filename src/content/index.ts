@@ -96,9 +96,8 @@ export const SERVICES: ServiceItem[] = [
 ];
 
 export const METHOD_INTRO = {
-  headline: "La excelencia no es un objetivo; es el punto de partida.",
   aside:
-    "Cinco fases. Cero improvisación. Cada proyecto atraviesa el mismo sistema que garantiza que el resultado final imponga el nivel que tu empresa exige.",
+    "Cada proyecto atraviesa las mismas cinco fases, del diagnóstico estratégico al perfeccionamiento final. Es el sistema que garantiza que el resultado esté a la altura, sin dejar nada librado al azar.",
 } as const;
 
 export const METHOD_STEPS = [
@@ -130,10 +129,10 @@ export const METHOD_STEPS = [
 ] as const;
 
 export const STANDARDS = [
-  { value: "90", suffix: "+", label: "PageSpeed en móvil", note: "rendimiento real, medido por Google" },
-  { value: "100", suffix: "%", label: "Diseño a medida", note: "cada pixel construido desde cero" },
-  { value: "0", suffix: "", label: "Templates. Nunca.", note: "tu empresa no merece un molde" },
-  { value: "72", suffix: "h", label: "Respuesta máxima", note: "cada solicitud, sin excepción" },
+  { value: "90", suffix: "+", label: "PageSpeed en móvil", note: "Rendimiento medido por Google, no prometido" },
+  { value: "100", suffix: "%", label: "Código a medida", note: "Sin plantillas ni page builders" },
+  { value: "72", suffix: "h", label: "Respuesta garantizada", note: "A cada solicitud de evaluación" },
+  { value: "5", suffix: "", label: "Fases de método", note: "Del diagnóstico al lanzamiento" },
 ] as const;
 
 export const FAQS = [

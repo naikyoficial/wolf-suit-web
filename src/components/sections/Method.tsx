@@ -51,7 +51,7 @@ function Step({ step, isLast }: { step: (typeof METHOD_STEPS)[number]; isLast: b
           top: "-0.28em",
           fontFamily: "var(--font-display)",
           fontStyle: "italic",
-          fontSize: "clamp(4.4rem, 9vw, 9rem)",
+          fontSize: "clamp(3.6rem, 6.5vw, 6.6rem)",
           lineHeight: 1,
           pointerEvents: "none",
           ...(inView
@@ -72,9 +72,9 @@ function Step({ step, isLast }: { step: (typeof METHOD_STEPS)[number]; isLast: b
         transition={{ duration: 0.5 }}
         style={{
           fontFamily: "var(--font-display)",
-          fontSize: "clamp(1.9rem, 3.6vw, 3.2rem)",
-          lineHeight: 1.05,
-          letterSpacing: "-0.01em",
+          fontSize: "clamp(1.8rem, 2.9vw, 2.6rem)",
+          lineHeight: 1.12,
+          letterSpacing: "0",
           margin: 0,
           marginBottom: "clamp(14px, 2vh, 22px)",
           position: "relative",
@@ -128,16 +128,16 @@ export function Method() {
             <h2
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(2.2rem, 4.6vw, 4.2rem)",
-                lineHeight: 1.08,
-                letterSpacing: "-0.015em",
+                fontSize: "clamp(2rem, 3.6vw, 3.3rem)",
+                lineHeight: 1.16,
+                letterSpacing: "-0.005em",
                 color: "var(--color-text)",
                 margin: 0,
                 marginBottom: "clamp(22px, 3.4vh, 36px)",
-                maxWidth: "10em",
+                maxWidth: "11em",
               }}
             >
-              La excelencia no es un objetivo;{" "}
+              Nada queda{" "}
               <span style={{
                 fontStyle: "italic",
                 background: "linear-gradient(95deg, #B8820A 0%, #D4A020 30%, #F0CC50 50%, #D4A020 70%, #B8820A 100%)",
@@ -147,7 +147,7 @@ export function Method() {
                 backgroundClip: "text",
                 paddingRight: "0.06em",
               }}>
-                es el punto de partida.
+                librado al azar.
               </span>
             </h2>
           </Reveal>

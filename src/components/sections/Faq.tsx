@@ -135,9 +135,9 @@ export function Faq() {
             <h2
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(2.2rem, 4.4vw, 4rem)",
-                lineHeight: 1.08,
-                letterSpacing: "-0.015em",
+                fontSize: "clamp(2rem, 3.6vw, 3.2rem)",
+                lineHeight: 1.14,
+                letterSpacing: "-0.005em",
                 color: "var(--color-text)",
                 margin: 0,
                 marginBottom: "clamp(18px, 2.6vh, 28px)",

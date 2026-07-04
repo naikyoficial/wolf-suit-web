@@ -40,41 +40,44 @@ export function Navbar() {
       <header
         className="site-header fixed top-0 left-0 right-0 z-[200]"
         style={{
-          height: 64,
+          height: 72,
           padding: "0 clamp(1.5rem, 6vw, 7.5rem)",
           display: "flex",
           alignItems: "center",
           background: menuOpen
             ? "rgba(4,3,2,.99)"
             : scrolled
-            ? "rgba(5,4,3,.88)"
-            : "rgba(5,4,3,.2)",
-          backdropFilter: scrolled || menuOpen ? "blur(24px)" : "none",
-          WebkitBackdropFilter: scrolled || menuOpen ? "blur(24px)" : "none",
-          borderBottom: `1px solid ${scrolled || menuOpen ? "rgba(212,160,32,.12)" : "rgba(212,160,32,.06)"}`,
+            ? "rgba(6,5,4,.72)"
+            : "transparent",
+          backdropFilter: scrolled || menuOpen ? "blur(20px) saturate(140%)" : "none",
+          WebkitBackdropFilter: scrolled || menuOpen ? "blur(20px) saturate(140%)" : "none",
+          borderBottom: `1px solid ${scrolled || menuOpen ? "rgba(255,255,255,.07)" : "transparent"}`,
           transition: "background .5s, border-color .5s, backdrop-filter .5s",
         }}
       >
-        {/* Logo */}
+        {/* Logo — marca + wordmark */}
         <Link
           href="/"
           aria-label={`${SITE.name} — inicio`}
           onClick={() => setMenuOpen(false)}
           data-cursor-hover
-          style={{ flexShrink: 0 }}
+          style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 11 }}
         >
+          <span aria-hidden style={{
+            width: 7, height: 7, flexShrink: 0,
+            background: GOLD,
+            backgroundSize: "260% 100%",
+            animation: "metalShimmer 10s ease-in-out infinite",
+            transform: "rotate(45deg)",
+          }} />
           <span
             className="font-display"
             style={{
-              fontSize: 17,
-              letterSpacing: ".34em",
+              fontSize: 20,
+              letterSpacing: ".26em",
+              textIndent: ".26em",
               textTransform: "uppercase",
-              background: GOLD,
-              backgroundSize: "260% 100%",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              animation: "metalShimmer 10s ease-in-out infinite",
+              color: "#F3F0EA",
             }}
           >
             {SITE.name}
@@ -91,8 +94,8 @@ export function Navbar() {
             transform: "translateX(-50%)",
           }}
         >
-          <ul style={{ display: "flex", alignItems: "center", gap: "clamp(24px,3vw,44px)", listStyle: "none", padding: 0, margin: 0 }}>
-            {NAV_LINKS.map((link) => {
+          <ul style={{ display: "flex", alignItems: "center", gap: "clamp(28px,3.2vw,50px)", listStyle: "none", padding: 0, margin: 0 }}>
+            {NAV_LINKS.map((link, i) => {
               const isHovered = activeHref === link.href;
               return (
                 <li key={link.href} style={{ position: "relative" }}>
@@ -108,27 +111,35 @@ export function Navbar() {
                     onMouseLeave={() => setActiveHref(null)}
                     data-cursor-hover
                     style={{
+                      display: "flex",
+                      alignItems: "baseline",
+                      gap: 7,
                       fontFamily: "var(--font-mono)",
-                      fontSize: 10,
-                      letterSpacing: ".26em",
+                      fontSize: 11,
+                      letterSpacing: ".16em",
                       textTransform: "uppercase",
-                      color: isHovered ? "rgba(240,235,225,.95)" : "rgba(200,195,185,.45)",
+                      color: isHovered ? "rgba(243,240,234,.98)" : "rgba(200,195,185,.5)",
                       textDecoration: "none",
                       transition: "color .3s",
-                      display: "block",
                       paddingBottom: 4,
                     }}
                   >
+                    <span aria-hidden style={{
+                      fontSize: 8.5,
+                      color: isHovered ? "rgba(212,160,32,.9)" : "rgba(212,160,32,.4)",
+                      transition: "color .3s",
+                    }}>
+                      0{i + 1}
+                    </span>
                     {link.label}
                     <motion.span
                       animate={{ scaleX: isHovered ? 1 : 0, opacity: isHovered ? 1 : 0 }}
                       transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
                       style={{
-                        display: "block",
+                        position: "absolute", left: 0, right: 0, bottom: 0,
                         height: 1,
-                        background: "linear-gradient(to right, rgba(212,160,32,.8), rgba(212,160,32,.3))",
+                        background: "linear-gradient(to right, rgba(212,160,32,.85), rgba(212,160,32,.2))",
                         transformOrigin: "left",
-                        marginTop: 4,
                       }}
                     />
                   </a>
@@ -139,7 +150,26 @@ export function Navbar() {
         </nav>
 
         {/* Lado derecho — CTA (desktop) + hamburguesa (mobile) */}
-        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 18 }}>
+        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 22 }}>
+          {/* Disponibilidad — solo en pantallas muy anchas para no colisionar */}
+          <span className="hidden 2xl:flex" style={{ alignItems: "center", gap: 8 }}>
+            <span aria-hidden style={{
+              width: 6, height: 6, borderRadius: "50%",
+              background: "#7BB661",
+              boxShadow: "0 0 0 0 rgba(123,182,97,.5)",
+              animation: "pulseDot 3.2s ease-in-out infinite",
+            }} />
+            <span style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: 10,
+              letterSpacing: ".14em",
+              textTransform: "uppercase",
+              color: "rgba(200,195,185,.5)",
+            }}>
+              Tomando proyectos
+            </span>
+          </span>
+
           <Link
             href="/evaluacion"
             data-cursor-hover
@@ -148,23 +178,23 @@ export function Navbar() {
             onMouseLeave={() => setCtaHov(false)}
             style={{
               alignItems: "center",
-              gap: 12,
-              padding: "10px 22px",
-              border: `1px solid ${ctaHov ? "rgba(212,160,32,.9)" : "rgba(212,160,32,.4)"}`,
-              background: ctaHov ? "var(--color-gold)" : "rgba(212,160,32,.05)",
-              color: ctaHov ? "#0A0A0A" : "rgba(240,235,225,.85)",
+              gap: 11,
+              padding: "11px 24px",
+              background: ctaHov ? "var(--color-gold-peak)" : "var(--color-gold)",
+              color: "#0A0A0A",
               fontFamily: "var(--font-mono)",
-              fontSize: 10,
-              letterSpacing: ".26em",
+              fontSize: 10.5,
+              letterSpacing: ".18em",
               textTransform: "uppercase",
               textDecoration: "none",
-              transition: "background .35s, color .35s, border-color .35s",
+              transition: "background .35s",
             }}
           >
             Evaluación
             <span aria-hidden style={{
               position: "relative", display: "inline-flex", alignItems: "center",
-              width: 14, height: 1, background: "currentColor", flexShrink: 0,
+              width: ctaHov ? 20 : 14, height: 1, background: "currentColor", flexShrink: 0,
+              transition: "width .35s",
             }}>
               <span style={{
                 position: "absolute", right: -1, top: -2.5,

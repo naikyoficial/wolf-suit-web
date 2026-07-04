@@ -29,11 +29,11 @@ export function Manifesto() {
       <ScrollWords
         style={{
           fontFamily: "var(--font-display)",
-          fontSize: "clamp(1.9rem, 4.6vw, 4.4rem)",
-          lineHeight: 1.22,
-          letterSpacing: "-0.01em",
+          fontSize: "clamp(1.8rem, 3.7vw, 3.4rem)",
+          lineHeight: 1.34,
+          letterSpacing: "0",
           color: "var(--color-text)",
-          maxWidth: "22em",
+          maxWidth: "20em",
           margin: 0,
         }}
       >
@@ -47,8 +47,8 @@ export function Manifesto() {
             <p
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(1.7rem, 3.4vw, 3.2rem)",
-                lineHeight: 1.18,
+                fontSize: "clamp(1.7rem, 2.9vw, 2.7rem)",
+                lineHeight: 1.28,
                 color: "var(--color-text)",
                 margin: 0,
               }}

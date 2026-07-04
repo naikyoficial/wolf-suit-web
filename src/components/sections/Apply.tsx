@@ -58,13 +58,13 @@ export function Apply() {
           <h2
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(2.6rem, 6.6vw, 6.6rem)",
-              lineHeight: 1.02,
-              letterSpacing: "-0.015em",
+              fontSize: "clamp(2.4rem, 4.8vw, 4.6rem)",
+              lineHeight: 1.1,
+              letterSpacing: "-0.005em",
               color: "var(--color-text)",
               margin: 0,
               marginBottom: "clamp(20px, 3vh, 34px)",
-              maxWidth: "11em",
+              maxWidth: "12em",
             }}
           >
             Si llegaste hasta acá, ya entendiste que{" "}

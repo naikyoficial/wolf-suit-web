@@ -151,12 +151,13 @@ export function Footer() {
           style={{
             display: "block",
             textAlign: "center",
-            fontSize: "clamp(4.5rem, 14.5vw, 15rem)",
-            letterSpacing: ".14em",
+            fontSize: "clamp(3.6rem, 12vw, 12rem)",
+            letterSpacing: ".2em",
+            textIndent: ".2em",
             textTransform: "uppercase",
             whiteSpace: "nowrap",
-            transform: "translateY(18%)",
-            opacity: 0.55,
+            transform: "translateY(20%)",
+            opacity: 0.32,
           }}
         >
           {SITE.name}

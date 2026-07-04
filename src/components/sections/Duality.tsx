@@ -44,9 +44,9 @@ export function Duality() {
           x: isMobile ? 0 : xA,
           fontFamily: "var(--font-display)",
           fontStyle: "italic",
-          fontSize: "clamp(1.9rem, 4.8vw, 4.6rem)",
-          lineHeight: 1.15,
-          letterSpacing: "-0.01em",
+          fontSize: "clamp(1.8rem, 3.7vw, 3.5rem)",
+          lineHeight: 1.24,
+          letterSpacing: "0",
           color: "rgba(178,192,204,.42)",
           maxWidth: "16em",
           margin: 0,
@@ -77,11 +77,11 @@ export function Duality() {
           style={{
             x: isMobile ? 0 : xB,
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(2.2rem, 5.6vw, 5.4rem)",
-            lineHeight: 1.08,
-            letterSpacing: "-0.015em",
+            fontSize: "clamp(2.1rem, 4.4vw, 4.2rem)",
+            lineHeight: 1.14,
+            letterSpacing: "-0.005em",
             color: "var(--color-text)",
-            maxWidth: "12em",
+            maxWidth: "13em",
             margin: 0,
           }}
         >
