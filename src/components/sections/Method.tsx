@@ -7,35 +7,38 @@ import { METHOD_INTRO, METHOD_STEPS } from "@/content";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
+const GOLD =
+  "linear-gradient(95deg, #B98A3E 0%, #D9B36A 30%, #F1DCA4 50%, #D9B36A 70%, #B98A3E 100%)";
+
 function Step({ step, isLast }: { step: (typeof METHOD_STEPS)[number]; isLast: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { margin: "-38% 0px -38% 0px" });
+  const inView = useInView(ref, { margin: "-36% 0px -36% 0px" });
 
   return (
     <div
       ref={ref}
       style={{
         position: "relative",
-        paddingLeft: "clamp(28px, 3.4vw, 56px)",
-        paddingBottom: isLast ? 0 : "clamp(52px, 9vh, 110px)",
+        paddingLeft: "clamp(24px, 3vw, 48px)",
+        paddingBottom: isLast ? 0 : "clamp(44px, 8vh, 96px)",
       }}
     >
-      {/* Riel vertical + nodo */}
+      {/* Riel vertical */}
       <span aria-hidden style={{
-        position: "absolute", left: 0, top: 10, bottom: 0,
+        position: "absolute", left: 0, top: 12, bottom: 0,
         width: 1,
-        background: isLast ? "transparent" : "rgba(255,255,255,.08)",
+        background: isLast ? "transparent" : "rgba(255,255,255,.07)",
       }} />
       <motion.span
         aria-hidden
         animate={{
-          background: inView ? "#D4A020" : "rgba(255,255,255,.18)",
-          scale: inView ? 1 : 0.6,
-          boxShadow: inView ? "0 0 18px rgba(212,160,32,.5)" : "0 0 0 rgba(0,0,0,0)",
+          background: inView ? "#D4A020" : "rgba(255,255,255,.15)",
+          scale: inView ? 1 : 0.65,
+          boxShadow: inView ? "0 0 14px rgba(212,160,32,.45)" : "0 0 0 rgba(0,0,0,0)",
         }}
-        transition={{ duration: 0.5, ease: EASE }}
+        transition={{ duration: 0.45, ease: EASE }}
         style={{
-          position: "absolute", left: -3.5, top: 8,
+          position: "absolute", left: -3.5, top: 10,
           width: 8, height: 8, borderRadius: "50%",
         }}
       />
@@ -43,40 +46,42 @@ function Step({ step, isLast }: { step: (typeof METHOD_STEPS)[number]; isLast: b
       {/* Numeral fantasma */}
       <motion.span
         aria-hidden
-        animate={{ opacity: inView ? 1 : 0.28 }}
-        transition={{ duration: 0.6 }}
+        animate={{ opacity: inView ? 1 : 0.22 }}
+        transition={{ duration: 0.5 }}
         style={{
           position: "absolute",
-          right: 0,
-          top: "-0.28em",
-          fontFamily: "var(--font-display)",
+          right: 0, top: "-0.22em",
+          fontFamily: "var(--font-body)",
           fontStyle: "italic",
-          fontSize: "clamp(3.6rem, 6.5vw, 6.6rem)",
+          fontWeight: 700,
+          fontSize: "clamp(3rem, 5.5vw, 5.5rem)",
           lineHeight: 1,
           pointerEvents: "none",
+          userSelect: "none",
           ...(inView
             ? {
-                background: "linear-gradient(180deg, rgba(212,160,32,.34) 0%, rgba(212,160,32,.04) 100%)",
+                background: "linear-gradient(180deg, rgba(212,160,32,.28) 0%, rgba(212,160,32,.03) 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }
-            : { color: "rgba(255,255,255,.05)" }),
+            : { color: "rgba(255,255,255,.04)" }),
         }}
       >
         {step.num}
       </motion.span>
 
       <motion.h3
-        animate={{ color: inView ? "rgba(248,245,240,.98)" : "rgba(248,245,240,.42)" }}
-        transition={{ duration: 0.5 }}
+        animate={{ color: inView ? "rgba(248,245,240,.96)" : "rgba(248,245,240,.38)" }}
+        transition={{ duration: 0.45 }}
         style={{
-          fontFamily: "var(--font-display)",
-          fontSize: "clamp(1.8rem, 2.9vw, 2.6rem)",
-          lineHeight: 1.12,
-          letterSpacing: "0",
+          fontFamily: "var(--font-body)",
+          fontWeight: 600,
+          fontSize: "clamp(1.3rem, 2vw, 1.75rem)",
+          lineHeight: 1.18,
+          letterSpacing: "-0.022em",
           margin: 0,
-          marginBottom: "clamp(14px, 2vh, 22px)",
+          marginBottom: "clamp(12px, 1.8vh, 20px)",
           position: "relative",
           zIndex: 1,
         }}
@@ -85,11 +90,11 @@ function Step({ step, isLast }: { step: (typeof METHOD_STEPS)[number]; isLast: b
       </motion.h3>
 
       <motion.p
-        animate={{ color: inView ? "#ABA8A2" : "#6B6862" }}
-        transition={{ duration: 0.5 }}
+        animate={{ color: inView ? "#ABA8A2" : "#5A5754" }}
+        transition={{ duration: 0.45 }}
         style={{
-          fontSize: "clamp(14px, 1.05vw, 16px)",
-          lineHeight: 1.75,
+          fontSize: "clamp(14px, 1.02vw, 16px)",
+          lineHeight: 1.72,
           maxWidth: "30em",
           margin: 0,
           position: "relative",
@@ -102,8 +107,6 @@ function Step({ step, isLast }: { step: (typeof METHOD_STEPS)[number]; isLast: b
   );
 }
 
-/* 04 — Método. Encabezado sticky a la izquierda; los cinco pasos se
-   encienden a medida que atraviesan el centro del viewport. */
 export function Method() {
   return (
     <section
@@ -113,50 +116,49 @@ export function Method() {
         padding: "var(--section-py) var(--section-px)",
         maxWidth: "var(--grid-max)",
         margin: "0 auto",
+        borderTop: "1px solid rgba(255,255,255,.06)",
       }}
     >
       <Reveal>
-        <p className="section-index" style={{ marginBottom: "clamp(40px, 6vh, 72px)" }}>
+        <p className="section-index" style={{ marginBottom: "clamp(40px, 6vh, 68px)" }}>
           04 — Método
         </p>
       </Reveal>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.15fr]" style={{ gap: "clamp(48px, 6vw, 110px)", alignItems: "start" }}>
-        {/* Columna izquierda — sticky en desktop */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr]" style={{ gap: "clamp(48px, 6vw, 110px)", alignItems: "start" }}>
+        {/* Columna izquierda — sticky */}
         <div className="lg:sticky lg:top-[120px]">
           <Reveal>
             <h2
               style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(2rem, 3.6vw, 3.3rem)",
+                fontFamily: "var(--font-body)",
+                fontWeight: 600,
+                fontSize: "clamp(1.8rem, 2.8vw, 2.5rem)",
                 lineHeight: 1.16,
-                letterSpacing: "-0.005em",
+                letterSpacing: "-0.03em",
                 color: "var(--color-text)",
                 margin: 0,
-                marginBottom: "clamp(22px, 3.4vh, 36px)",
-                maxWidth: "11em",
+                marginBottom: "clamp(20px, 3vh, 32px)",
               }}
             >
               Nada queda{" "}
               <span style={{
                 fontStyle: "italic",
-                background: "linear-gradient(95deg, #B8820A 0%, #D4A020 30%, #F0CC50 50%, #D4A020 70%, #B8820A 100%)",
+                background: GOLD,
                 backgroundSize: "200% 100%",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
-                paddingRight: "0.06em",
               }}>
                 librado al azar.
               </span>
             </h2>
           </Reveal>
-          <Reveal delay={0.12}>
+          <Reveal delay={0.1}>
             <p style={{
-              fontSize: "clamp(14px, 1.05vw, 16px)",
-              lineHeight: 1.75,
+              fontSize: "clamp(14px, 1.02vw, 16px)",
+              lineHeight: 1.72,
               color: "var(--color-text-3)",
-              maxWidth: "30em",
               margin: 0,
             }}>
               {METHOD_INTRO.aside}
@@ -164,7 +166,7 @@ export function Method() {
           </Reveal>
         </div>
 
-        {/* Columna derecha — pasos */}
+        {/* Pasos */}
         <div>
           {METHOD_STEPS.map((step, i) => (
             <Step key={step.num} step={step} isLast={i === METHOD_STEPS.length - 1} />

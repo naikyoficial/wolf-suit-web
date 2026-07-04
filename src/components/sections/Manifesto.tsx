@@ -1,12 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ScrollWords } from "@/components/ui/ScrollWords";
 import { Reveal } from "@/components/ui/Reveal";
 import { MANIFESTO_CONTENT } from "@/content";
 
-/* 01 — Filosofía. Manifiesto editorial: la declaración se enciende palabra
-   por palabra con el scroll; el remate entra en itálica dorada. */
+const EASE = [0.16, 1.0, 0.3, 1.0] as const;
+
+const GOLD =
+  "linear-gradient(95deg, #B98A3E 0%, #D9B36A 30%, #F1DCA4 50%, #D9B36A 70%, #B98A3E 100%)";
+
 export function Manifesto() {
   return (
     <section
@@ -19,70 +21,101 @@ export function Manifesto() {
       }}
     >
       <Reveal>
-        <p className="section-index" style={{ marginBottom: "clamp(48px, 8vh, 96px)" }}>
+        <p className="section-index" style={{ marginBottom: "clamp(48px, 8vh, 88px)" }}>
           01 — Filosofía
         </p>
       </Reveal>
 
       <h2 className="sr-only">Filosofía: la percepción precede al crecimiento</h2>
 
-      <ScrollWords
-        style={{
-          fontFamily: "var(--font-display)",
-          fontSize: "clamp(1.8rem, 3.7vw, 3.4rem)",
-          lineHeight: 1.34,
-          letterSpacing: "0",
-          color: "var(--color-text)",
-          maxWidth: "20em",
-          margin: 0,
-        }}
+      <div
+        className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr]"
+        style={{ gap: "clamp(40px, 6vw, 100px)", alignItems: "start" }}
       >
-        {MANIFESTO_CONTENT.statement}
-      </ScrollWords>
+        <Reveal>
+          <p
+            style={{
+              fontFamily: "var(--font-body)",
+              fontWeight: 600,
+              fontSize: "clamp(1.5rem, 2.4vw, 2.1rem)",
+              lineHeight: 1.28,
+              letterSpacing: "-0.025em",
+              color: "var(--color-text)",
+              margin: 0,
+            }}
+          >
+            Las empresas son juzgadas<br />
+            antes de ser comprendidas.
+          </p>
+        </Reveal>
 
-      {/* Remate — desplazado a la derecha en desktop para romper el eje */}
-      <div style={{ marginTop: "clamp(48px, 9vh, 110px)" }}>
-        <div className="md:ml-[30%]">
-          <Reveal>
+        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(28px, 4vh, 44px)" }}>
+          <Reveal delay={0.08}>
             <p
               style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(1.7rem, 2.9vw, 2.7rem)",
-                lineHeight: 1.28,
-                color: "var(--color-text)",
+                fontSize: "clamp(15px, 1.1vw, 17px)",
+                lineHeight: 1.75,
+                color: "var(--color-text-2)",
                 margin: 0,
               }}
             >
-              {MANIFESTO_CONTENT.punchline}
-              <br />
-              <motion.span
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.1, delay: 0.35 }}
+              {MANIFESTO_CONTENT.statement}
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.16}>
+            <div
+              style={{
+                paddingTop: "clamp(24px, 3.6vh, 36px)",
+                borderTop: "1px solid rgba(255,255,255,.07)",
+              }}
+            >
+              <p
                 style={{
+                  fontFamily: "var(--font-body)",
+                  fontWeight: 600,
+                  fontSize: "clamp(1.1rem, 1.6vw, 1.45rem)",
+                  lineHeight: 1.38,
+                  letterSpacing: "-0.018em",
+                  color: "rgba(248,245,240,.88)",
+                  margin: 0,
+                  marginBottom: 8,
+                }}
+              >
+                {MANIFESTO_CONTENT.punchline}
+              </p>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, delay: 0.3, ease: EASE }}
+                style={{
+                  fontFamily: "var(--font-body)",
                   fontStyle: "italic",
-                  background: "linear-gradient(95deg, #B8820A 0%, #D4A020 30%, #F0CC50 50%, #D4A020 70%, #B8820A 100%)",
+                  fontWeight: 600,
+                  fontSize: "clamp(1.1rem, 1.6vw, 1.45rem)",
+                  lineHeight: 1.38,
+                  letterSpacing: "-0.018em",
+                  background: GOLD,
                   backgroundSize: "200% 100%",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
-                  paddingRight: "0.06em",
+                  margin: 0,
                 }}
               >
                 {MANIFESTO_CONTENT.punchline2}
-              </motion.span>
-            </p>
+              </motion.p>
+            </div>
           </Reveal>
 
-          <Reveal delay={0.15}>
+          <Reveal delay={0.22}>
             <p
               style={{
-                marginTop: "clamp(24px, 3.5vh, 40px)",
-                fontSize: "clamp(14px, 1.05vw, 16px)",
-                lineHeight: 1.75,
+                fontSize: "clamp(13px, 0.95vw, 15px)",
+                lineHeight: 1.72,
                 color: "var(--color-text-3)",
-                maxWidth: "36em",
+                margin: 0,
               }}
             >
               {MANIFESTO_CONTENT.aside}

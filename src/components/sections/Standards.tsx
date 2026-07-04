@@ -1,55 +1,17 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { useInView } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { STANDARDS } from "@/content";
 
-/* Contador — anima de 0 al valor cuando entra en viewport */
-function CountUp({ target, suffix }: { target: string; suffix: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-15%" });
-  const [display, setDisplay] = useState("0");
-  const numeric = parseInt(target, 10);
-
-  useEffect(() => {
-    if (!inView) return;
-    const skip =
-      numeric === 0 ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const dur = skip ? 0 : 1400;
-    const t0 = performance.now();
-    let raf = 0;
-    const tick = (t: number) => {
-      const p = dur === 0 ? 1 : Math.min((t - t0) / dur, 1);
-      const eased = 1 - Math.pow(1 - p, 4);
-      setDisplay(p === 1 ? target : String(Math.round(numeric * eased)));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, numeric, target]);
-
-  return (
-    <span ref={ref}>
-      {display}
-      {suffix && (
-        <span style={{ fontSize: "0.55em", verticalAlign: "0.32em", marginLeft: "0.04em" }}>{suffix}</span>
-      )}
-    </span>
-  );
-}
-
-/* Banda de estándares — números duros que respaldan la promesa. */
 export function Standards() {
   return (
     <section
       aria-label="Estándares de Suitwolf"
       style={{
         position: "relative",
-        borderTop: "1px solid rgba(255,255,255,.07)",
-        borderBottom: "1px solid rgba(255,255,255,.07)",
-        background: "#0A0A0A",
+        borderTop: "1px solid rgba(255,255,255,.06)",
+        borderBottom: "1px solid rgba(255,255,255,.06)",
+        background: "#0B0A09",
       }}
     >
       <div
@@ -63,44 +25,49 @@ export function Standards() {
         {STANDARDS.map((st, i) => (
           <Reveal
             key={st.label}
-            delay={i * 0.08}
+            delay={i * 0.07}
             className={i > 0 ? "lg:border-l" : undefined}
             style={{
-              padding: "clamp(36px, 6vh, 64px) clamp(14px, 2vw, 36px)",
-              borderLeftColor: "rgba(255,255,255,.07)",
+              padding: "clamp(32px, 5.5vh, 58px) clamp(12px, 2vw, 32px)",
+              borderLeftColor: "rgba(255,255,255,.06)",
             }}
           >
             <p
               style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(2.8rem, 5.4vw, 5rem)",
+                fontFamily: "var(--font-body)",
+                fontWeight: 700,
+                fontSize: "clamp(2.4rem, 4.4vw, 4rem)",
                 lineHeight: 1,
+                letterSpacing: "-0.03em",
                 margin: 0,
-                marginBottom: 12,
+                marginBottom: 10,
                 background: "linear-gradient(180deg, #F0CC50 0%, #D4A020 55%, #A87214 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }}
             >
-              <CountUp target={st.value} suffix={st.suffix} />
+              {st.value}
+              {st.suffix && (
+                <span style={{ fontSize: "0.52em", verticalAlign: "0.3em", marginLeft: "0.06em" }}>{st.suffix}</span>
+              )}
             </p>
             <p
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "clamp(10px, 0.85vw, 12px)",
+                fontSize: "clamp(9.5px, 0.78vw, 11px)",
                 letterSpacing: ".22em",
                 textTransform: "uppercase",
-                color: "rgba(248,245,240,.75)",
+                color: "rgba(248,245,240,.72)",
                 margin: 0,
-                marginBottom: 8,
+                marginBottom: 7,
               }}
             >
               {st.label}
             </p>
             <p
               style={{
-                fontSize: "clamp(12px, 0.9vw, 13px)",
+                fontSize: "clamp(11.5px, 0.85vw, 13px)",
                 lineHeight: 1.55,
                 color: "var(--color-text-4)",
                 margin: 0,
