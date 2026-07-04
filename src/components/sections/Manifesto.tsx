@@ -36,16 +36,17 @@ export function Manifesto() {
           <p
             style={{
               fontFamily: "var(--font-body)",
-              fontWeight: 600,
-              fontSize: "clamp(1.5rem, 2.4vw, 2.1rem)",
-              lineHeight: 1.28,
-              letterSpacing: "-0.025em",
-              color: "var(--color-text)",
+              fontWeight: 400,
+              fontStyle: "italic",
+              fontSize: "clamp(1.35rem, 2.1vw, 1.85rem)",
+              lineHeight: 1.35,
+              letterSpacing: "-0.018em",
+              color: "rgba(248,245,240,.72)",
               margin: 0,
             }}
           >
-            Las empresas son juzgadas<br />
-            antes de ser comprendidas.
+            &ldquo;Las empresas son juzgadas<br />
+            antes de ser comprendidas.&rdquo;
           </p>
         </Reveal>
 

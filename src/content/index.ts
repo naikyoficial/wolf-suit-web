@@ -14,8 +14,8 @@ export const HERO_CONTENT = {
 
 export const MANIFESTO_CONTENT = {
   statement:
-    "Las empresas son juzgadas antes de ser comprendidas. Esa fracción de segundo en la que alguien entra a tu sitio y decide si confía o no — es el momento que nos obsesiona.",
-  punchline: "No construimos páginas web.",
+    "Esa fracción de segundo en la que alguien entra a tu sitio y decide si confía o no — es el momento que nos obsesiona.",
+  punchline: "No construimos únicamente páginas web.",
   punchline2: "Construimos la primera impresión definitiva.",
   aside:
     "Diseñamos sitios web premium, desarrollamos software a medida y construimos sistemas digitales que proyectan la imagen que tu empresa realmente merece.",
