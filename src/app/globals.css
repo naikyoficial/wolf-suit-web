@@ -302,6 +302,30 @@ body { scrollbar-width: none; }
   to   { transform: translateX(-50%); }
 }
 
+/* ─── Hero — aurora dorada en movimiento (drift lento, sin saltos) ─── */
+@keyframes heroAurora1 {
+  0%, 100% { transform: translate3d(-6%, -4%, 0) scale(1);    }
+  50%      { transform: translate3d(5%, 3%, 0)  scale(1.18);  }
+}
+@keyframes heroAurora2 {
+  0%, 100% { transform: translate3d(5%, 3%, 0)  scale(1.12);  }
+  50%      { transform: translate3d(-5%, -3%, 0) scale(1);    }
+}
+@keyframes heroAurora3 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1);   opacity: .45; }
+  50%      { transform: translate3d(3%, -5%, 0) scale(1.22); opacity: .75; }
+}
+/* Respiración de luz central — casi imperceptible */
+@keyframes heroGlow {
+  0%, 100% { opacity: .82; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.05); }
+}
+/* Barrido de brillo tenue sobre la palabra de acento */
+@keyframes heroSheen {
+  0%, 100% { background-position: 180% center; }
+  50%      { background-position: -80% center; }
+}
+
 /* ─── Custom cursor — hide native (mouse only) ─── */
 @media (pointer: fine) {
   html, body, * { cursor: none !important; }

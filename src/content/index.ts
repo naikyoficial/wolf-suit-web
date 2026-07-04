@@ -1,13 +1,15 @@
 import type { CaseStudy, ProcessStep, Transformation } from "@/types";
 
 export const HERO_CONTENT = {
-  eyebrow: "Agencia digital de alto nivel",
-  headline: "¿Tu sitio web refleja\nel nivel\nde tu empresa?",
+  eyebrow: "Agencia de diseño & desarrollo web",
+  headlineLead: "Diseño y desarrollo web",
+  headlineRest: "de",
+  headlineAccent: "alto nivel",
   subheadline:
-    "Diseño y desarrollo web a medida para empresas que se niegan a verse como una más.",
+    "Creamos sitios web a medida para empresas que exigen destacar — rápidos, estratégicos y pensados para convertir.",
   cta: "Solicitar evaluación",
   ctaSecondary: "Ver servicios",
-  tags: ["Diseño & Desarrollo Web", "E-commerce", "Software a Medida"],
+  tags: ["Diseño & desarrollo web", "E-commerce", "Software a medida"],
 } as const;
 
 export const MANIFESTO_CONTENT = {
