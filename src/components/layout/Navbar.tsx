@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS, SITE } from "@/config/site";
 import { useLenis } from "@/contexts/LenisContext";
@@ -12,17 +12,10 @@ const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
 export function Navbar() {
   const [menuOpen,  setMenuOpen]  = useState(false);
-  const [scrolled,  setScrolled]  = useState(false);
   const [activeHref, setActiveHref] = useState<string | null>(null);
   const [ctaHov, setCtaHov] = useState(false);
   const lenis = useLenis();
   const pathname = usePathname();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 48);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   function scrollTo(href: string) {
     setMenuOpen(false);
@@ -44,15 +37,9 @@ export function Navbar() {
           padding: "0 clamp(1.5rem, 6vw, 7.5rem)",
           display: "flex",
           alignItems: "center",
-          background: menuOpen
-            ? "rgba(4,3,2,.99)"
-            : scrolled
-            ? "rgba(6,5,4,.72)"
-            : "transparent",
-          backdropFilter: scrolled || menuOpen ? "blur(20px) saturate(140%)" : "none",
-          WebkitBackdropFilter: scrolled || menuOpen ? "blur(20px) saturate(140%)" : "none",
-          borderBottom: `1px solid ${scrolled || menuOpen ? "rgba(255,255,255,.07)" : "transparent"}`,
-          transition: "background .5s, border-color .5s, backdrop-filter .5s",
+          background: menuOpen ? "rgba(4,3,2,.99)" : "transparent",
+          borderBottom: "1px solid transparent",
+          transition: "background .5s",
         }}
       >
         {/* Logo — marca + wordmark */}
@@ -151,25 +138,6 @@ export function Navbar() {
 
         {/* Lado derecho — CTA (desktop) + hamburguesa (mobile) */}
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 22 }}>
-          {/* Disponibilidad — solo en pantallas muy anchas para no colisionar */}
-          <span className="hidden 2xl:flex" style={{ alignItems: "center", gap: 8 }}>
-            <span aria-hidden style={{
-              width: 6, height: 6, borderRadius: "50%",
-              background: "#7BB661",
-              boxShadow: "0 0 0 0 rgba(123,182,97,.5)",
-              animation: "pulseDot 3.2s ease-in-out infinite",
-            }} />
-            <span style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 10,
-              letterSpacing: ".14em",
-              textTransform: "uppercase",
-              color: "rgba(200,195,185,.5)",
-            }}>
-              Tomando proyectos
-            </span>
-          </span>
-
           <Link
             href="/evaluacion"
             data-cursor-hover

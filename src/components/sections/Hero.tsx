@@ -44,48 +44,48 @@ export function Hero() {
     >
       {/* ══════════ FONDO ══════════ */}
       <div aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-        {/* Base — degradado cálido arriba que cae a casi negro */}
+        {/* Base — negro predominante, apenas un calor arriba */}
         <div style={{
           position: "absolute", inset: 0,
           background:
-            "radial-gradient(135% 95% at 50% 2%, #1E170D 0%, #100D0C 40%, #08080A 100%)",
+            "radial-gradient(125% 85% at 50% 0%, #100B07 0%, #08070A 42%, #060608 100%)",
         }} />
 
-        {/* Luz central — el foco dorado detrás del título, respirando */}
+        {/* Luz central — foco dorado tenue detrás del título, respirando */}
         <div style={{
           position: "absolute", left: "50%", top: "44%",
-          width: "min(1280px, 135vw)", height: "min(820px, 96vh)",
+          width: "min(1100px, 120vw)", height: "min(720px, 84vh)",
           transform: "translate(-50%, -50%)",
           background:
-            "radial-gradient(ellipse at center, rgba(210,170,98,.34) 0%, rgba(184,142,74,.14) 36%, transparent 68%)",
+            "radial-gradient(ellipse at center, rgba(205,162,90,.17) 0%, rgba(178,138,72,.06) 38%, transparent 68%)",
           animation: "heroGlow 12s ease-in-out infinite",
           willChange: "opacity, transform",
         }} />
 
-        {/* Aurora — tres manchas suaves que derivan lento */}
+        {/* Aurora — tres manchas suaves que recorren el hero */}
         <div style={{
-          position: "absolute", left: "24%", top: "26%",
-          width: "48vw", height: "48vw", maxWidth: 720, maxHeight: 720,
-          background: "radial-gradient(circle at center, rgba(205,165,96,.30) 0%, transparent 62%)",
-          filter: "blur(36px)",
-          animation: "heroAurora1 22s ease-in-out infinite",
-          willChange: "transform",
-        }} />
-        <div style={{
-          position: "absolute", right: "20%", top: "34%",
-          width: "42vw", height: "42vw", maxWidth: 640, maxHeight: 640,
-          background: "radial-gradient(circle at center, rgba(150,110,54,.22) 0%, transparent 60%)",
-          filter: "blur(44px)",
-          animation: "heroAurora2 26s ease-in-out infinite",
-          animationDelay: "-6s",
-          willChange: "transform",
-        }} />
-        <div style={{
-          position: "absolute", left: "42%", top: "14%",
-          width: "34vw", height: "34vw", maxWidth: 520, maxHeight: 520,
-          background: "radial-gradient(circle at center, rgba(224,196,138,.16) 0%, transparent 60%)",
+          position: "absolute", left: "22%", top: "24%",
+          width: "44vw", height: "44vw", maxWidth: 640, maxHeight: 640,
+          background: "radial-gradient(circle at center, rgba(205,165,96,.16) 0%, transparent 62%)",
           filter: "blur(40px)",
-          animation: "heroAurora3 19s ease-in-out infinite",
+          animation: "heroAurora1 16s ease-in-out infinite",
+          willChange: "transform",
+        }} />
+        <div style={{
+          position: "absolute", right: "18%", top: "32%",
+          width: "40vw", height: "40vw", maxWidth: 580, maxHeight: 580,
+          background: "radial-gradient(circle at center, rgba(150,110,54,.14) 0%, transparent 60%)",
+          filter: "blur(48px)",
+          animation: "heroAurora2 20s ease-in-out infinite",
+          animationDelay: "-5s",
+          willChange: "transform",
+        }} />
+        <div style={{
+          position: "absolute", left: "40%", top: "12%",
+          width: "32vw", height: "32vw", maxWidth: 480, maxHeight: 480,
+          background: "radial-gradient(circle at center, rgba(224,196,138,.11) 0%, transparent 60%)",
+          filter: "blur(44px)",
+          animation: "heroAurora3 14s ease-in-out infinite",
           animationDelay: "-3s",
           willChange: "transform, opacity",
         }} />
@@ -109,10 +109,10 @@ export function Hero() {
           mixBlendMode: "overlay",
         }} />
 
-        {/* Viñeta — enfoca el centro */}
+        {/* Viñeta — refuerza el negro en los bordes */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "radial-gradient(120% 100% at 50% 45%, transparent 52%, rgba(6,6,8,.62) 100%)",
+          background: "radial-gradient(115% 95% at 50% 44%, transparent 44%, rgba(4,4,6,.8) 100%)",
         }} />
 
         {/* Fundido inferior — mezcla con la siguiente sección */}
@@ -136,40 +136,6 @@ export function Hero() {
           textAlign: "center",
         }}
       >
-        {/* Eyebrow — pill con punto */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: EASE }}
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 10,
-            padding: "8px 18px",
-            borderRadius: 999,
-            border: "1px solid rgba(201,162,92,.24)",
-            background: "rgba(201,162,92,.05)",
-            backdropFilter: "blur(6px)",
-            WebkitBackdropFilter: "blur(6px)",
-            marginBottom: "clamp(26px, 4vh, 40px)",
-          }}
-        >
-          <span aria-hidden style={{
-            width: 6, height: 6, borderRadius: "50%",
-            background: "#D9B36A",
-            animation: "pulseDot 3.2s ease-in-out infinite",
-          }} />
-          <span style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "clamp(10px, 0.85vw, 12px)",
-            letterSpacing: ".16em",
-            textTransform: "uppercase",
-            color: "rgba(226,220,208,.72)",
-          }}>
-            {HERO_CONTENT.eyebrow}
-          </span>
-        </motion.div>
-
         {/* Título — centrado, sans moderna, tight */}
         <h1
           style={{

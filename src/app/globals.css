@@ -302,18 +302,21 @@ body { scrollbar-width: none; }
   to   { transform: translateX(-50%); }
 }
 
-/* ─── Hero — aurora dorada en movimiento (drift lento, sin saltos) ─── */
+/* ─── Hero — aurora dorada en movimiento (drift amplio, sin saltos) ─── */
 @keyframes heroAurora1 {
-  0%, 100% { transform: translate3d(-6%, -4%, 0) scale(1);    }
-  50%      { transform: translate3d(5%, 3%, 0)  scale(1.18);  }
+  0%   { transform: translate3d(-16%, -10%, 0) scale(1);    }
+  50%  { transform: translate3d(14%, 8%, 0)   scale(1.22);  }
+  100% { transform: translate3d(-16%, -10%, 0) scale(1);    }
 }
 @keyframes heroAurora2 {
-  0%, 100% { transform: translate3d(5%, 3%, 0)  scale(1.12);  }
-  50%      { transform: translate3d(-5%, -3%, 0) scale(1);    }
+  0%   { transform: translate3d(14%, 9%, 0)  scale(1.18);  }
+  50%  { transform: translate3d(-14%, -8%, 0) scale(1);    }
+  100% { transform: translate3d(14%, 9%, 0)  scale(1.18);  }
 }
 @keyframes heroAurora3 {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1);   opacity: .45; }
-  50%      { transform: translate3d(3%, -5%, 0) scale(1.22); opacity: .75; }
+  0%   { transform: translate3d(-8%, 6%, 0)  scale(1);    opacity: .35; }
+  50%  { transform: translate3d(12%, -12%, 0) scale(1.28); opacity: .68; }
+  100% { transform: translate3d(-8%, 6%, 0)  scale(1);    opacity: .35; }
 }
 /* Respiración de luz central — casi imperceptible */
 @keyframes heroGlow {
@@ -359,7 +362,6 @@ body { scrollbar-width: none; }
   .site-header {
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
-    background: rgba(6,6,6,.92) !important;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
   }
