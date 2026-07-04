@@ -31,7 +31,8 @@ export function Hero() {
     <section
       style={{
         position: "relative",
-        minHeight: "calc(100svh - 72px)",
+        marginTop: -72,
+        minHeight: "100svh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -88,7 +89,7 @@ export function Hero() {
           zIndex: 10,
           width: "100%",
           maxWidth: 1080,
-          padding: "0 clamp(1.4rem, 5vw, 3rem)",
+          padding: "72px clamp(1.4rem, 5vw, 3rem) 0",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
