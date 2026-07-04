@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Magnetic } from "@/components/ui/Magnetic";
@@ -12,10 +13,6 @@ const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 /* Oro refinado — champán/oro antiguo, cálido y desaturado. Nada de amarillo neón. */
 const GOLD_ACCENT =
   "linear-gradient(100deg, #B98A3E 0%, #D9B36A 32%, #F1DCA4 50%, #D9B36A 68%, #B98A3E 100%)";
-
-/* Ruido fino para textura — feTurbulence embebido, sin requests externos */
-const NOISE =
-  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
 
 const TRUST = ["Sin plantillas", "Performance 90+", "Respuesta en 72h"];
 
@@ -39,86 +36,48 @@ export function Hero() {
         alignItems: "center",
         justifyContent: "center",
         overflow: "hidden",
-        background: "#08080A",
+        background: "#080808",
       }}
     >
       {/* ══════════ FONDO ══════════ */}
       <div aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-        {/* Base — negro predominante, apenas un calor arriba */}
+        {/* Foto de fondo — pizarra negra con vetas doradas */}
+        <Image
+          src="/background-suitwolf.png"
+          alt=""
+          fill
+          priority
+          style={{ objectFit: "cover", objectPosition: "center 30%" }}
+        />
+
+        {/* Capa oscura — garantiza legibilidad del título */}
         <div style={{
-          position: "absolute", inset: 0,
-          background:
-            "radial-gradient(125% 85% at 50% 0%, #100B07 0%, #08070A 42%, #060608 100%)",
+          position: "absolute", inset: 0, zIndex: 1,
+          background: "rgba(0, 0, 0, 0.52)",
         }} />
 
-        {/* Luz central — foco dorado tenue detrás del título, respirando */}
+        {/* Calor dorado central — conecta la foto con el acento del título */}
         <div style={{
           position: "absolute", left: "50%", top: "44%",
-          width: "min(1100px, 120vw)", height: "min(720px, 84vh)",
+          width: "min(900px, 110vw)", height: "min(600px, 75vh)",
           transform: "translate(-50%, -50%)",
-          background:
-            "radial-gradient(ellipse at center, rgba(205,162,90,.17) 0%, rgba(178,138,72,.06) 38%, transparent 68%)",
-          animation: "heroGlow 12s ease-in-out infinite",
-          willChange: "opacity, transform",
+          background: "radial-gradient(ellipse at center, rgba(180,130,60,.10) 0%, rgba(130,95,35,.04) 42%, transparent 68%)",
+          zIndex: 2,
+          pointerEvents: "none",
         }} />
 
-        {/* Aurora — tres manchas suaves que recorren el hero */}
+        {/* Viñeta perimetral — oscurece bordes, concentra la vista en el centro */}
         <div style={{
-          position: "absolute", left: "22%", top: "24%",
-          width: "44vw", height: "44vw", maxWidth: 640, maxHeight: 640,
-          background: "radial-gradient(circle at center, rgba(205,165,96,.16) 0%, transparent 62%)",
-          filter: "blur(40px)",
-          animation: "heroAurora1 16s ease-in-out infinite",
-          willChange: "transform",
-        }} />
-        <div style={{
-          position: "absolute", right: "18%", top: "32%",
-          width: "40vw", height: "40vw", maxWidth: 580, maxHeight: 580,
-          background: "radial-gradient(circle at center, rgba(150,110,54,.14) 0%, transparent 60%)",
-          filter: "blur(48px)",
-          animation: "heroAurora2 20s ease-in-out infinite",
-          animationDelay: "-5s",
-          willChange: "transform",
-        }} />
-        <div style={{
-          position: "absolute", left: "40%", top: "12%",
-          width: "32vw", height: "32vw", maxWidth: 480, maxHeight: 480,
-          background: "radial-gradient(circle at center, rgba(224,196,138,.11) 0%, transparent 60%)",
-          filter: "blur(44px)",
-          animation: "heroAurora3 14s ease-in-out infinite",
-          animationDelay: "-3s",
-          willChange: "transform, opacity",
-        }} />
-
-        {/* Grilla de puntos muy tenue — sensación técnica / agencia */}
-        <div className="hero-dotgrid" style={{
-          position: "absolute", inset: 0,
-          backgroundImage: "radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1px)",
-          backgroundSize: "34px 34px",
-          maskImage: "radial-gradient(ellipse 70% 60% at 50% 45%, #000 0%, transparent 78%)",
-          WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 45%, #000 0%, transparent 78%)",
-          opacity: 0.6,
-        }} />
-
-        {/* Textura de ruido */}
-        <div style={{
-          position: "absolute", inset: 0,
-          backgroundImage: NOISE,
-          backgroundSize: "180px 180px",
-          opacity: 0.05,
-          mixBlendMode: "overlay",
-        }} />
-
-        {/* Viñeta — refuerza el negro en los bordes */}
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "radial-gradient(115% 95% at 50% 44%, transparent 44%, rgba(4,4,6,.8) 100%)",
+          position: "absolute", inset: 0, zIndex: 2, pointerEvents: "none",
+          background: "radial-gradient(110% 90% at 50% 44%, transparent 38%, rgba(0,0,0,.72) 100%)",
         }} />
 
         {/* Fundido inferior — mezcla con la siguiente sección */}
         <div style={{
-          position: "absolute", left: 0, right: 0, bottom: 0, height: "22%",
+          position: "absolute", left: 0, right: 0, bottom: 0, height: "28%",
           background: "linear-gradient(to top, #08080A 0%, transparent 100%)",
+          zIndex: 2,
+          pointerEvents: "none",
         }} />
       </div>
 
