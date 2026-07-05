@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 
 const EASE    = [0.16, 1.0, 0.3, 1.0] as const;
@@ -40,23 +39,11 @@ export function Preloader() {
       animate={phase === "exit" ? { y: "-101%" } : { y: 0 }}
       transition={{ duration: 1.0, ease: CURTAIN }}
     >
-      {/* ══════════ FONDO — mismas capas que el Hero para un reveal continuo ══════════ */}
-      {/* Foto de fondo — pizarra negra con vetas doradas */}
-      <Image
-        src="/background-suitwolf.png"
-        alt=""
-        fill
-        priority
-        unoptimized
-        sizes="100vw"
-        style={{ objectFit: "cover", objectPosition: "center 30%" }}
-      />
-
-      {/* Capa oscura — garantiza legibilidad de la marca */}
-      <div aria-hidden style={{
-        position: "absolute", inset: 0,
-        background: "rgba(6, 5, 4, 0.66)",
-      }} />
+      {/* ══════════ FONDO — misma atmósfera que el Hero, pero solo CSS ══════════
+          Nada de imagen aquí: decodificar el PNG grande antes del primer paint
+          trababa la cortina y competía con la carga del Hero. Replicamos la
+          iluminación (base oscura + calor dorado + viñeta) para que, al subir el
+          telón, la foto real del Hero se sienta como el mismo mundo. */}
 
       {/* Calor dorado central — conecta con el acento de la marca */}
       <div aria-hidden style={{
