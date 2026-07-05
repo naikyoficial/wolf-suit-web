@@ -141,6 +141,18 @@ export const STANDARDS = [
     title: "Enfocado en convertir",
     desc: "Un sitio que se ve bien pero no vende, no sirve. Cada decisión de diseño tiene un objetivo: convertir visitantes en clientes reales.",
   },
+  {
+    title: "Código limpio y escalable",
+    desc: "Construimos con arquitectura que aguanta el crecimiento. Sin deuda técnica, sin parches. Tu sitio puede evolucionar sin necesidad de rehacerlo desde cero.",
+  },
+  {
+    title: "Analítica desde el primer día",
+    desc: "Configuramos las herramientas de medición antes del lanzamiento. Sabés exactamente qué funciona, dónde pierde el usuario y dónde ganás más.",
+  },
+  {
+    title: "Experiencia de usuario probada",
+    desc: "La navegación, la jerarquía y los flujos están pensados para que el usuario llegue a donde vos querés sin fricción. Una buena UX no se ve — se siente.",
+  },
 ] as const;
 
 export const FAQS = [
