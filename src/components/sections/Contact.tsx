@@ -22,12 +22,12 @@ const QUESTIONS: { id: StepId; num: string; question: string; options: string[] 
   {
     id: "q2", num: "02",
     question: "¿Qué tipo de solución estás buscando?",
-    options: ["Sitio Web Corporativo", "Landing Page de Alta Conversión", "Tienda Online (E-commerce)", "Aplicación o Software a Medida", "Posicionamiento SEO", "Aún no lo tengo definido"],
+    options: ["Sitio Web Corporativo", "Landing Page de Alta Conversión", "Tienda Online (E-commerce)", "Posicionamiento SEO", "Aún no lo tengo definido"],
   },
   {
     id: "q3", num: "03",
     question: "¿Cuál es el objetivo central de este proyecto?",
-    options: ["Atraer nuevos clientes y generar ventas", "Elevar la imagen y autoridad de marca", "Automatizar procesos internos", "Posicionarme en Google y crecer orgánicamente", "Lanzar una nueva empresa o producto"],
+    options: ["Atraer nuevos clientes y generar ventas", "Elevar la imagen y autoridad de marca", "Posicionarme en Google y crecer orgánicamente", "Lanzar una nueva empresa o producto"],
   },
   {
     id: "q4", num: "04",

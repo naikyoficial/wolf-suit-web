@@ -9,7 +9,7 @@ export const HERO_CONTENT = {
     "Creamos sitios web a medida para empresas que exigen destacar — rápidos, estratégicos y pensados para convertir.",
   cta: "Solicitar evaluación",
   ctaSecondary: "Ver servicios",
-  tags: ["Diseño & desarrollo web", "E-commerce", "Software a medida"],
+  tags: ["Diseño & desarrollo web", "E-commerce", "SEO técnico"],
 } as const;
 
 export const MANIFESTO_CONTENT = {
@@ -18,7 +18,7 @@ export const MANIFESTO_CONTENT = {
   punchline: "No construimos únicamente páginas web.",
   punchline2: "Construimos la primera impresión definitiva.",
   aside:
-    "Diseñamos sitios web premium, desarrollamos software a medida y construimos sistemas digitales que proyectan la imagen que tu empresa realmente merece.",
+    "Diseñamos sitios web premium y construimos experiencias digitales que proyectan la imagen que tu empresa realmente merece.",
 } as const;
 
 export const DUALITY_CONTENT = {
@@ -78,22 +78,6 @@ export const SERVICES: ServiceItem[] = [
     subtitle: "Posicionamiento orgánico en Google",
     desc: "Estrategia SEO integral para que tu empresa aparezca primero cuando tus clientes te buscan. Auditoría técnica, arquitectura de contenidos, optimización on-page y link building de autoridad.",
     deliverables: ["Auditoría técnica completa", "Arquitectura de contenidos", "Reportes de evolución mensual"],
-  },
-  {
-    index: "06",
-    category: "App & Plataforma",
-    title: "Aplicación Web a Medida",
-    subtitle: "Plataformas, SaaS & dashboards",
-    desc: "Interfaces complejas diseñadas con rigor de producto premium. Dashboards, herramientas internas y plataformas SaaS que combinan máxima funcionalidad técnica con experiencia de usuario de primer nivel.",
-    deliverables: ["UX de producto premium", "Arquitectura escalable", "Panel de administración a medida"],
-  },
-  {
-    index: "07",
-    category: "Desarrollo",
-    title: "Software a Medida",
-    subtitle: "Soluciones de software personalizado",
-    desc: "Desarrollo de software adaptado exactamente a los procesos de tu empresa. Automatización, integraciones de sistemas, APIs y herramientas internas que eliminan fricciones operativas y escalan con tu negocio.",
-    deliverables: ["Automatización de procesos", "Integraciones y APIs", "Soporte y evolución continua"],
   },
 ];
 

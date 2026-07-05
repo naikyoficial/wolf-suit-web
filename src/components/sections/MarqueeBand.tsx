@@ -4,9 +4,7 @@ const ITEMS = [
   "Sitios web corporativos",
   "Tiendas online a medida",
   "Landing pages de conversión",
-  "Aplicaciones web & SaaS",
   "SEO técnico",
-  "Software a medida",
   "Identidad digital",
 ];
 

@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     template: "%s — Suitwolf",
   },
   description:
-    "Agencia de diseño web profesional para empresas que exigen alto nivel. Sitios web a medida, e-commerce, landing pages y software personalizado. Sin templates — todo construido desde cero.",
+    "Agencia de diseño web profesional para empresas que exigen alto nivel. Sitios web a medida, e-commerce y landing pages de alta conversión. Sin templates — todo construido desde cero.",
   keywords: [
     "agencia de diseño web",
     "diseño web profesional",
@@ -58,7 +58,6 @@ export const metadata: Metadata = {
     "e-commerce profesional",
     "tienda online a medida",
     "landing page profesional",
-    "software a medida",
     "sitio web para empresas",
     "agencia web",
     "desarrollo web profesional",
@@ -74,13 +73,13 @@ export const metadata: Metadata = {
     siteName: "Suitwolf",
     title: "Suitwolf — Agencia de Diseño Web y Desarrollo para Empresas",
     description:
-      "Diseño web profesional, e-commerce y software a medida para empresas que quieren destacar. Sin templates — todo construido desde cero.",
+      "Diseño web profesional, e-commerce y landing pages de alta conversión para empresas que quieren destacar. Sin templates — todo construido desde cero.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Suitwolf — Agencia de Diseño Web y Desarrollo para Empresas",
     description:
-      "Diseño web profesional, e-commerce y software a medida para empresas que quieren destacar. Sin templates — todo construido desde cero.",
+      "Diseño web profesional, e-commerce y landing pages de alta conversión para empresas que quieren destacar. Sin templates — todo construido desde cero.",
   },
   robots: {
     index: true,
@@ -118,14 +117,13 @@ export default function RootLayout({
               name: "Suitwolf",
               url: "https://suitwolf.com",
               description:
-                "Agencia de diseño web profesional para empresas. Sitios web a medida, e-commerce, landing pages y software personalizado. Sin templates.",
+                "Agencia de diseño web profesional para empresas. Sitios web a medida, e-commerce y landing pages de alta conversión. Sin templates.",
               priceRange: "$$$$",
               knowsAbout: [
                 "Diseño web profesional",
                 "Desarrollo web a medida",
                 "E-commerce",
                 "Landing pages de alta conversión",
-                "Software a medida",
                 "SEO técnico",
                 "Branding digital",
               ],
@@ -136,7 +134,6 @@ export default function RootLayout({
                   { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sitio Web Corporativo a Medida" } },
                   { "@type": "Offer", itemOffered: { "@type": "Service", name: "E-commerce y Tienda Online" } },
                   { "@type": "Offer", itemOffered: { "@type": "Service", name: "Landing Page de Alta Conversión" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Software a Medida" } },
                   { "@type": "Offer", itemOffered: { "@type": "Service", name: "SEO y Posicionamiento Web" } },
                 ],
               },
