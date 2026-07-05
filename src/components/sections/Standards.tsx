@@ -129,7 +129,7 @@ export function Standards() {
     >
       {/* Background image */}
       <Image
-        src="/dualidad-bg.png"
+        src="/background-beneficios.png"
         alt=""
         fill
         unoptimized
@@ -249,7 +249,7 @@ export function Standards() {
             <div
               key={st.title}
               style={{
-                borderRight: (i + 1) % 3 !== 0 ? "1px solid rgba(255,255,255,.1)" : undefined,
+                borderRight: (i + 1) % 4 !== 0 ? "1px solid rgba(255,255,255,.1)" : undefined,
               }}
             >
               <BenefitCard st={st} index={i} />

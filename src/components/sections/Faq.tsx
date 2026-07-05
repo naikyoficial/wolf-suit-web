@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { FAQS } from "@/content";
@@ -15,7 +16,7 @@ function FaqRow({ q, a, open, onToggle }: { q: string; a: string; open: boolean;
   const lit = hov || open;
 
   return (
-    <div style={{ borderBottom: "1px solid rgba(255,255,255,.07)" }}>
+    <div style={{ borderBottom: "1px solid rgba(255,255,255,.1)" }}>
       <button
         onClick={onToggle}
         onMouseEnter={() => setHov(true)}
@@ -41,7 +42,7 @@ function FaqRow({ q, a, open, onToggle }: { q: string; a: string; open: boolean;
             fontSize: "clamp(1rem, 1.5vw, 1.2rem)",
             lineHeight: 1.3,
             letterSpacing: "-0.015em",
-            color: lit ? "rgba(248,245,240,.96)" : "rgba(248,245,240,.58)",
+            color: lit ? "rgba(248,245,240,.96)" : "rgba(248,245,240,.62)",
             transition: "color .3s",
           }}
         >
@@ -54,14 +55,14 @@ function FaqRow({ q, a, open, onToggle }: { q: string; a: string; open: boolean;
           <span style={{
             position: "absolute", left: "50%", top: "50%",
             width: 10, height: 1,
-            background: lit ? "var(--color-gold)" : "rgba(248,245,240,.38)",
+            background: lit ? "var(--color-gold)" : "rgba(248,245,240,.42)",
             transform: "translate(-50%,-50%)",
             transition: "background .3s",
           }} />
           <span style={{
             position: "absolute", left: "50%", top: "50%",
             width: 1, height: 10,
-            background: lit ? "var(--color-gold)" : "rgba(248,245,240,.38)",
+            background: lit ? "var(--color-gold)" : "rgba(248,245,240,.42)",
             transform: `translate(-50%,-50%) ${open ? "scaleY(0)" : "scaleY(1)"}`,
             transition: "background .3s, transform .35s",
           }} />
@@ -101,9 +102,7 @@ export function Faq() {
       id="faq"
       style={{
         position: "relative",
-        padding: "var(--section-py) var(--section-px)",
-        maxWidth: "var(--grid-max)",
-        margin: "0 auto",
+        overflow: "hidden",
       }}
     >
       <script
@@ -121,67 +120,119 @@ export function Faq() {
         }}
       />
 
-      <Reveal>
-        <p className="section-index" style={{ marginBottom: "clamp(40px, 6vh, 68px)" }}>
-          06 — Preguntas
-        </p>
-      </Reveal>
+      {/* Background image */}
+      <Image
+        src="/dualidad-bg.png"
+        alt=""
+        fill
+        unoptimized
+        sizes="100vw"
+        style={{ objectFit: "cover", objectPosition: "center 50%" }}
+        priority={false}
+      />
 
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr]" style={{ gap: "clamp(40px, 5vw, 96px)", alignItems: "start" }}>
-        <div className="lg:sticky lg:top-[120px]">
-          <Reveal>
-            <h2
-              style={{
-                fontFamily: "var(--font-body)",
-                fontWeight: 600,
-                fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)",
-                lineHeight: 1.16,
-                letterSpacing: "-0.03em",
-                color: "var(--color-text)",
+      {/* Dark overlay */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0,
+        background: "rgba(4,3,2,.80)",
+        zIndex: 1,
+      }} />
+
+      {/* Perimeter vignette */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0,
+        background: "radial-gradient(ellipse at center, transparent 30%, rgba(3,2,1,.65) 100%)",
+        zIndex: 1,
+      }} />
+
+      {/* Top fade */}
+      <div aria-hidden style={{
+        position: "absolute", top: 0, left: 0, right: 0,
+        height: "40%",
+        background: "linear-gradient(to bottom, rgba(6,5,4,1) 0%, transparent 100%)",
+        zIndex: 1,
+      }} />
+
+      {/* Bottom fade */}
+      <div aria-hidden style={{
+        position: "absolute", bottom: 0, left: 0, right: 0,
+        height: "40%",
+        background: "linear-gradient(to top, rgba(6,5,4,1) 0%, transparent 100%)",
+        zIndex: 1,
+      }} />
+
+      {/* Content */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          maxWidth: "var(--grid-max)",
+          margin: "0 auto",
+          padding: "var(--section-py) var(--section-px)",
+        }}
+      >
+        <Reveal>
+          <p className="section-index" style={{ marginBottom: "clamp(40px, 6vh, 68px)" }}>
+            06 — Preguntas
+          </p>
+        </Reveal>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr]" style={{ gap: "clamp(40px, 5vw, 96px)", alignItems: "start" }}>
+          <div className="lg:sticky lg:top-[120px]">
+            <Reveal>
+              <h2
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontWeight: 600,
+                  fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)",
+                  lineHeight: 1.16,
+                  letterSpacing: "-0.03em",
+                  color: "var(--color-text)",
+                  margin: 0,
+                  marginBottom: "clamp(16px, 2.4vh, 26px)",
+                }}
+              >
+                Lo que vas a querer saber{" "}
+                <span style={{
+                  display: "inline-block",
+                  fontStyle: "italic",
+                  fontWeight: 400,
+                  background: GOLD,
+                  backgroundSize: "200% 100%",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}>
+                  antes de escribirnos.
+                </span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p style={{
+                fontSize: "clamp(13px, 0.95vw, 15px)",
+                lineHeight: 1.7,
+                color: "var(--color-text-3)",
                 margin: 0,
-                marginBottom: "clamp(16px, 2.4vh, 26px)",
-              }}
-            >
-              Lo que vas a querer saber{" "}
-              <span style={{
-                display: "inline-block",
-                fontStyle: "italic",
-                fontWeight: 400,
-                background: GOLD,
-                backgroundSize: "200% 100%",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
               }}>
-                antes de escribirnos.
-              </span>
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p style={{
-              fontSize: "clamp(13px, 0.95vw, 15px)",
-              lineHeight: 1.7,
-              color: "var(--color-text-3)",
-              margin: 0,
-            }}>
-              Si tu pregunta no está acá, la respondemos en la evaluación — sin costo y sin compromiso.
-            </p>
+                Si tu pregunta no está acá, la respondemos en la evaluación — sin costo y sin compromiso.
+              </p>
+            </Reveal>
+          </div>
+
+          <Reveal y={20}>
+            <div style={{ borderTop: "1px solid rgba(255,255,255,.1)" }}>
+              {FAQS.map((f, i) => (
+                <FaqRow
+                  key={f.q}
+                  q={f.q}
+                  a={f.a}
+                  open={openIdx === i}
+                  onToggle={() => setOpenIdx(openIdx === i ? null : i)}
+                />
+              ))}
+            </div>
           </Reveal>
         </div>
-
-        <Reveal y={20}>
-          <div style={{ borderTop: "1px solid rgba(255,255,255,.07)" }}>
-            {FAQS.map((f, i) => (
-              <FaqRow
-                key={f.q}
-                q={f.q}
-                a={f.a}
-                open={openIdx === i}
-                onToggle={() => setOpenIdx(openIdx === i ? null : i)}
-              />
-            ))}
-          </div>
-        </Reveal>
       </div>
     </section>
   );
