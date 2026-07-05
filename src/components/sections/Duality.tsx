@@ -36,7 +36,7 @@ export function Duality() {
         fill
         unoptimized
         sizes="100vw"
-        style={{ objectFit: "cover", objectPosition: "center 25%" }}
+        style={{ objectFit: "cover", objectPosition: "center 68%" }}
       />
 
       {/* Overlay oscuro para legibilidad */}
@@ -98,21 +98,6 @@ export function Duality() {
         {DUALITY_CONTENT.lineA}
       </motion.p>
 
-      {/* Separador dorado */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true, margin: "-10%" }}
-        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-        aria-hidden
-        style={{
-          height: 1,
-          width: "min(360px, 55%)",
-          margin: "clamp(28px, 4.5vh, 50px) 0",
-          background: "linear-gradient(to right, rgba(212,160,32,.7), rgba(212,160,32,.04))",
-          transformOrigin: "left center",
-        }}
-      />
 
       {/* Línea B — encendida, desplazada */}
       <div className="md:ml-[16%]">
