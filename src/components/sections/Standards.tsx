@@ -6,7 +6,7 @@ import { STANDARDS } from "@/content";
 export function Standards() {
   return (
     <section
-      aria-label="Estándares de Suitwolf"
+      aria-label="Lo que incluye cada proyecto"
       style={{
         position: "relative",
         borderTop: "1px solid rgba(255,255,255,.06)",
@@ -15,65 +15,63 @@ export function Standards() {
       }}
     >
       <div
-        className="grid grid-cols-2 lg:grid-cols-4"
         style={{
           maxWidth: "var(--grid-max)",
           margin: "0 auto",
           padding: "0 var(--section-px)",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 200px), 1fr))",
         }}
       >
         {STANDARDS.map((st, i) => (
           <Reveal
-            key={st.label}
+            key={st.title}
             delay={i * 0.07}
-            className={i > 0 ? "lg:border-l" : undefined}
             style={{
-              padding: "clamp(32px, 5.5vh, 58px) clamp(12px, 2vw, 32px)",
-              borderLeftColor: "rgba(255,255,255,.06)",
+              padding: "clamp(28px, 4.5vh, 48px) clamp(12px, 2vw, 28px)",
+              borderLeft: i > 0 ? "1px solid rgba(255,255,255,.06)" : undefined,
+              display: "flex",
+              flexDirection: "column",
+              gap: "clamp(10px, 1.4vh, 14px)",
             }}
           >
+            {/* Marcador dorado */}
+            <span
+              aria-hidden
+              style={{
+                display: "block",
+                width: 20,
+                height: 1,
+                background: "linear-gradient(to right, #D4A020, rgba(212,160,32,.3))",
+                marginBottom: 4,
+              }}
+            />
+
+            {/* Título del beneficio */}
             <p
               style={{
                 fontFamily: "var(--font-body)",
-                fontWeight: 700,
-                fontSize: "clamp(2.4rem, 4.4vw, 4rem)",
-                lineHeight: 1,
-                letterSpacing: "-0.03em",
+                fontWeight: 600,
+                fontSize: "clamp(0.95rem, 1.1vw, 1.15rem)",
+                lineHeight: 1.25,
+                letterSpacing: "-0.015em",
+                color: "rgba(248,245,240,.92)",
                 margin: 0,
-                marginBottom: 10,
-                background: "linear-gradient(180deg, #F0CC50 0%, #D4A020 55%, #A87214 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
               }}
             >
-              {st.value}
-              {st.suffix && (
-                <span style={{ fontSize: "0.52em", verticalAlign: "0.3em", marginLeft: "0.06em" }}>{st.suffix}</span>
-              )}
+              {st.title}
             </p>
+
+            {/* Descripción */}
             <p
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "clamp(9.5px, 0.78vw, 11px)",
-                letterSpacing: ".22em",
-                textTransform: "uppercase",
-                color: "rgba(248,245,240,.72)",
-                margin: 0,
-                marginBottom: 7,
-              }}
-            >
-              {st.label}
-            </p>
-            <p
-              style={{
-                fontSize: "clamp(11.5px, 0.85vw, 13px)",
-                lineHeight: 1.55,
+                fontSize: "clamp(11.5px, 0.82vw, 13px)",
+                lineHeight: 1.65,
                 color: "var(--color-text-4)",
                 margin: 0,
               }}
             >
-              {st.note}
+              {st.desc}
             </p>
           </Reveal>
         ))}

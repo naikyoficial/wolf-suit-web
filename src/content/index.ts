@@ -121,10 +121,26 @@ export const METHOD_STEPS = [
 ] as const;
 
 export const STANDARDS = [
-  { value: "0",  suffix: "",  label: "Templates usados",              note: "Cada sitio diseñado desde cero para tu empresa, sin excepciones" },
-  { value: "94", suffix: "%", label: "De las primeras impresiones dependen del diseño", note: "Tu sitio habla por vos antes de que puedas hacerlo" },
-  { value: "10", suffix: "",  label: "Proyectos al año como máximo",   note: "Para dedicarnos completo a cada cliente que elige trabajar con nosotros" },
-  { value: "72", suffix: "h", label: "Respuesta garantizada",          note: "En cada etapa del proyecto, no solo al inicio" },
+  {
+    title: "Velocidad de carga",
+    desc: "Sitios optimizados para cargar en menos de 2 segundos. Más velocidad es más tiempo en pantalla, mejor ranking en Google y más ventas.",
+  },
+  {
+    title: "Seguridad de nivel profesional",
+    desc: "Certificados SSL, arquitectura segura y código sin vulnerabilidades. Tu sitio protege a tus clientes desde el primer día.",
+  },
+  {
+    title: "Diseño responsive",
+    desc: "Perfecto en cualquier dispositivo. El 60% de las decisiones de compra se toman desde el celular — tu sitio está listo para eso.",
+  },
+  {
+    title: "SEO desde el primer día",
+    desc: "La arquitectura, el código y el contenido están construidos para que Google te encuentre. No es un agregado al final — es parte del diseño.",
+  },
+  {
+    title: "Enfocado en convertir",
+    desc: "Un sitio que se ve bien pero no vende, no sirve. Cada decisión de diseño tiene un objetivo: convertir visitantes en clientes reales.",
+  },
 ] as const;
 
 export const FAQS = [
