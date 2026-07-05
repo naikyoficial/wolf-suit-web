@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const EASE    = [0.16, 1.0, 0.3, 1.0] as const;
@@ -35,18 +36,59 @@ export function Preloader() {
   return (
     <motion.div
       className="fixed inset-0 overflow-hidden"
-      style={{ zIndex: 99999, background: "#060606" }}
+      style={{ zIndex: 99999, background: "#080808" }}
       animate={phase === "exit" ? { y: "-101%" } : { y: 0 }}
       transition={{ duration: 1.0, ease: CURTAIN }}
     >
-      {/* Textura atmosférica muy sutil */}
+      {/* ══════════ FONDO — mismas capas que el Hero para un reveal continuo ══════════ */}
+      {/* Foto de fondo — pizarra negra con vetas doradas */}
+      <Image
+        src="/background-suitwolf.png"
+        alt=""
+        fill
+        priority
+        unoptimized
+        sizes="100vw"
+        style={{ objectFit: "cover", objectPosition: "center 30%" }}
+      />
+
+      {/* Capa oscura — garantiza legibilidad de la marca */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0,
+        background: "rgba(6, 5, 4, 0.66)",
+      }} />
+
+      {/* Calor dorado central — conecta con el acento de la marca */}
+      <div aria-hidden style={{
+        position: "absolute", left: "50%", top: "44%",
+        width: "min(900px, 110vw)", height: "min(600px, 75vh)",
+        transform: "translate(-50%, -50%)",
+        background: "radial-gradient(ellipse at center, rgba(180,130,60,.12) 0%, rgba(130,95,35,.05) 42%, transparent 68%)",
+        pointerEvents: "none",
+      }} />
+
+      {/* Viñeta perimetral — concentra la vista en el centro */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 50% 45% at 50% 44%, rgba(160,105,10,.08) 0%, transparent 70%)",
+        background: "radial-gradient(110% 90% at 50% 44%, transparent 38%, rgba(0,0,0,.74) 100%)",
       }} />
 
       {/* Marca central — revelada por máscara, sin rebotes */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ padding: "0 clamp(1.5rem, 6vw, 4rem)" }}>
+      <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ padding: "0 clamp(1.5rem, 6vw, 4rem)", zIndex: 1 }}>
+        {/* Rombo dorado — eco del isotipo del navbar */}
+        <motion.span
+          aria-hidden
+          initial={{ opacity: 0, scale: 0.4 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.35, ease: EASE }}
+          style={{
+            width: 8, height: 8,
+            marginBottom: "clamp(22px, 3.4vh, 34px)",
+            background: "linear-gradient(135deg, #B98A3E, #F1DCA4 50%, #B98A3E)",
+            transform: "rotate(45deg)",
+          }}
+        />
+
         <div style={{ overflow: "hidden", paddingBottom: "0.14em" }}>
           <motion.span
             initial={{ y: "110%" }}
@@ -58,7 +100,7 @@ export function Preloader() {
               fontSize: "clamp(2.4rem, 6vw, 5rem)",
               letterSpacing: "0.28em",
               textIndent: "0.28em",
-              color: "#ECE8DF",
+              color: "#F3F0EA",
               lineHeight: 1,
             }}
           >
@@ -78,7 +120,7 @@ export function Preloader() {
           <div style={{
             position: "absolute", left: 0, top: 0, bottom: 0,
             width: `${pct}%`,
-            background: "linear-gradient(90deg, rgba(212,160,32,.5), #D4A020)",
+            background: "linear-gradient(90deg, rgba(185,138,62,.5), #D9B36A)",
             transition: "width .12s linear",
           }} />
         </div>
@@ -87,6 +129,7 @@ export function Preloader() {
       {/* Contador — esquina inferior */}
       <div style={{
         position: "absolute",
+        zIndex: 1,
         bottom: "clamp(24px, 5vh, 48px)",
         right: "clamp(24px, 6vw, 64px)",
         display: "flex",
@@ -96,7 +139,7 @@ export function Preloader() {
         <span style={{
           fontFamily: "var(--font-mono)",
           fontSize: "clamp(2rem, 4vw, 3.2rem)",
-          color: "rgba(236,232,223,.92)",
+          color: "rgba(243,240,234,.92)",
           lineHeight: 1,
           fontVariantNumeric: "tabular-nums",
         }}>
@@ -105,7 +148,7 @@ export function Preloader() {
         <span style={{
           fontFamily: "var(--font-mono)",
           fontSize: "clamp(10px, 1vw, 13px)",
-          color: "rgba(212,160,32,.6)",
+          color: "rgba(217,179,106,.7)",
         }}>
           %
         </span>
@@ -114,6 +157,7 @@ export function Preloader() {
       {/* Etiqueta inferior izquierda — concreta, no tricolon abstracto */}
       <div style={{
         position: "absolute",
+        zIndex: 1,
         bottom: "clamp(26px, 5vh, 50px)",
         left: "clamp(24px, 6vw, 64px)",
       }}>
