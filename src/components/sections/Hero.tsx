@@ -153,7 +153,9 @@ export function Hero() {
             marginBottom: "clamp(34px, 5vh, 52px)",
           }}
         >
-          {HERO_CONTENT.subheadline}
+          Construimos sitios web que transforman visitantes en clientes.
+          <br />
+          Desde cero, a medida y ajustándonos a tus necesidades.
         </motion.p>
 
         {/* CTAs */}
