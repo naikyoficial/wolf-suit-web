@@ -2,20 +2,41 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS, SITE } from "@/config/site";
 import { useLenis } from "@/contexts/LenisContext";
 
-const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 
 export function Navbar() {
   const [menuOpen,  setMenuOpen]  = useState(false);
   const [activeHref, setActiveHref] = useState<string | null>(null);
   const [ctaHov, setCtaHov] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const lenis = useLenis();
   const pathname = usePathname();
+
+  // Ocultar el navbar al scrollear hacia abajo, mostrarlo al subir o en el tope
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (y < 80) {
+        setHidden(false);            // siempre visible cerca del tope
+      } else if (y > lastY + 6) {
+        setHidden(true);             // bajando → ocultar
+      } else if (y < lastY - 6) {
+        setHidden(false);            // subiendo → mostrar
+      }
+      lastY = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Con el menú mobile abierto el navbar nunca se oculta
+  const isHidden = hidden && !menuOpen;
 
   function scrollTo(href: string) {
     setMenuOpen(false);
@@ -39,24 +60,18 @@ export function Navbar() {
           alignItems: "center",
           background: menuOpen ? "rgba(4,3,2,.99)" : "transparent",
           borderBottom: "1px solid transparent",
-          transition: "background .5s",
+          transform: isHidden ? "translateY(-100%)" : "translateY(0)",
+          transition: "background .5s, transform .5s cubic-bezier(0.16,1,0.3,1)",
         }}
       >
-        {/* Logo — marca + wordmark */}
+        {/* Logo — wordmark */}
         <Link
           href="/"
           aria-label={`${SITE.name} — inicio`}
           onClick={() => setMenuOpen(false)}
           data-cursor-hover
-          style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 11 }}
+          style={{ flexShrink: 0, display: "inline-flex", alignItems: "center" }}
         >
-          <span aria-hidden style={{
-            width: 7, height: 7, flexShrink: 0,
-            background: GOLD,
-            backgroundSize: "260% 100%",
-            animation: "metalShimmer 10s ease-in-out infinite",
-            transform: "rotate(45deg)",
-          }} />
           <span
             className="font-display"
             style={{
