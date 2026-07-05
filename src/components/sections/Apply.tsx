@@ -57,11 +57,8 @@ export function Apply() {
           </p>
         </Reveal>
 
-        {/* Header */}
-        <div
-          className="grid grid-cols-1 lg:grid-cols-[1fr_1fr]"
-          style={{ gap: "clamp(32px, 5vw, 80px)", alignItems: "start", marginBottom: "clamp(52px, 9vh, 96px)" }}
-        >
+        {/* Header — centrado */}
+        <div style={{ textAlign: "center", marginBottom: "clamp(52px, 9vh, 96px)" }}>
           <Reveal>
             <h2
               style={{
@@ -71,10 +68,10 @@ export function Apply() {
                 lineHeight: 1.14,
                 letterSpacing: "-0.03em",
                 color: "var(--color-text)",
-                margin: 0,
+                margin: "0 auto clamp(20px, 3vh, 30px)",
               }}
             >
-              Trabajamos con<br />proyectos limitados —<br />
+              Trabajamos con proyectos limitados —<br />
               <span style={{
                 fontStyle: "italic",
                 fontWeight: 400,
@@ -91,10 +88,11 @@ export function Apply() {
 
           <Reveal delay={0.1}>
             <p style={{
-              fontSize: "clamp(14px, 1.08vw, 17px)",
+              fontSize: "clamp(14px, 1.08vw, 16px)",
               lineHeight: 1.75,
               color: "var(--color-text-2)",
-              margin: 0,
+              margin: "0 auto",
+              maxWidth: "44em",
             }}>
               No existe el proyecto secundario en nuestra agenda. Cada cliente recibe el mismo nivel de atención — estrategia, diseño y desarrollo sin compromisos a medias. La evaluación inicial existe para confirmar que podemos garantizarte ese estándar.
             </p>
