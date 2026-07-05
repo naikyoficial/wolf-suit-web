@@ -77,6 +77,7 @@ export function Apply() {
               <br />
               ya entendiste que{" "}
               <span style={{
+                display: "inline-block",
                 fontStyle: "italic",
                 background: GOLD,
                 backgroundSize: "200% 100%",

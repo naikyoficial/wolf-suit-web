@@ -143,6 +143,7 @@ export function Method() {
             >
               Nada queda{" "}
               <span style={{
+                display: "inline-block",
                 fontStyle: "italic",
                 background: GOLD,
                 backgroundSize: "200% 100%",

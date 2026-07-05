@@ -145,6 +145,7 @@ export function Faq() {
             >
               Lo que vas a querer saber{" "}
               <span style={{
+                display: "inline-block",
                 fontStyle: "italic",
                 fontWeight: 400,
                 background: GOLD,
