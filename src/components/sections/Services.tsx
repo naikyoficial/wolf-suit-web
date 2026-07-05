@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
@@ -212,12 +213,54 @@ export function Services() {
       id="servicios"
       style={{
         position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Imagen de fondo */}
+      <Image
+        src="/background-servicios.png"
+        alt=""
+        fill
+        unoptimized
+        sizes="100vw"
+        style={{ objectFit: "cover", objectPosition: "center center" }}
+      />
+
+      {/* Overlay oscuro */}
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "rgba(0,0,0,0.56)",
+        zIndex: 1,
+      }} />
+
+      {/* Viñeta perimetral */}
+      <div style={{
+        position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none",
+        background: "radial-gradient(110% 90% at 50% 50%, transparent 38%, rgba(0,0,0,.7) 100%)",
+      }} />
+
+      {/* Fade superior */}
+      <div style={{
+        position: "absolute", left: 0, right: 0, top: 0, zIndex: 1, pointerEvents: "none",
+        height: "58%",
+        background: "linear-gradient(to bottom, rgba(6,5,4,1) 0%, rgba(6,5,4,.72) 40%, transparent 100%)",
+      }} />
+
+      {/* Fade inferior */}
+      <div style={{
+        position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 1, pointerEvents: "none",
+        height: "55%",
+        background: "linear-gradient(to bottom, transparent 0%, rgba(6,5,4,.78) 50%, rgba(6,5,4,1) 100%)",
+      }} />
+
+      {/* Contenido */}
+      <div style={{
+        position: "relative",
+        zIndex: 2,
         padding: "var(--section-py) var(--section-px)",
         maxWidth: "var(--grid-max)",
         margin: "0 auto",
-        borderTop: "1px solid rgba(255,255,255,.06)",
-      }}
-    >
+      }}>
       <Reveal>
         <p className="section-index" style={{ marginBottom: "clamp(40px, 6vh, 68px)" }}>
           03 — Servicios
@@ -269,6 +312,7 @@ export function Services() {
           ))}
         </div>
       </Reveal>
+      </div>
     </section>
   );
 }
