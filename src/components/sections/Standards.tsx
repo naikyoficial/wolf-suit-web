@@ -129,7 +129,7 @@ export function Standards() {
     >
       {/* Background image */}
       <Image
-        src="/background-beneficios.png"
+        src="/background.png"
         alt=""
         fill
         unoptimized
