@@ -121,10 +121,10 @@ export const METHOD_STEPS = [
 ] as const;
 
 export const STANDARDS = [
-  { value: "90", suffix: "+", label: "PageSpeed en móvil", note: "Rendimiento medido por Google, no prometido" },
-  { value: "100", suffix: "%", label: "Código a medida", note: "Sin plantillas ni page builders" },
-  { value: "72", suffix: "h", label: "Respuesta garantizada", note: "A cada solicitud de evaluación" },
-  { value: "5", suffix: "", label: "Fases de método", note: "Del diagnóstico al lanzamiento" },
+  { value: "0",  suffix: "",  label: "Templates usados",              note: "Cada sitio diseñado desde cero para tu empresa, sin excepciones" },
+  { value: "94", suffix: "%", label: "De las primeras impresiones dependen del diseño", note: "Tu sitio habla por vos antes de que puedas hacerlo" },
+  { value: "10", suffix: "",  label: "Proyectos al año como máximo",   note: "Para dedicarnos completo a cada cliente que elige trabajar con nosotros" },
+  { value: "72", suffix: "h", label: "Respuesta garantizada",          note: "En cada etapa del proyecto, no solo al inicio" },
 ] as const;
 
 export const FAQS = [
