@@ -13,17 +13,17 @@ const STEPS = [
   {
     num: "01",
     label: "Aplicación",
-    desc: "Completás el formulario. Nos contás quién sos, qué querés construir y cuál es tu objetivo real.",
+    desc: "Completás el formulario. Nos contás quién sos, qué querés construir y qué esperás del resultado.",
   },
   {
     num: "02",
     label: "Evaluación",
-    desc: "Analizamos si existe una oportunidad real de impacto. No avanzamos si no la hay — te lo decimos sin rodeos.",
+    desc: "Analizamos si tu proyecto encaja con los estándares que mantenemos. Si no hay una oportunidad real de excelencia, te lo decimos.",
   },
   {
     num: "03",
     label: "Conversación",
-    desc: "Si hay alineación real, coordinamos el próximo paso y definimos juntos cómo abordarlo.",
+    desc: "Si hay alineación genuina, coordinamos los detalles y arrancamos con el nivel que tu proyecto merece.",
   },
 ];
 
@@ -74,7 +74,7 @@ export function Apply() {
                 margin: 0,
               }}
             >
-              Trabajamos con pocos.<br />
+              Trabajamos con proyectos limitados,{" "}
               <span style={{
                 display: "inline-block",
                 fontStyle: "italic",
@@ -85,7 +85,7 @@ export function Apply() {
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }}>
-                Nos importa el resultado,<br />no el volumen.
+                para asegurar la calidad de cada uno.
               </span>
             </h2>
           </Reveal>
@@ -97,8 +97,7 @@ export function Apply() {
               color: "var(--color-text-2)",
               margin: 0,
             }}>
-              Antes de arrancar cualquier proyecto hacemos una evaluación sin costo.
-              Es la única forma de confirmar que lo que vamos a construir va a generar un impacto real en tu negocio.
+              Aceptamos pocos proyectos a la vez porque cada uno recibe atención completa, desde la estrategia hasta el último detalle. Por eso somos selectivos — y por eso el proceso empieza con una evaluación sin costo.
             </p>
           </Reveal>
         </div>
