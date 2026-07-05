@@ -62,20 +62,6 @@ export function Preloader() {
 
       {/* Marca central — revelada por máscara, sin rebotes */}
       <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ padding: "0 clamp(1.5rem, 6vw, 4rem)", zIndex: 1 }}>
-        {/* Rombo dorado — eco del isotipo del navbar */}
-        <motion.span
-          aria-hidden
-          initial={{ opacity: 0, scale: 0.4 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.35, ease: EASE }}
-          style={{
-            width: 8, height: 8,
-            marginBottom: "clamp(22px, 3.4vh, 34px)",
-            background: "linear-gradient(135deg, #B98A3E, #F1DCA4 50%, #B98A3E)",
-            transform: "rotate(45deg)",
-          }}
-        />
-
         <div style={{ overflow: "hidden", paddingBottom: "0.14em" }}>
           <motion.span
             initial={{ y: "110%" }}
@@ -111,52 +97,6 @@ export function Preloader() {
             transition: "width .12s linear",
           }} />
         </div>
-      </div>
-
-      {/* Contador — esquina inferior */}
-      <div style={{
-        position: "absolute",
-        zIndex: 1,
-        bottom: "clamp(24px, 5vh, 48px)",
-        right: "clamp(24px, 6vw, 64px)",
-        display: "flex",
-        alignItems: "baseline",
-        gap: 8,
-      }}>
-        <span style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "clamp(2rem, 4vw, 3.2rem)",
-          color: "rgba(243,240,234,.92)",
-          lineHeight: 1,
-          fontVariantNumeric: "tabular-nums",
-        }}>
-          {String(pct).padStart(3, "0")}
-        </span>
-        <span style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "clamp(10px, 1vw, 13px)",
-          color: "rgba(217,179,106,.7)",
-        }}>
-          %
-        </span>
-      </div>
-
-      {/* Etiqueta inferior izquierda — concreta, no tricolon abstracto */}
-      <div style={{
-        position: "absolute",
-        zIndex: 1,
-        bottom: "clamp(26px, 5vh, 50px)",
-        left: "clamp(24px, 6vw, 64px)",
-      }}>
-        <span style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "clamp(9px, 0.8vw, 11px)",
-          letterSpacing: ".26em",
-          textTransform: "uppercase",
-          color: "rgba(200,193,180,.4)",
-        }}>
-          Agencia de diseño & desarrollo web
-        </span>
       </div>
     </motion.div>
   );

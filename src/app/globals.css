@@ -329,12 +329,6 @@ body { scrollbar-width: none; }
   50%      { background-position: -80% center; }
 }
 
-/* ─── Custom cursor — hide native (mouse only) ─── */
-@media (pointer: fine) {
-  html, body, * { cursor: none !important; }
-  input, textarea, select { cursor: text !important; }
-}
-
 /* Mobile — stop background-position shimmer animations; set a static mid-gold position */
 @media (pointer: coarse) {
   [style*="metalShimmer"],

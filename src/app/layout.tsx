@@ -4,7 +4,6 @@ import { Navbar }         from "@/components/layout/Navbar";
 import { Footer }         from "@/components/layout/Footer";
 import { SmoothScroll }   from "@/components/layout/SmoothScroll";
 import { Preloader }      from "@/components/ui/Preloader";
-import { Cursor }         from "@/components/ui/Cursor";
 import { Grain }          from "@/components/ui/Grain";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { AtmosphericBg }  from "@/components/sections/AtmosphericBg";
@@ -142,7 +141,6 @@ export default function RootLayout({
         />
         <AtmosphericBg />
         <Preloader />
-        <Cursor />
         <Grain />
         <ScrollProgress />
         <SmoothScroll>
