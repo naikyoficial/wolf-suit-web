@@ -67,16 +67,15 @@ export function Apply() {
               style={{
                 fontFamily: "var(--font-body)",
                 fontWeight: 600,
-                fontSize: "clamp(2rem, 3.4vw, 3rem)",
-                lineHeight: 1.12,
+                fontSize: "clamp(1.9rem, 3vw, 2.75rem)",
+                lineHeight: 1.14,
                 letterSpacing: "-0.03em",
                 color: "var(--color-text)",
                 margin: 0,
               }}
             >
-              Trabajamos con proyectos limitados,{" "}
+              Trabajamos con<br />proyectos limitados —<br />
               <span style={{
-                display: "inline-block",
                 fontStyle: "italic",
                 fontWeight: 400,
                 background: GOLD,
@@ -97,7 +96,7 @@ export function Apply() {
               color: "var(--color-text-2)",
               margin: 0,
             }}>
-              Aceptamos pocos proyectos a la vez porque cada uno recibe atención completa, desde la estrategia hasta el último detalle. Por eso somos selectivos — y por eso el proceso empieza con una evaluación sin costo.
+              No existe el proyecto secundario en nuestra agenda. Cada cliente recibe el mismo nivel de atención — estrategia, diseño y desarrollo sin compromisos a medias. La evaluación inicial existe para confirmar que podemos garantizarte ese estándar.
             </p>
           </Reveal>
         </div>
