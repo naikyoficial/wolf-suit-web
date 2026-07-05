@@ -93,7 +93,7 @@ export function Duality() {
           color: "rgba(248,245,240,.50)",
           maxWidth: "18em",
           margin: 0,
-          marginBottom: "clamp(28px, 4.5vh, 50px)",
+          marginBottom: "clamp(90px, 15vh, 180px)",
         }}
       >
         {DUALITY_CONTENT.lineA}
