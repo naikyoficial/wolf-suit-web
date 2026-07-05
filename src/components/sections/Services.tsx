@@ -183,18 +183,12 @@ function ServiceModal({ s, onClose }: { s: ServiceItem; onClose: () => void }) {
 
   useEffect(() => setMounted(true), []);
 
-  // Cerrar con Escape + bloquear scroll de fondo
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
   }, [onClose]);
 
   if (!mounted) return null;
@@ -202,218 +196,249 @@ function ServiceModal({ s, onClose }: { s: ServiceItem; onClose: () => void }) {
   return createPortal(
     <div
       style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 200,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "clamp(20px, 5vw, 60px)",
+        position: "fixed", inset: 0, zIndex: 200,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: "clamp(16px, 4vw, 48px)",
       }}
     >
-      {/* Backdrop desenfocado */}
+      {/* Backdrop */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.4, ease: EASE }}
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+        transition={{ duration: 0.35, ease: EASE }}
         onClick={onClose}
         style={{
-          position: "absolute",
-          inset: 0,
-          background: "rgba(5,4,3,.62)",
-          backdropFilter: "blur(10px)",
-          WebkitBackdropFilter: "blur(10px)",
+          position: "absolute", inset: 0,
+          background: "rgba(4,3,2,.75)",
+          backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
         }}
       />
 
-      {/* Panel */}
+      {/* Panel — flex column so we can fix gold bar at top */}
       <motion.div
-        role="dialog"
-        aria-modal="true"
-        aria-label={s.title}
-        initial={{ opacity: 0, scale: 0.94, y: 24 }}
+        role="dialog" aria-modal="true" aria-label={s.title}
+        initial={{ opacity: 0, scale: 0.95, y: 28 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.96, y: 16 }}
-        transition={{ duration: 0.5, ease: EASE }}
+        exit={{ opacity: 0, scale: 0.97, y: 12 }}
+        transition={{ duration: 0.45, ease: EASE }}
         style={{
           position: "relative",
-          width: "min(660px, 100%)",
-          maxHeight: "86vh",
-          overflowY: "auto",
-          padding: "clamp(30px, 4vw, 56px)",
+          width: "min(820px, 100%)",
+          maxHeight: "90vh",
           borderRadius: 6,
-          border: "1px solid rgba(212,160,32,.2)",
-          background:
-            "linear-gradient(165deg, #16150F 0%, #100F0C 55%, #0C0B08 100%)",
-          boxShadow: "0 50px 120px -40px rgba(0,0,0,.85)",
+          border: "1px solid rgba(255,255,255,.07)",
+          background: "linear-gradient(155deg, #141209 0%, #0E0D0A 50%, #090807 100%)",
+          boxShadow: "0 60px 140px -36px rgba(0,0,0,.92), inset 0 1px 0 rgba(255,255,255,.04)",
+          display: "flex",
+          flexDirection: "column",
+          overflow: "hidden",
         }}
       >
-        {/* Numeral gigante de fondo */}
-        <span
-          aria-hidden
-          style={{
-            position: "absolute",
-            top: "clamp(-8px, -1vw, -4px)",
-            right: "clamp(18px, 3vw, 40px)",
-            fontFamily: "var(--font-body)",
-            fontWeight: 700,
-            fontStyle: "italic",
-            fontSize: "clamp(6rem, 12vw, 11rem)",
-            lineHeight: 1,
-            color: "rgba(212,160,32,.06)",
-            pointerEvents: "none",
-            userSelect: "none",
-          }}
-        >
+        {/* Gold top accent line */}
+        <div aria-hidden style={{
+          position: "absolute", top: 0, left: 0, right: 0, height: 2, zIndex: 10,
+          background: GOLD, backgroundSize: "200% 100%",
+          animation: "heroSheen 9s ease-in-out infinite",
+        }} />
+
+        {/* Ghost numeral — large, bottom-right */}
+        <span aria-hidden style={{
+          position: "absolute", bottom: "-0.08em", right: "clamp(20px, 4vw, 52px)",
+          fontFamily: "var(--font-body)", fontWeight: 700, fontStyle: "italic",
+          fontSize: "clamp(9rem, 18vw, 18rem)", lineHeight: 1,
+          color: "rgba(212,160,32,.055)",
+          pointerEvents: "none", userSelect: "none",
+        }}>
           {s.index}
         </span>
 
-        {/* Botón cerrar */}
-        <button
-          onClick={onClose}
-          onMouseEnter={() => setCloseHov(true)}
-          onMouseLeave={() => setCloseHov(false)}
-          data-cursor-hover
-          aria-label="Cerrar"
-          style={{
-            position: "absolute",
-            top: "clamp(18px, 2vw, 26px)",
-            right: "clamp(18px, 2vw, 26px)",
-            width: 36,
-            height: 36,
-            borderRadius: "50%",
-            border: `1px solid ${closeHov ? "rgba(212,160,32,.55)" : "rgba(255,255,255,.12)"}`,
-            background: closeHov ? "rgba(212,160,32,.08)" : "transparent",
-            cursor: "pointer",
-            transition: "border-color .3s, background .3s",
-            zIndex: 2,
-          }}
-        >
-          <span style={{ position: "absolute", left: "50%", top: "50%", width: 12, height: 1, background: closeHov ? "var(--color-gold)" : "rgba(248,245,240,.55)", transform: "translate(-50%,-50%) rotate(45deg)", transition: "background .3s" }} />
-          <span style={{ position: "absolute", left: "50%", top: "50%", width: 12, height: 1, background: closeHov ? "var(--color-gold)" : "rgba(248,245,240,.55)", transform: "translate(-50%,-50%) rotate(-45deg)", transition: "background .3s" }} />
-        </button>
+        {/* Scrollable body */}
+        <div style={{ overflowY: "auto", flex: 1, paddingTop: 2 }}>
 
-        {/* Eyebrow */}
-        <p
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: 10,
-            letterSpacing: ".26em",
-            textTransform: "uppercase",
-            color: "var(--color-gold)",
-            margin: "0 0 clamp(14px, 2vh, 20px)",
-          }}
-        >
-          {s.index} — {s.category}
-        </p>
+          {/* ── Header ── */}
+          <div style={{ padding: "clamp(28px, 3.5vw, 52px) clamp(28px, 3.5vw, 52px) clamp(24px, 3vh, 38px)", position: "relative", zIndex: 1 }}>
 
-        {/* Título */}
-        <h3
-          style={{
-            fontFamily: "var(--font-body)",
-            fontWeight: 600,
-            fontSize: "clamp(1.7rem, 3.4vw, 2.6rem)",
-            lineHeight: 1.1,
-            letterSpacing: "-0.03em",
-            color: "var(--color-text)",
-            margin: "0 0 clamp(6px, 1vh, 10px)",
-            paddingRight: "clamp(40px, 6vw, 60px)",
-          }}
-        >
-          {s.title}
-        </h3>
+            {/* Close */}
+            <button
+              onClick={onClose}
+              onMouseEnter={() => setCloseHov(true)}
+              onMouseLeave={() => setCloseHov(false)}
+              data-cursor-hover
+              aria-label="Cerrar"
+              style={{
+                position: "absolute",
+                top: "clamp(18px, 2.5vw, 28px)", right: "clamp(18px, 2.5vw, 28px)",
+                width: 34, height: 34, borderRadius: "50%",
+                border: `1px solid ${closeHov ? "rgba(212,160,32,.5)" : "rgba(255,255,255,.1)"}`,
+                background: closeHov ? "rgba(212,160,32,.07)" : "transparent",
+                cursor: "pointer", transition: "border-color .3s, background .3s", zIndex: 2,
+              }}
+            >
+              <span style={{ position: "absolute", left: "50%", top: "50%", width: 11, height: 1, background: closeHov ? "var(--color-gold)" : "rgba(248,245,240,.5)", transform: "translate(-50%,-50%) rotate(45deg)", transition: "background .3s" }} />
+              <span style={{ position: "absolute", left: "50%", top: "50%", width: 11, height: 1, background: closeHov ? "var(--color-gold)" : "rgba(248,245,240,.5)", transform: "translate(-50%,-50%) rotate(-45deg)", transition: "background .3s" }} />
+            </button>
 
-        {/* Subtítulo */}
-        <p
-          style={{
-            fontFamily: "var(--font-body)",
-            fontStyle: "italic",
-            fontSize: "clamp(1rem, 1.4vw, 1.2rem)",
-            lineHeight: 1.4,
-            color: "rgba(248,245,240,.6)",
-            margin: "0 0 clamp(22px, 3.4vh, 34px)",
-          }}
-        >
-          {s.subtitle}
-        </p>
+            {/* Eyebrow */}
+            <p className="section-index" style={{ marginBottom: "clamp(18px, 2.4vh, 28px)" }}>
+              {s.index} — {s.category}
+            </p>
 
-        {/* Descripción */}
-        <p
-          style={{
-            fontSize: "clamp(14px, 1.05vw, 16px)",
-            lineHeight: 1.78,
-            color: "var(--color-text-2)",
-            margin: "0 0 clamp(26px, 4vh, 38px)",
-          }}
-        >
-          {s.desc}
-        </p>
+            {/* Title */}
+            <h3 style={{
+              fontFamily: "var(--font-body)", fontWeight: 700,
+              fontSize: "clamp(1.9rem, 4vw, 3.4rem)",
+              lineHeight: 1.06, letterSpacing: "-0.04em",
+              color: "var(--color-text)",
+              margin: "0 0 clamp(8px, 1.2vh, 14px)",
+              paddingRight: "clamp(44px, 8vw, 80px)", maxWidth: "14em",
+            }}>
+              {s.title}
+            </h3>
 
-        {/* Deliverables */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "clamp(10px, 1.6vh, 15px)",
-            paddingTop: "clamp(22px, 3.2vh, 32px)",
-            borderTop: "1px solid rgba(255,255,255,.08)",
-          }}
-        >
-          <p
+            {/* Subtitle */}
+            <p style={{
+              fontFamily: "var(--font-display)", fontStyle: "italic",
+              fontSize: "clamp(1rem, 1.5vw, 1.2rem)", lineHeight: 1.4,
+              color: "rgba(248,245,240,.42)", margin: 0,
+            }}>
+              {s.subtitle}
+            </p>
+          </div>
+
+          {/* Gradient divider */}
+          <div aria-hidden style={{
+            height: 1, margin: "0 clamp(28px, 3.5vw, 52px)",
+            background: "linear-gradient(to right, rgba(212,160,32,.35) 0%, rgba(255,255,255,.06) 45%, transparent 100%)",
+          }} />
+
+          {/* ── Body — 2-col on md+ ── */}
+          <div
+            className="grid grid-cols-1 md:grid-cols-[3fr_2fr]"
             style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 9.5,
-              letterSpacing: ".24em",
-              textTransform: "uppercase",
-              color: "var(--color-text-4)",
-              margin: "0 0 4px",
+              gap: "clamp(28px, 4vw, 48px)",
+              padding: "clamp(28px, 3.5vh, 44px) clamp(28px, 3.5vw, 52px) clamp(36px, 5vh, 60px)",
+              position: "relative", zIndex: 1,
             }}
           >
-            Incluye
-          </p>
-          {s.deliverables.map((d) => (
-            <span key={d} style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
-              <span aria-hidden style={{ width: 16, height: 1, background: "rgba(212,160,32,.6)", flexShrink: 0, transform: "translateY(-4px)" }} />
-              <span style={{ fontSize: "clamp(13.5px, 0.98vw, 15px)", color: "var(--color-text-2)", lineHeight: 1.55 }}>
-                {d}
-              </span>
-            </span>
-          ))}
-        </div>
+            {/* Left — description + brief + CTA */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(20px, 2.8vh, 28px)" }}>
+              <p style={{
+                fontSize: "clamp(14px, 1.05vw, 16px)", lineHeight: 1.82,
+                color: "var(--color-text-2)", margin: 0,
+              }}>
+                {s.desc}
+              </p>
 
-        {/* CTA */}
-        <div style={{ marginTop: "clamp(28px, 4vh, 40px)" }}>
-          <Link
-            href="/evaluacion"
-            data-cursor-hover
-            onClick={onClose}
-            onMouseEnter={() => setCtaHov(true)}
-            onMouseLeave={() => setCtaHov(false)}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 16,
-              padding: "clamp(14px, 1.5vw, 18px) clamp(30px, 3vw, 44px)",
-              background: ctaHov ? "var(--color-gold-peak)" : "var(--color-gold)",
-              color: "#0A0A0A",
-              fontFamily: "var(--font-mono)",
-              fontWeight: 500,
-              fontSize: 11,
-              letterSpacing: ".24em",
-              textTransform: "uppercase",
-              textDecoration: "none",
-              transition: "background .35s, box-shadow .35s",
-              boxShadow: ctaHov
-                ? "0 10px 44px rgba(212,160,32,.34)"
-                : "0 6px 30px rgba(212,160,32,.18)",
-            }}
-          >
-            Solicitar evaluación
-            <span aria-hidden style={{ position: "relative", display: "inline-flex", alignItems: "center", width: ctaHov ? 28 : 20, height: 1, background: "currentColor", flexShrink: 0, transition: "width .35s" }}>
-              <span style={{ position: "absolute", right: -1, top: -2.5, width: 5, height: 5, borderRight: "1px solid currentColor", borderTop: "1px solid currentColor", transform: "rotate(45deg)" }} />
-            </span>
-          </Link>
+              {/* Brief callout */}
+              <blockquote style={{
+                margin: 0,
+                paddingLeft: "clamp(16px, 2vw, 22px)",
+                borderLeft: "2px solid rgba(212,160,32,.4)",
+              }}>
+                <p style={{
+                  fontFamily: "var(--font-display)", fontStyle: "italic",
+                  fontSize: "clamp(13.5px, 1vw, 15.5px)", lineHeight: 1.65,
+                  color: "rgba(248,245,240,.48)", margin: 0,
+                }}>
+                  {s.brief}
+                </p>
+              </blockquote>
+
+              {/* CTA */}
+              <div style={{ paddingTop: "clamp(4px, 0.8vh, 8px)" }}>
+                <Link
+                  href="/evaluacion"
+                  data-cursor-hover
+                  onClick={onClose}
+                  className="cta-gold"
+                  onMouseEnter={() => setCtaHov(true)}
+                  onMouseLeave={() => setCtaHov(false)}
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: 14,
+                    padding: "clamp(13px, 1.4vw, 17px) clamp(26px, 2.8vw, 38px)",
+                    fontFamily: "var(--font-mono)", fontWeight: 500,
+                    fontSize: 10.5, letterSpacing: ".22em", textTransform: "uppercase",
+                    textDecoration: "none",
+                  }}
+                >
+                  Solicitar evaluación
+                  <span aria-hidden style={{
+                    position: "relative", display: "inline-flex", alignItems: "center",
+                    width: ctaHov ? 26 : 18, height: 1,
+                    background: "currentColor", flexShrink: 0, transition: "width .35s",
+                  }}>
+                    <span style={{
+                      position: "absolute", right: -1, top: -2.5,
+                      width: 5, height: 5,
+                      borderRight: "1px solid currentColor", borderTop: "1px solid currentColor",
+                      transform: "rotate(45deg)",
+                    }} />
+                  </span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right — deliverables card */}
+            <div style={{
+              background: "rgba(255,255,255,.025)",
+              border: "1px solid rgba(255,255,255,.06)",
+              borderRadius: 4,
+              padding: "clamp(20px, 2.5vw, 28px)",
+              display: "flex", flexDirection: "column",
+              alignSelf: "start",
+            }}>
+              <p style={{
+                fontFamily: "var(--font-mono)", fontSize: 9,
+                letterSpacing: ".3em", textTransform: "uppercase",
+                color: "var(--color-text-4)", margin: "0 0 clamp(16px, 2.2vh, 22px)",
+              }}>
+                Incluye
+              </p>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                {s.deliverables.map((d, di) => (
+                  <div
+                    key={d}
+                    style={{
+                      display: "flex", alignItems: "flex-start", gap: 14,
+                      padding: "clamp(10px, 1.5vh, 14px) 0",
+                      borderBottom: di < s.deliverables.length - 1 ? "1px solid rgba(255,255,255,.05)" : "none",
+                    }}
+                  >
+                    <span aria-hidden style={{
+                      width: 14, height: 1, background: "rgba(212,160,32,.55)",
+                      flexShrink: 0, marginTop: 9,
+                    }} />
+                    <span style={{
+                      fontSize: "clamp(13px, 0.92vw, 14px)",
+                      color: "var(--color-text-2)", lineHeight: 1.55,
+                    }}>
+                      {d}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Respuesta */}
+              <div style={{
+                marginTop: "clamp(18px, 2.5vh, 24px)",
+                paddingTop: "clamp(14px, 2vh, 18px)",
+                borderTop: "1px solid rgba(255,255,255,.05)",
+              }}>
+                <p style={{
+                  fontFamily: "var(--font-mono)", fontSize: 9,
+                  letterSpacing: ".22em", textTransform: "uppercase",
+                  color: "var(--color-text-4)", margin: "0 0 6px",
+                }}>
+                  Tiempo de respuesta
+                </p>
+                <p style={{
+                  fontSize: "clamp(12px, 0.88vw, 13.5px)",
+                  color: "var(--color-text-3)", margin: 0, lineHeight: 1.5,
+                }}>
+                  Respondemos en un máximo de 72 horas.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </motion.div>
     </div>,
