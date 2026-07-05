@@ -91,7 +91,7 @@ export function Duality() {
           fontSize: "clamp(1.7rem, 3.2vw, 3rem)",
           lineHeight: 1.22,
           letterSpacing: "-0.02em",
-          color: "rgba(178,192,204,.35)",
+          color: "rgba(248,245,240,.50)",
           maxWidth: "18em",
           margin: 0,
         }}
