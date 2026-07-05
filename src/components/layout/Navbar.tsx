@@ -141,21 +141,18 @@ export function Navbar() {
           <Link
             href="/evaluacion"
             data-cursor-hover
-            className="hidden md:inline-flex"
+            className="cta-gold hidden md:inline-flex"
             onMouseEnter={() => setCtaHov(true)}
             onMouseLeave={() => setCtaHov(false)}
             style={{
               alignItems: "center",
               gap: 11,
-              padding: "11px 24px",
-              background: ctaHov ? "var(--color-gold-peak)" : "var(--color-gold)",
-              color: "#0A0A0A",
+              padding: "10px 22px",
               fontFamily: "var(--font-mono)",
               fontSize: 10.5,
               letterSpacing: ".18em",
               textTransform: "uppercase",
               textDecoration: "none",
-              transition: "background .35s",
             }}
           >
             Evaluación
@@ -290,13 +287,12 @@ export function Navbar() {
                 <Link
                   href="/evaluacion"
                   onClick={() => setMenuOpen(false)}
+                  className="cta-gold"
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
                     gap: 14,
                     padding: "18px 40px",
-                    background: "var(--color-gold)",
-                    color: "#0A0A0A",
                     fontFamily: "var(--font-mono)",
                     fontWeight: 500,
                     fontSize: 11,

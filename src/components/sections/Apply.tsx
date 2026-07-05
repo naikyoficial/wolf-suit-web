@@ -223,6 +223,7 @@ export function Apply() {
                 <Link
                   href="/evaluacion"
                   data-cursor-hover
+                  className="cta-gold"
                   onMouseEnter={() => setCtaHov(true)}
                   onMouseLeave={() => setCtaHov(false)}
                   style={{
@@ -230,19 +231,12 @@ export function Apply() {
                     alignItems: "center",
                     gap: 18,
                     padding: "clamp(16px, 1.6vw, 22px) clamp(44px, 4.5vw, 68px)",
-                    background: ctaHov ? "rgba(212,160,32,.08)" : "transparent",
-                    color: "var(--color-gold)",
                     fontFamily: "var(--font-mono)",
                     fontWeight: 500,
                     fontSize: 11.5,
                     letterSpacing: ".26em",
                     textTransform: "uppercase",
                     textDecoration: "none",
-                    border: `1px solid ${ctaHov ? "rgba(212,160,32,.7)" : "rgba(212,160,32,.38)"}`,
-                    transition: "background .4s, border-color .4s, box-shadow .4s",
-                    boxShadow: ctaHov
-                      ? "0 0 48px rgba(212,160,32,.14), inset 0 0 28px rgba(212,160,32,.04)"
-                      : "none",
                   }}
                 >
                   Solicitar evaluación

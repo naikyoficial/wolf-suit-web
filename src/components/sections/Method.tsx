@@ -51,7 +51,7 @@ function Step({ step, isLast }: { step: (typeof METHOD_STEPS)[number]; isLast: b
         transition={{ duration: 0.5 }}
         style={{
           position: "absolute",
-          right: 0, top: "-0.22em",
+          right: "clamp(10px, 1.2vw, 16px)", top: "-0.18em",
           fontFamily: "var(--font-body)",
           fontStyle: "italic",
           fontWeight: 700,
@@ -217,7 +217,7 @@ export function Method() {
           </div>
 
           {/* Pasos */}
-          <div>
+          <div style={{ overflow: "visible" }}>
             {METHOD_STEPS.map((step, i) => (
               <Step key={step.num} step={step} isLast={i === METHOD_STEPS.length - 1} />
             ))}

@@ -6,7 +6,7 @@ export const HERO_CONTENT = {
   headlineRest: "de",
   headlineAccent: "alto nivel",
   subheadline:
-    "Creamos sitios web a medida para empresas que exigen destacar — rápidos, estratégicos y pensados para convertir.",
+    "Construimos sitios web que transforman visitantes en clientes. Desde cero, a medida y ajustándonos a tus necesidades.",
   cta: "Solicitar evaluación",
   ctaSecondary: "Ver servicios",
   tags: ["Diseño & desarrollo web", "E-commerce", "SEO técnico"],
@@ -84,6 +84,15 @@ export const SERVICES: ServiceItem[] = [
     brief: "Aparecé primero cuando tus clientes te buscan en Google.",
     desc: "Estrategia SEO integral para que tu empresa aparezca primero cuando tus clientes te buscan. Auditoría técnica, arquitectura de contenidos, optimización on-page y link building de autoridad.",
     deliverables: ["Auditoría técnica completa", "Arquitectura de contenidos", "Reportes de evolución mensual"],
+  },
+  {
+    index: "06",
+    category: "Desarrollo",
+    title: "Aplicaciones Web",
+    subtitle: "Desarrollo de aplicaciones a medida",
+    brief: "Herramientas digitales personalizadas que automatizan y escalan tu negocio.",
+    desc: "Aplicaciones web a medida para empresas que necesitan más que un sitio: portales de cliente, dashboards, sistemas de gestión y herramientas internas. Diseño UX + desarrollo frontend y backend robusto, pensado para crecer.",
+    deliverables: ["Diseño UX/UI a medida", "Desarrollo frontend y backend", "Integración con sistemas existentes"],
   },
 ];
 

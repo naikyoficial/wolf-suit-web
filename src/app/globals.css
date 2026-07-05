@@ -373,6 +373,60 @@ body { scrollbar-width: none; }
   }
 }
 
+/* ─── CTA buttons — ghost gold + border trace animation ─── */
+@property --cta-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.cta-gold {
+  position: relative;
+  border: 1px solid rgba(212, 160, 32, .38) !important;
+  background: transparent !important;
+  color: var(--color-gold) !important;
+  transition: border-color .4s, background .4s !important;
+  fill: currentColor;
+}
+
+.cta-gold:hover {
+  border-color: rgba(212, 160, 32, .72) !important;
+  background: rgba(212, 160, 32, .05) !important;
+}
+
+.cta-gold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--cta-angle),
+    transparent 0%,
+    transparent 72%,
+    rgba(212, 160, 32, .55) 80%,
+    rgba(248, 220, 100, .92) 87%,
+    rgba(212, 160, 32, .55) 94%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  animation: ctaBorderTrace 2s linear infinite paused;
+  transition: opacity .4s;
+  pointer-events: none;
+}
+
+.cta-gold:hover::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+@keyframes ctaBorderTrace {
+  to { --cta-angle: 360deg; }
+}
+
 /* Reduced motion — accesibilidad obligatoria (OS Ch.6) */
 @media (prefers-reduced-motion: reduce) {
   *,

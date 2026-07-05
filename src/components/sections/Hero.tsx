@@ -167,6 +167,7 @@ export function Hero() {
             <Link
               href="/evaluacion"
               data-cursor-hover
+              className="cta-gold"
               onMouseEnter={() => setCtaHov(true)}
               onMouseLeave={() => setCtaHov(false)}
               style={{
@@ -174,19 +175,12 @@ export function Hero() {
                 alignItems: "center",
                 gap: 16,
                 padding: "clamp(16px, 1.5vw, 20px) clamp(32px, 3.2vw, 46px)",
-                borderRadius: 4,
-                background: ctaHov ? "#F1DCA4" : "#D9B36A",
-                color: "#141007",
                 fontFamily: "var(--font-mono)",
                 fontWeight: 500,
                 fontSize: 11.5,
                 letterSpacing: ".14em",
                 textTransform: "uppercase",
                 textDecoration: "none",
-                transition: "background .35s, box-shadow .35s",
-                boxShadow: ctaHov
-                  ? "0 10px 48px rgba(201,162,92,.32)"
-                  : "0 6px 30px rgba(201,162,92,.18)",
               }}
             >
               {HERO_CONTENT.cta}
@@ -241,34 +235,6 @@ export function Hero() {
           </a>
         </motion.div>
 
-        {/* Señales de confianza — microcopy discreto */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.0, delay: 1.0 }}
-          style={{
-            display: "flex", alignItems: "center", justifyContent: "center",
-            gap: "clamp(14px, 2vw, 26px)", flexWrap: "wrap",
-            marginTop: "clamp(30px, 4.5vh, 48px)",
-          }}
-        >
-          {TRUST.map((t, i) => (
-            <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "clamp(14px, 2vw, 26px)" }}>
-              <span style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "clamp(9.5px, 0.8vw, 11px)",
-                letterSpacing: ".14em",
-                textTransform: "uppercase",
-                color: "rgba(200,193,180,.5)",
-              }}>
-                {t}
-              </span>
-              {i < TRUST.length - 1 && (
-                <span aria-hidden style={{ width: 3, height: 3, borderRadius: "50%", background: "rgba(201,162,92,.5)" }} />
-              )}
-            </span>
-          ))}
-        </motion.div>
       </div>
 
       {/* Indicador de scroll — abajo centro */}
