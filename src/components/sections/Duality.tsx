@@ -93,11 +93,11 @@ export function Duality() {
           color: "rgba(248,245,240,.50)",
           maxWidth: "18em",
           margin: 0,
+          marginBottom: "clamp(28px, 4.5vh, 50px)",
         }}
       >
         {DUALITY_CONTENT.lineA}
       </motion.p>
-
 
       {/* Línea B — encendida, desplazada */}
       <div className="md:ml-[16%]">
