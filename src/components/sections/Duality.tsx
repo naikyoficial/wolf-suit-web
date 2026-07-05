@@ -27,7 +27,6 @@ export function Duality() {
       style={{
         position: "relative",
         overflow: "hidden",
-        borderTop: "1px solid rgba(255,255,255,.06)",
       }}
     >
       {/* Imagen de fondo */}
@@ -56,8 +55,8 @@ export function Duality() {
       {/* Fades superior e inferior */}
       <div style={{
         position: "absolute", left: 0, right: 0, top: 0, zIndex: 1, pointerEvents: "none",
-        height: "45%",
-        background: "linear-gradient(to bottom, rgba(6,5,4,1) 0%, rgba(6,5,4,.6) 45%, transparent 100%)",
+        height: "58%",
+        background: "linear-gradient(to bottom, rgba(6,5,4,1) 0%, rgba(6,5,4,.72) 40%, transparent 100%)",
       }} />
       <div style={{
         position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 1, pointerEvents: "none",
