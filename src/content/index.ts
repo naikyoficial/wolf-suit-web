@@ -34,6 +34,7 @@ export interface ServiceItem {
   category: string;
   title: string;
   subtitle: string;
+  brief: string;
   desc: string;
   deliverables: string[];
 }
@@ -44,6 +45,7 @@ export const SERVICES: ServiceItem[] = [
     category: "Web Corporativa",
     title: "Sitio Web Corporativo",
     subtitle: "Diseño & desarrollo a medida",
+    brief: "La presencia digital que posiciona a tu empresa como referente de su industria.",
     desc: "Presencias digitales que posicionan tu empresa como referente de su industria. Arquitectura estratégica, rendimiento técnico de primer nivel y experiencias que transforman visitantes en clientes reales.",
     deliverables: ["Diseño 100% original", "Performance 90+ en PageSpeed", "SEO técnico desde el día uno"],
   },
@@ -52,6 +54,7 @@ export const SERVICES: ServiceItem[] = [
     category: "Conversión",
     title: "Landing Page de Impacto",
     subtitle: "Páginas de alta conversión",
+    brief: "Páginas de alta conversión que captan leads y aceleran tus ventas.",
     desc: "Páginas de aterrizaje diseñadas para captar leads y acelerar tus resultados de venta. Estructura persuasiva, carga ultrarrápida y copy estratégico orientado al comportamiento real del usuario.",
     deliverables: ["Estructura orientada a conversión", "Copy estratégico incluido", "Carga en menos de 2 segundos"],
   },
@@ -60,6 +63,7 @@ export const SERVICES: ServiceItem[] = [
     category: "E-commerce",
     title: "Tienda Online Premium",
     subtitle: "E-commerce de alto nivel",
+    brief: "E-commerce con experiencia de compra de lujo, diseñado para vender más.",
     desc: "Plataformas de venta online con experiencia de compra de lujo. Integración de medios de pago, catálogo optimizado y flujos diseñados para maximizar la conversión y el ticket promedio.",
     deliverables: ["Checkout sin fricción", "Integración de pagos y envíos", "Catálogo optimizado para vender"],
   },
@@ -68,6 +72,7 @@ export const SERVICES: ServiceItem[] = [
     category: "Personal Brand",
     title: "Presencia Personal",
     subtitle: "Portfolio & personal branding",
+    brief: "Tu imagen digital como activo estratégico: autoridad, credibilidad y distinción.",
     desc: "Sitio web personal para ejecutivos, consultores y figuras públicas. Tu imagen digital como activo estratégico: credibilidad, autoridad y distinción que abren puertas antes de que hables.",
     deliverables: ["Narrativa personal estratégica", "Diseño que impone autoridad", "Optimizado para tu mercado"],
   },
@@ -76,6 +81,7 @@ export const SERVICES: ServiceItem[] = [
     category: "Posicionamiento",
     title: "SEO & Visibilidad Web",
     subtitle: "Posicionamiento orgánico en Google",
+    brief: "Aparecé primero cuando tus clientes te buscan en Google.",
     desc: "Estrategia SEO integral para que tu empresa aparezca primero cuando tus clientes te buscan. Auditoría técnica, arquitectura de contenidos, optimización on-page y link building de autoridad.",
     deliverables: ["Auditoría técnica completa", "Arquitectura de contenidos", "Reportes de evolución mensual"],
   },
