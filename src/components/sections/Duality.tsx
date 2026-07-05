@@ -36,7 +36,7 @@ export function Duality() {
         fill
         unoptimized
         sizes="100vw"
-        style={{ objectFit: "cover", objectPosition: "center center" }}
+        style={{ objectFit: "cover", objectPosition: "center 25%" }}
       />
 
       {/* Overlay oscuro para legibilidad */}
