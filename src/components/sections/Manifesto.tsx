@@ -42,6 +42,13 @@ export function Manifesto() {
         background: "radial-gradient(110% 90% at 50% 50%, transparent 42%, rgba(0,0,0,.65) 100%)",
       }} />
 
+      {/* Fade inferior agresivo hacia el fondo de página */}
+      <div style={{
+        position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 1, pointerEvents: "none",
+        height: "38%",
+        background: "linear-gradient(to bottom, transparent 0%, rgba(6,5,4,.82) 55%, rgba(6,5,4,1) 100%)",
+      }} />
+
       {/* Contenido */}
       <div
         style={{

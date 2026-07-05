@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { DUALITY_CONTENT } from "@/content";
@@ -25,13 +26,53 @@ export function Duality() {
       id="dualidad"
       style={{
         position: "relative",
-        padding: "var(--section-py) var(--section-px)",
-        maxWidth: "var(--grid-max)",
-        margin: "0 auto",
         overflow: "hidden",
         borderTop: "1px solid rgba(255,255,255,.06)",
       }}
     >
+      {/* Imagen de fondo */}
+      <Image
+        src="/background-dualidad.png"
+        alt=""
+        fill
+        unoptimized
+        sizes="100vw"
+        style={{ objectFit: "cover", objectPosition: "center center" }}
+      />
+
+      {/* Overlay oscuro para legibilidad */}
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "rgba(0,0,0,0.52)",
+        zIndex: 1,
+      }} />
+
+      {/* Viñeta perimetral */}
+      <div style={{
+        position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none",
+        background: "radial-gradient(110% 90% at 50% 50%, transparent 38%, rgba(0,0,0,.7) 100%)",
+      }} />
+
+      {/* Fades superior e inferior */}
+      <div style={{
+        position: "absolute", left: 0, right: 0, top: 0, zIndex: 1, pointerEvents: "none",
+        height: "22%",
+        background: "linear-gradient(to bottom, rgba(6,5,4,1) 0%, transparent 100%)",
+      }} />
+      <div style={{
+        position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 1, pointerEvents: "none",
+        height: "38%",
+        background: "linear-gradient(to bottom, transparent 0%, rgba(6,5,4,.82) 55%, rgba(6,5,4,1) 100%)",
+      }} />
+
+      {/* Contenido */}
+      <div style={{
+        position: "relative",
+        zIndex: 2,
+        padding: "var(--section-py) var(--section-px)",
+        maxWidth: "var(--grid-max)",
+        margin: "0 auto",
+      }}>
       <Reveal>
         <p className="section-index" style={{ marginBottom: "clamp(48px, 8vh, 96px)" }}>
           02 — Dualidad
@@ -129,6 +170,7 @@ export function Duality() {
             {DUALITY_CONTENT.aside}
           </p>
         </Reveal>
+      </div>
       </div>
     </section>
   );
