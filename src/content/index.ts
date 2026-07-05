@@ -186,8 +186,8 @@ export const FAQS = [
     a: "El lanzamiento es el comienzo, no el final. Entregamos un sistema vivo: soporte técnico, mejoras continuas basadas en datos reales de uso, y la evolución que tu empresa necesite a medida que crece.",
   },
   {
-    q: "¿Trabajan solo con empresas grandes?",
-    a: "No. Trabajamos con empresas ambiciosas — el tamaño importa menos que el compromiso con el nivel. Lo que sí somos es selectivos: tomamos pocos proyectos a la vez para garantizar que cada uno reciba el estándar completo.",
+    q: "¿Con qué tipo de clientes trabajan?",
+    a: "Con emprendedores que están arrancando y necesitan una presencia que inspire confianza desde el primer día. Con profesionales independientes que quieren proyectar autoridad en su mercado. Con empresas en crecimiento que saben que su sitio actual ya no los representa. Y con marcas consolidadas que buscan el nivel de ejecución que merecen. Lo que tienen en común no es el tamaño — es la ambición y el compromiso con el resultado.",
   },
 ] as const;
 
