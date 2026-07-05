@@ -20,6 +20,7 @@ function Step({ step, isLast }: { step: (typeof METHOD_STEPS)[number]; isLast: b
       ref={ref}
       style={{
         position: "relative",
+        overflow: "visible",
         paddingLeft: "clamp(24px, 3vw, 48px)",
         paddingBottom: isLast ? 0 : "clamp(44px, 8vh, 96px)",
       }}
@@ -174,7 +175,7 @@ export function Method() {
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr]" style={{ gap: "clamp(48px, 6vw, 110px)", alignItems: "start" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr]" style={{ gap: "clamp(48px, 6vw, 110px)", alignItems: "start", overflow: "visible" }}>
           {/* Columna izquierda — sticky */}
           <div className="lg:sticky lg:top-[120px]">
             <Reveal>

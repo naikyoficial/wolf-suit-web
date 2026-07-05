@@ -383,15 +383,18 @@ body { scrollbar-width: none; }
 .cta-gold {
   position: relative;
   border: 1px solid rgba(212, 160, 32, .38) !important;
-  background: transparent !important;
-  color: var(--color-gold) !important;
-  transition: border-color .4s, background .4s !important;
-  fill: currentColor;
+  /* gradient text — same gold as section titles */
+  color: #D9B36A !important;
+  background: linear-gradient(95deg, #B98A3E 0%, #D9B36A 30%, #F1DCA4 50%, #D9B36A 70%, #B98A3E 100%) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  transition: border-color .4s !important;
 }
 
 .cta-gold:hover {
   border-color: rgba(212, 160, 32, .72) !important;
-  background: rgba(212, 160, 32, .05) !important;
 }
 
 .cta-gold::before {

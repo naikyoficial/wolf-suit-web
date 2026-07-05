@@ -35,7 +35,6 @@ function BenefitCard({
         display: "flex",
         flexDirection: "column",
         gap: "clamp(14px, 2vh, 20px)",
-        overflow: "hidden",
       }}
     >
       {/* Ghost numeral */}
