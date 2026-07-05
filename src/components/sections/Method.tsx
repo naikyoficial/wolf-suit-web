@@ -45,29 +45,24 @@ function Step({ step, isLast }: { step: (typeof METHOD_STEPS)[number]; isLast: b
         }}
       />
 
-      {/* Numeral fantasma */}
+      {/* Numeral fantasma — color sólido (background-clip: text recorta el
+          voladizo de la itálica y desvanece el glifo a transparente) */}
       <motion.span
         aria-hidden
-        animate={{ opacity: inView ? 1 : 0.22 }}
+        animate={{ opacity: inView ? 1 : 0.4 }}
         transition={{ duration: 0.5 }}
         style={{
           position: "absolute",
-          right: "clamp(10px, 1.2vw, 16px)", top: "-0.18em",
+          right: "clamp(8px, 1vw, 14px)", top: "-0.12em",
           fontFamily: "var(--font-body)",
           fontStyle: "italic",
           fontWeight: 700,
-          fontSize: "clamp(3rem, 5.5vw, 5.5rem)",
+          fontSize: "clamp(2.8rem, 5vw, 5rem)",
           lineHeight: 1,
           pointerEvents: "none",
           userSelect: "none",
-          ...(inView
-            ? {
-                background: "linear-gradient(180deg, rgba(212,160,32,.28) 0%, rgba(212,160,32,.03) 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }
-            : { color: "rgba(255,255,255,.05)" }),
+          color: inView ? "rgba(212,160,32,.32)" : "rgba(255,255,255,.06)",
+          transition: "color .5s",
         }}
       >
         {step.num}

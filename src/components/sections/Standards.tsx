@@ -37,22 +37,20 @@ function BenefitCard({
         gap: "clamp(14px, 2vh, 20px)",
       }}
     >
-      {/* Ghost numeral */}
+      {/* Ghost numeral — solid color (no background-clip: text, which clips
+          italic overhang and fades the glyph to transparent) */}
       <span
         aria-hidden
         style={{
           position: "absolute",
-          right: "clamp(12px, 2vw, 28px)",
-          top: "clamp(12px, 2vh, 24px)",
+          right: "clamp(14px, 2vw, 30px)",
+          top: "clamp(10px, 1.8vh, 22px)",
           fontFamily: "var(--font-body)",
           fontStyle: "italic",
           fontWeight: 700,
-          fontSize: "clamp(4rem, 7vw, 7.5rem)",
+          fontSize: "clamp(3.6rem, 6vw, 6.5rem)",
           lineHeight: 1,
-          background: "linear-gradient(180deg, rgba(212,160,32,.14) 0%, rgba(212,160,32,.01) 100%)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
+          color: "rgba(212,160,32,.12)",
           pointerEvents: "none",
           userSelect: "none",
         }}
