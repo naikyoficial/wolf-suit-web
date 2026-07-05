@@ -485,10 +485,7 @@ export function Services() {
           </p>
         </Reveal>
 
-        <div
-          className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr]"
-          style={{ gap: "clamp(20px, 3vw, 60px)", alignItems: "end", marginBottom: "clamp(40px, 7vh, 80px)" }}
-        >
+        <div style={{ textAlign: "center", marginBottom: "clamp(40px, 7vh, 80px)" }}>
           <Reveal>
             <h2
               style={{
@@ -498,10 +495,10 @@ export function Services() {
                 lineHeight: 1.12,
                 letterSpacing: "-0.03em",
                 color: "var(--color-text)",
-                margin: 0,
+                margin: "0 0 clamp(14px, 2vh, 20px)",
               }}
             >
-              ¿Qué podemos construir<br />
+              ¿Qué podemos construir{" "}
               <span style={{ color: "rgba(178,192,204,.55)", fontWeight: 400 }}>para tu empresa?</span>
             </h2>
           </Reveal>
@@ -510,7 +507,8 @@ export function Services() {
               fontSize: "clamp(13px, 0.98vw, 15px)",
               lineHeight: 1.7,
               color: "var(--color-text-3)",
-              margin: 0,
+              margin: "0 auto",
+              maxWidth: "38em",
             }}>
               Cada proyecto es único — adaptamos el alcance a tu situación específica.
               Tocá cualquier servicio para ver el detalle completo.
