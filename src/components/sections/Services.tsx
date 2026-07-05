@@ -499,19 +499,37 @@ export function Services() {
               }}
             >
               ¿Qué podemos construir{" "}
-              <span style={{ color: "rgba(178,192,204,.55)", fontWeight: 400 }}>para tu empresa?</span>
+              <span style={{
+                display: "inline-block",
+                fontStyle: "italic",
+                fontWeight: 400,
+                background: GOLD,
+                backgroundSize: "200% 100%",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}>para tu empresa?</span>
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p style={{
-              fontSize: "clamp(13px, 0.98vw, 15px)",
-              lineHeight: 1.7,
-              color: "var(--color-text-3)",
+              fontSize: "clamp(14px, 1.05vw, 16px)",
+              lineHeight: 1.72,
+              color: "var(--color-text-2)",
               margin: "0 auto",
-              maxWidth: "38em",
+              maxWidth: "42em",
             }}>
               Cada proyecto es único — adaptamos el alcance a tu situación específica.
-              Tocá cualquier servicio para ver el detalle completo.
+              <span style={{
+                display: "block",
+                marginTop: 8,
+                fontFamily: "var(--font-mono)",
+                fontSize: "clamp(11px, 0.85vw, 12.5px)",
+                letterSpacing: ".06em",
+                color: "var(--color-text-3)",
+              }}>
+                Tocá cualquier servicio para ver el detalle completo.
+              </span>
             </p>
           </Reveal>
         </div>
