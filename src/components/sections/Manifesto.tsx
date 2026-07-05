@@ -24,6 +24,7 @@ export function Manifesto() {
         src="/background-filosofia.png"
         alt=""
         fill
+        quality={92}
         style={{ objectFit: "cover", objectPosition: "center center" }}
       />
 
