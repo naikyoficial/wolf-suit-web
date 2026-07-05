@@ -225,9 +225,11 @@ function ServiceModal({ s, onClose }: { s: ServiceItem; onClose: () => void }) {
           width: "min(820px, 100%)",
           maxHeight: "90vh",
           borderRadius: 6,
-          border: "1px solid rgba(255,255,255,.07)",
-          background: "linear-gradient(155deg, #141209 0%, #0E0D0A 50%, #090807 100%)",
-          boxShadow: "0 60px 140px -36px rgba(0,0,0,.92), inset 0 1px 0 rgba(255,255,255,.04)",
+          border: "1px solid rgba(255,255,255,.09)",
+          background: "rgba(8, 7, 6, 0.82)",
+          backdropFilter: "blur(28px)",
+          WebkitBackdropFilter: "blur(28px)",
+          boxShadow: "0 60px 140px -36px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.05)",
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
@@ -310,133 +312,110 @@ function ServiceModal({ s, onClose }: { s: ServiceItem; onClose: () => void }) {
             background: "linear-gradient(to right, rgba(212,160,32,.35) 0%, rgba(255,255,255,.06) 45%, transparent 100%)",
           }} />
 
-          {/* ── Body — 2-col on md+ ── */}
+          {/* ── Body ── */}
           <div
-            className="grid grid-cols-1 md:grid-cols-[3fr_2fr]"
             style={{
-              gap: "clamp(28px, 4vw, 48px)",
-              padding: "clamp(28px, 3.5vh, 44px) clamp(28px, 3.5vw, 52px) clamp(36px, 5vh, 60px)",
+              padding: "clamp(28px, 3.5vh, 44px) clamp(28px, 3.5vw, 52px) clamp(40px, 5.5vh, 64px)",
               position: "relative", zIndex: 1,
+              display: "flex", flexDirection: "column",
+              gap: "clamp(24px, 3.5vh, 36px)",
             }}
           >
-            {/* Left — description + brief + CTA */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(20px, 2.8vh, 28px)" }}>
-              <p style={{
-                fontSize: "clamp(14px, 1.05vw, 16px)", lineHeight: 1.82,
-                color: "var(--color-text-2)", margin: 0,
-              }}>
-                {s.desc}
-              </p>
+            {/* Description */}
+            <p style={{
+              fontSize: "clamp(14px, 1.08vw, 16px)", lineHeight: 1.84,
+              color: "var(--color-text-2)", margin: 0,
+            }}>
+              {s.desc}
+            </p>
 
-              {/* Brief callout */}
-              <blockquote style={{
-                margin: 0,
-                paddingLeft: "clamp(16px, 2vw, 22px)",
-                borderLeft: "2px solid rgba(212,160,32,.4)",
-              }}>
-                <p style={{
-                  fontFamily: "var(--font-display)", fontStyle: "italic",
-                  fontSize: "clamp(13.5px, 1vw, 15.5px)", lineHeight: 1.65,
-                  color: "rgba(248,245,240,.48)", margin: 0,
-                }}>
-                  {s.brief}
-                </p>
-              </blockquote>
-
-              {/* CTA */}
-              <div style={{ paddingTop: "clamp(4px, 0.8vh, 8px)" }}>
-                <Link
-                  href="/evaluacion"
-                  data-cursor-hover
-                  onClick={onClose}
-                  className="cta-gold"
-                  onMouseEnter={() => setCtaHov(true)}
-                  onMouseLeave={() => setCtaHov(false)}
+            {/* Deliverables — 3 items in a row */}
+            <div
+              className="grid grid-cols-1 sm:grid-cols-3"
+              style={{ gap: "clamp(10px, 1.4vw, 16px)" }}
+            >
+              {s.deliverables.map((d) => (
+                <div
+                  key={d}
                   style={{
-                    display: "inline-flex", alignItems: "center", gap: 14,
-                    padding: "clamp(13px, 1.4vw, 17px) clamp(26px, 2.8vw, 38px)",
-                    fontFamily: "var(--font-mono)", fontWeight: 500,
-                    fontSize: 10.5, letterSpacing: ".22em", textTransform: "uppercase",
-                    textDecoration: "none",
+                    display: "flex", alignItems: "flex-start", gap: 12,
+                    padding: "clamp(14px, 1.8vh, 18px) clamp(14px, 1.6vw, 18px)",
+                    border: "1px solid rgba(255,255,255,.07)",
+                    borderRadius: 3,
                   }}
                 >
-                  Solicitar evaluación
                   <span aria-hidden style={{
-                    position: "relative", display: "inline-flex", alignItems: "center",
-                    width: ctaHov ? 26 : 18, height: 1,
-                    background: "currentColor", flexShrink: 0, transition: "width .35s",
+                    width: 12, height: 1, background: "rgba(212,160,32,.5)",
+                    flexShrink: 0, marginTop: 8,
+                  }} />
+                  <span style={{
+                    fontSize: "clamp(12.5px, 0.9vw, 14px)",
+                    color: "var(--color-text-2)", lineHeight: 1.5,
                   }}>
-                    <span style={{
-                      position: "absolute", right: -1, top: -2.5,
-                      width: 5, height: 5,
-                      borderRight: "1px solid currentColor", borderTop: "1px solid currentColor",
-                      transform: "rotate(45deg)",
-                    }} />
+                    {d}
                   </span>
-                </Link>
-              </div>
+                </div>
+              ))}
             </div>
 
-            {/* Right — deliverables card */}
-            <div style={{
-              background: "rgba(255,255,255,.025)",
-              border: "1px solid rgba(255,255,255,.06)",
-              borderRadius: 4,
-              padding: "clamp(20px, 2.5vw, 28px)",
-              display: "flex", flexDirection: "column",
-              alignSelf: "start",
+            {/* Brief callout */}
+            <blockquote style={{
+              margin: 0,
+              padding: "clamp(14px, 2vh, 18px) clamp(18px, 2.2vw, 24px)",
+              borderLeft: "2px solid rgba(212,160,32,.38)",
+              background: "rgba(212,160,32,.04)",
+              borderRadius: "0 3px 3px 0",
             }}>
               <p style={{
-                fontFamily: "var(--font-mono)", fontSize: 9,
-                letterSpacing: ".3em", textTransform: "uppercase",
-                color: "var(--color-text-4)", margin: "0 0 clamp(16px, 2.2vh, 22px)",
+                fontFamily: "var(--font-display)", fontStyle: "italic",
+                fontSize: "clamp(13.5px, 1vw, 15.5px)", lineHeight: 1.7,
+                color: "rgba(248,245,240,.5)", margin: 0,
               }}>
-                Incluye
+                {s.brief}
               </p>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                {s.deliverables.map((d, di) => (
-                  <div
-                    key={d}
-                    style={{
-                      display: "flex", alignItems: "flex-start", gap: 14,
-                      padding: "clamp(10px, 1.5vh, 14px) 0",
-                      borderBottom: di < s.deliverables.length - 1 ? "1px solid rgba(255,255,255,.05)" : "none",
-                    }}
-                  >
-                    <span aria-hidden style={{
-                      width: 14, height: 1, background: "rgba(212,160,32,.55)",
-                      flexShrink: 0, marginTop: 9,
-                    }} />
-                    <span style={{
-                      fontSize: "clamp(13px, 0.92vw, 14px)",
-                      color: "var(--color-text-2)", lineHeight: 1.55,
-                    }}>
-                      {d}
-                    </span>
-                  </div>
-                ))}
-              </div>
+            </blockquote>
 
-              {/* Respuesta */}
-              <div style={{
-                marginTop: "clamp(18px, 2.5vh, 24px)",
-                paddingTop: "clamp(14px, 2vh, 18px)",
-                borderTop: "1px solid rgba(255,255,255,.05)",
+            {/* CTA + nota */}
+            <div style={{
+              display: "flex", alignItems: "center",
+              gap: "clamp(20px, 3vw, 36px)", flexWrap: "wrap",
+              paddingTop: "clamp(4px, 0.6vh, 8px)",
+            }}>
+              <Link
+                href="/evaluacion"
+                data-cursor-hover
+                onClick={onClose}
+                className="cta-gold"
+                onMouseEnter={() => setCtaHov(true)}
+                onMouseLeave={() => setCtaHov(false)}
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 14,
+                  padding: "clamp(13px, 1.4vw, 17px) clamp(28px, 3vw, 40px)",
+                  fontFamily: "var(--font-mono)", fontWeight: 500,
+                  fontSize: 10.5, letterSpacing: ".22em", textTransform: "uppercase",
+                  textDecoration: "none",
+                }}
+              >
+                Solicitar evaluación
+                <span aria-hidden style={{
+                  position: "relative", display: "inline-flex", alignItems: "center",
+                  width: ctaHov ? 26 : 18, height: 1,
+                  background: "currentColor", flexShrink: 0, transition: "width .35s",
+                }}>
+                  <span style={{
+                    position: "absolute", right: -1, top: -2.5, width: 5, height: 5,
+                    borderRight: "1px solid currentColor", borderTop: "1px solid currentColor",
+                    transform: "rotate(45deg)",
+                  }} />
+                </span>
+              </Link>
+              <span style={{
+                fontFamily: "var(--font-mono)", fontSize: 9.5,
+                letterSpacing: ".18em", textTransform: "uppercase",
+                color: "var(--color-text-4)",
               }}>
-                <p style={{
-                  fontFamily: "var(--font-mono)", fontSize: 9,
-                  letterSpacing: ".22em", textTransform: "uppercase",
-                  color: "var(--color-text-4)", margin: "0 0 6px",
-                }}>
-                  Tiempo de respuesta
-                </p>
-                <p style={{
-                  fontSize: "clamp(12px, 0.88vw, 13.5px)",
-                  color: "var(--color-text-3)", margin: 0, lineHeight: 1.5,
-                }}>
-                  Respondemos en un máximo de 72 horas.
-                </p>
-              </div>
+                Respondemos en 72 horas
+              </span>
             </div>
           </div>
         </div>
@@ -525,14 +504,9 @@ export function Services() {
             >
               ¿Qué podemos construir{" "}
               <span style={{
-                display: "inline-block",
                 fontStyle: "italic",
                 fontWeight: 400,
-                background: GOLD,
-                backgroundSize: "200% 100%",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
+                color: "#D9B36A",
               }}>para tu empresa?</span>
             </h2>
           </Reveal>
