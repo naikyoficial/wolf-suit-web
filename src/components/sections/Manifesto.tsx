@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { MANIFESTO_CONTENT } from "@/content";
@@ -15,113 +16,143 @@ export function Manifesto() {
       id="manifiesto"
       style={{
         position: "relative",
-        padding: "var(--section-py) var(--section-px)",
-        maxWidth: "var(--grid-max)",
-        margin: "0 auto",
+        overflow: "hidden",
       }}
     >
-      <Reveal>
-        <p className="section-index" style={{ marginBottom: "clamp(48px, 8vh, 88px)" }}>
-          01 — Filosofía
-        </p>
-      </Reveal>
+      {/* Imagen de fondo */}
+      <Image
+        src="/background-filosofia.png"
+        alt=""
+        fill
+        style={{ objectFit: "cover", objectPosition: "center center" }}
+      />
 
-      <h2 className="sr-only">Filosofía: la percepción precede al crecimiento</h2>
+      {/* Overlay oscuro para legibilidad */}
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "rgba(0,0,0,0.48)",
+        zIndex: 1,
+      }} />
 
+      {/* Viñeta perimetral */}
+      <div style={{
+        position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none",
+        background: "radial-gradient(110% 90% at 50% 50%, transparent 42%, rgba(0,0,0,.65) 100%)",
+      }} />
+
+      {/* Contenido */}
       <div
-        className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr]"
-        style={{ gap: "clamp(40px, 6vw, 100px)", alignItems: "start" }}
+        style={{
+          position: "relative",
+          zIndex: 2,
+          padding: "var(--section-py) var(--section-px)",
+          maxWidth: "var(--grid-max)",
+          margin: "0 auto",
+        }}
       >
         <Reveal>
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontWeight: 400,
-              fontStyle: "italic",
-              fontSize: "clamp(1.35rem, 2.1vw, 1.85rem)",
-              lineHeight: 1.35,
-              letterSpacing: "-0.018em",
-              color: "rgba(248,245,240,.72)",
-              margin: 0,
-            }}
-          >
-            &ldquo;Las empresas son juzgadas<br />
-            antes de ser comprendidas.&rdquo;
+          <p className="section-index" style={{ marginBottom: "clamp(48px, 8vh, 88px)" }}>
+            01 — Filosofía
           </p>
         </Reveal>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(28px, 4vh, 44px)" }}>
-          <Reveal delay={0.08}>
+        <h2 className="sr-only">Filosofía: la percepción precede al crecimiento</h2>
+
+        <div
+          className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr]"
+          style={{ gap: "clamp(40px, 6vw, 100px)", alignItems: "start" }}
+        >
+          <Reveal>
             <p
               style={{
-                fontSize: "clamp(15px, 1.1vw, 17px)",
-                lineHeight: 1.75,
-                color: "var(--color-text-2)",
+                fontFamily: "var(--font-body)",
+                fontWeight: 400,
+                fontStyle: "italic",
+                fontSize: "clamp(1.35rem, 2.1vw, 1.85rem)",
+                lineHeight: 1.35,
+                letterSpacing: "-0.018em",
+                color: "rgba(248,245,240,.78)",
                 margin: 0,
               }}
             >
-              {MANIFESTO_CONTENT.statement}
+              &ldquo;Las empresas son juzgadas<br />
+              antes de ser comprendidas.&rdquo;
             </p>
           </Reveal>
 
-          <Reveal delay={0.16}>
-            <div
-              style={{
-                paddingTop: "clamp(24px, 3.6vh, 36px)",
-                borderTop: "1px solid rgba(255,255,255,.07)",
-              }}
-            >
+          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(28px, 4vh, 44px)" }}>
+            <Reveal delay={0.08}>
               <p
                 style={{
-                  fontFamily: "var(--font-body)",
-                  fontWeight: 600,
-                  fontSize: "clamp(1.1rem, 1.6vw, 1.45rem)",
-                  lineHeight: 1.38,
-                  letterSpacing: "-0.018em",
-                  color: "rgba(248,245,240,.88)",
+                  fontSize: "clamp(15px, 1.1vw, 17px)",
+                  lineHeight: 1.75,
+                  color: "var(--color-text-2)",
                   margin: 0,
-                  marginBottom: 8,
                 }}
               >
-                {MANIFESTO_CONTENT.punchline}
+                {MANIFESTO_CONTENT.statement}
               </p>
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, delay: 0.3, ease: EASE }}
+            </Reveal>
+
+            <Reveal delay={0.16}>
+              <div
                 style={{
-                  fontFamily: "var(--font-body)",
-                  fontStyle: "italic",
-                  fontWeight: 600,
-                  fontSize: "clamp(1.1rem, 1.6vw, 1.45rem)",
-                  lineHeight: 1.38,
-                  letterSpacing: "-0.018em",
-                  background: GOLD,
-                  backgroundSize: "200% 100%",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
+                  paddingTop: "clamp(24px, 3.6vh, 36px)",
+                  borderTop: "1px solid rgba(255,255,255,.1)",
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontWeight: 600,
+                    fontSize: "clamp(1.1rem, 1.6vw, 1.45rem)",
+                    lineHeight: 1.38,
+                    letterSpacing: "-0.018em",
+                    color: "rgba(248,245,240,.92)",
+                    margin: 0,
+                    marginBottom: 8,
+                  }}
+                >
+                  {MANIFESTO_CONTENT.punchline}
+                </p>
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.9, delay: 0.3, ease: EASE }}
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontStyle: "italic",
+                    fontWeight: 600,
+                    fontSize: "clamp(1.1rem, 1.6vw, 1.45rem)",
+                    lineHeight: 1.38,
+                    letterSpacing: "-0.018em",
+                    background: GOLD,
+                    backgroundSize: "200% 100%",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    margin: 0,
+                  }}
+                >
+                  {MANIFESTO_CONTENT.punchline2}
+                </motion.p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.22}>
+              <p
+                style={{
+                  fontSize: "clamp(13px, 0.95vw, 15px)",
+                  lineHeight: 1.72,
+                  color: "var(--color-text-3)",
                   margin: 0,
                 }}
               >
-                {MANIFESTO_CONTENT.punchline2}
-              </motion.p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.22}>
-            <p
-              style={{
-                fontSize: "clamp(13px, 0.95vw, 15px)",
-                lineHeight: 1.72,
-                color: "var(--color-text-3)",
-                margin: 0,
-              }}
-            >
-              {MANIFESTO_CONTENT.aside}
-            </p>
-          </Reveal>
+                {MANIFESTO_CONTENT.aside}
+              </p>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>
