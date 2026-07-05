@@ -21,8 +21,6 @@ export function MarqueeBand() {
         /* Banda semitransparente — se integra con cualquier fondo de imagen */
         background: "rgba(6,5,4,0.72)",
         backdropFilter: "blur(0px)",
-        borderTop: "1px solid rgba(212,160,32,.1)",
-        borderBottom: "1px solid rgba(212,160,32,.1)",
       }}
     >
       {/* Fundidos laterales — usan rgba transparente para no romper el fondo */}

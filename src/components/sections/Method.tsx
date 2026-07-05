@@ -116,7 +116,6 @@ export function Method() {
         padding: "var(--section-py) var(--section-px)",
         maxWidth: "var(--grid-max)",
         margin: "0 auto",
-        borderTop: "1px solid rgba(255,255,255,.06)",
       }}
     >
       <Reveal>

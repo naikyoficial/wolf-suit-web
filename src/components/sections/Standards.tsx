@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { STANDARDS } from "@/content";
@@ -30,7 +31,7 @@ function BenefitCard({
       style={{
         position: "relative",
         padding: "clamp(32px, 4.5vh, 56px) clamp(24px, 3vw, 44px)",
-        borderTop: "1px solid rgba(255,255,255,.07)",
+        borderTop: "1px solid rgba(255,255,255,.1)",
         display: "flex",
         flexDirection: "column",
         gap: "clamp(14px, 2vh, 20px)",
@@ -49,7 +50,7 @@ function BenefitCard({
           fontWeight: 700,
           fontSize: "clamp(4rem, 7vw, 7.5rem)",
           lineHeight: 1,
-          background: "linear-gradient(180deg, rgba(212,160,32,.11) 0%, rgba(212,160,32,.01) 100%)",
+          background: "linear-gradient(180deg, rgba(212,160,32,.14) 0%, rgba(212,160,32,.01) 100%)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
           backgroundClip: "text",
@@ -106,7 +107,7 @@ function BenefitCard({
         style={{
           fontSize: "clamp(13px, 0.9vw, 14.5px)",
           lineHeight: 1.72,
-          color: "var(--color-text-3)",
+          color: "rgba(171,168,162,.82)",
           margin: 0,
           maxWidth: "32em",
         }}
@@ -123,13 +124,55 @@ export function Standards() {
       aria-label="Lo que incluye cada proyecto"
       style={{
         position: "relative",
-        borderTop: "1px solid rgba(255,255,255,.06)",
-        borderBottom: "1px solid rgba(255,255,255,.06)",
-        background: "#0A0908",
+        overflow: "hidden",
       }}
     >
+      {/* Background image */}
+      <Image
+        src="/dualidad-bg.png"
+        alt=""
+        fill
+        unoptimized
+        sizes="100vw"
+        style={{ objectFit: "cover", objectPosition: "center 55%" }}
+        priority={false}
+      />
+
+      {/* Dark overlay */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0,
+        background: "rgba(4,3,2,.78)",
+        zIndex: 1,
+      }} />
+
+      {/* Perimeter vignette */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0,
+        background: "radial-gradient(ellipse at center, transparent 35%, rgba(3,2,1,.6) 100%)",
+        zIndex: 1,
+      }} />
+
+      {/* Top fade */}
+      <div aria-hidden style={{
+        position: "absolute", top: 0, left: 0, right: 0,
+        height: "38%",
+        background: "linear-gradient(to bottom, rgba(6,5,4,1) 0%, transparent 100%)",
+        zIndex: 1,
+      }} />
+
+      {/* Bottom fade */}
+      <div aria-hidden style={{
+        position: "absolute", bottom: 0, left: 0, right: 0,
+        height: "38%",
+        background: "linear-gradient(to top, rgba(6,5,4,1) 0%, transparent 100%)",
+        zIndex: 1,
+      }} />
+
+      {/* Content */}
       <div
         style={{
+          position: "relative",
+          zIndex: 2,
           maxWidth: "var(--grid-max)",
           margin: "0 auto",
           padding: "var(--section-py) var(--section-px)",
@@ -198,15 +241,15 @@ export function Standards() {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
             gap: 0,
-            borderLeft: "1px solid rgba(255,255,255,.07)",
-            borderRight: "1px solid rgba(255,255,255,.07)",
+            borderLeft: "1px solid rgba(255,255,255,.1)",
+            borderRight: "1px solid rgba(255,255,255,.1)",
           }}
         >
           {STANDARDS.map((st, i) => (
             <div
               key={st.title}
               style={{
-                borderRight: (i + 1) % 3 !== 0 ? "1px solid rgba(255,255,255,.07)" : undefined,
+                borderRight: (i + 1) % 3 !== 0 ? "1px solid rgba(255,255,255,.1)" : undefined,
               }}
             >
               <BenefitCard st={st} index={i} />
