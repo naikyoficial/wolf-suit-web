@@ -21,8 +21,8 @@ export default function HomePage() {
       <Manifesto />
       <Duality />
       <Services />
-      <Method />
       <Standards />
+      <Method />
       <Faq />
       <Apply />
     </main>

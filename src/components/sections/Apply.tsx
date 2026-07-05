@@ -53,7 +53,7 @@ export function Apply() {
       <div style={{ position: "relative", maxWidth: "var(--grid-max)", margin: "0 auto" }}>
         <Reveal>
           <p className="section-index" style={{ marginBottom: "clamp(40px, 6vh, 76px)" }}>
-            06 — Proceso de selección
+            07 — Proceso de selección
           </p>
         </Reveal>
 
