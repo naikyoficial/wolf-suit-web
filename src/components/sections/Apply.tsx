@@ -44,7 +44,6 @@ export function Apply() {
         src="/background-trabajos.png"
         alt=""
         fill
-        unoptimized
         sizes="100vw"
         style={{ objectFit: "cover", objectPosition: "center 40%" }}
         priority={false}

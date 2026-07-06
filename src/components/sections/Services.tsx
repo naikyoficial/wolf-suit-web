@@ -443,7 +443,6 @@ export function Services() {
         src="/background-servicios.png"
         alt=""
         fill
-        unoptimized
         sizes="100vw"
         style={{ objectFit: "cover", objectPosition: "center center" }}
       />

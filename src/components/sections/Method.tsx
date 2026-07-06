@@ -118,7 +118,6 @@ export function Method() {
         src="/background2.png"
         alt=""
         fill
-        unoptimized
         sizes="100vw"
         style={{ objectFit: "cover", objectPosition: "center 50%" }}
         priority={false}

@@ -34,7 +34,6 @@ export function Duality() {
         src="/background-dualidad.png"
         alt=""
         fill
-        unoptimized
         sizes="100vw"
         style={{ objectFit: "cover", objectPosition: "center 68%" }}
       />

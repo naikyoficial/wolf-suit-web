@@ -112,15 +112,9 @@ export function Contact() {
   const isMobile = useMobile();
 
   const slide = {
-    enter: (d: number) => isMobile
-      ? { opacity: 0, x: d * 28, filter: "blur(0px)" }
-      : { opacity: 0, x: d * 40, filter: "blur(8px)" },
-    center: isMobile
-      ? { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] as const } }
-      : { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: EASE } },
-    exit: (d: number) => isMobile
-      ? { opacity: 0, x: d * -28, filter: "blur(0px)", transition: { duration: 0.18 } }
-      : { opacity: 0, x: d * -40, filter: "blur(8px)", transition: { duration: 0.3 } },
+    enter: (d: number) => ({ opacity: 0, x: d * (isMobile ? 18 : 28) }),
+    center: { opacity: 1, x: 0, transition: { duration: isMobile ? 0.2 : 0.28, ease: [0.25, 0.46, 0.45, 0.94] as const } },
+    exit: (d: number) => ({ opacity: 0, x: d * (isMobile ? -18 : -28), transition: { duration: isMobile ? 0.12 : 0.15 } }),
   };
 
   const [step, setStep]         = useState<StepId>("intro");
@@ -157,7 +151,7 @@ export function Contact() {
     setAnswers(prev => ({ ...prev, [questionId]: option }));
     const qIdx = QUESTIONS.findIndex(q => q.id === questionId);
     const next: StepId = qIdx < QUESTIONS.length - 1 ? QUESTIONS[qIdx + 1]!.id : "data";
-    setTimeout(() => goTo(next), isMobile ? 220 : 400);
+    setTimeout(() => goTo(next), isMobile ? 120 : 160);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -385,11 +379,9 @@ export function Contact() {
                 return (
                   <motion.button
                     key={opt.label}
-                    initial={isMobile ? { opacity: 0, y: 8 } : { opacity: 0, x: -14, filter: "blur(4px)" }}
-                    animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0, filter: "blur(0px)" }}
-                    transition={isMobile
-                      ? { duration: 0.22, delay: 0.03 * i, ease: [0.25, 0.46, 0.45, 0.94] as const }
-                      : { duration: 0.4, delay: 0.05 * i, ease: EASE }}
+                    initial={{ opacity: 0, y: isMobile ? 6 : 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: isMobile ? 0.18 : 0.25, delay: 0.03 * i, ease: [0.25, 0.46, 0.45, 0.94] as const }}
                     onClick={() => pickOption(currentQ.id, opt.label)}
                     onMouseEnter={() => !selected && setHoveredOpt(opt.label)}
                     onMouseLeave={() => setHoveredOpt(null)}

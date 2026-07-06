@@ -129,7 +129,6 @@ export function Standards() {
         src="/background.png"
         alt=""
         fill
-        unoptimized
         sizes="100vw"
         style={{ objectFit: "cover", objectPosition: "center 55%" }}
         priority={false}
