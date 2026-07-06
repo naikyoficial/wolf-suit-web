@@ -76,9 +76,9 @@ export function Manifesto() {
                 fontFamily: "var(--font-body)",
                 fontWeight: 400,
                 fontStyle: "italic",
-                fontSize: "clamp(1.35rem, 2.1vw, 1.85rem)",
-                lineHeight: 1.35,
-                letterSpacing: "-0.018em",
+                fontSize: "clamp(1.5rem, 2.6vw, 2.2rem)",
+                lineHeight: 1.3,
+                letterSpacing: "-0.02em",
                 color: "rgba(248,245,240,.78)",
                 margin: 0,
               }}
@@ -89,26 +89,9 @@ export function Manifesto() {
           </Reveal>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "clamp(28px, 4vh, 44px)" }}>
+            {/* Punchlines — ancla visual principal de la columna derecha */}
             <Reveal delay={0.08}>
-              <p
-                style={{
-                  fontSize: "clamp(15px, 1.1vw, 17px)",
-                  lineHeight: 1.75,
-                  color: "var(--color-text-2)",
-                  margin: 0,
-                }}
-              >
-                {MANIFESTO_CONTENT.statement}
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.16}>
-              <div
-                style={{
-                  paddingTop: "clamp(24px, 3.6vh, 36px)",
-                  borderTop: "1px solid rgba(255,255,255,.1)",
-                }}
-              >
+              <div>
                 <p
                   style={{
                     fontFamily: "var(--font-body)",
@@ -148,17 +131,38 @@ export function Manifesto() {
               </div>
             </Reveal>
 
-            <Reveal delay={0.22}>
-              <p
+            {/* Statement + aside — soporte debajo del golpe principal */}
+            <Reveal delay={0.18}>
+              <div
                 style={{
-                  fontSize: "clamp(13px, 0.95vw, 15px)",
-                  lineHeight: 1.72,
-                  color: "var(--color-text-3)",
-                  margin: 0,
+                  paddingTop: "clamp(24px, 3.6vh, 36px)",
+                  borderTop: "1px solid rgba(255,255,255,.1)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "clamp(16px, 2.2vh, 22px)",
                 }}
               >
-                {MANIFESTO_CONTENT.aside}
-              </p>
+                <p
+                  style={{
+                    fontSize: "clamp(15px, 1.1vw, 17px)",
+                    lineHeight: 1.75,
+                    color: "var(--color-text-2)",
+                    margin: 0,
+                  }}
+                >
+                  {MANIFESTO_CONTENT.statement}
+                </p>
+                <p
+                  style={{
+                    fontSize: "clamp(13px, 0.95vw, 15px)",
+                    lineHeight: 1.72,
+                    color: "var(--color-text-3)",
+                    margin: 0,
+                  }}
+                >
+                  {MANIFESTO_CONTENT.aside}
+                </p>
+              </div>
             </Reveal>
           </div>
         </div>
