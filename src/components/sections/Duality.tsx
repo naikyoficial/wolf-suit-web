@@ -35,7 +35,7 @@ export function Duality() {
         alt=""
         fill
         sizes="100vw"
-        style={{ objectFit: "cover", objectPosition: "center 68%" }}
+        style={{ objectFit: "cover", objectPosition: isMobile ? "center 38%" : "center 68%" }}
       />
 
       {/* Overlay oscuro para legibilidad */}
@@ -92,7 +92,7 @@ export function Duality() {
           color: "rgba(248,245,240,.50)",
           maxWidth: "18em",
           margin: 0,
-          marginBottom: "clamp(90px, 15vh, 180px)",
+          marginBottom: isMobile ? "clamp(52px, 10vh, 90px)" : "clamp(90px, 15vh, 180px)",
         }}
       >
         {DUALITY_CONTENT.lineA}
