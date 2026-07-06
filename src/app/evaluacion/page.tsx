@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Proceso de Selección",
   description:
     "Iniciá el proceso de evaluación estratégica para trabajar con SuitWolf. Cada proyecto comienza con una evaluación para determinar si existe una oportunidad real de generar impacto.",
-  alternates: { canonical: "/evaluacion" },
+  alternates: { canonical: "https://suitwolf.com/evaluacion" },
 };
 
 export default function EvaluacionPage() {

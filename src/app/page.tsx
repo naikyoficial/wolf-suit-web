@@ -10,7 +10,7 @@ import { Faq }         from "@/components/sections/Faq";
 import { Apply }       from "@/components/sections/Apply";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/" },
+  alternates: { canonical: "https://suitwolf.com" },
 };
 
 export default function HomePage() {

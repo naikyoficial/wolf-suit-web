@@ -6,13 +6,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: base,
-      lastModified: new Date(),
+      lastModified: new Date("2025-07-01"),
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: `${base}/evaluacion`,
-      lastModified: new Date(),
+      lastModified: new Date("2025-07-01"),
       changeFrequency: "yearly",
       priority: 0.7,
     },
