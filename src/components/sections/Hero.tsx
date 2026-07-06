@@ -152,7 +152,7 @@ export function Hero() {
             marginBottom: "clamp(34px, 5vh, 52px)",
           }}
         >
-          Construimos sitios web que convierten visitantes en clientes. Sin templates, sin soluciones genéricas — cada proyecto nace desde cero con estrategia, criterio y excelencia técnica.
+          Construimos sitios web que transforman visitantes en clientes. Desde cero, a medida y ajustándonos a tus necesidades.
         </motion.p>
 
         {/* CTAs */}

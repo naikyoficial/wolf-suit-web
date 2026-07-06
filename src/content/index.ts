@@ -6,7 +6,7 @@ export const HERO_CONTENT = {
   headlineRest: "de",
   headlineAccent: "alto nivel",
   subheadline:
-    "Construimos sitios web que convierten visitantes en clientes. Sin templates, sin soluciones genéricas — cada proyecto nace desde cero con estrategia, criterio y excelencia técnica.",
+    "Construimos sitios web que transforman visitantes en clientes. Desde cero, a medida y ajustándonos a tus necesidades.",
   cta: "Solicitar evaluación",
   ctaSecondary: "Ver servicios",
   tags: ["Diseño & desarrollo web", "E-commerce", "SEO técnico"],
