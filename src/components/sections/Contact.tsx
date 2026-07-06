@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMobile } from "@/hooks/useMobile";
 
@@ -110,6 +111,7 @@ function Eyebrow({ children, center = false }: { children: React.ReactNode; cent
 
 export function Contact() {
   const isMobile = useMobile();
+  const router = useRouter();
 
   const slide = {
     enter: (d: number) => ({ opacity: 0, x: d * (isMobile ? 18 : 28) }),
@@ -602,7 +604,7 @@ export function Contact() {
               </p>
 
               <button
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                onClick={() => router.push("/")}
                 data-cursor-hover
                 style={{
                   display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 8,
