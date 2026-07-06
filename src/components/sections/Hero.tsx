@@ -101,7 +101,7 @@ export function Hero() {
           style={{
             fontFamily: "var(--font-body)",
             fontWeight: 600,
-            fontSize: "clamp(2.5rem, 6vw, 5.4rem)",
+            fontSize: "clamp(1.7rem, 6vw, 5.4rem)",
             lineHeight: 1.06,
             letterSpacing: "-0.03em",
             color: "#F5F2EC",
@@ -153,9 +153,7 @@ export function Hero() {
             marginBottom: "clamp(34px, 5vh, 52px)",
           }}
         >
-          Construimos sitios web que transforman visitantes en clientes.
-          <br />
-          Desde cero, a medida y ajustándonos a tus necesidades.
+          Construimos sitios web que transforman visitantes en clientes. Desde cero, a medida y ajustándonos a tus necesidades.
         </motion.p>
 
         {/* CTAs */}
