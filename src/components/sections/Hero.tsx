@@ -152,8 +152,8 @@ export function Hero() {
             marginBottom: "clamp(34px, 5vh, 52px)",
           }}
         >
-          Construimos sitios web que transforman visitantes en clientes.<br />
-          Desde cero, a medida y ajustándonos a tus necesidades.
+          Construimos sitios web que transforman visitantes en clientes.<br className="hidden sm:block" />
+          {" "}Desde cero, a medida y ajustándonos a tus necesidades.
         </motion.p>
 
         {/* CTAs */}
