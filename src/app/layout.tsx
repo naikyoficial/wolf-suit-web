@@ -41,11 +41,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://suitwolf.com"),
   title: {
-    default: "Suitwolf — Agencia de Diseño Web y Desarrollo para Empresas",
+    default: "Suitwolf — Diseño y Desarrollo Web Premium para Empresas",
     template: "%s — Suitwolf",
   },
   description:
-    "Agencia de diseño web profesional para empresas que exigen alto nivel. Sitios web a medida, e-commerce y landing pages de alta conversión. Sin templates — todo construido desde cero.",
+    "Agencia de diseño y desarrollo web para empresas que entienden que la percepción digital define la ventaja competitiva. Sitios a medida, e-commerce y landing pages — sin templates, construidos desde cero.",
   keywords: [
     "agencia de diseño web",
     "diseño web profesional",
@@ -55,12 +55,14 @@ export const metadata: Metadata = {
     "diseño web premium",
     "e-commerce profesional",
     "tienda online a medida",
-    "landing page profesional",
-    "sitio web para empresas",
-    "agencia web",
-    "desarrollo web profesional",
+    "landing page de alta conversión",
+    "sitio web corporativo",
+    "agencia web argentina",
+    "diseño web argentina",
+    "desarrollo web argentina",
     "diseño web sin templates",
-    "páginas web para empresas",
+    "agencia web premium",
+    "presencia digital empresas",
   ],
   authors: [{ name: "Suitwolf" }],
   creator: "Suitwolf",
@@ -69,15 +71,15 @@ export const metadata: Metadata = {
     locale: "es_419",
     url: "https://suitwolf.com",
     siteName: "Suitwolf",
-    title: "Suitwolf — Agencia de Diseño Web y Desarrollo para Empresas",
+    title: "Suitwolf — Diseño y Desarrollo Web Premium para Empresas",
     description:
-      "Diseño web profesional, e-commerce y landing pages de alta conversión para empresas que quieren destacar. Sin templates — todo construido desde cero.",
+      "Transformamos la presencia digital en una ventaja competitiva real. Diseño exclusivo, rendimiento técnico de primer nivel y estrategia desde el día uno — todo construido desde cero.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Suitwolf — Agencia de Diseño Web y Desarrollo para Empresas",
+    title: "Suitwolf — Diseño y Desarrollo Web Premium",
     description:
-      "Diseño web profesional, e-commerce y landing pages de alta conversión para empresas que quieren destacar. Sin templates — todo construido desde cero.",
+      "Sitios web a medida para empresas que exigen alto nivel. Diseño exclusivo, performance 90+ y resultados medibles. Sin templates, sin compromisos.",
   },
   robots: {
     index: true,

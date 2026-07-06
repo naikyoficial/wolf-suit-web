@@ -14,8 +14,6 @@ const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 const GOLD_ACCENT =
   "linear-gradient(100deg, #B98A3E 0%, #D9B36A 32%, #F1DCA4 50%, #D9B36A 68%, #B98A3E 100%)";
 
-const TRUST = ["Sin plantillas", "Performance 90+", "Respuesta en 72h"];
-
 export function Hero() {
   const lenis = useLenis();
   const [ctaHov, setCtaHov] = useState(false);
@@ -154,7 +152,7 @@ export function Hero() {
             marginBottom: "clamp(34px, 5vh, 52px)",
           }}
         >
-          Construimos sitios web que transforman visitantes en clientes. Desde cero, a medida y ajustándonos a tus necesidades.
+          Construimos sitios web que convierten visitantes en clientes. Sin templates, sin soluciones genéricas — cada proyecto nace desde cero con estrategia, criterio y excelencia técnica.
         </motion.p>
 
         {/* CTAs */}
