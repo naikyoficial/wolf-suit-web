@@ -101,7 +101,7 @@ export function Hero() {
           style={{
             fontFamily: "var(--font-body)",
             fontWeight: 600,
-            fontSize: "clamp(1.7rem, 6vw, 5.4rem)",
+            fontSize: "clamp(2.2rem, 6vw, 5.4rem)",
             lineHeight: 1.06,
             letterSpacing: "-0.03em",
             color: "#F5F2EC",
@@ -116,7 +116,8 @@ export function Hero() {
             transition={{ duration: 1.0, delay: 0.32, ease: EASE }}
             style={{ display: "block" }}
           >
-            {HERO_CONTENT.headlineLead}
+            Diseño y{" "}
+            <span style={{ whiteSpace: "nowrap" }}>desarrollo web</span>
           </motion.span>
           <motion.span
             initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
