@@ -1,293 +1,283 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
-import { Reveal }       from "@/components/ui/Reveal";
-import { SplitWords }   from "@/components/ui/SplitWords";
-import { useMobile }    from "@/hooks/useMobile";
+import Image from "next/image";
+import Link from "next/link";
+import { Reveal } from "@/components/ui/Reveal";
+import { Magnetic } from "@/components/ui/Magnetic";
+import { SITE } from "@/config/site";
 
-const EASE = [0.16, 1.0, 0.3, 1.0] as const;
-const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
+const GOLD =
+  "linear-gradient(95deg, #B98A3E 0%, #D9B36A 30%, #F1DCA4 50%, #D9B36A 70%, #B98A3E 100%)";
 
 const STEPS = [
   {
     num: "01",
     label: "Aplicación",
-    desc: "Completás el formulario. Nos contás quién sos y qué querés construir.",
+    desc: "Completás el formulario. Nos contás quién sos, qué querés construir y qué esperás del resultado.",
   },
   {
     num: "02",
     label: "Evaluación",
-    desc: "Analizamos si hay una oportunidad real de impacto. Solo avanzamos cuando la hay.",
+    desc: "Analizamos si tu proyecto encaja con los estándares que mantenemos. Si no hay una oportunidad real de excelencia, te lo decimos.",
   },
   {
     num: "03",
     label: "Conversación",
-    desc: "Si hay alineación genuina, coordinamos el siguiente paso juntos.",
+    desc: "Si hay alineación genuina, coordinamos los detalles y arrancamos con el nivel que tu proyecto merece.",
   },
 ];
 
 export function Apply() {
-  const [hovered, setHovered] = useState(false);
-  const isMobile = useMobile();
+  const [ctaHov, setCtaHov] = useState(false);
 
   return (
     <section
       id="contact"
-      className="relative"
       style={{
-        padding: "clamp(80px,12vh,160px) clamp(1.5rem,8vw,7.5rem)",
-        background: "#050403",
-        zIndex: 10,
+        position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Dramatic center glow */}
+      {/* Background image */}
+      <Image
+        src="/background-trabajos.png"
+        alt=""
+        fill
+        unoptimized
+        sizes="100vw"
+        style={{ objectFit: "cover", objectPosition: "center 40%" }}
+        priority={false}
+      />
+
+      {/* Dark overlay */}
       <div aria-hidden style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 80% 65% at 50% 50%, rgba(168,108,5,.10) 0%, transparent 68%), radial-gradient(ellipse 45% 35% at 50% 110%, rgba(120,75,5,.09) 0%, transparent 70%)",
+        position: "absolute", inset: 0,
+        background: "rgba(4,3,2,.72)",
+        zIndex: 1,
       }} />
-      {/* Subtle dot grid */}
+
+      {/* Perimeter vignette */}
       <div aria-hidden style={{
-        position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.28,
-        backgroundImage: "radial-gradient(circle, rgba(212,160,32,.08) 1px, transparent 1px)",
-        backgroundSize: "28px 28px",
+        position: "absolute", inset: 0,
+        background: "radial-gradient(ellipse at center, transparent 40%, rgba(3,2,1,.55) 100%)",
+        zIndex: 1,
       }} />
-      {/* Top edge fade */}
+
+      {/* Top fade — blends with Faq section above */}
       <div aria-hidden style={{
-        position: "absolute", top: 0, left: 0, right: 0, height: 160,
-        background: "linear-gradient(to bottom, rgba(4,4,4,1) 0%, transparent 100%)",
-        pointerEvents: "none", zIndex: 20,
+        position: "absolute", top: 0, left: 0, right: 0,
+        height: "42%",
+        background: "linear-gradient(to bottom, rgba(6,5,4,1) 0%, transparent 100%)",
+        zIndex: 1,
       }} />
 
-      <div className="w-full max-w-[1100px] mx-auto" style={{ position: "relative", zIndex: 5 }}>
+      {/* Bottom fade */}
+      <div aria-hidden style={{
+        position: "absolute", bottom: 0, left: 0, right: 0,
+        height: "30%",
+        background: "linear-gradient(to top, rgba(6,5,4,1) 0%, transparent 100%)",
+        zIndex: 1,
+      }} />
 
-        {/* ── Eyebrow ── */}
-        <Reveal style={{ textAlign: "center", marginBottom: "clamp(36px,5vh,64px)" }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 14 }}>
-            <div style={{ width: 36, height: 1, background: "linear-gradient(to right, transparent, rgba(212,160,32,.4))" }} />
-            <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase" }}>
-              Proceso de selección
-            </ShimmerLabel>
-            <div style={{ width: 36, height: 1, background: "linear-gradient(to left, transparent, rgba(212,160,32,.4))" }} />
-          </div>
-        </Reveal>
-
-        {/* ── Headline ── */}
-        <div style={{ textAlign: "center", marginBottom: "clamp(20px,3vh,32px)" }}>
-          <SplitWords
-            as="h2"
-            delay={0.05}
-            stagger={0.042}
-            style={{
-              fontSize: "clamp(38px,5.5vw,76px)",
-              lineHeight: 1.03,
-              letterSpacing: "-.028em",
-              fontFamily: "var(--font-display)",
-              fontWeight: 300,
-            }}
-          >
-            Si llegaste hasta acá,
-          </SplitWords>
-          <SplitWords
-            as="h2"
-            delay={0.32}
-            stagger={0.038}
-            style={{
-              fontSize: "clamp(38px,5.5vw,76px)",
-              lineHeight: 1.03,
-              letterSpacing: "-.028em",
-              fontFamily: "var(--font-display)",
-              fontWeight: 300,
-            }}
-          >
-            ya entendiste que esto no es para cualquiera.
-          </SplitWords>
-        </div>
-
-        {/* ── Single supporting line ── */}
-        <Reveal delay={0.3} y={16} blur={4} style={{ textAlign: "center", marginBottom: "clamp(56px,8vh,104px)" }}>
-          <p style={{
-            fontSize: "clamp(14px,1.05vw,17px)",
-            color: "var(--color-text-3)",
-            lineHeight: 1.75,
-            maxWidth: 460,
-            margin: "0 auto",
-          }}>
-            Trabajamos con proyectos selectos — comenzamos con una evaluación
-            para confirmar que podemos generar un impacto real.
-          </p>
-        </Reveal>
-
-        {/* ── Three panels ── */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
-          border: "1px solid rgba(212,160,32,.14)",
-          marginBottom: "clamp(64px,9vh,112px)",
-        }}>
-          {STEPS.map((s, i) => (
-            <motion.div
-              key={s.num}
-              initial={isMobile ? { opacity: 0, y: 18 } : { opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={isMobile
-                ? { duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] as const }
-                : { duration: 0.95, delay: 0.35 + i * 0.14, ease: EASE }
-              }
-              style={{
-                position: "relative",
-                padding: "clamp(32px,4vw,52px) clamp(28px,3vw,44px) clamp(36px,5vw,56px)",
-                borderRight: !isMobile && i < STEPS.length - 1
-                  ? "1px solid rgba(212,160,32,.14)" : "none",
-                borderBottom: isMobile && i < STEPS.length - 1
-                  ? "1px solid rgba(212,160,32,.14)" : "none",
-                overflow: "hidden",
-              }}
-            >
-              {/* Ghost number — large decorative element */}
-              <div aria-hidden style={{
-                position: "absolute",
-                bottom: -20,
-                right: -10,
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(110px,13vw,168px)",
-                fontWeight: 700,
-                lineHeight: 1,
-                letterSpacing: "-.06em",
-                color: "transparent",
-                WebkitTextStroke: "1px rgba(212,160,32,.065)",
-                userSelect: "none",
-                pointerEvents: "none",
-              }}>
-                {s.num}
-              </div>
-
-              {/* Top shimmer bar */}
-              <div aria-hidden style={{
-                position: "absolute", top: 0, left: 0, right: 0, height: 1,
-                background: GOLD, backgroundSize: "260% 100%",
-                animation: `metalShimmer ${8 + i * 2.5}s ease-in-out infinite`,
-                animationDelay: `${-i * 3}s`,
-                opacity: 0.35,
-              }} />
-
-              {/* Step number — gold shimmer */}
-              <p style={{
-                fontSize: 9,
-                letterSpacing: ".42em",
-                textTransform: "uppercase",
-                marginBottom: "clamp(22px,3vw,36px)",
-                background: GOLD, backgroundSize: "260% 100%",
-                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                animation: `metalShimmer ${11 + i * 2}s ease-in-out infinite`,
-                position: "relative", zIndex: 1,
-              }}>
-                {s.num}
-              </p>
-
-              {/* Step name */}
-              <h3 style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(28px,3vw,42px)",
-                fontWeight: 300,
-                letterSpacing: "-.022em",
-                lineHeight: 1.04,
-                marginBottom: "clamp(16px,2vw,24px)",
-                color: "var(--color-text)",
-                position: "relative", zIndex: 1,
-              }}>
-                {s.label}
-              </h3>
-
-              {/* Gold accent line */}
-              <div style={{
-                width: 28, height: 1,
-                background: "linear-gradient(to right, rgba(212,160,32,.75), rgba(212,160,32,.2))",
-                marginBottom: "clamp(16px,2vw,24px)",
-                position: "relative", zIndex: 1,
-              }} />
-
-              {/* Description */}
-              <p style={{
-                fontSize: 13,
-                color: "var(--color-text-3)",
-                lineHeight: 1.85,
-                position: "relative", zIndex: 1,
-              }}>
-                {s.desc}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* ── CTA ── */}
-        <div style={{ textAlign: "center" }}>
-          <Reveal delay={0.5} y={22} blur={4} style={{ marginBottom: 28 }}>
-            <div style={{
-              display: "inline-block",
-              padding: "1px",
-              background: GOLD,
-              backgroundSize: "280% 100%",
-              animation: "metalShimmer 4s ease-in-out infinite",
-            }}>
-              <Link
-                href="/evaluacion"
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-                data-cursor-hover
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 24,
-                  padding: "20px 60px",
-                  background: hovered ? "var(--color-gold)" : "#060606",
-                  color: hovered ? "#080808" : "var(--color-text)",
-                  fontFamily: "var(--font-body)",
-                  fontSize: 11,
-                  letterSpacing: ".32em",
-                  textTransform: "uppercase",
-                  textDecoration: "none",
-                  transition: "background .38s, color .38s",
-                }}
-              >
-                Iniciar proceso
-                <span style={{
-                  position: "relative", display: "inline-flex", alignItems: "center",
-                  width: hovered ? 40 : 26,
-                  height: 1,
-                  background: "currentColor",
-                  flexShrink: 0,
-                  transition: "width .38s",
-                }}>
-                  <span style={{
-                    position: "absolute", right: -1, top: -3,
-                    width: 7, height: 7,
-                    borderRight: "1px solid currentColor",
-                    borderTop: "1px solid currentColor",
-                    transform: "rotate(45deg)",
-                  }} />
-                </span>
-              </Link>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.7} y={10} blur={3}>
-            <p style={{
-              fontSize: 10,
-              letterSpacing: ".2em",
-              textTransform: "uppercase",
-              color: "var(--color-text-4)",
-            }}>
-              Respondemos cada solicitud en un plazo máximo de 72 horas.
+      {/* Content */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          padding: "var(--section-py) var(--section-px) clamp(6rem, 12vh, 10rem)",
+        }}
+      >
+        <div style={{ maxWidth: "var(--grid-max)", margin: "0 auto" }}>
+          <Reveal>
+            <p className="section-index" style={{ marginBottom: "clamp(40px, 6vh, 76px)" }}>
+              07 — Proceso de selección
             </p>
           </Reveal>
-        </div>
 
+          {/* Header — centrado */}
+          <div style={{ textAlign: "center", marginBottom: "clamp(52px, 9vh, 96px)" }}>
+            <Reveal>
+              <h2
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontWeight: 600,
+                  fontSize: "clamp(1.9rem, 3vw, 2.75rem)",
+                  lineHeight: 1.14,
+                  letterSpacing: "-0.03em",
+                  color: "var(--color-text)",
+                  margin: "0 auto clamp(20px, 3vh, 30px)",
+                }}
+              >
+                Trabajamos con proyectos limitados —<br />
+                <span style={{
+                  display: "inline-block",
+                  fontStyle: "italic",
+                  fontWeight: 400,
+                  background: GOLD,
+                  backgroundSize: "200% 100%",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}>
+                  para asegurar la calidad de cada uno.
+                </span>
+              </h2>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <p style={{
+                fontSize: "clamp(14px, 1.08vw, 16px)",
+                lineHeight: 1.75,
+                color: "var(--color-text-2)",
+                margin: "0 auto",
+                maxWidth: "44em",
+              }}>
+                No existe el proyecto secundario en nuestra agenda. Cada cliente recibe el mismo nivel de atención — estrategia, diseño y desarrollo sin compromisos a medias. La evaluación inicial existe para confirmar que podemos garantizarte ese estándar.
+              </p>
+            </Reveal>
+          </div>
+
+          {/* Pasos */}
+          <div
+            className="grid grid-cols-1 md:grid-cols-3"
+            style={{
+              borderTop: "1px solid rgba(255,255,255,.12)",
+              marginBottom: "clamp(64px, 11vh, 110px)",
+            }}
+          >
+            {STEPS.map((s, i) => (
+              <Reveal
+                key={s.num}
+                delay={i * 0.08}
+                className={i > 0 ? "md:border-l" : undefined}
+                style={{
+                  padding: "clamp(28px, 4.2vh, 44px) clamp(0px, 2vw, 32px) clamp(28px, 4.2vh, 44px) 0",
+                  borderLeftColor: "rgba(255,255,255,.1)",
+                  paddingLeft: i > 0 ? "clamp(20px, 2vw, 32px)" : 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "clamp(10px, 1.4vh, 16px)",
+                }}
+              >
+                {/* Número grande de fondo + número pequeño encima */}
+                <div style={{ position: "relative", marginBottom: 4 }}>
+                  <span
+                    aria-hidden
+                    style={{
+                      position: "absolute",
+                      top: "-8px",
+                      left: "-4px",
+                      fontFamily: "var(--font-body)",
+                      fontWeight: 700,
+                      fontStyle: "italic",
+                      fontSize: "clamp(3.5rem, 5vw, 5.5rem)",
+                      lineHeight: 1,
+                      color: "rgba(212,160,32,.09)",
+                      pointerEvents: "none",
+                      userSelect: "none",
+                    }}
+                  >
+                    {s.num}
+                  </span>
+                  <span style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 11,
+                    letterSpacing: ".22em",
+                    color: "var(--color-gold)",
+                    position: "relative",
+                    display: "block",
+                    paddingTop: "clamp(28px, 3.5vh, 40px)",
+                  }}>
+                    {s.num}
+                  </span>
+                </div>
+
+                <p style={{
+                  fontFamily: "var(--font-body)",
+                  fontWeight: 600,
+                  fontSize: "clamp(1.1rem, 1.6vw, 1.35rem)",
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.2,
+                  color: "var(--color-text)",
+                  margin: 0,
+                }}>
+                  {s.label}
+                </p>
+                <p style={{
+                  fontSize: "clamp(13px, 0.95vw, 15px)",
+                  lineHeight: 1.7,
+                  color: "var(--color-text-3)",
+                  margin: 0,
+                }}>
+                  {s.desc}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* CTA — centrado */}
+          <Reveal>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 28, textAlign: "center" }}>
+              <Magnetic strength={0.18}>
+                <Link
+                  href="/evaluacion"
+                  data-cursor-hover
+                  className="cta-gold"
+                  onMouseEnter={() => setCtaHov(true)}
+                  onMouseLeave={() => setCtaHov(false)}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 18,
+                    padding: "clamp(16px, 1.6vw, 22px) clamp(44px, 4.5vw, 68px)",
+                    fontFamily: "var(--font-mono)",
+                    fontWeight: 500,
+                    fontSize: 11.5,
+                    letterSpacing: ".26em",
+                    textTransform: "uppercase",
+                    textDecoration: "none",
+                  }}
+                >
+                  Solicitar evaluación
+                  <span aria-hidden style={{
+                    position: "relative", display: "inline-flex", alignItems: "center",
+                    width: ctaHov ? 30 : 20, height: 1,
+                    background: "currentColor", flexShrink: 0,
+                    transition: "width .4s",
+                  }}>
+                    <span style={{
+                      position: "absolute", right: -1, top: -2.5,
+                      width: 5, height: 5,
+                      borderRight: "1px solid currentColor",
+                      borderTop: "1px solid currentColor",
+                      transform: "rotate(45deg)",
+                    }} />
+                  </span>
+                </Link>
+              </Magnetic>
+
+              <p style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 10,
+                letterSpacing: ".22em",
+                textTransform: "uppercase",
+                color: "var(--color-text-4)",
+                margin: 0,
+              }}>
+                Respondemos en un máximo de 72 horas
+                <span aria-hidden style={{ margin: "0 12px", color: "rgba(212,160,32,.3)" }}>·</span>
+                <a
+                  href={`mailto:${SITE.email}`}
+                  data-cursor-hover
+                  style={{ color: "var(--color-text-3)", textDecoration: "none", borderBottom: "1px solid rgba(255,255,255,.1)", paddingBottom: 2 }}
+                >
+                  {SITE.email}
+                </a>
+              </p>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

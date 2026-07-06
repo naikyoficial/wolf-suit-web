@@ -1,19 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, DM_Sans, Hubballi, Iceland, Inter, Kanit, Jockey_One } from "next/font/google";
+import { Instrument_Serif, Inter, JetBrains_Mono } from "next/font/google";
 import { Navbar }         from "@/components/layout/Navbar";
 import { Footer }         from "@/components/layout/Footer";
 import { SmoothScroll }   from "@/components/layout/SmoothScroll";
 import { Preloader }      from "@/components/ui/Preloader";
-import { Cursor }         from "@/components/ui/Cursor";
 import { Grain }          from "@/components/ui/Grain";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { AtmosphericBg }  from "@/components/sections/AtmosphericBg";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--ws-cormorant",
+const instrument = Instrument_Serif({
+  variable: "--ws-instrument",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: "400",
   style: ["normal", "italic"],
   display: "swap",
   preload: true,
@@ -27,39 +26,10 @@ const inter = Inter({
   preload: true,
 });
 
-const dmSans = DM_Sans({
-  variable: "--ws-dm-sans",
+const jetbrains = JetBrains_Mono({
+  variable: "--ws-jbmono",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  display: "swap",
-  preload: true,
-});
-
-const hubballi = Hubballi({
-  variable: "--ws-hubballi",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
-
-const iceland = Iceland({
-  variable: "--ws-iceland",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
-
-const kanit = Kanit({
-  variable: "--ws-kanit",
-  subsets: ["latin"],
-  weight: ["400", "700", "800", "900"],
-  display: "swap",
-});
-
-const jockeyOne = Jockey_One({
-  variable: "--ws-jockey",
-  subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -76,7 +46,7 @@ export const metadata: Metadata = {
     template: "%s — Suitwolf",
   },
   description:
-    "Agencia de diseño web profesional para empresas que exigen alto nivel. Sitios web a medida, e-commerce, landing pages y software personalizado. Sin templates — todo construido desde cero.",
+    "Agencia de diseño web profesional para empresas que exigen alto nivel. Sitios web a medida, e-commerce y landing pages de alta conversión. Sin templates — todo construido desde cero.",
   keywords: [
     "agencia de diseño web",
     "diseño web profesional",
@@ -87,7 +57,6 @@ export const metadata: Metadata = {
     "e-commerce profesional",
     "tienda online a medida",
     "landing page profesional",
-    "software a medida",
     "sitio web para empresas",
     "agencia web",
     "desarrollo web profesional",
@@ -103,13 +72,13 @@ export const metadata: Metadata = {
     siteName: "Suitwolf",
     title: "Suitwolf — Agencia de Diseño Web y Desarrollo para Empresas",
     description:
-      "Diseño web profesional, e-commerce y software a medida para empresas que quieren destacar. Sin templates — todo construido desde cero.",
+      "Diseño web profesional, e-commerce y landing pages de alta conversión para empresas que quieren destacar. Sin templates — todo construido desde cero.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Suitwolf — Agencia de Diseño Web y Desarrollo para Empresas",
     description:
-      "Diseño web profesional, e-commerce y software a medida para empresas que quieren destacar. Sin templates — todo construido desde cero.",
+      "Diseño web profesional, e-commerce y landing pages de alta conversión para empresas que quieren destacar. Sin templates — todo construido desde cero.",
   },
   robots: {
     index: true,
@@ -134,7 +103,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${cormorant.variable} ${dmSans.variable} ${hubballi.variable} ${iceland.variable} ${inter.variable} ${kanit.variable} ${jockeyOne.variable} h-full`}
+      className={`${instrument.variable} ${inter.variable} ${jetbrains.variable} h-full`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-surface text-text antialiased">
@@ -147,14 +116,13 @@ export default function RootLayout({
               name: "Suitwolf",
               url: "https://suitwolf.com",
               description:
-                "Agencia de diseño web profesional para empresas. Sitios web a medida, e-commerce, landing pages y software personalizado. Sin templates.",
+                "Agencia de diseño web profesional para empresas. Sitios web a medida, e-commerce y landing pages de alta conversión. Sin templates.",
               priceRange: "$$$$",
               knowsAbout: [
                 "Diseño web profesional",
                 "Desarrollo web a medida",
                 "E-commerce",
                 "Landing pages de alta conversión",
-                "Software a medida",
                 "SEO técnico",
                 "Branding digital",
               ],
@@ -165,7 +133,6 @@ export default function RootLayout({
                   { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sitio Web Corporativo a Medida" } },
                   { "@type": "Offer", itemOffered: { "@type": "Service", name: "E-commerce y Tienda Online" } },
                   { "@type": "Offer", itemOffered: { "@type": "Service", name: "Landing Page de Alta Conversión" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Software a Medida" } },
                   { "@type": "Offer", itemOffered: { "@type": "Service", name: "SEO y Posicionamiento Web" } },
                 ],
               },
@@ -174,12 +141,11 @@ export default function RootLayout({
         />
         <AtmosphericBg />
         <Preloader />
-        <Cursor />
         <Grain />
         <ScrollProgress />
         <SmoothScroll>
           <Navbar />
-          <div className="flex-1 pt-16">{children}</div>
+          <div className="flex-1 pt-[72px]">{children}</div>
           <Footer />
         </SmoothScroll>
       </body>

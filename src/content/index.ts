@@ -1,20 +1,195 @@
 import type { CaseStudy, ProcessStep, Transformation } from "@/types";
 
 export const HERO_CONTENT = {
-  eyebrow: "Firma Estratégica Digital",
-  headline: "Tu empresa merece\nser percibida\ncomo lidera.",
+  eyebrow: "Agencia de diseño & desarrollo web",
+  headlineLead: "Diseño y desarrollo web",
+  headlineRest: "de",
+  headlineAccent: "alto nivel",
   subheadline:
-    "Construimos la representación digital de empresas que se niegan a ser una más.",
-  cta: "Iniciar proyecto",
+    "Construimos sitios web que transforman visitantes en clientes. Desde cero, a medida y ajustándonos a tus necesidades.",
+  cta: "Solicitar evaluación",
+  ctaSecondary: "Ver servicios",
+  tags: ["Diseño & desarrollo web", "E-commerce", "SEO técnico"],
 } as const;
 
 export const MANIFESTO_CONTENT = {
-  headline: "La percepción precede\nal crecimiento.",
-  body: [
-    "Las empresas son juzgadas antes de ser comprendidas. Esa fracción de segundo en la que alguien entra a tu sitio y decide si confía o no, es el momento que nos obsesiona.",
-    "No construimos páginas web. Construimos la primera impresión definitiva de una empresa ambiciosa.",
-  ],
+  statement:
+    "Esa fracción de segundo en la que alguien entra a tu sitio y decide si confía o no — es el momento que nos obsesiona.",
+  punchline: "No construimos únicamente páginas web.",
+  punchline2: "Construimos la primera impresión definitiva.",
+  aside:
+    "Diseñamos sitios web premium y construimos experiencias digitales que proyectan la imagen que tu empresa realmente merece.",
 } as const;
+
+export const DUALITY_CONTENT = {
+  lineA: "Una empresa pequeña puede parecer líder de su sector.",
+  lineB: "Una gran empresa puede parecer amateur.",
+  closing: "La diferencia está en cómo se presenta al mundo.",
+  aside:
+    "Tu empresa no necesita ser la número uno para verse como tal. Solo necesita el traje correcto.",
+} as const;
+
+export interface ServiceItem {
+  index: string;
+  category: string;
+  title: string;
+  subtitle: string;
+  brief: string;
+  desc: string;
+  deliverables: string[];
+}
+
+export const SERVICES: ServiceItem[] = [
+  {
+    index: "01",
+    category: "Web Corporativa",
+    title: "Sitio Web Corporativo",
+    subtitle: "Diseño & desarrollo a medida",
+    brief: "La presencia digital que posiciona a tu empresa como referente de su industria.",
+    desc: "Presencias digitales que posicionan tu empresa como referente de su industria. Arquitectura estratégica, rendimiento técnico de primer nivel y experiencias que transforman visitantes en clientes reales.",
+    deliverables: ["Diseño 100% original", "Performance 90+ en PageSpeed", "SEO técnico desde el día uno"],
+  },
+  {
+    index: "02",
+    category: "Conversión",
+    title: "Landing Page de Impacto",
+    subtitle: "Páginas de alta conversión",
+    brief: "Páginas de alta conversión que captan leads y aceleran tus ventas.",
+    desc: "Páginas de aterrizaje diseñadas para captar leads y acelerar tus resultados de venta. Estructura persuasiva, carga ultrarrápida y copy estratégico orientado al comportamiento real del usuario.",
+    deliverables: ["Estructura orientada a conversión", "Copy estratégico incluido", "Carga en menos de 2 segundos"],
+  },
+  {
+    index: "03",
+    category: "E-commerce",
+    title: "Tienda Online Premium",
+    subtitle: "E-commerce de alto nivel",
+    brief: "E-commerce con experiencia de compra de lujo, diseñado para vender más.",
+    desc: "Plataformas de venta online con experiencia de compra de lujo. Integración de medios de pago, catálogo optimizado y flujos diseñados para maximizar la conversión y el ticket promedio.",
+    deliverables: ["Checkout sin fricción", "Integración de pagos y envíos", "Catálogo optimizado para vender"],
+  },
+  {
+    index: "04",
+    category: "Personal Brand",
+    title: "Presencia Personal",
+    subtitle: "Portfolio & personal branding",
+    brief: "Tu imagen digital como activo estratégico: autoridad, credibilidad y distinción.",
+    desc: "Sitio web personal para ejecutivos, consultores y figuras públicas. Tu imagen digital como activo estratégico: credibilidad, autoridad y distinción que abren puertas antes de que hables.",
+    deliverables: ["Narrativa personal estratégica", "Diseño que impone autoridad", "Optimizado para tu mercado"],
+  },
+  {
+    index: "05",
+    category: "Posicionamiento",
+    title: "SEO & Visibilidad Web",
+    subtitle: "Posicionamiento orgánico en Google",
+    brief: "Aparecé primero cuando tus clientes te buscan en Google.",
+    desc: "Estrategia SEO integral para que tu empresa aparezca primero cuando tus clientes te buscan. Auditoría técnica, arquitectura de contenidos, optimización on-page y link building de autoridad.",
+    deliverables: ["Auditoría técnica completa", "Arquitectura de contenidos", "Reportes de evolución mensual"],
+  },
+  {
+    index: "06",
+    category: "Desarrollo",
+    title: "Aplicaciones Web",
+    subtitle: "Desarrollo de aplicaciones a medida",
+    brief: "Herramientas digitales personalizadas que automatizan y escalan tu negocio.",
+    desc: "Aplicaciones web a medida para empresas que necesitan más que un sitio: portales de cliente, dashboards, sistemas de gestión y herramientas internas. Diseño UX + desarrollo frontend y backend robusto, pensado para crecer.",
+    deliverables: ["Diseño UX/UI a medida", "Desarrollo frontend y backend", "Integración con sistemas existentes"],
+  },
+];
+
+export const METHOD_INTRO = {
+  aside:
+    "Cada proyecto atraviesa las mismas cinco fases, del diagnóstico estratégico al perfeccionamiento final. Es el sistema que garantiza que el resultado esté a la altura, sin dejar nada librado al azar.",
+} as const;
+
+export const METHOD_STEPS = [
+  {
+    num: "01",
+    name: "Descubrir",
+    body: "Analizamos tu empresa, tu industria, tus objetivos y la diferencia entre cómo te perciben hoy y cómo deberías ser percibido.",
+  },
+  {
+    num: "02",
+    name: "Definir",
+    body: "Construimos la arquitectura estratégica del proyecto: narrativa, identidad, experiencia y estructura. Todo debe tener una razón.",
+  },
+  {
+    num: "03",
+    name: "Diseñar",
+    body: "Creamos un sistema visual exclusivo donde cada decisión responde a una estrategia y no a una tendencia pasajera.",
+  },
+  {
+    num: "04",
+    name: "Construir",
+    body: "Desarrollamos una plataforma rápida, escalable y optimizada para SEO, rendimiento y experiencia de usuario. La tecnología no es un agregado. Es parte del estándar.",
+  },
+  {
+    num: "05",
+    name: "Perfeccionar",
+    body: "No entregamos cuando funciona. Entregamos cuando cada detalle representa el nivel de excelencia que buscamos.",
+  },
+] as const;
+
+export const STANDARDS = [
+  {
+    title: "Velocidad de carga",
+    desc: "Sitios optimizados para cargar en menos de 2 segundos. Más velocidad es más tiempo en pantalla, mejor ranking en Google y más ventas.",
+  },
+  {
+    title: "Seguridad de nivel profesional",
+    desc: "Certificados SSL, arquitectura segura y código sin vulnerabilidades. Tu sitio protege a tus clientes desde el primer día.",
+  },
+  {
+    title: "Diseño responsive",
+    desc: "Perfecto en cualquier dispositivo. El 60% de las decisiones de compra se toman desde el celular — tu sitio está listo para eso.",
+  },
+  {
+    title: "SEO desde el primer día",
+    desc: "La arquitectura, el código y el contenido están construidos para que Google te encuentre. No es un agregado al final — es parte del diseño.",
+  },
+  {
+    title: "Enfocado en convertir",
+    desc: "Un sitio que se ve bien pero no vende, no sirve. Cada decisión de diseño tiene un objetivo: convertir visitantes en clientes reales.",
+  },
+  {
+    title: "Código limpio y escalable",
+    desc: "Construimos con arquitectura que aguanta el crecimiento. Sin deuda técnica, sin parches. Tu sitio puede evolucionar sin necesidad de rehacerlo desde cero.",
+  },
+  {
+    title: "Analítica desde el primer día",
+    desc: "Configuramos las herramientas de medición antes del lanzamiento. Sabés exactamente qué funciona, dónde pierde el usuario y dónde ganás más.",
+  },
+  {
+    title: "Experiencia de usuario probada",
+    desc: "La navegación, la jerarquía y los flujos están pensados para que el usuario llegue a donde vos querés sin fricción. Una buena UX no se ve — se siente.",
+  },
+] as const;
+
+export const FAQS = [
+  {
+    q: "¿Cuánto cuesta un proyecto con Suitwolf?",
+    a: "Cada proyecto se cotiza a medida según su alcance: no vendemos paquetes genéricos porque no hacemos trabajo genérico. La evaluación inicial es sin costo y define exactamente qué necesita tu empresa — recién ahí hablamos de números, con una propuesta clara y sin sorpresas.",
+  },
+  {
+    q: "¿Cuánto tiempo lleva desarrollar el sitio?",
+    a: "Depende de la complejidad: una landing de alta conversión puede estar lista en semanas; un sitio corporativo completo o un e-commerce lleva más. El plazo exacto queda definido por escrito en la propuesta, con hitos de entrega que se cumplen.",
+  },
+  {
+    q: "¿Por qué no trabajan con templates?",
+    a: "Porque un template es, por definición, lo contrario de diferenciarse: es el mismo diseño compartido con miles de sitios. Un sitio genérico obliga a tu empresa a competir por precio. Todo lo que construimos parte de cero, alineado a la estrategia de tu negocio.",
+  },
+  {
+    q: "¿Qué incluye la evaluación inicial?",
+    a: "Analizamos tu presencia digital actual, identificamos la brecha entre cómo te percibe el mercado y cómo deberías ser percibido, y te damos una recomendación concreta. Sin costo y sin compromiso. Si no hay una oportunidad real de impacto, te lo decimos.",
+  },
+  {
+    q: "¿Qué pasa después del lanzamiento?",
+    a: "El lanzamiento es el comienzo, no el final. Entregamos un sistema vivo: soporte técnico, mejoras continuas basadas en datos reales de uso, y la evolución que tu empresa necesite a medida que crece.",
+  },
+  {
+    q: "¿Con qué tipo de clientes trabajan?",
+    a: "Con emprendedores que están arrancando y necesitan una presencia que inspire confianza desde el primer día. Con profesionales independientes que quieren proyectar autoridad en su mercado. Con empresas en crecimiento que saben que su sitio actual ya no los representa. Y con marcas consolidadas que buscan el nivel de ejecución que merecen. Lo que tienen en común no es el tamaño — es la ambición y el compromiso con el resultado.",
+  },
+] as const;
 
 export const PROCESS_STEPS: ProcessStep[] = [
   {

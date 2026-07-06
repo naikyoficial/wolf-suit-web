@@ -6,9 +6,9 @@
 
 /* ─── Fuentes (referenciadas desde next/font) ─── */
 @theme inline {
-  --font-display: var(--ws-cormorant);
+  --font-display: var(--ws-instrument);
   --font-body:    var(--ws-inter);
-  --font-mono:    ui-monospace, 'JetBrains Mono', 'Fira Code', monospace;
+  --font-mono:    var(--ws-jbmono), ui-monospace, monospace;
 }
 
 /* ─── Tokens de color (Tailwind utilities + CSS vars) ─── */
@@ -251,10 +251,82 @@ body { scrollbar-width: none; }
   0%, 100% { transform: translate(0, 0) scale(1);    opacity: .03; }
   50%       { transform: translate(30px, 80px) scale(1.14); opacity: .05; }
 }
-/* ─── Custom cursor — hide native (mouse only) ─── */
-@media (pointer: fine) {
-  html, body, * { cursor: none !important; }
-  input, textarea, select { cursor: text !important; }
+/* ─── Editorial utilities (rediseño Awwwards) ─── */
+
+/* Texto en contorno — para marquees y marcas de agua gigantes */
+.text-outline {
+  -webkit-text-stroke: 1px rgba(247, 245, 240, 0.22);
+  color: transparent;
+}
+.text-outline-gold {
+  -webkit-text-stroke: 1px rgba(212, 160, 32, 0.38);
+  color: transparent;
+}
+
+/* Índice de sección — etiqueta mono editorial */
+.section-index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-text-3);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-index::before {
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(212, 160, 32, 0.75), rgba(212, 160, 32, 0.1));
+  flex-shrink: 0;
+}
+
+/* Indicador de scroll — línea que respira hacia abajo */
+@keyframes scrollHint {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  45%  { transform: scaleY(1); transform-origin: top; }
+  55%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* Punto de disponibilidad — pulso lento */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 0 0 rgba(212, 160, 32, 0.5); }
+  60%       { opacity: 0.6; box-shadow: 0 0 0 7px rgba(212, 160, 32, 0); }
+}
+
+/* Marquee vertical lento (banda de servicios) */
+@keyframes marqueeSlow {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── Hero — aurora dorada en movimiento (drift amplio, sin saltos) ─── */
+@keyframes heroAurora1 {
+  0%   { transform: translate3d(-16%, -10%, 0) scale(1);    }
+  50%  { transform: translate3d(14%, 8%, 0)   scale(1.22);  }
+  100% { transform: translate3d(-16%, -10%, 0) scale(1);    }
+}
+@keyframes heroAurora2 {
+  0%   { transform: translate3d(14%, 9%, 0)  scale(1.18);  }
+  50%  { transform: translate3d(-14%, -8%, 0) scale(1);    }
+  100% { transform: translate3d(14%, 9%, 0)  scale(1.18);  }
+}
+@keyframes heroAurora3 {
+  0%   { transform: translate3d(-8%, 6%, 0)  scale(1);    opacity: .35; }
+  50%  { transform: translate3d(12%, -12%, 0) scale(1.28); opacity: .68; }
+  100% { transform: translate3d(-8%, 6%, 0)  scale(1);    opacity: .35; }
+}
+/* Respiración de luz central — casi imperceptible */
+@keyframes heroGlow {
+  0%, 100% { opacity: .82; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.05); }
+}
+/* Barrido de brillo tenue sobre la palabra de acento */
+@keyframes heroSheen {
+  0%, 100% { background-position: 180% center; }
+  50%      { background-position: -80% center; }
 }
 
 /* Mobile — stop background-position shimmer animations; set a static mid-gold position */
@@ -284,7 +356,6 @@ body { scrollbar-width: none; }
   .site-header {
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
-    background: rgba(6,6,6,.92) !important;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
   }
@@ -294,6 +365,63 @@ body { scrollbar-width: none; }
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
   }
+}
+
+/* ─── CTA buttons — ghost gold + border trace animation ─── */
+@property --cta-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.cta-gold {
+  position: relative;
+  border: 1px solid rgba(212, 160, 32, .38) !important;
+  /* gradient text — same gold as section titles */
+  color: #D9B36A !important;
+  background: linear-gradient(95deg, #B98A3E 0%, #D9B36A 30%, #F1DCA4 50%, #D9B36A 70%, #B98A3E 100%) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  transition: border-color .4s !important;
+}
+
+.cta-gold:hover {
+  border-color: rgba(212, 160, 32, .72) !important;
+}
+
+.cta-gold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--cta-angle),
+    transparent 0%,
+    transparent 72%,
+    rgba(212, 160, 32, .55) 80%,
+    rgba(248, 220, 100, .92) 87%,
+    rgba(212, 160, 32, .55) 94%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  animation: ctaBorderTrace 2s linear infinite paused;
+  transition: opacity .4s;
+  pointer-events: none;
+}
+
+.cta-gold:hover::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+@keyframes ctaBorderTrace {
+  to { --cta-angle: 360deg; }
 }
 
 /* Reduced motion — accesibilidad obligatoria (OS Ch.6) */

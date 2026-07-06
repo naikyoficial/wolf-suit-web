@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Hero }        from "@/components/sections/Hero";
-import { Philosophy }  from "@/components/sections/Philosophy";
+import { MarqueeBand } from "@/components/sections/MarqueeBand";
+import { Manifesto }   from "@/components/sections/Manifesto";
 import { Duality }     from "@/components/sections/Duality";
 import { Services }    from "@/components/sections/Services";
-import { WolfSystem }  from "@/components/sections/WolfSystem";
+import { Method }      from "@/components/sections/Method";
+import { Standards }   from "@/components/sections/Standards";
+import { Faq }         from "@/components/sections/Faq";
 import { Apply }       from "@/components/sections/Apply";
 
 export const metadata: Metadata = {
@@ -14,10 +17,13 @@ export default function HomePage() {
   return (
     <main className="relative">
       <Hero />
-      <Philosophy />
+      <MarqueeBand />
+      <Manifesto />
       <Duality />
       <Services />
-      <WolfSystem />
+      <Standards />
+      <Method />
+      <Faq />
       <Apply />
     </main>
   );

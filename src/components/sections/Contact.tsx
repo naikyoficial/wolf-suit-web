@@ -3,59 +3,115 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShimmerLabel } from "@/components/ui/ShimmerLabel";
-import { useMobile }    from "@/hooks/useMobile";
+import { useMobile } from "@/hooks/useMobile";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
-const GOLD = "linear-gradient(90deg, #5A3C0A 0%, #A87214 22%, #D4A020 46%, #F0C840 52%, #D4A020 58%, #A87214 78%, #5A3C0A 100%)";
+const GOLD =
+  "linear-gradient(95deg, #B98A3E 0%, #D9B36A 30%, #F1DCA4 50%, #D9B36A 70%, #B98A3E 100%)";
 
 type StepId = "intro" | "q1" | "q2" | "q3" | "q4" | "q5" | "data" | "confirmed";
 
 const STEP_ORDER: StepId[] = ["intro", "q1", "q2", "q3", "q4", "q5", "data", "confirmed"];
 
-const QUESTIONS: { id: StepId; num: string; question: string; options: string[] }[] = [
+type Option = { label: string; hint?: string };
+
+const QUESTIONS: { id: StepId; num: string; question: string; options: Option[] }[] = [
   {
     id: "q1", num: "01",
     question: "¿Tu empresa ya tiene presencia digital?",
-    options: ["Tenemos un sitio web activo", "Tenemos algo pero está desactualizado", "No tenemos presencia digital aún"],
+    options: [
+      { label: "Sí, tenemos un sitio web activo" },
+      { label: "Tenemos algo, pero está desactualizado" },
+      { label: "Solo tenemos redes sociales" },
+      { label: "No, arrancamos desde cero" },
+    ],
   },
   {
     id: "q2", num: "02",
     question: "¿Qué tipo de solución estás buscando?",
-    options: ["Sitio Web Corporativo", "Landing Page de Alta Conversión", "Tienda Online (E-commerce)", "Aplicación o Software a Medida", "Posicionamiento SEO", "Aún no lo tengo definido"],
+    options: [
+      { label: "Sitio Web Corporativo", hint: "La presencia que te posiciona como referente" },
+      { label: "Landing Page de Impacto", hint: "Página de alta conversión para captar leads" },
+      { label: "Tienda Online Premium", hint: "E-commerce con experiencia de compra de lujo" },
+      { label: "Presencia Personal", hint: "Portfolio y personal branding con autoridad" },
+      { label: "SEO & Visibilidad Web", hint: "Posicionamiento orgánico en Google" },
+      { label: "Aplicaciones Web", hint: "Herramientas y sistemas digitales a medida" },
+    ],
   },
   {
     id: "q3", num: "03",
     question: "¿Cuál es el objetivo central de este proyecto?",
-    options: ["Atraer nuevos clientes y generar ventas", "Elevar la imagen y autoridad de marca", "Automatizar procesos internos", "Posicionarme en Google y crecer orgánicamente", "Lanzar una nueva empresa o producto"],
+    options: [
+      { label: "Proyectar autoridad y posicionarnos como referentes" },
+      { label: "Generar más leads y acelerar las ventas" },
+      { label: "Vender productos online" },
+      { label: "Aparecer primero cuando nos buscan en Google" },
+      { label: "Automatizar y escalar con una herramienta a medida" },
+      { label: "Construir una marca personal sólida" },
+    ],
   },
   {
     id: "q4", num: "04",
     question: "¿Cómo definirías a tu empresa hoy?",
-    options: ["Es mejor de lo que muestra", "Su imagen no refleja el nivel que tiene", "Está creciendo y necesita una presencia acorde", "Quiere diferenciarse claramente de la competencia", "Está comenzando y quiere hacerlo bien desde el inicio"],
+    options: [
+      { label: "Un emprendimiento que está arrancando" },
+      { label: "Un profesional independiente" },
+      { label: "Una empresa en crecimiento" },
+      { label: "Una marca ya consolidada" },
+    ],
   },
   {
     id: "q5", num: "05",
     question: "¿Con qué urgencia querés avanzar?",
-    options: ["Lo antes posible", "Dentro de los próximos 30 días", "Sin una fecha definida aún", "Solo estoy evaluando opciones por ahora"],
+    options: [
+      { label: "Lo antes posible" },
+      { label: "En las próximas semanas" },
+      { label: "En los próximos meses" },
+      { label: "Estoy explorando opciones" },
+    ],
   },
 ];
 
 const NEXT_STEPS = [
   "Analizamos tu empresa, los objetivos que compartiste y el nivel de oportunidad que existe.",
   "Evaluamos si hay una alineación real entre tu proyecto y nuestra forma de trabajar.",
-  "Si encontramos esa alineación, nos ponemos en contacto para coordinar una conversación estratégica sin compromiso.",
+  "Si la encontramos, te contactamos para coordinar una conversación estratégica sin compromiso.",
 ];
+
+/* Eyebrow reutilizable — línea dorada + label mono, estilo section-index */
+function Eyebrow({ children, center = false }: { children: React.ReactNode; center?: boolean }) {
+  return (
+    <div style={{
+      display: "flex", alignItems: "center", gap: 14,
+      justifyContent: center ? "center" : "flex-start",
+    }}>
+      <span aria-hidden style={{
+        width: 34, height: 1,
+        background: "linear-gradient(to right, rgba(212,160,32,.75), rgba(212,160,32,.1))",
+        flexShrink: 0,
+      }} />
+      <span style={{
+        fontFamily: "var(--font-mono)", fontSize: 10.5,
+        letterSpacing: ".32em", textTransform: "uppercase",
+        color: "var(--color-text-3)",
+      }}>
+        {children}
+      </span>
+      {center && (
+        <span aria-hidden style={{
+          width: 34, height: 1,
+          background: "linear-gradient(to left, rgba(212,160,32,.75), rgba(212,160,32,.1))",
+          flexShrink: 0,
+        }} />
+      )}
+    </div>
+  );
+}
 
 export function Contact() {
   const isMobile = useMobile();
 
   const slide = {
-    // center ALWAYS clears the filter to blur(0px) — this is critical because
-    // useMobile() returns false on the first paint (before its effect runs), so
-    // the desktop `enter` state with blur(8px) can get applied for one frame. If
-    // center omitted `filter`, framer never animates it back and the blur stays
-    // stuck forever. Keeping blur(0px) here guarantees it's always reset.
     enter: (d: number) => isMobile
       ? { opacity: 0, x: d * 28, filter: "blur(0px)" }
       : { opacity: 0, x: d * 40, filter: "blur(8px)" },
@@ -66,6 +122,7 @@ export function Contact() {
       ? { opacity: 0, x: d * -28, filter: "blur(0px)", transition: { duration: 0.18 } }
       : { opacity: 0, x: d * -40, filter: "blur(8px)", transition: { duration: 0.3 } },
   };
+
   const [step, setStep]         = useState<StepId>("intro");
   const [dir, setDir]           = useState(1);
   const [selected, setSelected] = useState<string | null>(null);
@@ -78,9 +135,7 @@ export function Contact() {
   const [role,    setRole]    = useState("");
   const [vision,  setVision]  = useState("");
 
-  const [startHovered,  setStartHovered]  = useState(false);
-  const [submitHovered, setSubmitHovered] = useState(false);
-  const [submitting, setSubmitting]       = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const goTo = (next: StepId) => {
     const from = STEP_ORDER.indexOf(step);
@@ -131,40 +186,46 @@ export function Contact() {
 
   const inputStyle: React.CSSProperties = {
     width: "100%", background: "transparent", border: "none",
-    borderBottom: "1px solid rgba(212,160,32,.18)",
-    padding: "14px 0", fontSize: 14, color: "var(--color-text)",
+    borderBottom: "1px solid rgba(255,255,255,.12)",
+    padding: "13px 0", fontSize: 15, color: "var(--color-text)",
     outline: "none", fontFamily: "var(--font-body)", letterSpacing: "-.01em",
   };
 
   const labelStyle: React.CSSProperties = {
-    fontSize: 9, letterSpacing: ".32em", textTransform: "uppercase" as const,
-    color: "rgba(212,160,32,.35)", display: "block", marginBottom: 6,
+    fontFamily: "var(--font-mono)", fontSize: 9.5, letterSpacing: ".26em",
+    textTransform: "uppercase" as const, color: "var(--color-text-4)",
+    display: "block", marginBottom: 8,
   };
 
   return (
     <section
       id="contact"
       style={{
+        marginTop: -72, // cancela el pt-[72px] del layout → funnel a pantalla completa
         minHeight: "100svh", display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center",
-        padding: "100px 24px 80px",
-        background: "#040404",
+        padding: "110px 24px 90px",
+        background: "#060504",
         position: "relative", zIndex: 10, overflow: "hidden",
       }}
     >
       {/* Atmospheric gold glow */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 70% 55% at 50% 30%, rgba(168,108,5,.10) 0%, transparent 65%), radial-gradient(ellipse 40% 30% at 50% 100%, rgba(100,60,0,.08) 0%, transparent 70%)",
+        background: "radial-gradient(ellipse 68% 52% at 50% 32%, rgba(150,100,30,.09) 0%, transparent 64%), radial-gradient(ellipse 40% 30% at 50% 100%, rgba(90,55,10,.07) 0%, transparent 70%)",
+      }} />
+
+      {/* Perimeter vignette */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse at center, transparent 42%, rgba(3,2,1,.6) 100%)",
       }} />
 
       {/* Faint isotipo background */}
       <div aria-hidden style={{
         position: "absolute", top: "50%", left: "50%",
         transform: "translate(-50%, -50%)",
-        width: 600, height: 600,
-        opacity: 0.025,
-        pointerEvents: "none",
+        width: 620, height: 620, opacity: 0.022, pointerEvents: "none",
       }}>
         <Image src="/isotipo.png" alt="" fill style={{ objectFit: "contain" }} />
       </div>
@@ -174,16 +235,15 @@ export function Contact() {
         {currentQ && (
           <motion.div key="progress"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "rgba(212,160,32,.07)" }}
+            style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "rgba(212,160,32,.08)" }}
           >
             <motion.div
               animate={{ width: `${progress * 100}%` }}
               transition={{ duration: 0.55, ease: EASE }}
               style={{
-                height: "100%",
-                background: GOLD,
-                backgroundSize: "280% 100%",
-                animation: "metalShimmer 5s ease-in-out infinite",
+                height: "100%", background: GOLD,
+                backgroundSize: "200% 100%",
+                animation: "heroSheen 9s ease-in-out infinite",
               }}
             />
           </motion.div>
@@ -198,14 +258,14 @@ export function Contact() {
             onClick={goBack}
             data-cursor-hover
             style={{
-              position: "absolute", top: 28, left: "clamp(24px, 6vw, 80px)",
+              position: "absolute", top: 30, left: "clamp(24px, 6vw, 80px)",
               background: "none", border: "none",
-              color: "rgba(212,160,32,.3)", fontSize: 10, letterSpacing: ".28em",
+              color: "rgba(212,160,32,.4)", fontSize: 10, letterSpacing: ".26em",
               textTransform: "uppercase", display: "flex", alignItems: "center",
-              gap: 10, padding: 0, fontFamily: "var(--font-body)", transition: "color .25s",
+              gap: 10, padding: 0, fontFamily: "var(--font-mono)", transition: "color .25s",
             }}
-            onMouseEnter={e => (e.currentTarget.style.color = "rgba(212,160,32,.75)")}
-            onMouseLeave={e => (e.currentTarget.style.color = "rgba(212,160,32,.3)")}
+            onMouseEnter={e => (e.currentTarget.style.color = "rgba(212,160,32,.85)")}
+            onMouseLeave={e => (e.currentTarget.style.color = "rgba(212,160,32,.4)")}
           >
             <span style={{ fontSize: 14, lineHeight: 1 }}>←</span>
             Volver
@@ -218,65 +278,63 @@ export function Contact() {
         {/* ─── INTRO ─── */}
         {step === "intro" && (
           <motion.div key="intro" custom={dir} variants={slide} initial="enter" animate="center" exit="exit"
-            style={{ textAlign: "center", maxWidth: 640 }}
+            style={{ textAlign: "center", maxWidth: 680, position: "relative", zIndex: 1 }}
           >
-            {/* Eyebrow */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 52 }}>
-              <div style={{ width: 40, height: 1, background: "linear-gradient(to right, transparent, rgba(212,160,32,.3))" }} />
-              <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".52em", textTransform: "uppercase" }}>
-                Proceso de selección
-              </ShimmerLabel>
-              <div style={{ width: 40, height: 1, background: "linear-gradient(to left, transparent, rgba(212,160,32,.3))" }} />
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: "clamp(36px, 6vh, 56px)" }}>
+              <Eyebrow center>Proceso de selección</Eyebrow>
             </div>
 
             <h1 style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(30px, 4vw, 54px)",
-              fontWeight: 300, lineHeight: 1.08, letterSpacing: "-.028em",
-              marginBottom: 36,
+              fontFamily: "var(--font-body)", fontWeight: 600,
+              fontSize: "clamp(2rem, 4.4vw, 3.6rem)",
+              lineHeight: 1.08, letterSpacing: "-.035em",
+              color: "var(--color-text)",
+              margin: "0 0 clamp(26px, 4vh, 38px)",
             }}>
-              Algunas empresas buscan<br />una página web. Otras buscan<br />
+              Algunas empresas buscan una página web.<br />
+              Otras buscan{" "}
               <span style={{
-                background: GOLD, backgroundSize: "260% 100%",
-                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-                backgroundClip: "text", animation: "metalShimmer 8s ease-in-out infinite",
+                fontFamily: "var(--font-display)", fontStyle: "italic",
+                fontWeight: 400, color: "#D9B36A",
               }}>
                 una ventaja real.
               </span>
             </h1>
 
-            <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 2, marginBottom: 14, maxWidth: 540, margin: "0 auto 14px" }}>
+            <p style={{
+              fontSize: "clamp(14px, 1.05vw, 16px)", color: "var(--color-text-2)",
+              lineHeight: 1.8, maxWidth: 560, margin: "0 auto clamp(14px, 2vh, 18px)",
+            }}>
               Cada proyecto que desarrollamos es completamente personalizado. No trabajamos sobre plantillas ni procesos genéricos. Antes de comenzar necesitamos entender quién sos, qué construiste y hacia dónde querés llevar tu empresa.
             </p>
-            <p style={{ fontSize: 13, color: "var(--color-text-4)", lineHeight: 1.95, marginBottom: 56, maxWidth: 440, margin: "0 auto 56px" }}>
+            <p style={{
+              fontSize: "clamp(12.5px, 0.95vw, 14px)", color: "var(--color-text-4)",
+              lineHeight: 1.8, maxWidth: 460, margin: "0 auto clamp(40px, 6vh, 58px)",
+            }}>
               Este proceso toma menos de dos minutos y nos permite evaluar si existe una oportunidad real de generar impacto.
             </p>
 
-            {/* Gold border CTA */}
-            <div style={{ display: "inline-block", padding: "1px", background: GOLD, backgroundSize: "280% 100%", animation: "metalShimmer 4s ease-in-out infinite" }}>
-              <button
-                onClick={() => goTo("q1")}
-                onMouseEnter={() => setStartHovered(true)}
-                onMouseLeave={() => setStartHovered(false)}
-                data-cursor-hover
-                style={{
-                  display: "inline-flex", alignItems: "center", gap: 22,
-                  padding: "18px 48px",
-                  background: startHovered ? "var(--color-gold)" : "#060606",
-                  color: startHovered ? "#080808" : "var(--color-text)",
-                  fontSize: 10, letterSpacing: ".34em", textTransform: "uppercase",
-                  border: "none", fontFamily: "var(--font-body)", transition: "background .3s, color .3s",
-                }}
-              >
-                Iniciar evaluación
-                <span style={{ display: "inline-flex", alignItems: "center", position: "relative", width: 22, height: 1, background: "currentColor", flexShrink: 0 }}>
-                  <span style={{ position: "absolute", right: -1, top: -3, width: 6, height: 6, borderRight: "1px solid currentColor", borderTop: "1px solid currentColor", transform: "rotate(45deg)" }} />
-                </span>
-              </button>
-            </div>
+            <button
+              onClick={() => goTo("q1")}
+              data-cursor-hover
+              className="cta-gold"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 18,
+                padding: "clamp(16px, 1.6vw, 20px) clamp(38px, 4vw, 54px)",
+                fontFamily: "var(--font-mono)", fontWeight: 500,
+                fontSize: 11, letterSpacing: ".24em", textTransform: "uppercase",
+                cursor: "pointer",
+              }}
+            >
+              Iniciar evaluación
+              <Arrow />
+            </button>
 
-            <p style={{ marginTop: 28, fontSize: 10, letterSpacing: ".18em", color: "var(--color-text-4)" }}>
-              Respondemos en un plazo máximo de 72 horas.
+            <p style={{
+              marginTop: 28, fontFamily: "var(--font-mono)", fontSize: 9.5,
+              letterSpacing: ".2em", textTransform: "uppercase", color: "var(--color-text-4)",
+            }}>
+              Respondemos en un plazo máximo de 72 horas
             </p>
           </motion.div>
         )}
@@ -284,71 +342,102 @@ export function Contact() {
         {/* ─── QUESTIONS ─── */}
         {currentQ && (
           <motion.div key={step} custom={dir} variants={slide} initial="enter" animate="center" exit="exit"
-            style={{ width: "100%", maxWidth: 540 }}
+            style={{ width: "100%", maxWidth: 600, position: "relative", zIndex: 1 }}
           >
-            {/* Question counter */}
-            <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 44 }}>
+            {/* Counter + progress */}
+            <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: "clamp(30px, 5vh, 46px)" }}>
               <span style={{
-                fontFamily: "var(--font-display)", fontSize: 13, fontWeight: 300,
-                background: GOLD, backgroundSize: "260% 100%",
-                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-                backgroundClip: "text", animation: "metalShimmer 7s ease-in-out infinite",
-                letterSpacing: ".06em",
+                fontFamily: "var(--font-body)", fontStyle: "italic", fontWeight: 700,
+                fontSize: 20, color: "#D9B36A", lineHeight: 1,
               }}>
                 {currentQ.num}
               </span>
-              <div style={{ flex: 1, height: 1, background: "rgba(212,160,32,.08)" }}>
-                <div style={{ width: `${progress * 100}%`, height: "100%", background: "rgba(212,160,32,.3)", transition: "width .5s" }} />
+              <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,.09)", position: "relative" }}>
+                <div style={{
+                  position: "absolute", left: 0, top: 0, bottom: 0,
+                  width: `${progress * 100}%`,
+                  background: "linear-gradient(to right, rgba(212,160,32,.7), rgba(212,160,32,.35))",
+                  transition: "width .5s",
+                }} />
               </div>
-              <span style={{ fontSize: 9, letterSpacing: ".3em", color: "rgba(212,160,32,.25)" }}>
+              <span style={{
+                fontFamily: "var(--font-mono)", fontSize: 10,
+                letterSpacing: ".24em", color: "var(--color-text-4)",
+              }}>
                 {currentQ.num} / 0{QUESTIONS.length}
               </span>
             </div>
 
             <h2 style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(24px, 3.2vw, 42px)",
-              fontWeight: 300, lineHeight: 1.1, letterSpacing: "-.022em",
-              marginBottom: 44, color: "var(--color-text)",
+              fontFamily: "var(--font-body)", fontWeight: 600,
+              fontSize: "clamp(1.6rem, 3vw, 2.5rem)",
+              lineHeight: 1.12, letterSpacing: "-.03em",
+              marginBottom: "clamp(28px, 4.5vh, 44px)", color: "var(--color-text)",
             }}>
               {currentQ.question}
             </h2>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {currentQ.options.map((opt, i) => {
-                const isSel = selected === opt;
-                const isHov = hoveredOpt === opt && !selected;
+                const isSel = selected === opt.label;
+                const isHov = hoveredOpt === opt.label && !selected;
+                const active = isSel || isHov;
                 return (
                   <motion.button
-                    key={opt}
-                    initial={isMobile ? { opacity: 0, x: -10 } : { opacity: 0, x: -16, filter: "blur(4px)" }}
-                    animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0, filter: "blur(0px)" }}
+                    key={opt.label}
+                    initial={isMobile ? { opacity: 0, y: 8 } : { opacity: 0, x: -14, filter: "blur(4px)" }}
+                    animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0, filter: "blur(0px)" }}
                     transition={isMobile
                       ? { duration: 0.22, delay: 0.03 * i, ease: [0.25, 0.46, 0.45, 0.94] as const }
-                      : { duration: 0.4, delay: 0.06 * i, ease: EASE }}
-                    onClick={() => pickOption(currentQ.id, opt)}
-                    onMouseEnter={() => !selected && setHoveredOpt(opt)}
+                      : { duration: 0.4, delay: 0.05 * i, ease: EASE }}
+                    onClick={() => pickOption(currentQ.id, opt.label)}
+                    onMouseEnter={() => !selected && setHoveredOpt(opt.label)}
                     onMouseLeave={() => setHoveredOpt(null)}
                     data-cursor-hover
                     style={{
-                      width: "100%", padding: "20px 20px 20px 24px",
-                      background: isSel
-                        ? "rgba(212,160,32,.06)"
-                        : isHov ? "rgba(212,160,32,.03)" : "transparent",
-                      border: "none",
-                      borderBottom: `1px solid rgba(212,160,32,${isSel ? ".15" : isHov ? ".09" : ".05"})`,
-                      borderLeft: isSel
-                        ? "2px solid rgba(212,160,32,.7)"
-                        : isHov ? "2px solid rgba(212,160,32,.3)" : "2px solid transparent",
-                      textAlign: "left",
-                      color: isSel
-                        ? "var(--color-text)"
-                        : isHov ? "var(--color-text-2)" : "var(--color-text-3)",
-                      fontSize: 14, fontFamily: "var(--font-body)", letterSpacing: "-.01em", lineHeight: 1.4,
-                      transition: "background .2s, color .2s, border-color .2s",
+                      width: "100%",
+                      display: "flex", alignItems: "center", justifyContent: "space-between", gap: 18,
+                      padding: opt.hint ? "15px 18px 15px 22px" : "17px 18px 17px 22px",
+                      background: isSel ? "rgba(212,160,32,.06)" : isHov ? "rgba(212,160,32,.03)" : "rgba(255,255,255,.015)",
+                      border: `1px solid ${isSel ? "rgba(212,160,32,.5)" : isHov ? "rgba(212,160,32,.3)" : "rgba(255,255,255,.08)"}`,
+                      borderRadius: 4,
+                      textAlign: "left", cursor: "pointer",
+                      transition: "background .25s, border-color .25s",
                     }}
                   >
-                    {opt}
+                    <span style={{ display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
+                      <span style={{
+                        fontFamily: "var(--font-body)", fontWeight: opt.hint ? 600 : 500,
+                        fontSize: opt.hint ? 15 : 14.5,
+                        letterSpacing: "-.01em", lineHeight: 1.3,
+                        color: active ? "var(--color-text)" : "var(--color-text-2)",
+                        transition: "color .25s",
+                      }}>
+                        {opt.label}
+                      </span>
+                      {opt.hint && (
+                        <span style={{
+                          fontSize: 12.5, lineHeight: 1.45,
+                          color: active ? "var(--color-text-3)" : "var(--color-text-4)",
+                          transition: "color .25s",
+                        }}>
+                          {opt.hint}
+                        </span>
+                      )}
+                    </span>
+                    <span aria-hidden style={{
+                      position: "relative", display: "inline-flex", alignItems: "center",
+                      width: active ? 24 : 14, height: 1, flexShrink: 0,
+                      background: active ? "#D9B36A" : "rgba(255,255,255,.2)",
+                      transition: "width .3s, background .25s",
+                    }}>
+                      <span style={{
+                        position: "absolute", right: -1, top: -2.5, width: 5, height: 5,
+                        borderRight: `1px solid ${active ? "#D9B36A" : "rgba(255,255,255,.2)"}`,
+                        borderTop: `1px solid ${active ? "#D9B36A" : "rgba(255,255,255,.2)"}`,
+                        transform: "rotate(45deg)", transition: "border-color .25s",
+                      }} />
+                    </span>
                   </motion.button>
                 );
               })}
@@ -359,25 +448,25 @@ export function Contact() {
         {/* ─── DATA COLLECTION ─── */}
         {step === "data" && (
           <motion.div key="data" custom={dir} variants={slide} initial="enter" animate="center" exit="exit"
-            style={{ width: "100%", maxWidth: 500 }}
+            style={{ width: "100%", maxWidth: 560, position: "relative", zIndex: 1 }}
           >
-            <ShimmerLabel style={{ fontSize: 10, letterSpacing: ".38em", textTransform: "uppercase", marginBottom: 10 }}>
-              Casi listo.
-            </ShimmerLabel>
+            <div style={{ marginBottom: 14 }}>
+              <Eyebrow>Casi listo</Eyebrow>
+            </div>
             <h2 style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(22px, 2.8vw, 36px)",
-              fontWeight: 300, lineHeight: 1.12, letterSpacing: "-.022em",
-              marginBottom: 10, color: "var(--color-text)",
+              fontFamily: "var(--font-body)", fontWeight: 600,
+              fontSize: "clamp(1.5rem, 2.8vw, 2.25rem)",
+              lineHeight: 1.14, letterSpacing: "-.03em",
+              margin: "0 0 12px", color: "var(--color-text)",
             }}>
-              Ahora conocemos un poco mejor tu proyecto.
+              Ahora conocemos mejor tu proyecto.
             </h2>
-            <p style={{ fontSize: 13, color: "var(--color-text-4)", lineHeight: 1.85, marginBottom: 44 }}>
-              Solo necesitamos algunos datos para poder evaluar tu aplicación y contactarte.
+            <p style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 1.8, margin: "0 0 clamp(32px, 5vh, 46px)" }}>
+              Solo necesitamos algunos datos para evaluar tu aplicación y contactarte.
             </p>
 
-            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-              <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 20 }}>
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 26 }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 22 }}>
                 <div>
                   <label style={labelStyle}>Nombre completo</label>
                   <input required value={name} onChange={e => setName(e.target.value)} placeholder="Tu nombre" style={inputStyle} />
@@ -388,21 +477,21 @@ export function Contact() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 20 }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 22 }}>
                 <div>
                   <label style={labelStyle}>Empresa</label>
                   <input required value={company} onChange={e => setCompany(e.target.value)} placeholder="Nombre de tu empresa" style={inputStyle} />
                 </div>
                 <div>
-                  <label style={labelStyle}>Cargo <span style={{ opacity: .4 }}>(opcional)</span></label>
+                  <label style={labelStyle}>Cargo <span style={{ opacity: .5 }}>(opcional)</span></label>
                   <input value={role} onChange={e => setRole(e.target.value)} placeholder="Tu cargo" style={inputStyle} />
                 </div>
               </div>
 
-              <div style={{ height: 1, background: "rgba(212,160,32,.07)" }} />
+              <div style={{ height: 1, background: "rgba(255,255,255,.06)" }} />
 
               <div>
-                <label style={{ ...labelStyle, marginBottom: 12, textTransform: "none", fontSize: 13, letterSpacing: "-.005em", color: "rgba(200,188,168,.45)", lineHeight: 1.6 }}>
+                <label style={{ ...labelStyle, textTransform: "none", fontFamily: "var(--font-body)", fontSize: 14, letterSpacing: "-.005em", color: "var(--color-text-2)", lineHeight: 1.6, marginBottom: 12 }}>
                   ¿Qué querés que cambie en tu empresa después de este proyecto?
                 </label>
                 <textarea
@@ -411,39 +500,36 @@ export function Contact() {
                   style={{
                     ...inputStyle, resize: "none",
                     borderBottom: "none",
-                    border: "1px solid rgba(212,160,32,.14)",
-                    padding: "16px 18px", lineHeight: 1.8, borderRadius: 0,
-                    height: 112,
+                    border: "1px solid rgba(255,255,255,.1)",
+                    padding: "15px 18px", lineHeight: 1.75, borderRadius: 4, height: 116,
                   }}
                 />
               </div>
 
-              <div style={{ paddingTop: 4 }}>
-                <div style={{ display: "inline-block", padding: "1px", background: GOLD, backgroundSize: "280% 100%", animation: "metalShimmer 4s ease-in-out infinite" }}>
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    onMouseEnter={() => setSubmitHovered(true)}
-                    onMouseLeave={() => setSubmitHovered(false)}
-                    data-cursor-hover
-                    style={{
-                      display: "inline-flex", alignItems: "center", gap: 20,
-                      padding: "16px 40px",
-                      background: submitHovered && !submitting ? "var(--color-gold)" : "#060606",
-                      color: submitHovered && !submitting ? "#080808" : "var(--color-text)",
-                      fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase",
-                      border: "none", fontFamily: "var(--font-body)", transition: "background .3s, color .3s",
-                      opacity: submitting ? 0.6 : 1,
-                    }}
-                  >
-                    {submitting ? "Enviando…" : "Enviar solicitud"}
-                    {!submitting && (
-                      <span style={{ display: "inline-flex", alignItems: "center", position: "relative", width: submitHovered ? 30 : 20, height: 1, background: "currentColor", transition: "width .3s", flexShrink: 0 }}>
-                        <span style={{ position: "absolute", right: -1, top: -3, width: 6, height: 6, borderRight: "1px solid currentColor", borderTop: "1px solid currentColor", transform: "rotate(45deg)" }} />
-                      </span>
-                    )}
-                  </button>
-                </div>
+              <div style={{ paddingTop: 6, display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  data-cursor-hover
+                  className="cta-gold"
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: 16,
+                    padding: "16px 40px",
+                    fontFamily: "var(--font-mono)", fontWeight: 500,
+                    fontSize: 11, letterSpacing: ".22em", textTransform: "uppercase",
+                    cursor: submitting ? "default" : "pointer",
+                    opacity: submitting ? 0.55 : 1,
+                  }}
+                >
+                  {submitting ? "Enviando…" : "Enviar solicitud"}
+                  {!submitting && <Arrow />}
+                </button>
+                <span style={{
+                  fontFamily: "var(--font-mono)", fontSize: 9.5,
+                  letterSpacing: ".18em", textTransform: "uppercase", color: "var(--color-text-4)",
+                }}>
+                  Respondemos en 72 horas
+                </span>
               </div>
             </form>
           </motion.div>
@@ -452,118 +538,96 @@ export function Contact() {
         {/* ─── CONFIRMATION ─── */}
         {step === "confirmed" && (
           <motion.div key="confirmed" custom={dir} variants={slide} initial="enter" animate="center" exit="exit"
-            style={{ textAlign: "center", maxWidth: 580 }}
+            style={{ textAlign: "center", maxWidth: 600, position: "relative", zIndex: 1 }}
           >
-            {/* Gold vertical line drop */}
             <motion.div
               initial={{ scaleY: 0 }} animate={{ scaleY: 1 }}
               transition={{ duration: 1.2, ease: EASE }}
               style={{
                 width: 1, height: 56,
-                background: "linear-gradient(to bottom, transparent, rgba(212,160,32,.5))",
-                margin: "0 auto 40px", transformOrigin: "top",
+                background: "linear-gradient(to bottom, transparent, rgba(212,160,32,.55))",
+                margin: "0 auto 38px", transformOrigin: "top",
               }}
             />
 
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              style={{ marginBottom: 16 }}
+              style={{ display: "flex", justifyContent: "center", marginBottom: 22 }}
             >
-              <ShimmerLabel style={{ fontSize: 9, letterSpacing: ".5em", textTransform: "uppercase" }}>
-                Solicitud recibida
-              </ShimmerLabel>
+              <Eyebrow center>Solicitud recibida</Eyebrow>
             </motion.div>
 
             <motion.h2
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: EASE }}
               style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(28px, 3.8vw, 50px)",
-                fontWeight: 300, lineHeight: 1.08, letterSpacing: "-.028em",
-                marginBottom: 16,
+                fontFamily: "var(--font-body)", fontWeight: 600,
+                fontSize: "clamp(1.9rem, 3.6vw, 3rem)",
+                lineHeight: 1.08, letterSpacing: "-.035em",
+                margin: "0 0 16px", color: "var(--color-text)",
               }}
             >
-              Tu aplicación fue recibida.
+              Tu aplicación fue{" "}
+              <span style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontWeight: 400, color: "#D9B36A" }}>
+                recibida.
+              </span>
             </motion.h2>
 
             <motion.p
               initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.55 }}
-              style={{ fontSize: 14, color: "var(--color-text-3)", lineHeight: 1.9, marginBottom: 56, maxWidth: 440, margin: "0 auto 56px" }}
+              style={{ fontSize: 14.5, color: "var(--color-text-3)", lineHeight: 1.85, margin: "0 auto clamp(44px, 7vh, 60px)", maxWidth: 440 }}
             >
               Ahora comienza nuestro proceso de evaluación.
             </motion.p>
 
-            <div style={{ textAlign: "left", marginBottom: 52 }}>
+            <div style={{ textAlign: "left", marginBottom: 48 }}>
               {NEXT_STEPS.map((text, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.65, delay: 0.5 + i * 0.16, ease: EASE }}
                   style={{
-                    display: "flex", gap: 24,
-                    padding: "22px 0",
-                    borderBottom: `1px solid rgba(212,160,32,${i < NEXT_STEPS.length - 1 ? ".07" : "0"})`,
+                    display: "flex", gap: 22, padding: "22px 0",
+                    borderBottom: `1px solid rgba(255,255,255,${i < NEXT_STEPS.length - 1 ? ".07" : "0"})`,
                   }}
                 >
                   <span style={{
-                    fontSize: 9, letterSpacing: ".35em",
-                    background: GOLD, backgroundSize: "260% 100%",
-                    WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-                    backgroundClip: "text", animation: "metalShimmer 7s ease-in-out infinite",
-                    flexShrink: 0, paddingTop: 3,
+                    fontFamily: "var(--font-body)", fontStyle: "italic", fontWeight: 700,
+                    fontSize: 15, color: "#D9B36A", flexShrink: 0, lineHeight: 1.4,
                   }}>
                     0{i + 1}
                   </span>
-                  <p style={{ fontSize: 13, color: "var(--color-text-3)", lineHeight: 1.85 }}>{text}</p>
+                  <p style={{ fontSize: 13.5, color: "var(--color-text-3)", lineHeight: 1.8, margin: 0 }}>{text}</p>
                 </motion.div>
               ))}
             </div>
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1.1 }}>
-              <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, rgba(212,160,32,.3), transparent)", margin: "0 auto 24px" }} />
-              <p style={{ fontSize: 12, color: "var(--color-text-4)", lineHeight: 1.95 }}>
-                Trabajamos con una cantidad limitada de proyectos para garantizar el nivel de atención y excelencia que define a SuitWolf.
-              </p>
-              <p style={{ fontSize: 10, letterSpacing: ".1em", color: "rgba(212,160,32,.25)", marginTop: 12, marginBottom: 40 }}>
-                Respondemos cada aplicación en un plazo máximo de 72 horas.
+              <p style={{ fontSize: 12.5, color: "var(--color-text-4)", lineHeight: 1.9, margin: "0 auto", maxWidth: 460 }}>
+                Trabajamos con una cantidad limitada de proyectos para garantizar el nivel de atención y excelencia que define a Suitwolf.
               </p>
 
-              {/* Back to top */}
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                data-cursor-hover
                 style={{
-                  display: "inline-flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: 8,
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: 0,
+                  display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 8,
+                  background: "none", border: "none", cursor: "pointer", padding: 0, marginTop: 40,
                 }}
               >
                 <span style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: 36,
-                  height: 36,
-                  border: "1px solid rgba(212,160,32,.22)",
-                  color: "rgba(212,160,32,.55)",
-                  fontSize: 14,
-                  lineHeight: 1,
-                  transition: "border-color .3s, color .3s",
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  width: 38, height: 38, borderRadius: "50%",
+                  border: "1px solid rgba(212,160,32,.28)",
+                  color: "rgba(212,160,32,.6)", fontSize: 14, lineHeight: 1,
                 }}>
                   ↑
                 </span>
                 <span style={{
-                  fontSize: 9,
-                  letterSpacing: ".32em",
-                  textTransform: "uppercase",
-                  color: "rgba(200,195,185,.3)",
+                  fontFamily: "var(--font-mono)", fontSize: 9,
+                  letterSpacing: ".3em", textTransform: "uppercase", color: "var(--color-text-4)",
                 }}>
                   Volver al inicio
                 </span>
@@ -574,5 +638,21 @@ export function Contact() {
 
       </AnimatePresence>
     </section>
+  );
+}
+
+/* Flecha del CTA — hereda currentColor de .cta-gold */
+function Arrow() {
+  return (
+    <span aria-hidden style={{
+      position: "relative", display: "inline-flex", alignItems: "center",
+      width: 20, height: 1, background: "currentColor", flexShrink: 0,
+    }}>
+      <span style={{
+        position: "absolute", right: -1, top: -3, width: 6, height: 6,
+        borderRight: "1px solid currentColor", borderTop: "1px solid currentColor",
+        transform: "rotate(45deg)",
+      }} />
+    </span>
   );
 }

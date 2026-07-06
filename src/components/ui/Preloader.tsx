@@ -1,108 +1,103 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useMobile } from "@/hooks/useMobile";
+import { motion } from "framer-motion";
 
-const LETTERS = "SUITWOLF".split("");
 const EASE    = [0.16, 1.0, 0.3, 1.0] as const;
-const CURTAIN = [0.77, 0.0, 0.18, 1.0] as const;
+const CURTAIN = [0.76, 0.0, 0.24, 1.0] as const;
 
 export function Preloader() {
   const [phase, setPhase] = useState<"show" | "exit" | "gone">("show");
-  const isMobile = useMobile();
+  const [pct, setPct] = useState(0);
 
   useEffect(() => {
     const touch = window.matchMedia("(pointer: coarse)").matches;
-    const t1 = setTimeout(() => setPhase("exit"), touch ? 2200 : 1200);
-    const t2 = setTimeout(() => setPhase("gone"), touch ? 3400 : 2200);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    const hold = touch ? 1900 : 1500;
+
+    // Contador 0→100 mientras se sostiene el telón
+    const start = performance.now();
+    let raf = 0;
+    const tick = (t: number) => {
+      const p = Math.min((t - start) / hold, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setPct(Math.round(eased * 100));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+
+    const t1 = setTimeout(() => setPhase("exit"), hold + 120);
+    const t2 = setTimeout(() => setPhase("gone"), hold + 1120);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
   if (phase === "gone") return null;
 
   return (
-    <div className="fixed inset-0 overflow-hidden" style={{ zIndex: 99999 }}>
-      {/* Top curtain */}
-      <motion.div
-        className="absolute left-0 right-0"
-        style={{ top: 0, bottom: "50%", background: "#030303" }}
-        animate={phase === "exit" ? { y: "-100%" } : { y: 0 }}
-        transition={{ duration: 1.2, ease: CURTAIN }}
-      />
-      {/* Bottom curtain */}
-      <motion.div
-        className="absolute left-0 right-0"
-        style={{ top: "50%", bottom: 0, background: "#030303" }}
-        animate={phase === "exit" ? { y: "100%" } : { y: 0 }}
-        transition={{ duration: 1.2, ease: CURTAIN }}
-      />
+    <motion.div
+      className="fixed inset-0 overflow-hidden"
+      style={{ zIndex: 99999, background: "#080808" }}
+      animate={phase === "exit" ? { y: "-101%" } : { y: 0 }}
+      transition={{ duration: 1.0, ease: CURTAIN }}
+    >
+      {/* ══════════ FONDO — misma atmósfera que el Hero, pero solo CSS ══════════
+          Nada de imagen aquí: decodificar el PNG grande antes del primer paint
+          trababa la cortina y competía con la carga del Hero. Replicamos la
+          iluminación (base oscura + calor dorado + viñeta) para que, al subir el
+          telón, la foto real del Hero se sienta como el mismo mundo. */}
 
-      {/* Center branding */}
-      <AnimatePresence>
-        {phase === "show" && (
-          <motion.div
-            exit={{ opacity: 0, transition: { duration: 0.3 } }}
-            className="absolute inset-0 flex flex-col items-center justify-center"
-            style={{ zIndex: 1, padding: "0 clamp(1rem, 6vw, 4rem)" }}
+      {/* Calor dorado central — conecta con el acento de la marca */}
+      <div aria-hidden style={{
+        position: "absolute", left: "50%", top: "44%",
+        width: "min(900px, 110vw)", height: "min(600px, 75vh)",
+        transform: "translate(-50%, -50%)",
+        background: "radial-gradient(ellipse at center, rgba(180,130,60,.12) 0%, rgba(130,95,35,.05) 42%, transparent 68%)",
+        pointerEvents: "none",
+      }} />
+
+      {/* Viñeta perimetral — concentra la vista en el centro */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(110% 90% at 50% 44%, transparent 38%, rgba(0,0,0,.74) 100%)",
+      }} />
+
+      {/* Marca central — revelada por máscara, sin rebotes */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ padding: "0 clamp(1.5rem, 6vw, 4rem)", zIndex: 1 }}>
+        <div style={{ overflow: "hidden", paddingBottom: "0.14em" }}>
+          <motion.span
+            initial={{ y: "110%" }}
+            animate={{ y: "0%" }}
+            transition={{ duration: 1.0, delay: 0.15, ease: EASE }}
+            style={{
+              display: "block",
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(2.4rem, 6vw, 5rem)",
+              letterSpacing: "0.28em",
+              textIndent: "0.28em",
+              color: "#F3F0EA",
+              lineHeight: 1,
+            }}
           >
-            {/* Letters */}
-            <div style={{ display: "flex", alignItems: "baseline", justifyContent: "center" }}>
-              {LETTERS.map((letter, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: 22 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.65, delay: 0.15 + i * 0.065, ease: EASE }}
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: isMobile ? 32 : "clamp(52px, 6.5vw, 88px)",
-                    fontWeight: 300,
-                    letterSpacing: isMobile ? ".22em" : ".42em",
-                    color: "#ece8df",
-                    display: "inline-block",
-                    minWidth: letter === " " ? ".4em" : undefined,
-                  }}
-                >
-                  {letter}
-                </motion.span>
-              ))}
-            </div>
+            SUITWOLF
+          </motion.span>
+        </div>
 
-            {/* Gold line sweeps in */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 1.1, delay: 0.9, ease: EASE }}
-              style={{
-                height: 1,
-                width: "100%",
-                maxWidth: isMobile ? 240 : 480,
-                background: "linear-gradient(90deg, transparent, rgba(212,160,32,.7), transparent)",
-                marginTop: 18,
-                transformOrigin: "center",
-              }}
-            />
-
-            {/* Tagline */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.9, delay: 1.6 }}
-              style={{
-                marginTop: 18,
-                fontSize: isMobile ? 8 : 10,
-                letterSpacing: ".38em",
-                textTransform: "uppercase",
-                color: "rgba(212,160,32,.45)",
-                textAlign: "center",
-              }}
-            >
-              Diseño · Estrategia · Tecnología
-            </motion.p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+        {/* Línea que se llena con el progreso */}
+        <div style={{
+          marginTop: "clamp(20px, 3vh, 30px)",
+          width: "min(320px, 62vw)",
+          height: 1,
+          background: "rgba(255,255,255,.1)",
+          position: "relative",
+          overflow: "hidden",
+        }}>
+          <div style={{
+            position: "absolute", left: 0, top: 0, bottom: 0,
+            width: `${pct}%`,
+            background: "linear-gradient(90deg, rgba(185,138,62,.5), #D9B36A)",
+            transition: "width .12s linear",
+          }} />
+        </div>
+      </div>
+    </motion.div>
   );
 }
