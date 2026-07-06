@@ -83,7 +83,11 @@ export function Navbar() {
               letterSpacing: ".26em",
               textIndent: ".26em",
               textTransform: "uppercase",
-              color: "#F3F0EA",
+              background: "linear-gradient(95deg, #B98A3E 0%, #D9B36A 30%, #F1DCA4 50%, #D9B36A 70%, #B98A3E 100%)",
+              backgroundSize: "200% 100%",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
             }}
           >
             {SITE.name}

@@ -3,7 +3,6 @@ import { Instrument_Serif, Inter, JetBrains_Mono } from "next/font/google";
 import { Navbar }         from "@/components/layout/Navbar";
 import { Footer }         from "@/components/layout/Footer";
 import { SmoothScroll }   from "@/components/layout/SmoothScroll";
-import { Preloader }      from "@/components/ui/Preloader";
 import { Grain }          from "@/components/ui/Grain";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { AtmosphericBg }  from "@/components/sections/AtmosphericBg";
@@ -140,7 +139,6 @@ export default function RootLayout({
           }}
         />
         <AtmosphericBg />
-        <Preloader />
         <Grain />
         <ScrollProgress />
         <SmoothScroll>
