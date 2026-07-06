@@ -49,6 +49,10 @@ export function Navbar() {
   // En páginas internas los anchors del home deben volver al home
   const anchorHref = (href: string) => (pathname === "/" ? href : `/${href}`);
 
+  // La evaluación es un funnel enfocado con su propia navegación (Volver /
+  // Volver al inicio). El navbar global se oculta para no colisionar ni distraer.
+  if (pathname === "/evaluacion") return null;
+
   return (
     <>
       <header

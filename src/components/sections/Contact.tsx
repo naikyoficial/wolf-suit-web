@@ -201,6 +201,7 @@ export function Contact() {
     <section
       id="contact"
       style={{
+        marginTop: -72, // cancela el pt-[72px] del layout → funnel a pantalla completa
         minHeight: "100svh", display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center",
         padding: "110px 24px 90px",
