@@ -87,6 +87,57 @@ export const SERVICES: ServiceItem[] = [
   },
 ];
 
+export interface WorkProject {
+  index: string;
+  name: string;
+  category: string;
+  year: string;
+  /** Dominio mostrado en la barra del navegador de la maqueta. */
+  domain: string;
+  description: string;
+  tags: string[];
+  /** Ruta de la captura en /public (ej: "/work/quantro.png"). Vacío → placeholder de marca. */
+  cover: string;
+  /** Enlace al sitio en vivo. Opcional. */
+  url?: string;
+}
+
+export const WORKS: WorkProject[] = [
+  {
+    index: "01",
+    name: "Quantro",
+    category: "Aplicación Web",
+    year: "2025",
+    domain: "quantro.app",
+    description:
+      "Plataforma web a medida con paneles de control y gestión de datos en tiempo real. Diseñamos una interfaz que hace que operaciones complejas se sientan simples, con foco en la claridad y la velocidad de uso.",
+    tags: ["UX/UI", "Dashboard", "Desarrollo a medida"],
+    cover: "",
+  },
+  {
+    index: "02",
+    name: "Inoxidables GB",
+    category: "Sitio Web Corporativo",
+    year: "2025",
+    domain: "inoxidablesgb.com.ar",
+    description:
+      "Presencia digital para una empresa del rubro industrial. Catálogo de productos, una línea visual sólida y una arquitectura que transmite trayectoria y confianza desde el primer segundo.",
+    tags: ["Diseño corporativo", "Catálogo", "SEO"],
+    cover: "",
+  },
+  {
+    index: "03",
+    name: "Entre Verde",
+    category: "Landing Page",
+    year: "2025",
+    domain: "entreverde.com.ar",
+    description:
+      "Landing de alta conversión con una narrativa clara y un único camino hacia la acción. Jerarquía visual cuidada y carga inmediata, diseñada para captar y convertir sin distracciones.",
+    tags: ["Conversión", "Copy estratégico", "Performance"],
+    cover: "",
+  },
+];
+
 export const METHOD_INTRO = {
   aside:
     "Cada proyecto atraviesa las mismas cinco fases, del diagnóstico estratégico al perfeccionamiento final. Es el sistema que garantiza que el resultado esté a la altura, sin dejar nada librado al azar.",

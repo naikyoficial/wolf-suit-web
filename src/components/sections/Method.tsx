@@ -165,7 +165,7 @@ export function Method() {
       >
         <Reveal>
           <p className="section-index" style={{ marginBottom: "clamp(40px, 6vh, 68px)" }}>
-            05 — Método
+            06 — Método
           </p>
         </Reveal>
 
