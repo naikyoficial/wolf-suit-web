@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     template: "%s — Suitwolf",
   },
   description:
-    "Agencia de diseño y desarrollo web para empresas. Sitios web corporativos, e-commerce y landing pages de alta conversión, a medida y sin templates, construidos desde cero.",
+    "Agencia de diseño y desarrollo web para empresas. Sitios web corporativos, e-commerce, landing pages y aplicaciones web a medida, construidos desde cero y sin templates.",
   keywords: [
     "agencia de diseño web",
     "diseño web profesional",
@@ -57,6 +57,9 @@ export const metadata: Metadata = {
     "tienda online a medida",
     "landing page de alta conversión",
     "sitio web corporativo",
+    "desarrollo de aplicaciones web",
+    "aplicaciones web a medida",
+    "software a medida para empresas",
     "agencia web argentina",
     "diseño web argentina",
     "desarrollo web argentina",
@@ -117,13 +120,15 @@ export default function RootLayout({
               name: "Suitwolf",
               url: "https://suitwolf.com",
               description:
-                "Agencia de diseño web profesional para empresas. Sitios web a medida, e-commerce y landing pages de alta conversión. Sin templates.",
+                "Agencia de diseño y desarrollo web para empresas. Sitios web a medida, e-commerce, landing pages de alta conversión y aplicaciones web a medida. Sin templates.",
               priceRange: "$$$$",
               knowsAbout: [
                 "Diseño web profesional",
                 "Desarrollo web a medida",
                 "E-commerce",
                 "Landing pages de alta conversión",
+                "Desarrollo de aplicaciones web",
+                "Software a medida",
                 "SEO técnico",
                 "Branding digital",
               ],
@@ -134,6 +139,7 @@ export default function RootLayout({
                   { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sitio Web Corporativo a Medida" } },
                   { "@type": "Offer", itemOffered: { "@type": "Service", name: "E-commerce y Tienda Online" } },
                   { "@type": "Offer", itemOffered: { "@type": "Service", name: "Landing Page de Alta Conversión" } },
+                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Aplicación Web a Medida" } },
                   { "@type": "Offer", itemOffered: { "@type": "Service", name: "SEO y Posicionamiento Web" } },
                 ],
               },

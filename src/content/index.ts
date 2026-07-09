@@ -85,6 +85,15 @@ export const SERVICES: ServiceItem[] = [
     desc: "El SEO que importa no es el que acumula clics — es el que atrae al usuario con intención real de compra. Auditamos tu arquitectura técnica, identificamos dónde perdés visibilidad frente a tu competencia y construimos una estrategia de contenidos y autoridad que convierte búsquedas en ingresos sostenibles a largo plazo.",
     deliverables: ["Auditoría técnica completa", "Arquitectura de contenidos", "Reportes de evolución mensual"],
   },
+  {
+    index: "06",
+    category: "Desarrollo",
+    title: "Aplicaciones Web",
+    subtitle: "Frontend, backend y UX para empresas que escalan",
+    brief: "Herramientas digitales personalizadas que automatizan y escalan tu negocio.",
+    desc: "Aplicaciones web a medida para empresas que necesitan más que un sitio: portales de cliente, dashboards, sistemas de gestión y herramientas internas. Diseño UX + desarrollo frontend y backend robusto, pensado para crecer.",
+    deliverables: ["Diseño UX/UI a medida", "Desarrollo frontend y backend", "Integración con sistemas existentes"],
+  },
 ];
 
 export interface WorkProject {
