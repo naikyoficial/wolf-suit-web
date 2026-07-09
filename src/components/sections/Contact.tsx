@@ -36,7 +36,6 @@ const QUESTIONS: { id: StepId; num: string; question: string; options: Option[] 
       { label: "Tienda Online Premium", hint: "E-commerce con experiencia de compra de lujo" },
       { label: "Presencia Personal", hint: "Portfolio y personal branding con autoridad" },
       { label: "SEO & Visibilidad Web", hint: "Posicionamiento orgánico en Google" },
-      { label: "Aplicaciones Web", hint: "Herramientas y sistemas digitales a medida" },
     ],
   },
   {
@@ -47,7 +46,6 @@ const QUESTIONS: { id: StepId; num: string; question: string; options: Option[] 
       { label: "Generar más leads y acelerar las ventas" },
       { label: "Vender productos online" },
       { label: "Aparecer primero cuando nos buscan en Google" },
-      { label: "Automatizar y escalar con una herramienta a medida" },
       { label: "Construir una marca personal sólida" },
     ],
   },

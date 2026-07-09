@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     template: "%s — Suitwolf",
   },
   description:
-    "Agencia de diseño y desarrollo web para empresas que entienden que la percepción digital define la ventaja competitiva. Sitios a medida, e-commerce y landing pages — sin templates, construidos desde cero.",
+    "Agencia de diseño y desarrollo web para empresas. Sitios web corporativos, e-commerce y landing pages de alta conversión, a medida y sin templates, construidos desde cero.",
   keywords: [
     "agencia de diseño web",
     "diseño web profesional",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     siteName: "Suitwolf",
     title: "Suitwolf — Diseño y Desarrollo Web Premium para Empresas",
     description:
-      "Transformamos la presencia digital en una ventaja competitiva real. Diseño exclusivo, rendimiento técnico de primer nivel y estrategia desde el día uno — todo construido desde cero.",
+      "Transformamos la presencia digital en una ventaja competitiva real. Diseño exclusivo, rendimiento técnico de primer nivel y estrategia desde el día uno. Todo construido desde cero.",
   },
   twitter: {
     card: "summary_large_image",
