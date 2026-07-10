@@ -130,7 +130,7 @@ export const WORKS: WorkProject[] = [
     year: "2025",
     domain: "inoxidablesgb.com.ar",
     description:
-      "Décadas de trayectoria en el rubro industrial, sin una presencia digital que lo reflejara. Construimos un catálogo estructurado, una identidad visual que comunica solidez y precisión, y una arquitectura pensada para convertir visitas en consultas. El sitio que la empresa siempre mereció tener.",
+      "Años de trayectoria en el rubro industrial, sin presencia digital que lo respaldara. Construimos una identidad visual sólida, un catálogo estructurado y una arquitectura que instaló su autoridad frente a la competencia. El resultado: un aumento significativo en consultas e ingresos, con el nivel que su trayectoria siempre mereció.",
     tags: ["Diseño corporativo", "Catálogo", "SEO"],
     cover: "",
   },
