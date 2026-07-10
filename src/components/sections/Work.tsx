@@ -159,20 +159,6 @@ function ProjectRow({ s, reverse }: { s: WorkProject; reverse: boolean }) {
           className={reverse ? "lg:order-1" : "lg:order-2"}
           style={{ display: "flex", flexDirection: "column", gap: "clamp(14px, 2vh, 22px)" }}
         >
-          <span
-            aria-hidden
-            style={{
-              fontFamily: "var(--font-body)",
-              fontWeight: 700,
-              fontStyle: "italic",
-              fontSize: "clamp(2rem, 3.4vw, 3rem)",
-              lineHeight: 1,
-              color: "rgba(212,160,32,.28)",
-            }}
-          >
-            {s.index}
-          </span>
-
           <p
             style={{
               fontFamily: "var(--font-mono)",
@@ -183,7 +169,7 @@ function ProjectRow({ s, reverse }: { s: WorkProject; reverse: boolean }) {
               margin: 0,
             }}
           >
-            {s.category} · {s.year}
+            {s.category}
           </p>
 
           <h3
@@ -394,7 +380,7 @@ export function Work() {
         {/* Filas de proyectos */}
         <div style={{ display: "flex", flexDirection: "column", gap: "clamp(56px, 10vh, 128px)" }}>
           {WORKS.map((s, i) => (
-            <ProjectRow key={s.index} s={s} reverse={i % 2 === 1} />
+            <ProjectRow key={s.name} s={s} reverse={i % 2 === 1} />
           ))}
         </div>
       </div>
