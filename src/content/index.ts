@@ -85,6 +85,60 @@ export const SERVICES: ServiceItem[] = [
     desc: "El SEO que importa no es el que acumula clics — es el que atrae al usuario con intención real de compra. Auditamos tu arquitectura técnica, identificamos dónde perdés visibilidad frente a tu competencia y construimos una estrategia de contenidos y autoridad que convierte búsquedas en ingresos sostenibles a largo plazo.",
     deliverables: ["Auditoría técnica completa", "Arquitectura de contenidos", "Reportes de evolución mensual"],
   },
+  {
+    index: "06",
+    category: "Desarrollo",
+    title: "Aplicaciones Web",
+    subtitle: "Frontend, backend y UX para empresas que escalan",
+    brief: "Herramientas digitales personalizadas que automatizan y escalan tu negocio.",
+    desc: "Aplicaciones web a medida para empresas que necesitan más que un sitio: portales de cliente, dashboards, sistemas de gestión y herramientas internas. Diseño UX + desarrollo frontend y backend robusto, pensado para crecer.",
+    deliverables: ["Diseño UX/UI a medida", "Desarrollo frontend y backend", "Integración con sistemas existentes"],
+  },
+];
+
+export interface WorkProject {
+  name: string;
+  category: string;
+  /** Dominio mostrado en la barra del navegador de la maqueta. */
+  domain: string;
+  description: string;
+  tags: string[];
+  /** Ruta de la captura en /public (ej: "/work/quantro.png"). Vacío → placeholder de marca. */
+  cover: string;
+  /** Zoom para ocultar bordes del screenshot (ej: 1.08). Default 1. */
+  coverScale?: number;
+  /** Enlace al sitio en vivo. Opcional. */
+  url?: string;
+}
+
+export const WORKS: WorkProject[] = [
+  {
+    name: "Quantro",
+    category: "Aplicación Web",
+    domain: "quantrohq.com",
+    description:
+      "Un cliente con una idea concreta y una expectativa alta: un producto serio, no una demo. Desde la primera reunión, cada decisión fue tomada junto a él —sistema visual, arquitectura, flujo de producto— hasta construir una plataforma completa: generación de presupuestos en PDF, automatizaciones, gestión de clientes y equipo, e integración de pagos internacionales. Hoy venden un producto digital propio, con su marca, no la nuestra.",
+    tags: ["UX/UI", "Dashboard", "Desarrollo a medida"],
+    cover: "/Quantro.png",
+  },
+  {
+    name: "Inoxidables GB",
+    category: "Sitio Web Corporativo",
+    domain: "inoxidablesgb.com.ar",
+    description:
+      "Años de trayectoria en el rubro industrial, sin presencia digital que lo respaldara. Construimos una identidad visual sólida, un catálogo estructurado y una arquitectura que instaló su autoridad frente a la competencia. El resultado: un aumento significativo en consultas e ingresos, con el nivel que su trayectoria siempre mereció.",
+    tags: ["Diseño corporativo", "Catálogo", "SEO"],
+    cover: "/Inoxidables GB.png",
+  },
+  {
+    name: "Entre Verde",
+    category: "Landing Page",
+    domain: "entreverde.com.ar",
+    description:
+      "Un producto claro, un objetivo concreto: que el visitante convierta. Diseñamos la narrativa, la jerarquía visual y el flujo completo para que cada sección lleve al siguiente paso sin distracciones. Carga inmediata, copy estratégico y un camino sin escape hacia la acción.",
+    tags: ["Conversión", "Copy estratégico", "Performance"],
+    cover: "/Entre Verde.png",
+  },
 ];
 
 export const METHOD_INTRO = {

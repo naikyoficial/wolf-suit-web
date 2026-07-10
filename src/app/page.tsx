@@ -4,6 +4,7 @@ import { MarqueeBand } from "@/components/sections/MarqueeBand";
 import { Manifesto }   from "@/components/sections/Manifesto";
 import { Duality }     from "@/components/sections/Duality";
 import { Services }    from "@/components/sections/Services";
+import { Work }        from "@/components/sections/Work";
 import { Method }      from "@/components/sections/Method";
 import { Standards }   from "@/components/sections/Standards";
 import { Faq }         from "@/components/sections/Faq";
@@ -21,6 +22,7 @@ export default function HomePage() {
       <Manifesto />
       <Duality />
       <Services />
+      <Work />
       <Standards />
       <Method />
       <Faq />
