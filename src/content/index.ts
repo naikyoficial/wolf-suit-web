@@ -119,7 +119,7 @@ export const WORKS: WorkProject[] = [
     year: "2025",
     domain: "quantro.app",
     description:
-      "Un cliente con una idea concreta y una expectativa alta: un producto serio, no una demo. Definimos junto a él el sistema visual y la arquitectura, y construimos una plataforma completa: generación de presupuestos en PDF con automatizaciones que la hacen rápida y eficaz, gestión de clientes y equipo, e integración de pagos internacionales. Hoy venden un producto digital completo, con su marca, no la nuestra.",
+      "Un cliente con una idea concreta y una expectativa alta: un producto serio, no una demo. Desde la primera reunión, cada decisión fue tomada junto a él —sistema visual, arquitectura, flujo de producto— hasta construir una plataforma completa: generación de presupuestos en PDF, automatizaciones, gestión de clientes y equipo, e integración de pagos internacionales. Hoy venden un producto digital propio, con su marca, no la nuestra.",
     tags: ["UX/UI", "Dashboard", "Desarrollo a medida"],
     cover: "",
   },
@@ -130,7 +130,7 @@ export const WORKS: WorkProject[] = [
     year: "2025",
     domain: "inoxidablesgb.com.ar",
     description:
-      "Presencia digital para una empresa del rubro industrial. Catálogo de productos, una línea visual sólida y una arquitectura que transmite trayectoria y confianza desde el primer segundo.",
+      "Décadas de trayectoria en el rubro industrial, sin una presencia digital que lo reflejara. Construimos un catálogo estructurado, una identidad visual que comunica solidez y precisión, y una arquitectura pensada para convertir visitas en consultas. El sitio que la empresa siempre mereció tener.",
     tags: ["Diseño corporativo", "Catálogo", "SEO"],
     cover: "",
   },
@@ -141,7 +141,7 @@ export const WORKS: WorkProject[] = [
     year: "2025",
     domain: "entreverde.com.ar",
     description:
-      "Landing de alta conversión con una narrativa clara y un único camino hacia la acción. Jerarquía visual cuidada y carga inmediata, diseñada para captar y convertir sin distracciones.",
+      "Un producto claro, un objetivo concreto: que el visitante convierta. Diseñamos la narrativa, la jerarquía visual y el flujo completo para que cada sección lleve al siguiente paso sin distracciones. Carga inmediata, copy estratégico y un camino sin escape hacia la acción.",
     tags: ["Conversión", "Copy estratégico", "Performance"],
     cover: "",
   },
