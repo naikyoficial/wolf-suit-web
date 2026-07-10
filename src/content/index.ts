@@ -126,7 +126,7 @@ export const WORKS: WorkProject[] = [
     description:
       "Años de trayectoria en el rubro industrial, sin presencia digital que lo respaldara. Construimos una identidad visual sólida, un catálogo estructurado y una arquitectura que instaló su autoridad frente a la competencia. El resultado: un aumento significativo en consultas e ingresos, con el nivel que su trayectoria siempre mereció.",
     tags: ["Diseño corporativo", "Catálogo", "SEO"],
-    cover: "",
+    cover: "/Inoxidables GB.png",
   },
   {
     name: "Entre Verde",
@@ -135,7 +135,7 @@ export const WORKS: WorkProject[] = [
     description:
       "Un producto claro, un objetivo concreto: que el visitante convierta. Diseñamos la narrativa, la jerarquía visual y el flujo completo para que cada sección lleve al siguiente paso sin distracciones. Carga inmediata, copy estratégico y un camino sin escape hacia la acción.",
     tags: ["Conversión", "Copy estratégico", "Performance"],
-    cover: "",
+    cover: "/Entre Verde.png",
   },
 ];
 
