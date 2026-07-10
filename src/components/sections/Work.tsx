@@ -80,19 +80,29 @@ function ProjectFrame({ s }: { s: WorkProject }) {
     >
       {/* Barra del navegador */}
       <div
+        className="work-browser-bar"
         style={{
           display: "flex",
           alignItems: "center",
-          gap: 14,
-          padding: "0 16px",
-          height: 40,
+          gap: 12,
+          padding: "0 clamp(10px, 2vw, 16px)",
+          height: "clamp(32px, 4.4vw, 40px)",
           borderBottom: "1px solid rgba(255,255,255,.07)",
           background: "rgba(255,255,255,.02)",
         }}
       >
-        <div style={{ display: "flex", gap: 7, flexShrink: 0 }}>
+        <div style={{ display: "flex", gap: "clamp(5px, 0.9vw, 7px)", flexShrink: 0 }}>
           {["rgba(224,104,91,.7)", "rgba(233,180,76,.7)", "rgba(79,180,119,.7)"].map((c) => (
-            <span key={c} style={{ width: 9, height: 9, borderRadius: "50%", background: c }} />
+            <span
+              key={c}
+              className="work-browser-dot"
+              style={{
+                width: "clamp(7px, 1vw, 9px)",
+                height: "clamp(7px, 1vw, 9px)",
+                borderRadius: "50%",
+                background: c,
+              }}
+            />
           ))}
         </div>
         <div
@@ -100,22 +110,26 @@ function ProjectFrame({ s }: { s: WorkProject }) {
             flex: 1,
             maxWidth: 320,
             margin: "0 auto",
-            height: 22,
+            height: "clamp(18px, 2.4vw, 22px)",
             borderRadius: 6,
             background: "rgba(255,255,255,.04)",
             border: "1px solid rgba(255,255,255,.06)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: 8,
+            padding: "0 8px",
+            minWidth: 0,
           }}
         >
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: 11,
+              fontSize: "clamp(9.5px, 1.2vw, 11px)",
               letterSpacing: ".02em",
               color: "rgba(200,193,180,.55)",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
             }}
           >
             {s.domain}
@@ -152,7 +166,7 @@ function ProjectRow({ s, reverse }: { s: WorkProject; reverse: boolean }) {
     <Reveal y={32}>
       <div
         className="grid grid-cols-1 lg:grid-cols-2"
-        style={{ gap: "clamp(28px, 4vw, 64px)", alignItems: "center" }}
+        style={{ gap: "clamp(24px, 4vw, 64px)", alignItems: "center" }}
       >
         {/* Visual */}
         <div className={reverse ? "lg:order-2" : "lg:order-1"}>
@@ -162,12 +176,12 @@ function ProjectRow({ s, reverse }: { s: WorkProject; reverse: boolean }) {
         {/* Texto */}
         <div
           className={reverse ? "lg:order-1" : "lg:order-2"}
-          style={{ display: "flex", flexDirection: "column", gap: "clamp(14px, 2vh, 22px)" }}
+          style={{ display: "flex", flexDirection: "column", gap: "clamp(12px, 2vh, 22px)" }}
         >
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: 10.5,
+              fontSize: "clamp(10px, 1.05vw, 11px)",
               letterSpacing: ".24em",
               textTransform: "uppercase",
               color: "var(--color-gold)",
@@ -181,7 +195,7 @@ function ProjectRow({ s, reverse }: { s: WorkProject; reverse: boolean }) {
             style={{
               fontFamily: "var(--font-body)",
               fontWeight: 600,
-              fontSize: "clamp(1.7rem, 3vw, 2.6rem)",
+              fontSize: "clamp(1.75rem, 3.4vw, 2.6rem)",
               lineHeight: 1.08,
               letterSpacing: "-0.03em",
               color: "var(--color-text)",
@@ -193,8 +207,8 @@ function ProjectRow({ s, reverse }: { s: WorkProject; reverse: boolean }) {
 
           <p
             style={{
-              fontSize: "clamp(14px, 1.05vw, 16px)",
-              lineHeight: 1.74,
+              fontSize: "clamp(15px, 1.05vw, 16px)",
+              lineHeight: 1.72,
               color: "var(--color-text-2)",
               margin: 0,
               maxWidth: "34em",
@@ -204,18 +218,19 @@ function ProjectRow({ s, reverse }: { s: WorkProject; reverse: boolean }) {
           </p>
 
           {/* Tags */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 2 }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(7px, 1vw, 10px)", marginTop: 2 }}>
             {s.tags.map((t) => (
               <span
                 key={t}
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: 10.5,
+                  fontSize: "clamp(9.5px, 1vw, 10.5px)",
                   letterSpacing: ".08em",
                   color: "var(--color-text-3)",
-                  padding: "7px 13px",
+                  padding: "clamp(5px, 0.9vw, 7px) clamp(9px, 1.4vw, 13px)",
                   borderRadius: 3,
                   border: "1px solid rgba(255,255,255,.09)",
+                  whiteSpace: "nowrap",
                 }}
               >
                 {t}
@@ -343,18 +358,18 @@ export function Work() {
         }}
       >
         <Reveal>
-          <p className="section-index" style={{ marginBottom: "clamp(40px, 6vh, 68px)" }}>
+          <p className="section-index" style={{ marginBottom: "clamp(32px, 6vh, 68px)" }}>
             04 — Trabajos
           </p>
         </Reveal>
 
-        <div style={{ textAlign: "center", marginBottom: "clamp(48px, 8vh, 96px)" }}>
+        <div style={{ textAlign: "center", marginBottom: "clamp(40px, 8vh, 96px)" }}>
           <Reveal>
             <h2
               style={{
                 fontFamily: "var(--font-body)",
                 fontWeight: 600,
-                fontSize: "clamp(1.8rem, 3.2vw, 2.8rem)",
+                fontSize: "clamp(1.9rem, 3.2vw, 2.8rem)",
                 lineHeight: 1.12,
                 letterSpacing: "-0.03em",
                 color: "var(--color-text)",
@@ -370,8 +385,8 @@ export function Work() {
           <Reveal delay={0.1}>
             <p
               style={{
-                fontSize: "clamp(14px, 1.05vw, 16px)",
-                lineHeight: 1.72,
+                fontSize: "clamp(15px, 1.05vw, 16px)",
+                lineHeight: 1.7,
                 color: "var(--color-text-2)",
                 margin: "0 auto",
                 maxWidth: "40em",
@@ -383,7 +398,7 @@ export function Work() {
         </div>
 
         {/* Filas de proyectos */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(56px, 10vh, 128px)" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(48px, 10vh, 128px)" }}>
           {WORKS.map((s, i) => (
             <ProjectRow key={s.name} s={s} reverse={i % 2 === 1} />
           ))}
