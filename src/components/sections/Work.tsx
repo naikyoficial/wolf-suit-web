@@ -131,7 +131,12 @@ function ProjectFrame({ s }: { s: WorkProject }) {
             alt={`Vista del proyecto ${s.name}`}
             fill
             sizes="(max-width: 1024px) 100vw, 55vw"
-            style={{ objectFit: "cover", objectPosition: "top center" }}
+            style={{
+              objectFit: "cover",
+              objectPosition: "top center",
+              transform: `scale(${s.coverScale ?? 1})`,
+              transformOrigin: "top center",
+            }}
           />
         ) : (
           <PlaceholderScreen s={s} />
