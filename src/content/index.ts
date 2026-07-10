@@ -119,7 +119,7 @@ export const WORKS: WorkProject[] = [
     year: "2025",
     domain: "quantro.app",
     description:
-      "Plataforma web a medida con paneles de control y gestión de datos en tiempo real. Diseñamos una interfaz que hace que operaciones complejas se sientan simples, con foco en la claridad y la velocidad de uso.",
+      "Un cliente con una idea concreta y una expectativa alta: un producto serio, no una demo. Definimos junto a él el sistema visual y la arquitectura, y construimos una plataforma completa: generación de presupuestos en PDF con automatizaciones que la hacen rápida y eficaz, gestión de clientes y equipo, e integración de pagos internacionales. Hoy venden un producto digital completo, con su marca, no la nuestra.",
     tags: ["UX/UI", "Dashboard", "Desarrollo a medida"],
     cover: "",
   },
