@@ -414,7 +414,7 @@ function ServiceModal({ s, onClose }: { s: ServiceItem; onClose: () => void }) {
                 letterSpacing: ".18em", textTransform: "uppercase",
                 color: "var(--color-text-4)",
               }}>
-                Respondemos en 72 horas
+                Respondemos en 24 horas
               </span>
             </div>
           </div>

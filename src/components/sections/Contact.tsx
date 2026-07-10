@@ -330,7 +330,7 @@ export function Contact() {
               marginTop: 28, fontFamily: "var(--font-mono)", fontSize: 9.5,
               letterSpacing: ".2em", textTransform: "uppercase", color: "var(--color-text-4)",
             }}>
-              Respondemos en un plazo máximo de 72 horas
+              Respondemos en un plazo máximo de 24 horas
             </p>
           </motion.div>
         )}
@@ -522,7 +522,7 @@ export function Contact() {
                   fontFamily: "var(--font-mono)", fontSize: 9.5,
                   letterSpacing: ".18em", textTransform: "uppercase", color: "var(--color-text-4)",
                 }}>
-                  Respondemos en 72 horas
+                  Respondemos en 24 horas
                 </span>
               </div>
             </form>

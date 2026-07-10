@@ -5,7 +5,7 @@ export const SITE = {
     "Firma estratégica especializada en construir percepción de valor para empresas ambiciosas.",
   url: "https://suitwolf.com",
   locale: "es-419",
-  email: "hola@suitwolf.com",
+  email: "proyectos@suitwolf.com",
 } as const;
 
 export const NAV_LINKS = [

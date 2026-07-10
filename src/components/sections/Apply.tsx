@@ -264,7 +264,7 @@ export function Apply() {
                 color: "var(--color-text-4)",
                 margin: 0,
               }}>
-                Respondemos en un máximo de 72 horas
+                Respondemos en un máximo de 24 horas
                 <span aria-hidden style={{ margin: "0 12px", color: "rgba(212,160,32,.3)" }}>·</span>
                 <a
                   href={`mailto:${SITE.email}`}
