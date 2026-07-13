@@ -119,7 +119,7 @@ export const WORKS: WorkProject[] = [
     description:
       "Un cliente con una idea concreta y una expectativa alta: un producto serio, no una demo. Desde la primera reunión, cada decisión fue tomada junto a él —sistema visual, arquitectura, flujo de producto— hasta construir una plataforma completa: generación de presupuestos en PDF, automatizaciones, gestión de clientes y equipo, e integración de pagos internacionales. Hoy venden un producto digital propio, con su marca, no la nuestra.",
     tags: ["UX/UI", "Dashboard", "Desarrollo a medida"],
-    cover: "/Quantro.png",
+    cover: "/quantro diseño.png",
   },
   {
     name: "Inoxidables GB",
@@ -137,7 +137,7 @@ export const WORKS: WorkProject[] = [
     description:
       "Un producto claro, un objetivo concreto: que el visitante convierta. Diseñamos la narrativa, la jerarquía visual y el flujo completo para que cada sección lleve al siguiente paso sin distracciones. Carga inmediata, copy estratégico y un camino sin escape hacia la acción.",
     tags: ["Conversión", "Copy estratégico", "Performance"],
-    cover: "/Entre Verde.png",
+    cover: "/entre verde proyecto.png",
   },
 ];
 
