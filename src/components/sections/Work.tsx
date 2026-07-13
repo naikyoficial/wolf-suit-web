@@ -498,8 +498,7 @@ function GalleryCard({
 /* ─── Sección ───────────────────────────────────────────────────── */
 export function Work() {
   // Composición: central (protagonista) + 2 laterales flotantes.
-  const [center, ...sides] = WORKS;
-  const [left, right] = sides;
+  const [center, left, right] = WORKS;
 
   return (
     <section id="trabajos" style={{ position: "relative", overflow: "hidden" }}>
@@ -616,9 +615,11 @@ export function Work() {
             </div>
           )}
 
-          <div className="order-first lg:order-none">
-            <GalleryCard s={center} featured delay={0} />
-          </div>
+          {center && (
+            <div className="order-first lg:order-none">
+              <GalleryCard s={center} featured delay={0} />
+            </div>
+          )}
 
           {right && (
             <div className="lg:mt-24">
