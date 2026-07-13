@@ -11,7 +11,7 @@ const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 const GOLD =
   "linear-gradient(95deg, #B98A3E 0%, #D9B36A 30%, #F1DCA4 50%, #D9B36A 70%, #B98A3E 100%)";
 
-/* ─── Pantalla placeholder de marca (cuando aún no hay captura) ──── */
+/* ─── Placeholder de marca (mientras no haya imagen cargada) ─────── */
 function PlaceholderScreen({ s }: { s: WorkProject }) {
   return (
     <div
@@ -63,170 +63,7 @@ function PlaceholderScreen({ s }: { s: WorkProject }) {
   );
 }
 
-/* ─── Píldora de métrica (glass) — sólo tarjeta central ─────────── */
-function StatPill({ value, label }: { value: string; label: string }) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 2,
-        padding: "clamp(10px, 1.4vw, 14px) clamp(14px, 1.8vw, 20px)",
-        borderRadius: 14,
-        background: "rgba(18,16,13,.55)",
-        border: "1px solid rgba(255,255,255,.12)",
-        backdropFilter: "blur(14px)",
-        WebkitBackdropFilter: "blur(14px)",
-        boxShadow: "0 12px 34px -14px rgba(0,0,0,.7)",
-      }}
-    >
-      <span
-        style={{
-          fontFamily: "var(--font-body)",
-          fontWeight: 600,
-          fontSize: "clamp(1.4rem, 2.4vw, 2rem)",
-          lineHeight: 1,
-          letterSpacing: "-0.02em",
-          color: "var(--color-text)",
-        }}
-      >
-        {value}
-      </span>
-      <span
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "clamp(8.5px, 1vw, 9.5px)",
-          letterSpacing: ".2em",
-          textTransform: "uppercase",
-          color: "rgba(200,193,180,.62)",
-        }}
-      >
-        {label}
-      </span>
-    </div>
-  );
-}
-
-/* ─── Maqueta con marco de navegador ────────────────────────────── */
-function BrowserFrame({ s, featured }: { s: WorkProject; featured: boolean }) {
-  return (
-    <div
-      style={{
-        position: "relative",
-        borderRadius: 12,
-        overflow: "hidden",
-        border: "1px solid rgba(255,255,255,.08)",
-        boxShadow: "0 30px 70px -40px rgba(0,0,0,.9)",
-      }}
-    >
-      {/* Barra del navegador */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 12,
-          padding: "0 clamp(10px, 2vw, 16px)",
-          height: "clamp(30px, 4vw, 38px)",
-          borderBottom: "1px solid rgba(255,255,255,.07)",
-          background: "rgba(255,255,255,.03)",
-        }}
-      >
-        <div style={{ display: "flex", gap: "clamp(5px, 0.9vw, 7px)", flexShrink: 0 }}>
-          {["rgba(224,104,91,.7)", "rgba(233,180,76,.7)", "rgba(79,180,119,.7)"].map((c) => (
-            <span
-              key={c}
-              style={{
-                width: "clamp(7px, 1vw, 9px)",
-                height: "clamp(7px, 1vw, 9px)",
-                borderRadius: "50%",
-                background: c,
-              }}
-            />
-          ))}
-        </div>
-        <div
-          style={{
-            flex: 1,
-            maxWidth: 300,
-            margin: "0 auto",
-            height: "clamp(17px, 2.2vw, 21px)",
-            borderRadius: 6,
-            background: "rgba(255,255,255,.04)",
-            border: "1px solid rgba(255,255,255,.06)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "0 8px",
-            minWidth: 0,
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "clamp(9px, 1.15vw, 10.5px)",
-              letterSpacing: ".02em",
-              color: "rgba(200,193,180,.55)",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
-          >
-            {s.domain}
-          </span>
-        </div>
-      </div>
-
-      {/* Pantalla */}
-      <div
-        style={{
-          position: "relative",
-          aspectRatio: featured ? "16 / 10" : "16 / 11",
-          overflow: "hidden",
-          background: "#0b0a08",
-        }}
-      >
-        {s.cover ? (
-          <Image
-            src={s.cover}
-            alt={`Vista del proyecto ${s.name}`}
-            fill
-            sizes={featured ? "(max-width: 1024px) 100vw, 55vw" : "(max-width: 1024px) 100vw, 30vw"}
-            style={{
-              objectFit: "cover",
-              objectPosition: "top center",
-              transform: `scale(${s.coverScale ?? 1})`,
-              transformOrigin: "top center",
-            }}
-          />
-        ) : (
-          <PlaceholderScreen s={s} />
-        )}
-
-        {/* Píldoras de métricas — sólo tarjeta central si hay datos */}
-        {featured && s.stats && s.stats.length > 0 && (
-          <div
-            style={{
-              position: "absolute",
-              left: "clamp(14px, 2vw, 24px)",
-              bottom: "clamp(14px, 2vw, 24px)",
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "clamp(8px, 1.2vw, 14px)",
-              maxWidth: "70%",
-              zIndex: 2,
-            }}
-          >
-            {s.stats.slice(0, 2).map((st) => (
-              <StatPill key={st.label} value={st.value} label={st.label} />
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/* ─── Botón de toggle (＋ / ×) ──────────────────────────────────── */
+/* ─── Botón de toggle (＋ / −) ──────────────────────────────────── */
 function ToggleButton({ open }: { open: boolean }) {
   return (
     <span
@@ -236,8 +73,8 @@ function ToggleButton({ open }: { open: boolean }) {
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        width: 34,
-        height: 34,
+        width: 32,
+        height: 32,
         borderRadius: "50%",
         border: "1px solid rgba(212,160,32,.4)",
         background: open ? "rgba(212,160,32,.12)" : "transparent",
@@ -245,21 +82,19 @@ function ToggleButton({ open }: { open: boolean }) {
         transition: "background .35s, border-color .35s",
       }}
     >
-      {/* Línea horizontal (siempre) */}
       <span
         style={{
           position: "absolute",
-          width: 13,
+          width: 12,
           height: 1.5,
           borderRadius: 2,
           background: "var(--color-gold)",
         }}
       />
-      {/* Línea vertical (se oculta al abrir → forma × / −) */}
       <span
         style={{
           position: "absolute",
-          width: 13,
+          width: 12,
           height: 1.5,
           borderRadius: 2,
           background: "var(--color-gold)",
@@ -271,7 +106,7 @@ function ToggleButton({ open }: { open: boolean }) {
   );
 }
 
-/* ─── Tarjeta de galería (glass, expandible) ────────────────────── */
+/* ─── Tarjeta de galería — la card ES la imagen ─────────────────── */
 function GalleryCard({
   s,
   featured,
@@ -286,53 +121,93 @@ function GalleryCard({
 
   return (
     <Reveal y={featured ? 44 : 32} delay={delay}>
-      <motion.article
-        whileHover={{ y: -6 }}
-        transition={{ duration: 0.5, ease: EASE }}
+      <div
         style={{
-          position: "relative",
-          borderRadius: 24,
-          padding: "clamp(12px, 1.4vw, 18px)",
-          background: "rgba(255,255,255,.035)",
-          border: "1px solid rgba(255,255,255,.09)",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
-          boxShadow: "0 50px 100px -50px rgba(0,0,0,.9)",
+          maxWidth: featured ? 640 : 320,
+          margin: "0 auto",
+          width: "100%",
         }}
       >
-        {/* Reflejo superior sutil */}
-        <div
-          aria-hidden
+        {/* La card = imagen full-bleed */}
+        <motion.button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-controls={panelId}
+          aria-label={open ? `Ocultar detalles de ${s.name}` : `Ver detalles de ${s.name}`}
+          data-cursor-hover
+          whileHover={{ y: -6 }}
+          transition={{ duration: 0.5, ease: EASE }}
           style={{
-            position: "absolute",
-            inset: 0,
-            borderRadius: 24,
-            pointerEvents: "none",
-            background:
-              "linear-gradient(160deg, rgba(255,255,255,.06) 0%, transparent 32%)",
+            display: "block",
+            width: "100%",
+            padding: 0,
+            border: "1px solid rgba(255,255,255,.1)",
+            cursor: "pointer",
+            position: "relative",
+            borderRadius: "clamp(20px, 2.2vw, 30px)",
+            overflow: "hidden",
+            background: "#0b0a08",
+            boxShadow: featured
+              ? "0 60px 120px -50px rgba(0,0,0,.92)"
+              : "0 40px 90px -50px rgba(0,0,0,.9)",
+            aspectRatio: featured ? "1 / 1.06" : "1 / 1",
           }}
-        />
+        >
+          {s.cover ? (
+            <Image
+              src={s.cover}
+              alt={`${s.name} — ${s.category}`}
+              fill
+              sizes={featured ? "(max-width: 1024px) 92vw, 640px" : "(max-width: 1024px) 92vw, 320px"}
+              style={{
+                objectFit: "cover",
+                objectPosition: "center center",
+                transform: `scale(${s.coverScale ?? 1})`,
+              }}
+            />
+          ) : (
+            <PlaceholderScreen s={s} />
+          )}
 
-        <BrowserFrame s={s} featured={featured} />
+          {/* Reflejo/borde superior sutil */}
+          <span
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: 0,
+              borderRadius: "inherit",
+              pointerEvents: "none",
+              background: "linear-gradient(165deg, rgba(255,255,255,.08) 0%, transparent 26%)",
+            }}
+          />
+        </motion.button>
 
-        {/* Info — siempre visible */}
+        {/* Caption debajo — chip categoría + nombre + toggle */}
         <div
           style={{
             display: "flex",
             alignItems: "flex-start",
             justifyContent: "space-between",
             gap: 16,
-            padding: "clamp(16px, 1.8vw, 22px) clamp(6px, 0.8vw, 10px) clamp(6px, 0.8vw, 10px)",
+            marginTop: "clamp(16px, 1.8vw, 22px)",
+            padding: "0 clamp(2px, 0.4vw, 6px)",
           }}
         >
-          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(7px, 1vh, 11px)", minWidth: 0 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(9px, 1.2vh, 13px)", minWidth: 0 }}>
             <span
               style={{
+                display: "inline-flex",
+                alignItems: "center",
+                alignSelf: "flex-start",
                 fontFamily: "var(--font-mono)",
-                fontSize: "clamp(9.5px, 1.05vw, 11px)",
-                letterSpacing: ".24em",
+                fontSize: "clamp(9px, 1vw, 10px)",
+                letterSpacing: ".22em",
                 textTransform: "uppercase",
-                color: "var(--color-gold)",
+                color: "var(--color-text-3)",
+                padding: "clamp(5px, 0.7vw, 7px) clamp(10px, 1.2vw, 13px)",
+                borderRadius: 999,
+                border: "1px solid rgba(255,255,255,.14)",
               }}
             >
               {s.category}
@@ -341,9 +216,9 @@ function GalleryCard({
               style={{
                 fontFamily: "var(--font-body)",
                 fontWeight: 600,
-                fontSize: featured ? "clamp(1.7rem, 2.8vw, 2.4rem)" : "clamp(1.4rem, 2.2vw, 1.85rem)",
-                lineHeight: 1.08,
-                letterSpacing: "-0.03em",
+                fontSize: featured ? "clamp(1.5rem, 2.6vw, 2.1rem)" : "clamp(1.25rem, 2vw, 1.55rem)",
+                lineHeight: 1.1,
+                letterSpacing: "-0.02em",
                 color: "var(--color-text)",
                 margin: 0,
               }}
@@ -366,7 +241,7 @@ function GalleryCard({
               background: "none",
               border: "none",
               cursor: "pointer",
-              padding: "6px 0 0",
+              padding: "2px 0 0",
               flexShrink: 0,
             }}
           >
@@ -404,9 +279,9 @@ function GalleryCard({
                   display: "flex",
                   flexDirection: "column",
                   gap: "clamp(14px, 1.8vh, 20px)",
-                  padding: "clamp(14px, 1.6vw, 20px) clamp(6px, 0.8vw, 10px) clamp(8px, 1vw, 12px)",
-                  borderTop: "1px solid rgba(255,255,255,.08)",
-                  marginTop: 4,
+                  padding: "clamp(16px, 1.8vw, 22px) clamp(2px, 0.4vw, 6px) clamp(4px, 0.6vw, 8px)",
+                  marginTop: "clamp(12px, 1.4vh, 16px)",
+                  borderTop: "1px solid rgba(255,255,255,.1)",
                 }}
               >
                 <p
@@ -490,14 +365,14 @@ function GalleryCard({
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.article>
+      </div>
     </Reveal>
   );
 }
 
 /* ─── Sección ───────────────────────────────────────────────────── */
 export function Work() {
-  // Composición: central (protagonista) + 2 laterales flotantes.
+  // Composición: central (protagonista, grande) + 2 laterales flotantes.
   const [center, left, right] = WORKS;
 
   return (
@@ -604,13 +479,13 @@ export function Work() {
           </Reveal>
         </div>
 
-        {/* Galería — central grande + 2 laterales flotantes */}
+        {/* Galería — central grande + 2 laterales flotantes (desplazadas hacia abajo) */}
         <div
-          className="work-gallery grid grid-cols-1 lg:grid-cols-[1fr_1.5fr_1fr]"
-          style={{ gap: "clamp(24px, 3vw, 44px)", alignItems: "start" }}
+          className="grid grid-cols-1 lg:grid-cols-[1fr_1.9fr_1fr]"
+          style={{ gap: "clamp(28px, 3vw, 48px)", alignItems: "start" }}
         >
           {left && (
-            <div className="lg:mt-16">
+            <div className="lg:mt-[150px]">
               <GalleryCard s={left} featured={false} delay={0.12} />
             </div>
           )}
@@ -622,7 +497,7 @@ export function Work() {
           )}
 
           {right && (
-            <div className="lg:mt-24">
+            <div className="lg:mt-[150px]">
               <GalleryCard s={right} featured={false} delay={0.18} />
             </div>
           )}
