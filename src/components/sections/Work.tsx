@@ -145,13 +145,14 @@ export function Work() {
   }, [paused, n]);
 
   // Geometría responsive — breakpoint por ancho (robusto para cualquier pantalla)
+  // Cards landscape 16:10 para que las capturas/mockups (todos apaisados) se vean completos.
   const compact = containerW > 0 && containerW < 700;
   const W = containerW || 1000;
-  const centerW = compact ? Math.min(W * 0.82, 400) : Math.min(540, W * 0.45);
-  const offset = compact ? W : centerW * 0.74;
-  const sideScale = compact ? 0.6 : 0.64;
+  const centerW = compact ? Math.min(W * 0.92, 460) : Math.min(680, W * 0.52);
+  const offset = compact ? W : centerW * 0.72;
+  const sideScale = compact ? 0.66 : 0.66;
   const sideOpacity = compact ? 0 : 0.5;
-  const cardH = centerW * 1.06;
+  const cardH = centerW * 0.625; // 16:10
 
   function slotFor(pos: number) {
     if (pos === 0) return { x: 0, scale: 1, opacity: 1, zIndex: 30 };
@@ -312,7 +313,7 @@ export function Work() {
                         style={{
                           position: "relative",
                           width: "100%",
-                          aspectRatio: "1 / 1.06",
+                          aspectRatio: "16 / 10",
                           borderRadius: "clamp(20px, 2.2vw, 30px)",
                           overflow: "hidden",
                           border: "1px solid rgba(255,255,255,.1)",
