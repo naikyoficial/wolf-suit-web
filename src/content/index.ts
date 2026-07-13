@@ -107,6 +107,9 @@ export interface WorkProject {
   cover: string;
   /** Zoom para ocultar bordes del screenshot (ej: 1.08). Default 1. */
   coverScale?: number;
+  /** Métricas destacadas que se muestran como píldoras sobre la tarjeta central.
+   *  Cargar con datos REALES del proyecto. Se muestran hasta 2. Opcional. */
+  stats?: { value: string; label: string }[];
   /** Enlace al sitio en vivo. Opcional. */
   url?: string;
 }

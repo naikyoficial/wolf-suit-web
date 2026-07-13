@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { WORKS, type WorkProject } from "@/content";
 
@@ -62,40 +63,78 @@ function PlaceholderScreen({ s }: { s: WorkProject }) {
   );
 }
 
-/* ─── Maqueta con marco de navegador ────────────────────────────── */
-function ProjectFrame({ s }: { s: WorkProject }) {
+/* ─── Píldora de métrica (glass) — sólo tarjeta central ─────────── */
+function StatPill({ value, label }: { value: string; label: string }) {
   return (
-    <motion.div
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.5, ease: EASE }}
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+        padding: "clamp(10px, 1.4vw, 14px) clamp(14px, 1.8vw, 20px)",
+        borderRadius: 14,
+        background: "rgba(18,16,13,.55)",
+        border: "1px solid rgba(255,255,255,.12)",
+        backdropFilter: "blur(14px)",
+        WebkitBackdropFilter: "blur(14px)",
+        boxShadow: "0 12px 34px -14px rgba(0,0,0,.7)",
+      }}
+    >
+      <span
+        style={{
+          fontFamily: "var(--font-body)",
+          fontWeight: 600,
+          fontSize: "clamp(1.4rem, 2.4vw, 2rem)",
+          lineHeight: 1,
+          letterSpacing: "-0.02em",
+          color: "var(--color-text)",
+        }}
+      >
+        {value}
+      </span>
+      <span
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "clamp(8.5px, 1vw, 9.5px)",
+          letterSpacing: ".2em",
+          textTransform: "uppercase",
+          color: "rgba(200,193,180,.62)",
+        }}
+      >
+        {label}
+      </span>
+    </div>
+  );
+}
+
+/* ─── Maqueta con marco de navegador ────────────────────────────── */
+function BrowserFrame({ s, featured }: { s: WorkProject; featured: boolean }) {
+  return (
+    <div
       style={{
         position: "relative",
         borderRadius: 12,
         overflow: "hidden",
-        border: "1px solid rgba(255,255,255,.1)",
-        boxShadow: "0 40px 90px -42px rgba(0,0,0,.85)",
-        background: "rgba(10,9,8,.6)",
-        backdropFilter: "blur(6px)",
+        border: "1px solid rgba(255,255,255,.08)",
+        boxShadow: "0 30px 70px -40px rgba(0,0,0,.9)",
       }}
     >
       {/* Barra del navegador */}
       <div
-        className="work-browser-bar"
         style={{
           display: "flex",
           alignItems: "center",
           gap: 12,
           padding: "0 clamp(10px, 2vw, 16px)",
-          height: "clamp(32px, 4.4vw, 40px)",
+          height: "clamp(30px, 4vw, 38px)",
           borderBottom: "1px solid rgba(255,255,255,.07)",
-          background: "rgba(255,255,255,.02)",
+          background: "rgba(255,255,255,.03)",
         }}
       >
         <div style={{ display: "flex", gap: "clamp(5px, 0.9vw, 7px)", flexShrink: 0 }}>
           {["rgba(224,104,91,.7)", "rgba(233,180,76,.7)", "rgba(79,180,119,.7)"].map((c) => (
             <span
               key={c}
-              className="work-browser-dot"
               style={{
                 width: "clamp(7px, 1vw, 9px)",
                 height: "clamp(7px, 1vw, 9px)",
@@ -108,9 +147,9 @@ function ProjectFrame({ s }: { s: WorkProject }) {
         <div
           style={{
             flex: 1,
-            maxWidth: 320,
+            maxWidth: 300,
             margin: "0 auto",
-            height: "clamp(18px, 2.4vw, 22px)",
+            height: "clamp(17px, 2.2vw, 21px)",
             borderRadius: 6,
             background: "rgba(255,255,255,.04)",
             border: "1px solid rgba(255,255,255,.06)",
@@ -124,7 +163,7 @@ function ProjectFrame({ s }: { s: WorkProject }) {
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "clamp(9.5px, 1.2vw, 11px)",
+              fontSize: "clamp(9px, 1.15vw, 10.5px)",
               letterSpacing: ".02em",
               color: "rgba(200,193,180,.55)",
               whiteSpace: "nowrap",
@@ -138,13 +177,20 @@ function ProjectFrame({ s }: { s: WorkProject }) {
       </div>
 
       {/* Pantalla */}
-      <div style={{ position: "relative", aspectRatio: "16 / 10", overflow: "hidden" }}>
+      <div
+        style={{
+          position: "relative",
+          aspectRatio: featured ? "16 / 10" : "16 / 11",
+          overflow: "hidden",
+          background: "#0b0a08",
+        }}
+      >
         {s.cover ? (
           <Image
             src={s.cover}
             alt={`Vista del proyecto ${s.name}`}
             fill
-            sizes="(max-width: 1024px) 100vw, 55vw"
+            sizes={featured ? "(max-width: 1024px) 100vw, 55vw" : "(max-width: 1024px) 100vw, 30vw"}
             style={{
               objectFit: "cover",
               objectPosition: "top center",
@@ -155,144 +201,306 @@ function ProjectFrame({ s }: { s: WorkProject }) {
         ) : (
           <PlaceholderScreen s={s} />
         )}
+
+        {/* Píldoras de métricas — sólo tarjeta central si hay datos */}
+        {featured && s.stats && s.stats.length > 0 && (
+          <div
+            style={{
+              position: "absolute",
+              left: "clamp(14px, 2vw, 24px)",
+              bottom: "clamp(14px, 2vw, 24px)",
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "clamp(8px, 1.2vw, 14px)",
+              maxWidth: "70%",
+              zIndex: 2,
+            }}
+          >
+            {s.stats.slice(0, 2).map((st) => (
+              <StatPill key={st.label} value={st.value} label={st.label} />
+            ))}
+          </div>
+        )}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
-/* ─── Fila de proyecto (layout editorial alternado) ─────────────── */
-function ProjectRow({ s, reverse }: { s: WorkProject; reverse: boolean }) {
+/* ─── Botón de toggle (＋ / ×) ──────────────────────────────────── */
+function ToggleButton({ open }: { open: boolean }) {
   return (
-    <Reveal y={32}>
-      <div
-        className="grid grid-cols-1 lg:grid-cols-2"
-        style={{ gap: "clamp(24px, 4vw, 64px)", alignItems: "center" }}
+    <span
+      aria-hidden
+      style={{
+        position: "relative",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: 34,
+        height: 34,
+        borderRadius: "50%",
+        border: "1px solid rgba(212,160,32,.4)",
+        background: open ? "rgba(212,160,32,.12)" : "transparent",
+        flexShrink: 0,
+        transition: "background .35s, border-color .35s",
+      }}
+    >
+      {/* Línea horizontal (siempre) */}
+      <span
+        style={{
+          position: "absolute",
+          width: 13,
+          height: 1.5,
+          borderRadius: 2,
+          background: "var(--color-gold)",
+        }}
+      />
+      {/* Línea vertical (se oculta al abrir → forma × / −) */}
+      <span
+        style={{
+          position: "absolute",
+          width: 13,
+          height: 1.5,
+          borderRadius: 2,
+          background: "var(--color-gold)",
+          transform: open ? "rotate(0deg) scaleX(0)" : "rotate(90deg)",
+          transition: "transform .35s cubic-bezier(.16,1,.3,1)",
+        }}
+      />
+    </span>
+  );
+}
+
+/* ─── Tarjeta de galería (glass, expandible) ────────────────────── */
+function GalleryCard({
+  s,
+  featured,
+  delay,
+}: {
+  s: WorkProject;
+  featured: boolean;
+  delay: number;
+}) {
+  const [open, setOpen] = useState(false);
+  const panelId = `work-panel-${s.name.replace(/\s+/g, "-").toLowerCase()}`;
+
+  return (
+    <Reveal y={featured ? 44 : 32} delay={delay}>
+      <motion.article
+        whileHover={{ y: -6 }}
+        transition={{ duration: 0.5, ease: EASE }}
+        style={{
+          position: "relative",
+          borderRadius: 24,
+          padding: "clamp(12px, 1.4vw, 18px)",
+          background: "rgba(255,255,255,.035)",
+          border: "1px solid rgba(255,255,255,.09)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+          boxShadow: "0 50px 100px -50px rgba(0,0,0,.9)",
+        }}
       >
-        {/* Visual */}
-        <div className={reverse ? "lg:order-2" : "lg:order-1"}>
-          <ProjectFrame s={s} />
-        </div>
-
-        {/* Texto */}
+        {/* Reflejo superior sutil */}
         <div
-          className={reverse ? "lg:order-1" : "lg:order-2"}
-          style={{ display: "flex", flexDirection: "column", gap: "clamp(12px, 2vh, 22px)" }}
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            borderRadius: 24,
+            pointerEvents: "none",
+            background:
+              "linear-gradient(160deg, rgba(255,255,255,.06) 0%, transparent 32%)",
+          }}
+        />
+
+        <BrowserFrame s={s} featured={featured} />
+
+        {/* Info — siempre visible */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            gap: 16,
+            padding: "clamp(16px, 1.8vw, 22px) clamp(6px, 0.8vw, 10px) clamp(6px, 0.8vw, 10px)",
+          }}
         >
-          <p
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "clamp(10px, 1.05vw, 11px)",
-              letterSpacing: ".24em",
-              textTransform: "uppercase",
-              color: "var(--color-gold)",
-              margin: 0,
-            }}
-          >
-            {s.category}
-          </p>
-
-          <h3
-            style={{
-              fontFamily: "var(--font-body)",
-              fontWeight: 600,
-              fontSize: "clamp(1.75rem, 3.4vw, 2.6rem)",
-              lineHeight: 1.08,
-              letterSpacing: "-0.03em",
-              color: "var(--color-text)",
-              margin: 0,
-            }}
-          >
-            {s.name}
-          </h3>
-
-          <p
-            style={{
-              fontSize: "clamp(15px, 1.05vw, 16px)",
-              lineHeight: 1.72,
-              color: "var(--color-text-2)",
-              margin: 0,
-              maxWidth: "34em",
-            }}
-          >
-            {s.description}
-          </p>
-
-          {/* Tags */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(7px, 1vw, 10px)", marginTop: 2 }}>
-            {s.tags.map((t) => (
-              <span
-                key={t}
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "clamp(9.5px, 1vw, 10.5px)",
-                  letterSpacing: ".08em",
-                  color: "var(--color-text-3)",
-                  padding: "clamp(5px, 0.9vw, 7px) clamp(9px, 1.4vw, 13px)",
-                  borderRadius: 3,
-                  border: "1px solid rgba(255,255,255,.09)",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-
-          {s.url && (
-            <a
-              href={s.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-cursor-hover
+          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(7px, 1vh, 11px)", minWidth: 0 }}>
+            <span
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 12,
-                marginTop: 6,
                 fontFamily: "var(--font-mono)",
-                fontSize: 11,
-                letterSpacing: ".18em",
+                fontSize: "clamp(9.5px, 1.05vw, 11px)",
+                letterSpacing: ".24em",
                 textTransform: "uppercase",
                 color: "var(--color-gold)",
-                textDecoration: "none",
-                width: "fit-content",
               }}
             >
-              Ver proyecto
-              <span
-                aria-hidden
+              {s.category}
+            </span>
+            <h3
+              style={{
+                fontFamily: "var(--font-body)",
+                fontWeight: 600,
+                fontSize: featured ? "clamp(1.7rem, 2.8vw, 2.4rem)" : "clamp(1.4rem, 2.2vw, 1.85rem)",
+                lineHeight: 1.08,
+                letterSpacing: "-0.03em",
+                color: "var(--color-text)",
+                margin: 0,
+              }}
+            >
+              {s.name}
+            </h3>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls={panelId}
+            aria-label={open ? `Ocultar detalles de ${s.name}` : `Ver detalles de ${s.name}`}
+            data-cursor-hover
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "6px 0 0",
+              flexShrink: 0,
+            }}
+          >
+            <span
+              className="hidden sm:inline"
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 10,
+                letterSpacing: ".2em",
+                textTransform: "uppercase",
+                color: "var(--color-text-3)",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {open ? "Cerrar" : "Ver detalles"}
+            </span>
+            <ToggleButton open={open} />
+          </button>
+        </div>
+
+        {/* Panel expandible — descripción + tags + link */}
+        <AnimatePresence initial={false}>
+          {open && (
+            <motion.div
+              id={panelId}
+              key="panel"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.42, ease: EASE }}
+              style={{ overflow: "hidden" }}
+            >
+              <div
                 style={{
-                  position: "relative",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  width: 20,
-                  height: 1,
-                  background: "currentColor",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "clamp(14px, 1.8vh, 20px)",
+                  padding: "clamp(14px, 1.6vw, 20px) clamp(6px, 0.8vw, 10px) clamp(8px, 1vw, 12px)",
+                  borderTop: "1px solid rgba(255,255,255,.08)",
+                  marginTop: 4,
                 }}
               >
-                <span
+                <p
                   style={{
-                    position: "absolute",
-                    right: -1,
-                    top: -2.5,
-                    width: 5,
-                    height: 5,
-                    borderRight: "1px solid currentColor",
-                    borderTop: "1px solid currentColor",
-                    transform: "rotate(45deg)",
+                    fontSize: "clamp(14px, 1.02vw, 15.5px)",
+                    lineHeight: 1.72,
+                    color: "var(--color-text-2)",
+                    margin: 0,
                   }}
-                />
-              </span>
-            </a>
+                >
+                  {s.description}
+                </p>
+
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(7px, 1vw, 10px)" }}>
+                  {s.tags.map((t) => (
+                    <span
+                      key={t}
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "clamp(9.5px, 1vw, 10.5px)",
+                        letterSpacing: ".08em",
+                        color: "var(--color-text-3)",
+                        padding: "clamp(5px, 0.9vw, 7px) clamp(9px, 1.4vw, 13px)",
+                        borderRadius: 3,
+                        border: "1px solid rgba(255,255,255,.09)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                {s.url && (
+                  <a
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-cursor-hover
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 12,
+                      fontFamily: "var(--font-mono)",
+                      fontSize: 11,
+                      letterSpacing: ".18em",
+                      textTransform: "uppercase",
+                      color: "var(--color-gold)",
+                      textDecoration: "none",
+                      width: "fit-content",
+                    }}
+                  >
+                    Ver proyecto
+                    <span
+                      aria-hidden
+                      style={{
+                        position: "relative",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        width: 20,
+                        height: 1,
+                        background: "currentColor",
+                      }}
+                    >
+                      <span
+                        style={{
+                          position: "absolute",
+                          right: -1,
+                          top: -2.5,
+                          width: 5,
+                          height: 5,
+                          borderRight: "1px solid currentColor",
+                          borderTop: "1px solid currentColor",
+                          transform: "rotate(45deg)",
+                        }}
+                      />
+                    </span>
+                  </a>
+                )}
+              </div>
+            </motion.div>
           )}
-        </div>
-      </div>
+        </AnimatePresence>
+      </motion.article>
     </Reveal>
   );
 }
 
 /* ─── Sección ───────────────────────────────────────────────────── */
 export function Work() {
+  // Composición: central (protagonista) + 2 laterales flotantes.
+  const [center, ...sides] = WORKS;
+  const [left, right] = sides;
+
   return (
     <section id="trabajos" style={{ position: "relative", overflow: "hidden" }}>
       {/* Imagen de fondo */}
@@ -363,7 +571,7 @@ export function Work() {
           </p>
         </Reveal>
 
-        <div style={{ textAlign: "center", marginBottom: "clamp(40px, 8vh, 96px)" }}>
+        <div style={{ textAlign: "center", marginBottom: "clamp(44px, 8vh, 96px)" }}>
           <Reveal>
             <h2
               style={{
@@ -392,16 +600,31 @@ export function Work() {
                 maxWidth: "40em",
               }}
             >
-              Cada proyecto, pensado a medida y construido desde cero para el objetivo de su cliente.
+              Cada proyecto, pensado a medida y construido desde cero. Tocá cualquier tarjeta para ver el detalle.
             </p>
           </Reveal>
         </div>
 
-        {/* Filas de proyectos */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(48px, 10vh, 128px)" }}>
-          {WORKS.map((s, i) => (
-            <ProjectRow key={s.name} s={s} reverse={i % 2 === 1} />
-          ))}
+        {/* Galería — central grande + 2 laterales flotantes */}
+        <div
+          className="work-gallery grid grid-cols-1 lg:grid-cols-[1fr_1.5fr_1fr]"
+          style={{ gap: "clamp(24px, 3vw, 44px)", alignItems: "start" }}
+        >
+          {left && (
+            <div className="lg:mt-16">
+              <GalleryCard s={left} featured={false} delay={0.12} />
+            </div>
+          )}
+
+          <div className="order-first lg:order-none">
+            <GalleryCard s={center} featured delay={0} />
+          </div>
+
+          {right && (
+            <div className="lg:mt-24">
+              <GalleryCard s={right} featured={false} delay={0.18} />
+            </div>
+          )}
         </div>
       </div>
     </section>
