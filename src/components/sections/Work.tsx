@@ -260,7 +260,7 @@ export function Work() {
                 maxWidth: "40em",
               }}
             >
-              Deslizá por cada proyecto que diseñamos y desarrollamos desde cero.
+              Desliza para ver algunos de los proyectos que construimos desde cero para clientes.
             </p>
           </Reveal>
         </div>
