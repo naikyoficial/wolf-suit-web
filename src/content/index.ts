@@ -3,8 +3,8 @@ import type { CaseStudy, ProcessStep, Transformation } from "@/types";
 export const HERO_CONTENT = {
   eyebrow: "Agencia de diseño & desarrollo web",
   headlineLead: "Diseño web que convierte",
-  headlineRest: "para marcas que",
-  headlineAccent: "lideran",
+  headlineRest: "y eleva tu",
+  headlineAccent: "negocio",
   subheadline:
     "Construimos sitios web que transforman visitantes en clientes. Le ponemos a tu negocio o empresa el traje que merece.",
   cta: "Solicitar evaluación",

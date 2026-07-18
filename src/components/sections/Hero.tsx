@@ -158,10 +158,10 @@ export function Hero() {
               marginBottom: "-0.3vw",
             }}
           >
-            Para marcas que
+            Y eleva tu
           </motion.span>
 
-          {/* Línea 4 — LIDERAN.: 120px / 1486px = 8.08vw (calibrado, prácticamente igual a CONVIERTE) */}
+          {/* Línea 4 — NEGOCIO: 120px / 1486px = 8.08vw (calibrado, prácticamente igual a CONVIERTE) */}
           <motion.span
             initial={{ opacity: 0, y: 36, filter: "blur(12px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -182,7 +182,7 @@ export function Hero() {
               animation: "heroSheen 9s ease-in-out infinite",
             }}
           >
-            Lideran.
+            Negocio
           </motion.span>
         </h1>
 
