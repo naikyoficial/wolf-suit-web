@@ -100,7 +100,7 @@ export function Hero() {
             marginBottom: "clamp(24px, 3.5vh, 40px)",
             lineHeight: 1,
             width: "100%",
-            padding: "0 clamp(0.6rem, 1vw, 1.2rem)",
+            padding: 0,
           }}
         >
           {/* Línea 1 — label pequeño */}
@@ -131,7 +131,7 @@ export function Hero() {
               display: "block",
               fontFamily: "var(--font-display)",
               fontWeight: 400,
-              fontSize: "clamp(3.2rem, 14.5vw, 16rem)",
+              fontSize: "clamp(2.4rem, 25vw, 23rem)",
               letterSpacing: "-0.01em",
               textTransform: "uppercase",
               color: "#F5F2EC",
@@ -170,7 +170,7 @@ export function Hero() {
               display: "block",
               fontFamily: "var(--font-display)",
               fontWeight: 400,
-              fontSize: "clamp(2rem, 9.2vw, 10rem)",
+              fontSize: "clamp(1.2rem, 15vw, 14rem)",
               letterSpacing: "-0.01em",
               textTransform: "uppercase",
               lineHeight: 0.88,
