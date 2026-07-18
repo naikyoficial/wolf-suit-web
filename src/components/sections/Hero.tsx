@@ -114,14 +114,13 @@ export function Hero() {
             transition={{ duration: 1.0, delay: 0.32, ease: EASE }}
             style={{ display: "block" }}
           >
-            Diseño y{" "}
-            <span style={{ whiteSpace: "nowrap" }}>desarrollo web</span>
+            Diseño web que convierte
           </motion.span>
           <motion.span
             initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.0, delay: 0.46, ease: EASE }}
-            style={{ display: "block", whiteSpace: "nowrap" }}
+            style={{ display: "block" }}
           >
             <span style={{ color: "rgba(245,242,236,.9)" }}>{HERO_CONTENT.headlineRest} </span>
             <span style={{
@@ -153,7 +152,7 @@ export function Hero() {
           }}
         >
           Construimos sitios web que transforman visitantes en clientes.<br className="hidden sm:block" />
-          {" "}Desde cero, a medida y ajustándonos a tus necesidades.
+          {" "}Sin templates. Cada proyecto construido desde cero para generar más clientes e ingresos reales.
         </motion.p>
 
         {/* CTAs */}
@@ -167,7 +166,7 @@ export function Hero() {
             <Link
               href="/evaluacion"
               data-cursor-hover
-              className="cta-gold"
+              className="cta-primary"
               onMouseEnter={() => setCtaHov(true)}
               onMouseLeave={() => setCtaHov(false)}
               style={{
@@ -176,7 +175,7 @@ export function Hero() {
                 gap: 16,
                 padding: "clamp(16px, 1.5vw, 20px) clamp(32px, 3.2vw, 46px)",
                 fontFamily: "var(--font-mono)",
-                fontWeight: 500,
+                fontWeight: 600,
                 fontSize: 11.5,
                 letterSpacing: ".14em",
                 textTransform: "uppercase",

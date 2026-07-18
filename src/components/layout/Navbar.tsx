@@ -125,18 +125,18 @@ export function Navbar() {
                       alignItems: "baseline",
                       gap: 7,
                       fontFamily: "var(--font-mono)",
-                      fontSize: 11,
+                      fontSize: 12,
                       letterSpacing: ".16em",
                       textTransform: "uppercase",
-                      color: isHovered ? "rgba(243,240,234,.98)" : "rgba(200,195,185,.5)",
+                      color: isHovered ? "rgba(243,240,234,.98)" : "rgba(210,205,194,.72)",
                       textDecoration: "none",
                       transition: "color .3s",
                       paddingBottom: 4,
                     }}
                   >
                     <span aria-hidden style={{
-                      fontSize: 8.5,
-                      color: isHovered ? "rgba(212,160,32,.9)" : "rgba(212,160,32,.4)",
+                      fontSize: 9.5,
+                      color: isHovered ? "rgba(212,160,32,.9)" : "rgba(212,160,32,.55)",
                       transition: "color .3s",
                     }}>
                       0{i + 1}

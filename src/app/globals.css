@@ -424,6 +424,25 @@ body { scrollbar-width: none; }
   to { --cta-angle: 360deg; }
 }
 
+/* ─── CTA primario — fondo sólido dorado, texto oscuro ─── */
+.cta-primary {
+  position: relative;
+  background: linear-gradient(100deg, #C49840 0%, #E0BC72 32%, #F5E0A8 50%, #E0BC72 68%, #C49840 100%) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: #0A0704 !important;
+  background-clip: unset !important;
+  color: #0A0704 !important;
+  border: none !important;
+  border-radius: 4px;
+  box-shadow: 0 4px 28px rgba(180, 130, 50, .28);
+  transition: box-shadow .35s, opacity .3s !important;
+}
+.cta-primary:hover {
+  opacity: 0.9 !important;
+  box-shadow: 0 10px 40px rgba(180, 130, 50, .48) !important;
+}
+
 /* Reduced motion — accesibilidad obligatoria (OS Ch.6) */
 @media (prefers-reduced-motion: reduce) {
   *,
