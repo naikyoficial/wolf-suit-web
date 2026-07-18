@@ -202,7 +202,7 @@ export function Hero() {
           }}
         >
           Construimos sitios web que transforman visitantes en clientes.<br className="hidden sm:block" />
-          {" "}Sin templates. Cada proyecto construido desde cero para generar más clientes e ingresos reales.
+          {" "}Le ponemos a tu negocio o empresa el traje que merece.
         </motion.p>
 
         {/* CTAs */}
