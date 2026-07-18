@@ -94,46 +94,95 @@ export function Hero() {
           textAlign: "center",
         }}
       >
-        {/* Título — centrado, sans moderna, tight */}
+        {/* Título editorial — jerarquía de 4 líneas */}
         <h1
           style={{
-            fontFamily: "var(--font-body)",
-            fontWeight: 600,
-            fontSize: "clamp(2.2rem, 6vw, 5.4rem)",
-            lineHeight: 1.06,
-            letterSpacing: "-0.03em",
-            color: "#F5F2EC",
             margin: 0,
-            marginBottom: "clamp(22px, 3.4vh, 34px)",
-            maxWidth: "16em",
+            marginBottom: "clamp(28px, 4vh, 44px)",
+            lineHeight: 1,
+            width: "100%",
           }}
         >
+          {/* Línea 1 — label pequeño */}
           <motion.span
-            initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1.0, delay: 0.32, ease: EASE }}
-            style={{ display: "block" }}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.26, ease: EASE }}
+            style={{
+              display: "block",
+              fontFamily: "var(--font-body)",
+              fontWeight: 500,
+              fontSize: "clamp(0.78rem, 2vw, 1.8rem)",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: "rgba(245,242,236,.58)",
+              marginBottom: "clamp(0px, 0.3vh, 4px)",
+            }}
           >
-            Diseño web que convierte
+            Diseño web que
           </motion.span>
+
+          {/* Línea 2 — palabra dominante */}
           <motion.span
-            initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
+            initial={{ opacity: 0, y: 36, filter: "blur(12px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1.0, delay: 0.46, ease: EASE }}
-            style={{ display: "block" }}
+            transition={{ duration: 1.1, delay: 0.36, ease: EASE }}
+            style={{
+              display: "block",
+              fontFamily: "var(--font-display)",
+              fontWeight: 400,
+              fontSize: "clamp(3.4rem, 14vw, 12rem)",
+              letterSpacing: "-0.01em",
+              textTransform: "uppercase",
+              color: "#F5F2EC",
+              lineHeight: 0.88,
+              marginBottom: "clamp(2px, 0.6vh, 8px)",
+            }}
           >
-            <span style={{ color: "rgba(245,242,236,.9)" }}>{HERO_CONTENT.headlineRest} </span>
-            <span style={{
+            Convierte
+          </motion.span>
+
+          {/* Línea 3 — label pequeño */}
+          <motion.span
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.52, ease: EASE }}
+            style={{
+              display: "block",
+              fontFamily: "var(--font-body)",
+              fontWeight: 500,
+              fontSize: "clamp(0.78rem, 2vw, 1.8rem)",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: "rgba(245,242,236,.58)",
+              marginBottom: "clamp(0px, 0.3vh, 4px)",
+            }}
+          >
+            Para marcas que
+          </motion.span>
+
+          {/* Línea 4 — palabra dorada */}
+          <motion.span
+            initial={{ opacity: 0, y: 36, filter: "blur(12px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.1, delay: 0.62, ease: EASE }}
+            style={{
+              display: "block",
+              fontFamily: "var(--font-display)",
+              fontWeight: 400,
+              fontSize: "clamp(2.1rem, 9vw, 7.8rem)",
+              letterSpacing: "-0.01em",
+              textTransform: "uppercase",
+              lineHeight: 0.9,
               background: GOLD_ACCENT,
               backgroundSize: "220% 100%",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
               animation: "heroSheen 9s ease-in-out infinite",
-            }}>
-              {HERO_CONTENT.headlineAccent}
-            </span>
-            <span style={{ color: "#F5F2EC" }}>.</span>
+            }}
+          >
+            Lideran.
           </motion.span>
         </h1>
 
@@ -141,7 +190,7 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.62, ease: EASE }}
+          transition={{ duration: 0.9, delay: 0.84, ease: EASE }}
           style={{
             fontSize: "clamp(15px, 1.15vw, 18px)",
             lineHeight: 1.62,
@@ -159,7 +208,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.78, ease: EASE }}
+          transition={{ duration: 0.9, delay: 1.0, ease: EASE }}
           style={{ display: "flex", alignItems: "center", gap: "clamp(16px, 2.4vw, 28px)", flexWrap: "wrap", justifyContent: "center" }}
         >
           <Magnetic>
