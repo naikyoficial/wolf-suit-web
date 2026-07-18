@@ -103,7 +103,7 @@ export function Hero() {
             padding: 0,
           }}
         >
-          {/* Línea 1 — label: 40.1px / 1486px = 2.70vw, letter-spacing 0.08em (calibrado) */}
+          {/* Línea 1 — label: agrandado ~25% respecto al calibrado original (2.7vw → 3.4vw) a pedido */}
           <motion.span
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -112,7 +112,7 @@ export function Hero() {
               display: "block",
               fontFamily: "var(--font-caslon)",
               fontWeight: 400,
-              fontSize: "clamp(0.95rem, 2.7vw, 2.1rem)",
+              fontSize: "clamp(1.15rem, 3.4vw, 2.65rem)",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
               color: "rgba(248,241,224,.92)",
@@ -151,7 +151,7 @@ export function Hero() {
               display: "block",
               fontFamily: "var(--font-caslon)",
               fontWeight: 400,
-              fontSize: "clamp(0.95rem, 2.7vw, 2.1rem)",
+              fontSize: "clamp(1.15rem, 3.4vw, 2.65rem)",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
               color: "rgba(248,241,224,.92)",
