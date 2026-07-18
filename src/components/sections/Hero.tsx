@@ -86,21 +86,21 @@ export function Hero() {
           position: "relative",
           zIndex: 10,
           width: "100%",
-          maxWidth: 1080,
-          padding: "72px clamp(1.4rem, 5vw, 3rem) 0",
+          paddingTop: 72,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           textAlign: "center",
         }}
       >
-        {/* Título editorial — jerarquía de 4 líneas */}
+        {/* Título editorial — full viewport width, sin restricción horizontal */}
         <h1
           style={{
             margin: 0,
-            marginBottom: "clamp(28px, 4vh, 44px)",
+            marginBottom: "clamp(24px, 3.5vh, 40px)",
             lineHeight: 1,
             width: "100%",
+            padding: "0 clamp(0.6rem, 1vw, 1.2rem)",
           }}
         >
           {/* Línea 1 — label pequeño */}
@@ -112,17 +112,17 @@ export function Hero() {
               display: "block",
               fontFamily: "var(--font-body)",
               fontWeight: 500,
-              fontSize: "clamp(0.78rem, 2vw, 1.8rem)",
-              letterSpacing: "0.22em",
+              fontSize: "clamp(0.72rem, 1.8vw, 1.7rem)",
+              letterSpacing: "0.26em",
               textTransform: "uppercase",
-              color: "rgba(245,242,236,.58)",
-              marginBottom: "clamp(0px, 0.3vh, 4px)",
+              color: "rgba(245,242,236,.55)",
+              marginBottom: "clamp(0px, 0.2vh, 3px)",
             }}
           >
             Diseño web que
           </motion.span>
 
-          {/* Línea 2 — palabra dominante */}
+          {/* Línea 2 — palabra dominante, casi ancho completo */}
           <motion.span
             initial={{ opacity: 0, y: 36, filter: "blur(12px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -131,12 +131,12 @@ export function Hero() {
               display: "block",
               fontFamily: "var(--font-display)",
               fontWeight: 400,
-              fontSize: "clamp(3.4rem, 14vw, 12rem)",
+              fontSize: "clamp(3.2rem, 14.5vw, 16rem)",
               letterSpacing: "-0.01em",
               textTransform: "uppercase",
               color: "#F5F2EC",
-              lineHeight: 0.88,
-              marginBottom: "clamp(2px, 0.6vh, 8px)",
+              lineHeight: 0.86,
+              marginBottom: "clamp(2px, 0.4vh, 6px)",
             }}
           >
             Convierte
@@ -151,11 +151,11 @@ export function Hero() {
               display: "block",
               fontFamily: "var(--font-body)",
               fontWeight: 500,
-              fontSize: "clamp(0.78rem, 2vw, 1.8rem)",
-              letterSpacing: "0.22em",
+              fontSize: "clamp(0.72rem, 1.8vw, 1.7rem)",
+              letterSpacing: "0.26em",
               textTransform: "uppercase",
-              color: "rgba(245,242,236,.58)",
-              marginBottom: "clamp(0px, 0.3vh, 4px)",
+              color: "rgba(245,242,236,.55)",
+              marginBottom: "clamp(0px, 0.2vh, 3px)",
             }}
           >
             Para marcas que
@@ -170,10 +170,10 @@ export function Hero() {
               display: "block",
               fontFamily: "var(--font-display)",
               fontWeight: 400,
-              fontSize: "clamp(2.1rem, 9vw, 7.8rem)",
+              fontSize: "clamp(2rem, 9.2vw, 10rem)",
               letterSpacing: "-0.01em",
               textTransform: "uppercase",
-              lineHeight: 0.9,
+              lineHeight: 0.88,
               background: GOLD_ACCENT,
               backgroundSize: "220% 100%",
               WebkitBackgroundClip: "text",
@@ -186,7 +186,7 @@ export function Hero() {
           </motion.span>
         </h1>
 
-        {/* Bajada */}
+        {/* Bajada — contenida con padding */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -198,6 +198,7 @@ export function Hero() {
             maxWidth: "36em",
             margin: 0,
             marginBottom: "clamp(34px, 5vh, 52px)",
+            padding: "0 clamp(1.4rem, 5vw, 3rem)",
           }}
         >
           Construimos sitios web que transforman visitantes en clientes.<br className="hidden sm:block" />
@@ -209,7 +210,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 1.0, ease: EASE }}
-          style={{ display: "flex", alignItems: "center", gap: "clamp(16px, 2.4vw, 28px)", flexWrap: "wrap", justifyContent: "center" }}
+          style={{ display: "flex", alignItems: "center", gap: "clamp(16px, 2.4vw, 28px)", flexWrap: "wrap", justifyContent: "center", padding: "0 clamp(1.4rem, 5vw, 3rem)" }}
         >
           <Magnetic>
             <Link
