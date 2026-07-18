@@ -9,6 +9,7 @@
   --font-display: var(--ws-instrument);
   --font-body:    var(--ws-inter);
   --font-mono:    var(--ws-jbmono), ui-monospace, monospace;
+  --font-caslon:  var(--ws-libre-caslon);
 }
 
 /* ─── Tokens de color (Tailwind utilities + CSS vars) ─── */

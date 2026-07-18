@@ -93,87 +93,87 @@ export function Hero() {
           textAlign: "center",
         }}
       >
-        {/* Título editorial — full viewport width, sin restricción horizontal */}
+        {/* Título editorial — medido y calibrado píxel a píxel contra el mockup (1486px ref) */}
         <h1
           style={{
             margin: 0,
-            marginBottom: "clamp(24px, 3.5vh, 40px)",
+            marginBottom: "clamp(20px, 3vh, 36px)",
             lineHeight: 1,
             width: "100%",
             padding: 0,
           }}
         >
-          {/* Línea 1 — label pequeño */}
+          {/* Línea 1 — label: 40.1px / 1486px = 2.70vw, letter-spacing 0.08em (calibrado) */}
           <motion.span
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.26, ease: EASE }}
             style={{
               display: "block",
-              fontFamily: "var(--font-body)",
-              fontWeight: 500,
-              fontSize: "clamp(0.72rem, 1.8vw, 1.7rem)",
-              letterSpacing: "0.26em",
+              fontFamily: "var(--font-caslon)",
+              fontWeight: 400,
+              fontSize: "clamp(0.95rem, 2.7vw, 2.1rem)",
+              letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "rgba(245,242,236,.55)",
-              marginBottom: "clamp(0px, 0.2vh, 3px)",
+              color: "rgba(248,241,224,.92)",
+              marginBottom: "-0.3vw",
             }}
           >
             Diseño web que
           </motion.span>
 
-          {/* Línea 2 — palabra dominante, casi ancho completo */}
+          {/* Línea 2 — CONVIERTE: 121.5px / 1486px = 8.18vw (calibrado) */}
           <motion.span
             initial={{ opacity: 0, y: 36, filter: "blur(12px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.1, delay: 0.36, ease: EASE }}
             style={{
               display: "block",
-              fontFamily: "var(--font-display)",
+              fontFamily: "var(--font-caslon)",
               fontWeight: 400,
-              fontSize: "clamp(2.4rem, 25vw, 23rem)",
+              fontSize: "clamp(2.6rem, 8.18vw, 8.7rem)",
               letterSpacing: "-0.01em",
               textTransform: "uppercase",
-              color: "#F5F2EC",
-              lineHeight: 0.86,
-              marginBottom: "clamp(2px, 0.4vh, 6px)",
+              color: "#FAF8F4",
+              lineHeight: 0.94,
+              marginBottom: "0.15vw",
             }}
           >
             Convierte
           </motion.span>
 
-          {/* Línea 3 — label pequeño */}
+          {/* Línea 3 — label: mismo tamaño que línea 1 */}
           <motion.span
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.52, ease: EASE }}
             style={{
               display: "block",
-              fontFamily: "var(--font-body)",
-              fontWeight: 500,
-              fontSize: "clamp(0.72rem, 1.8vw, 1.7rem)",
-              letterSpacing: "0.26em",
+              fontFamily: "var(--font-caslon)",
+              fontWeight: 400,
+              fontSize: "clamp(0.95rem, 2.7vw, 2.1rem)",
+              letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "rgba(245,242,236,.55)",
-              marginBottom: "clamp(0px, 0.2vh, 3px)",
+              color: "rgba(248,241,224,.92)",
+              marginBottom: "-0.3vw",
             }}
           >
             Para marcas que
           </motion.span>
 
-          {/* Línea 4 — palabra dorada */}
+          {/* Línea 4 — LIDERAN.: 120px / 1486px = 8.08vw (calibrado, prácticamente igual a CONVIERTE) */}
           <motion.span
             initial={{ opacity: 0, y: 36, filter: "blur(12px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.1, delay: 0.62, ease: EASE }}
             style={{
               display: "block",
-              fontFamily: "var(--font-display)",
+              fontFamily: "var(--font-caslon)",
               fontWeight: 400,
-              fontSize: "clamp(1.2rem, 15vw, 14rem)",
+              fontSize: "clamp(2.55rem, 8.08vw, 8.6rem)",
               letterSpacing: "-0.01em",
               textTransform: "uppercase",
-              lineHeight: 0.88,
+              lineHeight: 0.94,
               background: GOLD_ACCENT,
               backgroundSize: "220% 100%",
               WebkitBackgroundClip: "text",

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Inter, JetBrains_Mono } from "next/font/google";
+import { Instrument_Serif, Inter, JetBrains_Mono, Libre_Caslon_Display } from "next/font/google";
 import { Navbar }         from "@/components/layout/Navbar";
 import { Footer }         from "@/components/layout/Footer";
 import { SmoothScroll }   from "@/components/layout/SmoothScroll";
@@ -29,6 +29,13 @@ const jetbrains = JetBrains_Mono({
   variable: "--ws-jbmono",
   subsets: ["latin"],
   weight: ["400", "500"],
+  display: "swap",
+});
+
+const libreCaslon = Libre_Caslon_Display({
+  variable: "--ws-libre-caslon",
+  subsets: ["latin"],
+  weight: "400",
   display: "swap",
 });
 
@@ -107,7 +114,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${instrument.variable} ${inter.variable} ${jetbrains.variable} h-full`}
+      className={`${instrument.variable} ${inter.variable} ${jetbrains.variable} ${libreCaslon.variable} h-full`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-surface text-text antialiased">
