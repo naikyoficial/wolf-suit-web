@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
@@ -29,8 +28,6 @@ const STEPS = [
 ];
 
 export function Apply() {
-  const [ctaHov, setCtaHov] = useState(false);
-
   return (
     <section
       id="contact"
@@ -222,16 +219,13 @@ export function Apply() {
                 <Link
                   href="/evaluacion"
                   data-cursor-hover
-                  className="cta-gold"
-                  onMouseEnter={() => setCtaHov(true)}
-                  onMouseLeave={() => setCtaHov(false)}
+                  className="cta-primary"
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: 18,
                     padding: "clamp(16px, 1.6vw, 22px) clamp(44px, 4.5vw, 68px)",
                     fontFamily: "var(--font-mono)",
-                    fontWeight: 500,
+                    fontWeight: 600,
                     fontSize: 11.5,
                     letterSpacing: ".26em",
                     textTransform: "uppercase",
@@ -239,20 +233,6 @@ export function Apply() {
                   }}
                 >
                   Solicitar evaluación
-                  <span aria-hidden style={{
-                    position: "relative", display: "inline-flex", alignItems: "center",
-                    width: ctaHov ? 30 : 20, height: 1,
-                    background: "currentColor", flexShrink: 0,
-                    transition: "width .4s",
-                  }}>
-                    <span style={{
-                      position: "absolute", right: -1, top: -2.5,
-                      width: 5, height: 5,
-                      borderRight: "1px solid currentColor",
-                      borderTop: "1px solid currentColor",
-                      transform: "rotate(45deg)",
-                    }} />
-                  </span>
                 </Link>
               </Magnetic>
 

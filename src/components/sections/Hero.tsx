@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -16,7 +15,6 @@ const GOLD_ACCENT =
 
 export function Hero() {
   const lenis = useLenis();
-  const [ctaHov, setCtaHov] = useState(false);
 
   function scrollToId(id: string) {
     const el = document.querySelector(id);
@@ -217,12 +215,9 @@ export function Hero() {
               href="/evaluacion"
               data-cursor-hover
               className="cta-primary"
-              onMouseEnter={() => setCtaHov(true)}
-              onMouseLeave={() => setCtaHov(false)}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: 16,
                 padding: "clamp(16px, 1.5vw, 20px) clamp(32px, 3.2vw, 46px)",
                 fontFamily: "var(--font-mono)",
                 fontWeight: 600,
@@ -233,20 +228,6 @@ export function Hero() {
               }}
             >
               {HERO_CONTENT.cta}
-              <span aria-hidden style={{
-                position: "relative", display: "inline-flex", alignItems: "center",
-                width: ctaHov ? 28 : 20, height: 1,
-                background: "currentColor", flexShrink: 0,
-                transition: "width .35s",
-              }}>
-                <span style={{
-                  position: "absolute", right: -1, top: -3,
-                  width: 6, height: 6,
-                  borderRight: "1px solid currentColor",
-                  borderTop: "1px solid currentColor",
-                  transform: "rotate(45deg)",
-                }} />
-              </span>
             </Link>
           </Magnetic>
 
