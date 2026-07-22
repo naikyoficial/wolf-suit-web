@@ -96,7 +96,7 @@ export default async function LocationRoute({
           ]}
         />
 
-        <div style={{ marginTop: "clamp(32px, 5vh, 56px)", maxWidth: "18em" }}>
+        <div style={{ marginTop: "clamp(32px, 5vh, 56px)" }}>
           <Reveal>
             <p
               style={{
@@ -116,41 +116,62 @@ export default async function LocationRoute({
               style={{
                 fontFamily: "var(--font-display)",
                 fontWeight: 400,
-                fontSize: "clamp(2.1rem, 5vw, 3.9rem)",
+                fontSize: "clamp(2.4rem, 5vw, 4rem)",
                 lineHeight: 1.08,
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.022em",
                 color: "var(--color-text)",
-                margin: 0,
+                margin: "0 0 clamp(24px, 3vh, 36px)",
+                maxWidth: "18em",
               }}
             >
               {loc.h1}
             </h1>
           </Reveal>
-        </div>
-      </section>
-
-      {/* Intro + ángulo local */}
-      <section
-        style={{
-          maxWidth: "var(--grid-max)",
-          margin: "0 auto",
-          padding: "0 var(--section-px) clamp(32px, 5vh, 56px)",
-        }}
-      >
-        <div style={{ maxWidth: "40em", display: "flex", flexDirection: "column", gap: "clamp(16px, 2.2vh, 22px)" }}>
-          {loc.intro.map((p, i) => (
-            <Reveal key={i} delay={i * 0.05}>
-              <p style={{ fontSize: "clamp(15px, 1.15vw, 18px)", lineHeight: 1.75, color: "var(--color-text-2)", margin: 0 }}>
-                {p}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "clamp(24px, 3vw, 48px)",
+              alignItems: "start",
+            }}
+            className="location-intro-grid"
+          >
+            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(16px, 2.2vh, 22px)" }}>
+              {loc.intro.map((p, i) => (
+                <Reveal key={i} delay={i * 0.05 + 0.1}>
+                  <p style={{ fontSize: "clamp(15px, 1.1vw, 17px)", lineHeight: 1.75, color: "var(--color-text-2)", margin: 0 }}>
+                    {p}
+                  </p>
+                </Reveal>
+              ))}
+            </div>
+            <Reveal delay={0.15}>
+              <p
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 400,
+                  fontStyle: "italic",
+                  fontSize: "clamp(1.3rem, 2.2vw, 1.9rem)",
+                  lineHeight: 1.35,
+                  color: "var(--color-text)",
+                  margin: 0,
+                  paddingLeft: "clamp(16px, 2vw, 26px)",
+                  borderLeft: "2px solid var(--color-gold)",
+                }}
+              >
+                {loc.localAngle}
               </p>
             </Reveal>
-          ))}
-          <Reveal delay={0.12}>
-            <p style={{ fontSize: "clamp(15px, 1.15vw, 18px)", lineHeight: 1.75, color: "var(--color-text-3)", margin: 0 }}>
-              {loc.localAngle}
-            </p>
-          </Reveal>
+          </div>
         </div>
+
+        <style>{`
+          @media (max-width: 700px) {
+            .location-intro-grid {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}</style>
       </section>
 
       {/* Servicios (enlazado interno) */}
