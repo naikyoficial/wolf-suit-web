@@ -88,52 +88,149 @@ export default async function ServicePageRoute({
           ]}
         />
 
-        {/* Hero */}
-        <div style={{ marginTop: "clamp(32px, 5vh, 56px)", maxWidth: "18em" }}>
-          <Reveal>
-            <p
+        {/* Hero — 2 columnas: texto izquierda, imagen derecha */}
+        <div
+          style={{
+            marginTop: "clamp(32px, 5vh, 56px)",
+            display: "grid",
+            gridTemplateColumns: "1fr clamp(260px, 38%, 480px)",
+            gap: "clamp(40px, 6vw, 80px)",
+            alignItems: "center",
+          }}
+          className="service-hero-grid"
+        >
+          {/* Texto */}
+          <div>
+            <Reveal>
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 11,
+                  letterSpacing: ".24em",
+                  textTransform: "uppercase",
+                  color: "var(--color-gold)",
+                  margin: "0 0 clamp(18px, 2.4vh, 26px)",
+                }}
+              >
+                {svc.kicker}
+              </p>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h1
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 400,
+                  fontSize: "clamp(2.2rem, 4.4vw, 3.9rem)",
+                  lineHeight: 1.08,
+                  letterSpacing: "-0.022em",
+                  color: "var(--color-text)",
+                  margin: "0 0 clamp(20px, 2.8vh, 32px)",
+                }}
+              >
+                {svc.h1}
+              </h1>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p
+                style={{
+                  fontSize: "clamp(15px, 1.15vw, 17px)",
+                  lineHeight: 1.72,
+                  color: "var(--color-text-2)",
+                  margin: "0 0 clamp(28px, 4vh, 40px)",
+                  maxWidth: "38em",
+                }}
+              >
+                {svc.intro}
+              </p>
+            </Reveal>
+            <Reveal delay={0.14}>
+              <Link
+                href="/evaluacion"
+                className="cta-primary"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  padding: "clamp(14px, 1.4vw, 18px) clamp(28px, 3vw, 44px)",
+                  fontFamily: "var(--font-mono)",
+                  fontWeight: 600,
+                  fontSize: 11,
+                  letterSpacing: ".14em",
+                  textTransform: "uppercase",
+                  textDecoration: "none",
+                }}
+              >
+                Solicitar evaluación
+              </Link>
+            </Reveal>
+          </div>
+
+          {/* Imagen / placeholder */}
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              aspectRatio: "3 / 4",
+              borderRadius: "clamp(16px, 1.8vw, 24px)",
+              overflow: "hidden",
+              background: "rgba(255,255,255,.03)",
+              border: "1px solid rgba(255,255,255,.07)",
+            }}
+          >
+            <div
+              aria-hidden
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 11,
-                letterSpacing: ".24em",
-                textTransform: "uppercase",
-                color: "var(--color-gold)",
-                margin: "0 0 clamp(18px, 2.4vh, 26px)",
+                position: "absolute",
+                inset: 0,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 20,
+                background:
+                  "radial-gradient(130% 100% at 50% 15%, rgba(185,138,62,.1) 0%, transparent 55%), #0e0c09",
               }}
             >
-              {svc.kicker}
-            </p>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <h1
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 400,
-                fontSize: "clamp(2.1rem, 5vw, 3.9rem)",
-                lineHeight: 1.08,
-                letterSpacing: "-0.02em",
-                color: "var(--color-text)",
-                margin: 0,
-              }}
-            >
-              {svc.h1}
-            </h1>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p
-              style={{
-                fontSize: "clamp(15px, 1.15vw, 18px)",
-                lineHeight: 1.7,
-                color: "var(--color-text-2)",
-                margin: "clamp(22px, 3vh, 32px) 0 0",
-                maxWidth: "34em",
-              }}
-            >
-              {svc.intro}
-            </p>
-          </Reveal>
+              <span
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(2.4rem, 4.5vw, 3.8rem)",
+                  letterSpacing: ".06em",
+                  textTransform: "uppercase",
+                  color: "rgba(185,138,62,.18)",
+                  lineHeight: 1,
+                  textAlign: "center",
+                  padding: "0 20px",
+                }}
+              >
+                Suitwolf
+              </span>
+              <span style={{ width: 36, height: 1, background: "rgba(185,138,62,.18)" }} />
+              <span
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 9,
+                  letterSpacing: ".26em",
+                  textTransform: "uppercase",
+                  color: "rgba(185,138,62,.28)",
+                }}
+              >
+                {svc.kicker}
+              </span>
+            </div>
+          </div>
         </div>
       </section>
+
+      <style>{`
+        @media (max-width: 700px) {
+          .service-hero-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .service-hero-grid > div:last-child {
+            aspect-ratio: 16 / 9 !important;
+          }
+        }
+      `}</style>
 
       {/* Problema */}
       <section
