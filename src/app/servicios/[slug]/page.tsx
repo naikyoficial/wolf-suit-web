@@ -170,34 +170,40 @@ export default async function ServicePageRoute({
             style={{
               position: "relative",
               width: "100%",
-              aspectRatio: "3 / 4",
-              borderRadius: "clamp(16px, 1.8vw, 24px)",
-              overflow: "hidden",
-              background: "rgba(255,255,255,.03)",
-              border: "1px solid rgba(255,255,255,.07)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             {svc.cover ? (
               <Image
                 src={svc.cover}
                 alt={`${svc.navTitle} — Suitwolf`}
-                fill
+                width={960}
+                height={720}
+                unoptimized
                 sizes="(max-width: 700px) 100vw, 480px"
-                style={{ objectFit: "cover" }}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: "clamp(16px, 1.8vw, 24px)",
+                }}
               />
             ) : (
               <div
                 aria-hidden
                 style={{
-                  position: "absolute",
-                  inset: 0,
+                  width: "100%",
+                  aspectRatio: "4 / 3",
+                  borderRadius: "clamp(16px, 1.8vw, 24px)",
+                  overflow: "hidden",
+                  background: "rgba(255,255,255,.03)",
+                  border: "1px solid rgba(255,255,255,.07)",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
                   gap: 20,
-                  background:
-                    "radial-gradient(130% 100% at 50% 15%, rgba(185,138,62,.1) 0%, transparent 55%), #0e0c09",
                 }}
               >
                 <span
