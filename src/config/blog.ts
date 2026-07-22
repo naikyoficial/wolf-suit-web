@@ -106,6 +106,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       "Una plantilla es más rápida y barata al principio. Una web a medida te diferencia y escala. La pregunta no es cuál es mejor, sino cuál conviene a tu caso.",
     primaryKeyword: "diseño web a medida vs plantilla",
+    cover: "/plantilla vs a medida.png",
     body: [
       {
         type: "p",

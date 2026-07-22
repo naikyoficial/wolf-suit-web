@@ -170,6 +170,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     h1: "Landing pages de alta conversión que captan leads y aceleran ventas",
     serviceType: "Diseño de landing page de alta conversión",
     primaryKeyword: "landing page alta conversión",
+    cover: "/Landing Page.png",
     intro:
       "Una landing mal diseñada drena tu presupuesto publicitario sin devolver resultados. Las nuestras están construidas sobre la psicología de la decisión: jerarquía visual que guía, carga ultrarrápida que retiene la atención y un argumento narrativo que lleva directo a la acción —con copy estratégico incluido en el proceso.",
     problem:
@@ -225,6 +226,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     h1: "Aplicaciones web a medida para empresas que escalan",
     serviceType: "Desarrollo de aplicaciones web a medida",
     primaryKeyword: "aplicaciones web a medida",
+    cover: "/Aplicacion Web.png",
     intro:
       "Aplicaciones web a medida para empresas que necesitan más que un sitio: portales de cliente, dashboards, sistemas de gestión y herramientas internas. Diseño UX sumado a un desarrollo frontend y backend robusto, pensado para crecer con tu negocio.",
     problem:
@@ -335,6 +337,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     h1: "Tu presencia digital como activo estratégico",
     serviceType: "Diseño web de marca personal",
     primaryKeyword: "diseño web marca personal",
+    cover: "/Presencia Personal.png",
     intro:
       "Para un ejecutivo, consultor o figura pública, el sitio personal es la presentación que ocurre antes de cualquier reunión. Diseñamos más que un portfolio: construimos la narrativa que te posiciona exactamente donde querés estar en la mente de quien importa —y te hace la opción obvia antes de que abras la boca.",
     problem:
