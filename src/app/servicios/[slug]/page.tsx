@@ -94,8 +94,8 @@ export default async function ServicePageRoute({
           style={{
             marginTop: "clamp(32px, 5vh, 56px)",
             display: "grid",
-            gridTemplateColumns: "1fr clamp(260px, 38%, 480px)",
-            gap: "clamp(40px, 6vw, 80px)",
+            gridTemplateColumns: "1fr clamp(320px, 46%, 600px)",
+            gap: "clamp(32px, 4vw, 60px)",
             alignItems: "center",
           }}
           className="service-hero-grid"
