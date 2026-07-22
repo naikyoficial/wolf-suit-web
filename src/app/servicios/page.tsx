@@ -4,6 +4,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SEO } from "@/config/seo";
 import { SERVICE_PAGES } from "@/config/services";
+import { LOCATION_PAGES } from "@/config/locations";
 
 const URL = `${SEO.url}/servicios`;
 
@@ -159,6 +160,48 @@ export default function ServiciosHub() {
                 </span>
               </Link>
             </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Diseño web por ciudad (enlazado interno a páginas locales) */}
+      <section
+        style={{
+          maxWidth: "var(--grid-max)",
+          margin: "0 auto",
+          padding: "clamp(8px, 2vh, 24px) var(--section-px) clamp(24px, 4vh, 48px)",
+        }}
+      >
+        <Reveal>
+          <h2
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: 12,
+              letterSpacing: ".2em",
+              textTransform: "uppercase",
+              color: "var(--color-text-4)",
+              margin: "0 0 20px",
+            }}
+          >
+            Diseño web por ciudad
+          </h2>
+        </Reveal>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "12px 28px" }}>
+          {LOCATION_PAGES.map((l) => (
+            <Link
+              key={l.slug}
+              href={`/${l.slug}`}
+              data-cursor-hover
+              style={{
+                fontSize: 14.5,
+                color: "var(--color-text-2)",
+                textDecoration: "none",
+                borderBottom: "1px solid rgba(212,160,32,.25)",
+                paddingBottom: 2,
+              }}
+            >
+              Diseño web en {l.city}
+            </Link>
           ))}
         </div>
       </section>

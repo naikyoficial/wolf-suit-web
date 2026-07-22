@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SEO } from "@/config/seo";
 import { SERVICE_PAGES } from "@/config/services";
 import { BLOG_POSTS } from "@/config/blog";
+import { LOCATION_PAGES } from "@/config/locations";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SEO.url;
@@ -28,5 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...servicePages, ...blogPages];
+  const locationPages: MetadataRoute.Sitemap = LOCATION_PAGES.map((l) => ({
+    url: `${base}/${l.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...servicePages, ...blogPages, ...locationPages];
 }
