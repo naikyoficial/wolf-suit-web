@@ -27,6 +27,8 @@ export interface ServicePage {
   /** Tipo de servicio para el schema Service. */
   serviceType: string;
   primaryKeyword: string;
+  /** Optional hero image path (relative to /public). */
+  cover?: string;
   /** Introducción (1-2 párrafos). */
   intro: string;
   /** El problema que resuelve (dolor del cliente). */
@@ -52,6 +54,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     h1: "Diseño web corporativo que posiciona a tu empresa como referente",
     serviceType: "Diseño web corporativo",
     primaryKeyword: "diseño web corporativo",
+    cover: "/sitio web corporativo.png",
     intro:
       "Tu sitio web es el primer filtro que atraviesan tus clientes. Lo que encuentran ahí decide si avanzan o se van. Construimos sitios corporativos a medida —sin plantillas— donde cada decisión de arquitectura, diseño y desarrollo responde a una estrategia: convertir esa primera impresión en leads calificados y autoridad de marca.",
     problem:
@@ -111,6 +114,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     h1: "Tiendas online profesionales diseñadas para vender más",
     serviceType: "Diseño de tienda online / e-commerce",
     primaryKeyword: "tienda online profesional",
+    cover: "/tienda online.png",
     intro:
       "El 70% de los carritos se abandonan antes del pago —casi siempre por fricción en el flujo o falta de confianza visual. Los e-commerce que construimos atacan ese número desde el diseño: catálogos que exhiben, checkouts que no obstruyen y una integración técnica pensada para maximizar el ticket promedio.",
     problem:

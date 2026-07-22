@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Reveal } from "@/components/ui/Reveal";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
@@ -176,47 +177,57 @@ export default async function ServicePageRoute({
               border: "1px solid rgba(255,255,255,.07)",
             }}
           >
-            <div
-              aria-hidden
-              style={{
-                position: "absolute",
-                inset: 0,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 20,
-                background:
-                  "radial-gradient(130% 100% at 50% 15%, rgba(185,138,62,.1) 0%, transparent 55%), #0e0c09",
-              }}
-            >
-              <span
+            {svc.cover ? (
+              <Image
+                src={svc.cover}
+                alt={`${svc.navTitle} — Suitwolf`}
+                fill
+                sizes="(max-width: 700px) 100vw, 480px"
+                style={{ objectFit: "cover" }}
+              />
+            ) : (
+              <div
+                aria-hidden
                 style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(2.4rem, 4.5vw, 3.8rem)",
-                  letterSpacing: ".06em",
-                  textTransform: "uppercase",
-                  color: "rgba(185,138,62,.18)",
-                  lineHeight: 1,
-                  textAlign: "center",
-                  padding: "0 20px",
+                  position: "absolute",
+                  inset: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 20,
+                  background:
+                    "radial-gradient(130% 100% at 50% 15%, rgba(185,138,62,.1) 0%, transparent 55%), #0e0c09",
                 }}
               >
-                Suitwolf
-              </span>
-              <span style={{ width: 36, height: 1, background: "rgba(185,138,62,.18)" }} />
-              <span
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: 9,
-                  letterSpacing: ".26em",
-                  textTransform: "uppercase",
-                  color: "rgba(185,138,62,.28)",
-                }}
-              >
-                {svc.kicker}
-              </span>
-            </div>
+                <span
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "clamp(2.4rem, 4.5vw, 3.8rem)",
+                    letterSpacing: ".06em",
+                    textTransform: "uppercase",
+                    color: "rgba(185,138,62,.18)",
+                    lineHeight: 1,
+                    textAlign: "center",
+                    padding: "0 20px",
+                  }}
+                >
+                  Suitwolf
+                </span>
+                <span style={{ width: 36, height: 1, background: "rgba(185,138,62,.18)" }} />
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 9,
+                    letterSpacing: ".26em",
+                    textTransform: "uppercase",
+                    color: "rgba(185,138,62,.28)",
+                  }}
+                >
+                  {svc.kicker}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </section>
