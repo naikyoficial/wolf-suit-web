@@ -21,6 +21,8 @@ export interface BlogPost {
   readingMinutes: number;
   excerpt: string;
   primaryKeyword: string;
+  /** Optional cover image path (relative to /public). */
+  cover?: string;
   body: Block[];
   /** Enlace interno destacado al final (servicio o evaluación). */
   relatedHref: string;

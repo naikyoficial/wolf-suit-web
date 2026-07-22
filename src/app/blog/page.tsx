@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SEO } from "@/config/seo";
@@ -33,6 +34,7 @@ export default function BlogHub() {
 
   return (
     <main className="relative" style={{ background: "var(--color-surface)" }}>
+      {/* Encabezado */}
       <section
         style={{
           maxWidth: "var(--grid-max)",
@@ -55,7 +57,7 @@ export default function BlogHub() {
                 letterSpacing: ".24em",
                 textTransform: "uppercase",
                 color: "var(--color-gold)",
-                margin: "0 0 clamp(18px, 2.4vh, 26px)",
+                margin: "0 0 clamp(14px, 1.8vh, 20px)",
               }}
             >
               Blog
@@ -66,25 +68,39 @@ export default function BlogHub() {
               style={{
                 fontFamily: "var(--font-display)",
                 fontWeight: 400,
-                fontSize: "clamp(2.1rem, 5vw, 4rem)",
-                lineHeight: 1.08,
-                letterSpacing: "-0.02em",
+                fontSize: "clamp(2.4rem, 5.5vw, 4.4rem)",
+                lineHeight: 1.06,
+                letterSpacing: "-0.025em",
                 color: "var(--color-text)",
-                margin: 0,
-                maxWidth: "16em",
+                margin: "0 0 clamp(14px, 2vh, 20px)",
+                maxWidth: "14em",
               }}
             >
               Ideas sobre diseño web, conversión y estrategia digital
             </h1>
           </Reveal>
+          <Reveal delay={0.1}>
+            <p
+              style={{
+                fontSize: "clamp(14px, 1.05vw, 16px)",
+                lineHeight: 1.7,
+                color: "var(--color-text-3)",
+                margin: 0,
+                maxWidth: "44em",
+              }}
+            >
+              Guías y recursos para empresas que quieren entender cómo funciona la presencia digital de verdad.
+            </p>
+          </Reveal>
         </div>
       </section>
 
+      {/* Listado */}
       <section
         style={{
           maxWidth: "var(--grid-max)",
           margin: "0 auto",
-          padding: "clamp(24px, 4vh, 48px) var(--section-px) clamp(64px, 9vh, 120px)",
+          padding: "0 var(--section-px) clamp(64px, 9vh, 120px)",
         }}
       >
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -94,46 +110,158 @@ export default function BlogHub() {
                 href={`/blog/${post.slug}`}
                 data-cursor-hover
                 style={{
-                  display: "block",
-                  padding: "clamp(28px, 4vh, 44px) 0",
-                  borderTop: "1px solid rgba(255,255,255,.1)",
+                  display: "grid",
+                  gridTemplateColumns: "1fr clamp(200px, 28%, 340px)",
+                  gap: "clamp(28px, 4vw, 56px)",
+                  alignItems: "center",
+                  padding: "clamp(36px, 5vh, 56px) 0",
+                  borderTop: "1px solid rgba(255,255,255,.08)",
                   textDecoration: "none",
                 }}
+                className="blog-card"
               >
-                <p
+                {/* Columna izquierda — texto */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "clamp(10px, 1.4vh, 16px)" }}>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: 10.5,
+                      letterSpacing: ".2em",
+                      textTransform: "uppercase",
+                      color: "var(--color-text-4)",
+                      margin: 0,
+                    }}
+                  >
+                    {fmtDate(post.date)}&ensp;·&ensp;{post.readingMinutes} min
+                  </p>
+
+                  <h2
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontWeight: 400,
+                      fontSize: "clamp(1.6rem, 2.8vw, 2.4rem)",
+                      lineHeight: 1.12,
+                      letterSpacing: "-0.022em",
+                      color: "var(--color-text)",
+                      margin: 0,
+                    }}
+                  >
+                    {post.title}
+                  </h2>
+
+                  <p
+                    style={{
+                      fontSize: "clamp(14px, 1.05vw, 15.5px)",
+                      lineHeight: 1.72,
+                      color: "var(--color-text-3)",
+                      margin: 0,
+                      maxWidth: "46em",
+                    }}
+                  >
+                    {post.excerpt}
+                  </p>
+
+                  <span
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: 11,
+                      letterSpacing: ".14em",
+                      textTransform: "uppercase",
+                      color: "var(--color-gold)",
+                    }}
+                  >
+                    Leer artículo →
+                  </span>
+                </div>
+
+                {/* Columna derecha — imagen */}
+                <div
                   style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 11,
-                    letterSpacing: ".16em",
-                    textTransform: "uppercase",
-                    color: "var(--color-text-4)",
-                    margin: "0 0 14px",
+                    position: "relative",
+                    width: "100%",
+                    aspectRatio: "4 / 3",
+                    borderRadius: "clamp(12px, 1.4vw, 18px)",
+                    overflow: "hidden",
+                    background: "rgba(255,255,255,.03)",
+                    border: "1px solid rgba(255,255,255,.07)",
+                    flexShrink: 0,
                   }}
                 >
-                  {fmtDate(post.date)} · {post.readingMinutes} min
-                </p>
-                <h2
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 400,
-                    fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
-                    lineHeight: 1.15,
-                    letterSpacing: "-0.02em",
-                    color: "var(--color-text)",
-                    margin: "0 0 14px",
-                    maxWidth: "20em",
-                  }}
-                >
-                  {post.title}
-                </h2>
-                <p style={{ fontSize: 15.5, lineHeight: 1.7, color: "var(--color-text-3)", margin: 0, maxWidth: "40em" }}>
-                  {post.excerpt}
-                </p>
+                  {post.cover ? (
+                    <Image
+                      src={post.cover}
+                      alt={post.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 340px"
+                      style={{ objectFit: "cover" }}
+                    />
+                  ) : (
+                    /* Placeholder elegante cuando no hay imagen */
+                    <div
+                      aria-hidden
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: 16,
+                        background:
+                          "radial-gradient(120% 100% at 50% 20%, rgba(185,138,62,.09) 0%, transparent 60%), #0e0c09",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          fontSize: "clamp(2.2rem, 4vw, 3.4rem)",
+                          letterSpacing: ".06em",
+                          textTransform: "uppercase",
+                          color: "rgba(185,138,62,.22)",
+                          lineHeight: 1,
+                          textAlign: "center",
+                          padding: "0 16px",
+                        }}
+                      >
+                        Suitwolf
+                      </span>
+                      <span
+                        style={{
+                          width: 32,
+                          height: 1,
+                          background: "rgba(185,138,62,.2)",
+                        }}
+                      />
+                      <span
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: 9,
+                          letterSpacing: ".22em",
+                          textTransform: "uppercase",
+                          color: "rgba(185,138,62,.3)",
+                        }}
+                      >
+                        Blog
+                      </span>
+                    </div>
+                  )}
+                </div>
               </Link>
             </Reveal>
           ))}
         </div>
       </section>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .blog-card {
+            grid-template-columns: 1fr !important;
+          }
+          .blog-card > div:last-child {
+            aspect-ratio: 16 / 9 !important;
+          }
+        }
+      `}</style>
     </main>
   );
 }
