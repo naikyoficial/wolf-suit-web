@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SITE, NAV_LINKS } from "@/config/site";
+import { SERVICE_PAGES } from "@/config/services";
 import { CraftedBy } from "@/components/ui/CraftedBy";
 
 export function Footer() {
@@ -17,12 +18,12 @@ export function Footer() {
     >
       {/* Fila principal */}
       <div
-        className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr_1fr]"
+        className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr_1fr]"
         style={{
           maxWidth: "var(--grid-max)",
           margin: "0 auto",
           padding: "clamp(52px, 8vh, 90px) var(--section-px) clamp(36px, 5vh, 56px)",
-          gap: "clamp(36px, 4vw, 64px)",
+          gap: "clamp(36px, 4vw, 56px)",
           alignItems: "start",
         }}
       >
@@ -81,6 +82,43 @@ export function Footer() {
                 </a>
               </li>
             ))}
+          </ul>
+        </nav>
+
+        {/* Servicios */}
+        <nav aria-label="Servicios">
+          <p style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: 10,
+            letterSpacing: ".3em",
+            textTransform: "uppercase",
+            color: "var(--color-text-4)",
+            margin: 0,
+            marginBottom: 20,
+          }}>
+            Servicios
+          </p>
+          <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+            {SERVICE_PAGES.map((s) => (
+              <li key={s.slug}>
+                <Link
+                  href={`/servicios/${s.slug}`}
+                  data-cursor-hover
+                  style={{ fontSize: 14, color: "var(--color-text-2)", textDecoration: "none" }}
+                >
+                  {s.navTitle}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link
+                href="/blog"
+                data-cursor-hover
+                style={{ fontSize: 14, color: "var(--color-text-2)", textDecoration: "none" }}
+              >
+                Blog
+              </Link>
+            </li>
           </ul>
         </nav>
 

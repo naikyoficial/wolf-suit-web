@@ -6,6 +6,8 @@ import { SmoothScroll }   from "@/components/layout/SmoothScroll";
 import { Grain }          from "@/components/ui/Grain";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { AtmosphericBg }  from "@/components/sections/AtmosphericBg";
+import { Analytics }      from "@/components/analytics/Analytics";
+import { rootGraph }      from "@/config/seo";
 import "./globals.css";
 
 const instrument = Instrument_Serif({
@@ -52,30 +54,12 @@ export const metadata: Metadata = {
     template: "%s — Suitwolf",
   },
   description:
-    "Agencia de diseño y desarrollo web para empresas. Sitios web corporativos, e-commerce, landing pages y aplicaciones web a medida, construidos desde cero y sin templates.",
-  keywords: [
-    "agencia de diseño web",
-    "diseño web profesional",
-    "diseño web para empresas",
-    "desarrollo web a medida",
-    "agencia digital premium",
-    "diseño web premium",
-    "e-commerce profesional",
-    "tienda online a medida",
-    "landing page de alta conversión",
-    "sitio web corporativo",
-    "desarrollo de aplicaciones web",
-    "aplicaciones web a medida",
-    "software a medida para empresas",
-    "agencia web argentina",
-    "diseño web argentina",
-    "desarrollo web argentina",
-    "diseño web sin templates",
-    "agencia web premium",
-    "presencia digital empresas",
-  ],
+    "Agencia de diseño y desarrollo web premium. Sitios web a medida, sin plantillas, que convierten visitantes en clientes: diseño corporativo, e-commerce, landing pages y aplicaciones web para empresas exigentes.",
   authors: [{ name: "Suitwolf" }],
   creator: "Suitwolf",
+  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION }
+    : undefined,
   openGraph: {
     type: "website",
     locale: "es_419",
@@ -120,39 +104,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-surface text-text antialiased">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              name: "Suitwolf",
-              url: "https://suitwolf.com",
-              description:
-                "Agencia de diseño y desarrollo web para empresas. Sitios web a medida, e-commerce, landing pages de alta conversión y aplicaciones web a medida. Sin templates.",
-              priceRange: "$$$$",
-              knowsAbout: [
-                "Diseño web profesional",
-                "Desarrollo web a medida",
-                "E-commerce",
-                "Landing pages de alta conversión",
-                "Desarrollo de aplicaciones web",
-                "Software a medida",
-                "SEO técnico",
-                "Branding digital",
-              ],
-              hasOfferCatalog: {
-                "@type": "OfferCatalog",
-                name: "Servicios de diseño y desarrollo web",
-                itemListElement: [
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sitio Web Corporativo a Medida" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "E-commerce y Tienda Online" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Landing Page de Alta Conversión" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Aplicación Web a Medida" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "SEO y Posicionamiento Web" } },
-                ],
-              },
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(rootGraph()) }}
         />
+        <Analytics />
         <AtmosphericBg />
         <Grain />
         <ScrollProgress />

@@ -174,7 +174,6 @@ export function Work() {
         src="/background-trabajos.png"
         alt=""
         fill
-        unoptimized
         sizes="100vw"
         style={{ objectFit: "cover", objectPosition: "center center" }}
       />
@@ -328,7 +327,7 @@ export function Work() {
                         {s.cover ? (
                           <Image
                             src={s.cover}
-                            alt={s.category}
+                            alt={`${s.name} — ${s.category} diseñado y desarrollado por Suitwolf`}
                             fill
                             draggable={false}
                             sizes="(max-width: 1024px) 84vw, 540px"

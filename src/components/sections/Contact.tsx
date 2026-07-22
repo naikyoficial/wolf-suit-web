@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMobile } from "@/hooks/useMobile";
+import { trackEvent } from "@/components/analytics/Analytics";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
 const GOLD =
@@ -168,6 +169,9 @@ export function Contact() {
       if (!res.ok) {
         const body = await res.text();
         console.error("[Contact] API error", res.status, body);
+      } else {
+        // Conversión: evento clave de GA4 (marcar como Key Event en GA4 Admin).
+        trackEvent("generate_lead", { form: "evaluacion", currency: "USD" });
       }
     } catch (err) {
       console.error("[Contact] Network error", err);
