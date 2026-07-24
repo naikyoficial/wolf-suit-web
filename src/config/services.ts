@@ -54,7 +54,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     h1: "Diseño web corporativo que posiciona a tu empresa como referente",
     serviceType: "Diseño web corporativo",
     primaryKeyword: "diseño web corporativo",
-    cover: "/sitio web corporativo.png",
+    cover: "/Sitio web corporativo 2.0.png",
     intro:
       "Tu sitio web es el primer filtro que atraviesan tus clientes. Lo que encuentran ahí decide si avanzan o se van. Construimos sitios corporativos a medida —sin plantillas— donde cada decisión de arquitectura, diseño y desarrollo responde a una estrategia: convertir esa primera impresión en leads calificados y autoridad de marca.",
     problem:
@@ -170,7 +170,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     h1: "Landing pages de alta conversión que captan leads y aceleran ventas",
     serviceType: "Diseño de landing page de alta conversión",
     primaryKeyword: "landing page alta conversión",
-    cover: "/Landing Page.png",
+    cover: "/Landing page.png",
     intro:
       "Una landing mal diseñada drena tu presupuesto publicitario sin devolver resultados. Las nuestras están construidas sobre la psicología de la decisión: jerarquía visual que guía, carga ultrarrápida que retiene la atención y un argumento narrativo que lleva directo a la acción —con copy estratégico incluido en el proceso.",
     problem:
@@ -282,6 +282,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     h1: "SEO que atrae clientes con intención de compra",
     serviceType: "SEO y posicionamiento web",
     primaryKeyword: "SEO técnico",
+    cover: "/SEO.png",
     intro:
       "El SEO que importa no es el que acumula clics: es el que atrae al usuario con intención real de compra. Auditamos tu arquitectura técnica, identificamos dónde perdés visibilidad frente a tu competencia y construimos una estrategia de contenidos y autoridad que convierte búsquedas en ingresos sostenibles.",
     problem:
