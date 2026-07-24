@@ -105,7 +105,7 @@ export default function BlogHub() {
       >
         <div style={{ display: "flex", flexDirection: "column" }}>
           {posts.map((post, i) => {
-            const coverSrc = post.cover ?? `/blog-cover/${post.slug}`;
+            const coverSrc = post.cover ?? `/blog-cover/${post.slug}?v=2`;
             return (
             <Reveal key={post.slug} delay={i * 0.05}>
               <Link
