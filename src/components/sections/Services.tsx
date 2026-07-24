@@ -357,50 +357,18 @@ export function Services() {
               })}
             </div>
 
-            {/* ─── Canvas ────────────────────────────────── */}
+            {/* ─── Canvas — sin caja, flota sobre el fondo ─── */}
             <div
               style={{
                 position: "relative",
-                padding: "clamp(36px, 4vw, 68px)",
-                borderRadius: 12,
-                border: "1px solid rgba(217,179,106,.22)",
-                overflow: "hidden",
-                minHeight: "clamp(520px, 62vh, 680px)",
-                boxShadow: "0 40px 90px -40px rgba(0,0,0,.85)",
+                minHeight: "clamp(480px, 58vh, 640px)",
+                paddingLeft: "clamp(24px, 3vw, 56px)",
+                borderLeft: "1px solid rgba(217,179,106,.16)",
+                display: "flex",
+                alignItems: "center",
               }}
+              className="services-canvas"
             >
-              {/* Imagen de fondo del card */}
-              <Image
-                src="/background-servicios.png"
-                alt=""
-                fill
-                sizes="(max-width: 900px) 100vw, 1200px"
-                style={{ objectFit: "cover", objectPosition: "center center", zIndex: 0 }}
-              />
-              {/* Overlay tinte cálido para legibilidad */}
-              <span
-                aria-hidden
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background:
-                    "linear-gradient(160deg, rgba(20,17,12,.72) 0%, rgba(10,8,6,.82) 100%)",
-                  pointerEvents: "none",
-                  zIndex: 1,
-                }}
-              />
-              {/* Glow dorado en la esquina superior derecha */}
-              <span
-                aria-hidden
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "radial-gradient(90% 70% at 92% 8%, rgba(233,200,122,.22) 0%, transparent 65%)",
-                  pointerEvents: "none",
-                  zIndex: 1,
-                }}
-              />
-
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}
@@ -411,9 +379,10 @@ export function Services() {
                   style={{
                     position: "relative",
                     zIndex: 2,
+                    width: "100%",
                     display: "grid",
-                    gridTemplateColumns: "minmax(0, 0.8fr) minmax(0, 1.55fr)",
-                    gap: "clamp(32px, 4vw, 72px)",
+                    gridTemplateColumns: "minmax(0, 0.75fr) minmax(0, 1.6fr)",
+                    gap: "clamp(32px, 4vw, 80px)",
                     alignItems: "center",
                   }}
                   className="services-canvas-inner"
@@ -626,7 +595,14 @@ export function Services() {
         @media (max-width: 900px) {
           .services-grid {
             grid-template-columns: 1fr !important;
-            gap: 32px !important;
+            gap: 40px !important;
+          }
+          .services-canvas {
+            padding-left: 0 !important;
+            border-left: none !important;
+            border-top: 1px solid rgba(217,179,106,.16) !important;
+            padding-top: 40px !important;
+            min-height: auto !important;
           }
           .services-canvas-inner {
             grid-template-columns: 1fr !important;

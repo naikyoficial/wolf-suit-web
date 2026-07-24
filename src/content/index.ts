@@ -52,7 +52,7 @@ export const SERVICES: ServiceItem[] = [
     canvasTitle: { normal: "Sitios que ", accent: "instalan", end: " autoridad." },
     tagline: "La primera impresión que decide si tu cliente avanza o se va — construida desde la estrategia, no desde una plantilla.",
     meta: ["A medida", "SEO técnico", "PageSpeed 90+"],
-    cover: "/sitio web corporativo.png",
+    cover: "/Sitio web corporativo 2.0.png",
     slug: "diseno-web-corporativo",
   },
   {
@@ -66,7 +66,7 @@ export const SERVICES: ServiceItem[] = [
     canvasTitle: { normal: "Landings que ", accent: "convierten", end: " tráfico pago." },
     tagline: "Estructura persuasiva, copy incluido y carga en menos de 2 segundos — cada bloque tiene una función en el recorrido hacia la acción.",
     meta: ["Copy incluido", "Ultrarrápida", "A/B ready"],
-    cover: "/Landing Page.png",
+    cover: "/Landing page.png",
     slug: "landing-pages",
   },
   {
@@ -108,6 +108,7 @@ export const SERVICES: ServiceItem[] = [
     canvasTitle: { normal: "Aparecer ", accent: "primero", end: " cuando importa." },
     tagline: "Auditoría técnica, arquitectura de contenidos y estrategia de autoridad — tráfico con intención real de compra, no clics vacíos.",
     meta: ["Técnico", "Contenido", "Medible"],
+    cover: "/SEO.png",
     slug: "seo-posicionamiento-web",
   },
   {
