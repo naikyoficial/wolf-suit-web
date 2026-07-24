@@ -13,82 +13,6 @@ const AUTOPLAY_MS = 5200;
 const GOLD =
   "linear-gradient(95deg, #B98A3E 0%, #D9B36A 30%, #F1DCA4 50%, #D9B36A 70%, #B98A3E 100%)";
 
-/* ─── Laptop frame ─────────────────────────────────────── */
-function LaptopFrame({ children }: { children: React.ReactNode }) {
-  return (
-    <div style={{ position: "relative", width: "100%", filter: "drop-shadow(0 40px 50px rgba(0,0,0,0.55))" }}>
-      {/* Lid */}
-      <div
-        style={{
-          position: "relative",
-          background: "linear-gradient(180deg, #1c1913 0%, #14110c 100%)",
-          border: "1px solid rgba(217,179,106,.16)",
-          borderBottom: "none",
-          borderRadius: "14px 14px 4px 4px",
-          padding: "14px 14px 0",
-          aspectRatio: "16 / 10",
-          overflow: "hidden",
-        }}
-      >
-        {/* Camera */}
-        <span
-          aria-hidden
-          style={{
-            position: "absolute",
-            top: 6,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: 5,
-            height: 5,
-            borderRadius: "50%",
-            background: "#050403",
-            border: "1px solid rgba(217,179,106,.18)",
-          }}
-        />
-        {/* Screen */}
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            height: "100%",
-            background: "#0a0806",
-            borderRadius: 6,
-            overflow: "hidden",
-            border: "1px solid rgba(217,179,106,.1)",
-          }}
-        >
-          {children}
-        </div>
-      </div>
-      {/* Base */}
-      <div
-        style={{
-          position: "relative",
-          height: 12,
-          background: "linear-gradient(180deg, #1c1913 0%, #0d0b08 100%)",
-          border: "1px solid rgba(217,179,106,.14)",
-          borderTop: "none",
-          borderRadius: "0 0 14px 14px",
-          margin: "0 -2%",
-        }}
-      >
-        <span
-          aria-hidden
-          style={{
-            position: "absolute",
-            top: 0,
-            left: "42%",
-            right: "42%",
-            height: 4,
-            background: "#050403",
-            borderRadius: "0 0 6px 6px",
-          }}
-        />
-      </div>
-    </div>
-  );
-}
-
 /* ─── Placeholder cuando el servicio no tiene cover ─────── */
 function ServicePlaceholder({ category }: { category: string }) {
   return (
@@ -101,7 +25,7 @@ function ServicePlaceholder({ category }: { category: string }) {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        gap: 14,
+        gap: 16,
         background:
           "radial-gradient(120% 90% at 50% 20%, rgba(217,179,106,.18) 0%, transparent 60%), #0e0c09",
       }}
@@ -110,7 +34,7 @@ function ServicePlaceholder({ category }: { category: string }) {
         style={{
           fontFamily: "var(--font-display)",
           fontStyle: "italic",
-          fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
+          fontSize: "clamp(2rem, 3.4vw, 3rem)",
           background: GOLD,
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
@@ -122,12 +46,12 @@ function ServicePlaceholder({ category }: { category: string }) {
       >
         {category}
       </span>
-      <span style={{ width: 40, height: 1, background: "rgba(217,179,106,.35)" }} />
+      <span style={{ width: 48, height: 1, background: "rgba(217,179,106,.35)" }} />
       <span
         style={{
           fontFamily: "var(--font-mono)",
-          fontSize: 10,
-          letterSpacing: ".28em",
+          fontSize: 11,
+          letterSpacing: ".3em",
           color: "rgba(217,179,106,.5)",
           textTransform: "uppercase",
         }}
@@ -277,9 +201,9 @@ export function Services() {
             className="services-grid"
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(0, 0.85fr) minmax(0, 3fr)",
-              gap: "clamp(40px, 5vw, 88px)",
-              alignItems: "start",
+              gridTemplateColumns: "minmax(0, 0.75fr) minmax(0, 3.2fr)",
+              gap: "clamp(32px, 4vw, 72px)",
+              alignItems: "center",
             }}
           >
             {/* ─── Selector vertical ─────────────────────── */}
@@ -361,8 +285,8 @@ export function Services() {
             <div
               style={{
                 position: "relative",
-                minHeight: "clamp(480px, 58vh, 640px)",
-                paddingLeft: "clamp(24px, 3vw, 56px)",
+                minHeight: "clamp(460px, 56vh, 620px)",
+                paddingLeft: "clamp(32px, 4vw, 72px)",
                 borderLeft: "1px solid rgba(217,179,106,.16)",
                 display: "flex",
                 alignItems: "center",
@@ -381,8 +305,8 @@ export function Services() {
                     zIndex: 2,
                     width: "100%",
                     display: "grid",
-                    gridTemplateColumns: "minmax(0, 0.75fr) minmax(0, 1.6fr)",
-                    gap: "clamp(32px, 4vw, 80px)",
+                    gridTemplateColumns: "minmax(0, 0.9fr) minmax(0, 1.6fr)",
+                    gap: "clamp(40px, 5vw, 96px)",
                     alignItems: "center",
                   }}
                   className="services-canvas-inner"
@@ -393,13 +317,13 @@ export function Services() {
                       style={{
                         fontFamily: "var(--font-mono)",
                         fontSize: 12,
-                        letterSpacing: ".28em",
+                        letterSpacing: ".3em",
                         textTransform: "uppercase",
                         color: "var(--color-gold)",
-                        margin: "0 0 30px",
+                        margin: "0 0 36px",
                         display: "flex",
                         alignItems: "center",
-                        gap: 14,
+                        gap: 16,
                       }}
                     >
                       <span>{s.category}</span>
@@ -409,7 +333,7 @@ export function Services() {
                           flex: 1,
                           height: 1,
                           background: "linear-gradient(to right, rgba(217,179,106,.4), transparent)",
-                          maxWidth: 80,
+                          maxWidth: 90,
                         }}
                       />
                     </p>
@@ -418,11 +342,11 @@ export function Services() {
                       style={{
                         fontFamily: "var(--font-display)",
                         fontWeight: 400,
-                        fontSize: "clamp(2rem, 3.4vw, 2.9rem)",
-                        lineHeight: 1.03,
-                        letterSpacing: "-.026em",
+                        fontSize: "clamp(2.2rem, 3.6vw, 3.2rem)",
+                        lineHeight: 1.02,
+                        letterSpacing: "-.028em",
                         color: "var(--color-text)",
-                        margin: "0 0 24px",
+                        margin: "0 0 28px",
                         textWrap: "balance",
                         maxWidth: "14ch",
                       }}
@@ -447,11 +371,11 @@ export function Services() {
 
                     <p
                       style={{
-                        fontSize: "clamp(15px, 1.15vw, 17px)",
-                        lineHeight: 1.65,
+                        fontSize: "clamp(15px, 1.15vw, 17.5px)",
+                        lineHeight: 1.7,
                         color: "var(--color-text-2)",
-                        margin: "0 0 32px",
-                        maxWidth: "34ch",
+                        margin: "0 0 40px",
+                        maxWidth: "36ch",
                       }}
                     >
                       {s.tagline ?? s.brief}
@@ -462,11 +386,11 @@ export function Services() {
                         style={{
                           display: "flex",
                           flexWrap: "wrap",
-                          gap: "10px 22px",
-                          margin: "0 0 34px",
+                          gap: "12px 26px",
+                          margin: "0 0 40px",
                           fontFamily: "var(--font-mono)",
                           fontSize: 11,
-                          letterSpacing: ".18em",
+                          letterSpacing: ".2em",
                           textTransform: "uppercase",
                           color: "var(--color-text-3)",
                         }}
@@ -512,32 +436,59 @@ export function Services() {
                     </Link>
                   </div>
 
-                  {/* Laptop frame with screen image */}
-                  <div style={{ position: "relative" }}>
+                  {/* Imagen (mockup real, sin frame extra) */}
+                  <div style={{ position: "relative", width: "100%" }}>
+                    {/* Halo dorado detrás de la imagen */}
                     <span
                       aria-hidden
                       style={{
                         position: "absolute",
-                        inset: "-10% -5% -20% -5%",
+                        inset: "-12% -8% -18% -8%",
                         background:
-                          "radial-gradient(50% 50% at 50% 60%, rgba(217,179,106,.18), transparent 70%)",
+                          "radial-gradient(55% 55% at 50% 55%, rgba(217,179,106,.24), transparent 70%)",
                         pointerEvents: "none",
+                        zIndex: 0,
                       }}
                     />
-                    <LaptopFrame>
-                      {s.cover ? (
+                    {s.cover ? (
+                      <div
+                        style={{
+                          position: "relative",
+                          zIndex: 1,
+                          width: "100%",
+                          aspectRatio: "16 / 11",
+                          borderRadius: "clamp(10px, 1.2vw, 16px)",
+                          overflow: "hidden",
+                          border: "1px solid rgba(217,179,106,.18)",
+                          boxShadow:
+                            "0 50px 90px -40px rgba(0,0,0,.85), 0 20px 40px -20px rgba(0,0,0,.6)",
+                        }}
+                      >
                         <Image
                           src={s.cover}
                           alt={`${s.title} — mockup`}
                           fill
                           unoptimized
-                          sizes="(max-width: 900px) 90vw, 560px"
-                          style={{ objectFit: "cover" }}
+                          sizes="(max-width: 900px) 90vw, 780px"
+                          style={{ objectFit: "cover", objectPosition: "center center" }}
                         />
-                      ) : (
+                      </div>
+                    ) : (
+                      <div
+                        style={{
+                          position: "relative",
+                          zIndex: 1,
+                          width: "100%",
+                          aspectRatio: "16 / 11",
+                          borderRadius: "clamp(10px, 1.2vw, 16px)",
+                          overflow: "hidden",
+                          border: "1px solid rgba(217,179,106,.18)",
+                          boxShadow: "0 50px 90px -40px rgba(0,0,0,.85)",
+                        }}
+                      >
                         <ServicePlaceholder category={s.category} />
-                      )}
-                    </LaptopFrame>
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               </AnimatePresence>
