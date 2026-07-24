@@ -169,6 +169,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       "La pregunta correcta no es cuánto cuesta una web, sino qué estás comprando. Estos son los rangos reales del mercado y cómo leer una propuesta sin caer en la trampa del precio.",
     primaryKeyword: "cuánto cuesta una página web para una empresa",
+    cover: "/blog-cover/cuanto-cuesta-una-pagina-web-para-empresa",
     body: [
       {
         type: "p",

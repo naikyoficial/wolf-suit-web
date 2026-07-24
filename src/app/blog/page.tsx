@@ -192,6 +192,7 @@ export default function BlogHub() {
                       src={post.cover}
                       alt={post.title}
                       fill
+                      unoptimized
                       sizes="(max-width: 768px) 100vw, 340px"
                       style={{ objectFit: "cover" }}
                     />
