@@ -23,7 +23,7 @@ export function Duality() {
   return (
     <section
       ref={ref}
-      id="dualidad"
+      id="filosofia"
       style={{
         position: "relative",
         overflow: "hidden",
@@ -73,11 +73,11 @@ export function Duality() {
       }}>
       <Reveal>
         <p className="section-index" style={{ marginBottom: "clamp(48px, 8vh, 96px)" }}>
-          02 — Dualidad
+          01 — Filosofía
         </p>
       </Reveal>
 
-      <h2 className="sr-only">La dualidad: parecer y ser</h2>
+      <h2 className="sr-only">Filosofía: parecer y ser</h2>
 
       {/* Línea A — apagada */}
       <motion.p

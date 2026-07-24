@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Hero }        from "@/components/sections/Hero";
 import { MarqueeBand } from "@/components/sections/MarqueeBand";
-import { Manifesto }   from "@/components/sections/Manifesto";
 import { Duality }     from "@/components/sections/Duality";
 import { Services }    from "@/components/sections/Services";
 import { Work }        from "@/components/sections/Work";
@@ -19,7 +18,6 @@ export default function HomePage() {
     <main className="relative">
       <Hero />
       <MarqueeBand />
-      <Manifesto />
       <Duality />
       <Services />
       <Work />

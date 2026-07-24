@@ -9,7 +9,7 @@ export const SITE = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Filosofía", href: "#manifiesto" },
+  { label: "Filosofía", href: "#filosofia" },
   { label: "Servicios", href: "#servicios" },
   { label: "Trabajos",  href: "#trabajos" },
   { label: "Método",    href: "#metodo" },

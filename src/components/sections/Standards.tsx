@@ -184,7 +184,7 @@ export function Standards() {
           }}
         >
           <Reveal>
-            <p className="section-index">05 — Estándares</p>
+            <p className="section-index">04 — Estándares</p>
           </Reveal>
           <Reveal delay={0.08}>
             <h2

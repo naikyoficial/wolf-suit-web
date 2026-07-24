@@ -226,7 +226,7 @@ export function Work() {
       >
         <Reveal>
           <p className="section-index" style={{ marginBottom: "clamp(32px, 6vh, 68px)" }}>
-            04 — Trabajos
+            03 — Trabajos
           </p>
         </Reveal>
 

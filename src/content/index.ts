@@ -12,15 +12,6 @@ export const HERO_CONTENT = {
   tags: ["Diseño & desarrollo web", "E-commerce", "SEO técnico"],
 } as const;
 
-export const MANIFESTO_CONTENT = {
-  statement:
-    "Esa fracción de segundo en la que alguien entra a tu sitio y decide si confía o no. Ese es el momento que nos obsesiona.",
-  punchline: "No construimos únicamente páginas web.",
-  punchline2: "Construimos la primera impresión definitiva.",
-  aside:
-    "Diseñamos cada detalle para que el mercado perciba exactamente lo que tu empresa vale, antes de que alguien lea una sola palabra de tu propuesta.",
-} as const;
-
 export const DUALITY_CONTENT = {
   lineA: "Una empresa pequeña puede parecer líder de su sector.",
   lineB: "Una gran empresa puede parecer amateur.",

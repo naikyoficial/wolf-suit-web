@@ -484,7 +484,7 @@ export function Services() {
       }}>
         <Reveal>
           <p className="section-index" style={{ marginBottom: "clamp(40px, 6vh, 68px)" }}>
-            03 — Servicios
+            02 — Servicios
           </p>
         </Reveal>
 
