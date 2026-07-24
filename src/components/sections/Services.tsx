@@ -168,19 +168,19 @@ export function Services() {
         alt=""
         fill
         sizes="100vw"
-        style={{ objectFit: "cover", objectPosition: "center center" }}
+        style={{ objectFit: "cover", objectPosition: "center center", zIndex: 0 }}
       />
-      {/* Overlay oscuro para legibilidad */}
+      {/* Overlay oscuro suave — deja respirar la imagen */}
       <div
         aria-hidden
         style={{
           position: "absolute",
           inset: 0,
-          background: "rgba(0,0,0,0.62)",
+          background: "rgba(0,0,0,0.48)",
           zIndex: 1,
         }}
       />
-      {/* Viñeta perimetral */}
+      {/* Viñeta perimetral suave */}
       <div
         aria-hidden
         style={{
@@ -188,10 +188,10 @@ export function Services() {
           inset: 0,
           zIndex: 1,
           pointerEvents: "none",
-          background: "radial-gradient(110% 90% at 50% 50%, transparent 40%, rgba(0,0,0,.72) 100%)",
+          background: "radial-gradient(120% 100% at 50% 50%, transparent 50%, rgba(0,0,0,.6) 100%)",
         }}
       />
-      {/* Fade superior hacia el bloque anterior */}
+      {/* Fade solo en el borde superior — hacia el bloque anterior */}
       <div
         aria-hidden
         style={{
@@ -201,11 +201,11 @@ export function Services() {
           top: 0,
           zIndex: 1,
           pointerEvents: "none",
-          height: "55%",
-          background: "linear-gradient(to bottom, rgba(6,5,4,1) 0%, rgba(6,5,4,.7) 42%, transparent 100%)",
+          height: "30%",
+          background: "linear-gradient(to bottom, rgba(6,5,4,1) 0%, rgba(6,5,4,.45) 55%, transparent 100%)",
         }}
       />
-      {/* Fade inferior hacia el bloque siguiente */}
+      {/* Fade solo en el borde inferior — hacia el bloque siguiente */}
       <div
         aria-hidden
         style={{
@@ -215,8 +215,8 @@ export function Services() {
           bottom: 0,
           zIndex: 1,
           pointerEvents: "none",
-          height: "55%",
-          background: "linear-gradient(to bottom, transparent 0%, rgba(6,5,4,.78) 50%, rgba(6,5,4,1) 100%)",
+          height: "30%",
+          background: "linear-gradient(to bottom, transparent 0%, rgba(6,5,4,.55) 55%, rgba(6,5,4,1) 100%)",
         }}
       />
       {/* Ambient gold glow */}
@@ -225,7 +225,7 @@ export function Services() {
         style={{
           position: "absolute",
           inset: 0,
-          background: "radial-gradient(55% 45% at 72% 45%, rgba(233,200,122,.12) 0%, transparent 70%)",
+          background: "radial-gradient(55% 45% at 72% 45%, rgba(233,200,122,.14) 0%, transparent 70%)",
           pointerEvents: "none",
           zIndex: 1,
         }}
@@ -363,20 +363,41 @@ export function Services() {
                 position: "relative",
                 padding: "clamp(36px, 4vw, 68px)",
                 borderRadius: 12,
-                background: "linear-gradient(160deg, rgba(20,17,12,.88) 0%, rgba(10,8,6,.88) 100%)",
-                border: "1px solid rgba(245,239,223,.12)",
+                border: "1px solid rgba(217,179,106,.22)",
                 overflow: "hidden",
-                backdropFilter: "blur(6px)",
                 minHeight: "clamp(520px, 62vh, 680px)",
+                boxShadow: "0 40px 90px -40px rgba(0,0,0,.85)",
               }}
             >
+              {/* Imagen de fondo del card */}
+              <Image
+                src="/background-servicios.png"
+                alt=""
+                fill
+                sizes="(max-width: 900px) 100vw, 1200px"
+                style={{ objectFit: "cover", objectPosition: "center center", zIndex: 0 }}
+              />
+              {/* Overlay tinte cálido para legibilidad */}
               <span
                 aria-hidden
                 style={{
                   position: "absolute",
                   inset: 0,
-                  background: "radial-gradient(90% 70% at 92% 8%, rgba(233,200,122,.18) 0%, transparent 65%)",
+                  background:
+                    "linear-gradient(160deg, rgba(20,17,12,.72) 0%, rgba(10,8,6,.82) 100%)",
                   pointerEvents: "none",
+                  zIndex: 1,
+                }}
+              />
+              {/* Glow dorado en la esquina superior derecha */}
+              <span
+                aria-hidden
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "radial-gradient(90% 70% at 92% 8%, rgba(233,200,122,.22) 0%, transparent 65%)",
+                  pointerEvents: "none",
+                  zIndex: 1,
                 }}
               />
 
@@ -389,6 +410,7 @@ export function Services() {
                   transition={{ duration: 0.35, ease: EASE }}
                   style={{
                     position: "relative",
+                    zIndex: 2,
                     display: "grid",
                     gridTemplateColumns: "minmax(0, 0.8fr) minmax(0, 1.55fr)",
                     gap: "clamp(32px, 4vw, 72px)",
