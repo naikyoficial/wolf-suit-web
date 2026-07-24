@@ -104,7 +104,9 @@ export default function BlogHub() {
         }}
       >
         <div style={{ display: "flex", flexDirection: "column" }}>
-          {posts.map((post, i) => (
+          {posts.map((post, i) => {
+            const coverSrc = post.cover ?? `/blog-cover/${post.slug}`;
+            return (
             <Reveal key={post.slug} delay={i * 0.05}>
               <Link
                 href={`/blog/${post.slug}`}
@@ -174,7 +176,7 @@ export default function BlogHub() {
                   </span>
                 </div>
 
-                {/* Columna derecha — imagen */}
+                {/* Columna derecha — imagen (real o SVG dinámico) */}
                 <div
                   style={{
                     position: "relative",
@@ -182,74 +184,24 @@ export default function BlogHub() {
                     aspectRatio: "4 / 3",
                     borderRadius: "clamp(12px, 1.4vw, 18px)",
                     overflow: "hidden",
-                    background: "rgba(255,255,255,.03)",
+                    background: "#0e0c09",
                     border: "1px solid rgba(255,255,255,.07)",
                     flexShrink: 0,
                   }}
                 >
-                  {post.cover ? (
-                    <Image
-                      src={post.cover}
-                      alt={post.title}
-                      fill
-                      unoptimized
-                      sizes="(max-width: 768px) 100vw, 340px"
-                      style={{ objectFit: "cover" }}
-                    />
-                  ) : (
-                    /* Placeholder elegante cuando no hay imagen */
-                    <div
-                      aria-hidden
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: 16,
-                        background:
-                          "radial-gradient(120% 100% at 50% 20%, rgba(185,138,62,.09) 0%, transparent 60%), #0e0c09",
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontFamily: "var(--font-display)",
-                          fontSize: "clamp(2.2rem, 4vw, 3.4rem)",
-                          letterSpacing: ".06em",
-                          textTransform: "uppercase",
-                          color: "rgba(185,138,62,.22)",
-                          lineHeight: 1,
-                          textAlign: "center",
-                          padding: "0 16px",
-                        }}
-                      >
-                        Suitwolf
-                      </span>
-                      <span
-                        style={{
-                          width: 32,
-                          height: 1,
-                          background: "rgba(185,138,62,.2)",
-                        }}
-                      />
-                      <span
-                        style={{
-                          fontFamily: "var(--font-mono)",
-                          fontSize: 9,
-                          letterSpacing: ".22em",
-                          textTransform: "uppercase",
-                          color: "rgba(185,138,62,.3)",
-                        }}
-                      >
-                        Blog
-                      </span>
-                    </div>
-                  )}
+                  <Image
+                    src={coverSrc}
+                    alt={post.title}
+                    fill
+                    unoptimized
+                    sizes="(max-width: 768px) 100vw, 340px"
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
               </Link>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
       </section>
 
