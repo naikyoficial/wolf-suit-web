@@ -28,6 +28,16 @@ export interface ServiceItem {
   brief: string;
   desc: string;
   deliverables: string[];
+  /** Título corto del canvas: parte normal + parte italic dorada. */
+  canvasTitle?: { normal: string; accent: string; end?: string };
+  /** Tagline breve (1-2 frases) para el canvas. */
+  tagline?: string;
+  /** Meta chips (3 palabras). */
+  meta?: string[];
+  /** Imagen para el frame de laptop (ruta relativa a /public). */
+  cover?: string;
+  /** Slug de la página de servicio en /servicios/[slug]. */
+  slug?: string;
 }
 
 export const SERVICES: ServiceItem[] = [
@@ -39,6 +49,11 @@ export const SERVICES: ServiceItem[] = [
     brief: "La presencia digital que posiciona a tu empresa como referente de su industria.",
     desc: "Tu sitio web es el primer filtro que atraviesan tus clientes. Lo que encuentran ahí determina si avanzan o se van. Construimos la arquitectura estratégica, el sistema visual y el desarrollo técnico que convierten esa fracción de segundo en una decisión a tu favor — leads calificados, conversiones reales, posicionamiento de marca.",
     deliverables: ["Diseño 100% original", "Performance 90+ en PageSpeed", "SEO técnico desde el día uno"],
+    canvasTitle: { normal: "Sitios que ", accent: "instalan", end: " autoridad." },
+    tagline: "La primera impresión que decide si tu cliente avanza o se va — construida desde la estrategia, no desde una plantilla.",
+    meta: ["A medida", "SEO técnico", "PageSpeed 90+"],
+    cover: "/sitio web corporativo.png",
+    slug: "diseno-web-corporativo",
   },
   {
     index: "02",
@@ -48,6 +63,11 @@ export const SERVICES: ServiceItem[] = [
     brief: "Páginas de alta conversión que captan leads y aceleran tus ventas.",
     desc: "Una landing page mal diseñada drena tu presupuesto publicitario sin devolver resultados. Las nuestras están construidas sobre la psicología de la decisión: jerarquía visual que guía al usuario, carga ultrarrápida que retiene la atención y un argumento narrativo que lleva directo a la acción — con copy estratégico incluido en el proceso.",
     deliverables: ["Estructura orientada a conversión", "Copy estratégico incluido", "Carga en menos de 2 segundos"],
+    canvasTitle: { normal: "Landings que ", accent: "convierten", end: " tráfico pago." },
+    tagline: "Estructura persuasiva, copy incluido y carga en menos de 2 segundos — cada bloque tiene una función en el recorrido hacia la acción.",
+    meta: ["Copy incluido", "Ultrarrápida", "A/B ready"],
+    cover: "/Landing Page.png",
+    slug: "landing-pages",
   },
   {
     index: "03",
@@ -57,6 +77,11 @@ export const SERVICES: ServiceItem[] = [
     brief: "E-commerce con experiencia de compra de lujo, diseñado para vender más.",
     desc: "El 70% de los carritos se abandonan antes del pago — casi siempre por fricción en el flujo o falta de confianza visual. Los e-commerce que construimos atacan ese número desde el diseño: catálogos que exhiben, checkouts que no obstruyen, y una integración técnica de pagos y logística pensada para maximizar el ticket promedio.",
     deliverables: ["Checkout sin fricción", "Integración de pagos y envíos", "Catálogo optimizado para vender"],
+    canvasTitle: { normal: "E-commerce que ", accent: "exhibe", end: " tu producto." },
+    tagline: "Catálogo que vende, checkout sin fricción e integración técnica pensada para maximizar el ticket promedio.",
+    meta: ["Sin fricción", "Multi-moneda", "CRM ready"],
+    cover: "/tienda online.png",
+    slug: "tienda-online",
   },
   {
     index: "04",
@@ -66,6 +91,11 @@ export const SERVICES: ServiceItem[] = [
     brief: "Tu imagen digital como activo estratégico: autoridad, credibilidad y distinción.",
     desc: "Para un ejecutivo, consultor o figura pública, el sitio personal es la presentación que ocurre antes de cualquier reunión. Diseñamos más que un portfolio: construimos la narrativa que te posiciona exactamente donde querés estar en la mente de quien importa — y te hace la opción obvia antes de que abras la boca.",
     deliverables: ["Narrativa personal estratégica", "Diseño que impone autoridad", "Optimizado para tu mercado"],
+    canvasTitle: { normal: "La presentación ", accent: "antes", end: " de la reunión." },
+    tagline: "Para consultores y figuras públicas: la narrativa y el diseño que te posicionan como referente antes del primer contacto.",
+    meta: ["Narrativa", "SEO personal", "Autoridad"],
+    cover: "/Presencia Personal.png",
+    slug: "presencia-personal",
   },
   {
     index: "05",
@@ -75,6 +105,10 @@ export const SERVICES: ServiceItem[] = [
     brief: "Aparecé primero cuando tus clientes te buscan en Google.",
     desc: "El SEO que importa no es el que acumula clics — es el que atrae al usuario con intención real de compra. Auditamos tu arquitectura técnica, identificamos dónde perdés visibilidad frente a tu competencia y construimos una estrategia de contenidos y autoridad que convierte búsquedas en ingresos sostenibles a largo plazo.",
     deliverables: ["Auditoría técnica completa", "Arquitectura de contenidos", "Reportes de evolución mensual"],
+    canvasTitle: { normal: "Aparecer ", accent: "primero", end: " cuando importa." },
+    tagline: "Auditoría técnica, arquitectura de contenidos y estrategia de autoridad — tráfico con intención real de compra, no clics vacíos.",
+    meta: ["Técnico", "Contenido", "Medible"],
+    slug: "seo-posicionamiento-web",
   },
   {
     index: "06",
@@ -84,6 +118,11 @@ export const SERVICES: ServiceItem[] = [
     brief: "Herramientas digitales personalizadas que automatizan y escalan tu negocio.",
     desc: "Aplicaciones web a medida para empresas que necesitan más que un sitio: portales de cliente, dashboards, sistemas de gestión y herramientas internas. Diseño UX + desarrollo frontend y backend robusto, pensado para crecer.",
     deliverables: ["Diseño UX/UI a medida", "Desarrollo frontend y backend", "Integración con sistemas existentes"],
+    canvasTitle: { normal: "Herramientas que ", accent: "escalan", end: " tu operación." },
+    tagline: "Portales, dashboards, sistemas internos y productos SaaS — construidos para crecer con tu negocio sin deuda técnica.",
+    meta: ["Frontend + backend", "Integraciones", "Escalable"],
+    cover: "/Aplicacion Web.png",
+    slug: "aplicaciones-web-a-medida",
   },
 ];
 
