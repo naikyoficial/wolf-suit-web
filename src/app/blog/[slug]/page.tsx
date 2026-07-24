@@ -123,17 +123,18 @@ export default async function BlogPostRoute({
           </Reveal>
         </div>
 
-        {/* Cover del artículo — ancho completo */}
+        {/* Cover del artículo — banner cinematográfico, no full-height */}
         <Reveal delay={0.1}>
           <div
             style={{
               position: "relative",
               width: "100%",
+              maxWidth: 880,
               aspectRatio: "16 / 9",
-              borderRadius: "clamp(12px, 1.5vw, 20px)",
+              borderRadius: "clamp(10px, 1.2vw, 16px)",
               overflow: "hidden",
-              border: "1px solid rgba(217,179,106,.18)",
-              boxShadow: "0 40px 80px -40px rgba(0,0,0,.75)",
+              border: "1px solid rgba(217,179,106,.16)",
+              boxShadow: "0 30px 60px -30px rgba(0,0,0,.7)",
               margin: "0 0 clamp(48px, 7vh, 80px)",
               background: "#0e0c09",
             }}
@@ -143,7 +144,7 @@ export default async function BlogPostRoute({
               alt={post.title}
               fill
               unoptimized
-              sizes="(max-width: 900px) 100vw, 1200px"
+              sizes="(max-width: 900px) 100vw, 880px"
               priority
               style={{ objectFit: "cover", objectPosition: "center center" }}
             />
