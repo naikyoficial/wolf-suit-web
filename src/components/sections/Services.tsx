@@ -160,33 +160,74 @@ export function Services() {
   return (
     <section
       id="servicios"
-      style={{ position: "relative", overflow: "hidden", background: "var(--color-surface)" }}
+      style={{ position: "relative", overflow: "hidden" }}
     >
+      {/* Imagen de fondo — filosofía */}
+      <Image
+        src="/background-filosofia.png"
+        alt=""
+        fill
+        sizes="100vw"
+        style={{ objectFit: "cover", objectPosition: "center center" }}
+      />
+      {/* Overlay oscuro para legibilidad */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "rgba(0,0,0,0.62)",
+          zIndex: 1,
+        }}
+      />
+      {/* Viñeta perimetral */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 1,
+          pointerEvents: "none",
+          background: "radial-gradient(110% 90% at 50% 50%, transparent 40%, rgba(0,0,0,.72) 100%)",
+        }}
+      />
+      {/* Fade superior hacia el bloque anterior */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          top: 0,
+          zIndex: 1,
+          pointerEvents: "none",
+          height: "55%",
+          background: "linear-gradient(to bottom, rgba(6,5,4,1) 0%, rgba(6,5,4,.7) 42%, transparent 100%)",
+        }}
+      />
+      {/* Fade inferior hacia el bloque siguiente */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 1,
+          pointerEvents: "none",
+          height: "55%",
+          background: "linear-gradient(to bottom, transparent 0%, rgba(6,5,4,.78) 50%, rgba(6,5,4,1) 100%)",
+        }}
+      />
       {/* Ambient gold glow */}
       <div
         aria-hidden
         style={{
           position: "absolute",
           inset: 0,
-          background: "radial-gradient(55% 45% at 72% 45%, rgba(233,200,122,.14) 0%, transparent 70%)",
+          background: "radial-gradient(55% 45% at 72% 45%, rgba(233,200,122,.12) 0%, transparent 70%)",
           pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-      {/* Blueprint grid */}
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "linear-gradient(to right, rgba(245,239,223,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(245,239,223,.06) 1px, transparent 1px)",
-          backgroundSize: "88px 88px",
-          opacity: 0.5,
-          WebkitMaskImage: "radial-gradient(72% 65% at 50% 50%, black 0%, transparent 100%)",
-          maskImage: "radial-gradient(72% 65% at 50% 50%, black 0%, transparent 100%)",
-          pointerEvents: "none",
-          zIndex: 0,
+          zIndex: 1,
         }}
       />
 
@@ -211,12 +252,12 @@ export function Services() {
             style={{
               fontFamily: "var(--font-body)",
               fontWeight: 600,
-              fontSize: "clamp(1.9rem, 3.4vw, 3rem)",
+              fontSize: "clamp(2.2rem, 4.2vw, 3.6rem)",
               lineHeight: 1.05,
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.028em",
               color: "var(--color-text)",
-              margin: "0 0 clamp(48px, 8vh, 96px)",
-              maxWidth: "18em",
+              margin: "0 0 clamp(56px, 10vh, 120px)",
+              maxWidth: "20em",
               textWrap: "balance",
             }}
           >
@@ -236,8 +277,8 @@ export function Services() {
             className="services-grid"
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(0, 0.7fr) minmax(0, 2.4fr)",
-              gap: "clamp(32px, 4vw, 72px)",
+              gridTemplateColumns: "minmax(0, 0.85fr) minmax(0, 3fr)",
+              gap: "clamp(40px, 5vw, 88px)",
               alignItems: "start",
             }}
           >
@@ -258,11 +299,11 @@ export function Services() {
                     style={{
                       position: "relative",
                       display: "grid",
-                      gridTemplateColumns: "36px 1fr",
-                      gap: 18,
+                      gridTemplateColumns: "40px 1fr",
+                      gap: 20,
                       alignItems: "baseline",
-                      padding: "clamp(18px, 2.4vh, 26px) 4px",
-                      paddingLeft: isActive ? 12 : 4,
+                      padding: "clamp(22px, 3vh, 32px) 4px",
+                      paddingLeft: isActive ? 14 : 4,
                       borderTop: "1px solid rgba(245,239,223,.08)",
                       borderBottom: i === n - 1 ? "1px solid rgba(245,239,223,.08)" : "none",
                       background: "transparent",
@@ -290,9 +331,9 @@ export function Services() {
                     <span
                       style={{
                         fontFamily: "var(--font-mono)",
-                        fontSize: 11,
+                        fontSize: 12,
                         letterSpacing: ".16em",
-                        color: isActive ? "var(--color-gold)" : "rgba(210,205,194,.28)",
+                        color: isActive ? "var(--color-gold)" : "rgba(210,205,194,.32)",
                         transition: "color .35s",
                       }}
                     >
@@ -301,10 +342,10 @@ export function Services() {
                     <span
                       style={{
                         fontFamily: "var(--font-display)",
-                        fontSize: "clamp(1.2rem, 1.6vw, 1.5rem)",
-                        lineHeight: 1.15,
-                        letterSpacing: "-.005em",
-                        color: isActive ? "var(--color-text)" : "rgba(210,205,194,.55)",
+                        fontSize: "clamp(1.4rem, 1.9vw, 1.85rem)",
+                        lineHeight: 1.14,
+                        letterSpacing: "-.008em",
+                        color: isActive ? "var(--color-text)" : "rgba(210,205,194,.58)",
                         fontStyle: isActive ? "italic" : "normal",
                         transition: "color .35s, font-style .35s",
                       }}
@@ -320,12 +361,13 @@ export function Services() {
             <div
               style={{
                 position: "relative",
-                padding: "clamp(28px, 3.2vw, 48px)",
-                borderRadius: 10,
-                background: "linear-gradient(160deg, rgba(20,17,12,.9) 0%, rgba(10,8,6,.9) 100%)",
+                padding: "clamp(36px, 4vw, 68px)",
+                borderRadius: 12,
+                background: "linear-gradient(160deg, rgba(20,17,12,.88) 0%, rgba(10,8,6,.88) 100%)",
                 border: "1px solid rgba(245,239,223,.12)",
                 overflow: "hidden",
-                backdropFilter: "blur(4px)",
+                backdropFilter: "blur(6px)",
+                minHeight: "clamp(520px, 62vh, 680px)",
               }}
             >
               <span
@@ -348,8 +390,8 @@ export function Services() {
                   style={{
                     position: "relative",
                     display: "grid",
-                    gridTemplateColumns: "minmax(0, 0.9fr) minmax(0, 1.35fr)",
-                    gap: "clamp(24px, 3.2vw, 52px)",
+                    gridTemplateColumns: "minmax(0, 0.8fr) minmax(0, 1.55fr)",
+                    gap: "clamp(32px, 4vw, 72px)",
                     alignItems: "center",
                   }}
                   className="services-canvas-inner"
@@ -359,14 +401,14 @@ export function Services() {
                     <p
                       style={{
                         fontFamily: "var(--font-mono)",
-                        fontSize: 10.5,
+                        fontSize: 12,
                         letterSpacing: ".28em",
                         textTransform: "uppercase",
                         color: "var(--color-gold)",
-                        margin: "0 0 22px",
+                        margin: "0 0 30px",
                         display: "flex",
                         alignItems: "center",
-                        gap: 12,
+                        gap: 14,
                       }}
                     >
                       <span>{s.category}</span>
@@ -376,7 +418,7 @@ export function Services() {
                           flex: 1,
                           height: 1,
                           background: "linear-gradient(to right, rgba(217,179,106,.4), transparent)",
-                          maxWidth: 60,
+                          maxWidth: 80,
                         }}
                       />
                     </p>
@@ -385,11 +427,11 @@ export function Services() {
                       style={{
                         fontFamily: "var(--font-display)",
                         fontWeight: 400,
-                        fontSize: "clamp(1.6rem, 2.8vw, 2.3rem)",
-                        lineHeight: 1.05,
-                        letterSpacing: "-.022em",
+                        fontSize: "clamp(2rem, 3.4vw, 2.9rem)",
+                        lineHeight: 1.03,
+                        letterSpacing: "-.026em",
                         color: "var(--color-text)",
-                        margin: "0 0 18px",
+                        margin: "0 0 24px",
                         textWrap: "balance",
                         maxWidth: "14ch",
                       }}
@@ -414,10 +456,10 @@ export function Services() {
 
                     <p
                       style={{
-                        fontSize: "clamp(14px, 1.05vw, 15.5px)",
-                        lineHeight: 1.6,
+                        fontSize: "clamp(15px, 1.15vw, 17px)",
+                        lineHeight: 1.65,
                         color: "var(--color-text-2)",
-                        margin: "0 0 26px",
+                        margin: "0 0 32px",
                         maxWidth: "34ch",
                       }}
                     >
@@ -429,10 +471,10 @@ export function Services() {
                         style={{
                           display: "flex",
                           flexWrap: "wrap",
-                          gap: "8px 18px",
-                          margin: "0 0 26px",
+                          gap: "10px 22px",
+                          margin: "0 0 34px",
                           fontFamily: "var(--font-mono)",
-                          fontSize: 9.5,
+                          fontSize: 11,
                           letterSpacing: ".18em",
                           textTransform: "uppercase",
                           color: "var(--color-text-3)",
@@ -466,11 +508,11 @@ export function Services() {
                         alignSelf: "flex-start",
                         display: "inline-flex",
                         alignItems: "center",
-                        padding: "13px 26px",
+                        padding: "16px 34px",
                         fontFamily: "var(--font-mono)",
                         fontWeight: 700,
-                        fontSize: 10.5,
-                        letterSpacing: ".16em",
+                        fontSize: 11.5,
+                        letterSpacing: ".18em",
                         textTransform: "uppercase",
                         textDecoration: "none",
                       }}
