@@ -155,13 +155,13 @@ export function Services() {
         }}
       />
 
-      {/* Contenido */}
+      {/* Contenido — usa más ancho de viewport que el grid-max global */}
       <div
         style={{
           position: "relative",
           zIndex: 2,
-          padding: "var(--section-py) var(--section-px)",
-          maxWidth: "var(--grid-max)",
+          padding: "var(--section-py) clamp(1.5rem, 3.5vw, 4rem)",
+          maxWidth: "min(1760px, 100%)",
           margin: "0 auto",
         }}
       >
@@ -176,12 +176,12 @@ export function Services() {
             style={{
               fontFamily: "var(--font-body)",
               fontWeight: 600,
-              fontSize: "clamp(2.2rem, 4.2vw, 3.6rem)",
+              fontSize: "clamp(2.2rem, 3.8vw, 3.4rem)",
               lineHeight: 1.05,
               letterSpacing: "-0.028em",
               color: "var(--color-text)",
-              margin: "0 0 clamp(56px, 10vh, 120px)",
-              maxWidth: "20em",
+              margin: "0 0 clamp(48px, 8vh, 96px)",
+              maxWidth: "24em",
               textWrap: "balance",
             }}
           >
@@ -201,8 +201,8 @@ export function Services() {
             className="services-grid"
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(0, 0.75fr) minmax(0, 3.2fr)",
-              gap: "clamp(32px, 4vw, 72px)",
+              gridTemplateColumns: "minmax(240px, 0.85fr) minmax(0, 3fr)",
+              gap: "clamp(32px, 3.5vw, 56px)",
               alignItems: "center",
             }}
           >
@@ -266,12 +266,13 @@ export function Services() {
                     <span
                       style={{
                         fontFamily: "var(--font-display)",
-                        fontSize: "clamp(1.4rem, 1.9vw, 1.85rem)",
+                        fontSize: "clamp(1.3rem, 1.55vw, 1.65rem)",
                         lineHeight: 1.14,
                         letterSpacing: "-.008em",
                         color: isActive ? "var(--color-text)" : "rgba(210,205,194,.58)",
                         fontStyle: isActive ? "italic" : "normal",
                         transition: "color .35s, font-style .35s",
+                        textWrap: "balance",
                       }}
                     >
                       {svc.title}
@@ -305,8 +306,8 @@ export function Services() {
                     zIndex: 2,
                     width: "100%",
                     display: "grid",
-                    gridTemplateColumns: "minmax(0, 0.9fr) minmax(0, 1.6fr)",
-                    gap: "clamp(40px, 5vw, 96px)",
+                    gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.5fr)",
+                    gap: "clamp(40px, 5vw, 88px)",
                     alignItems: "center",
                   }}
                   className="services-canvas-inner"
@@ -342,13 +343,12 @@ export function Services() {
                       style={{
                         fontFamily: "var(--font-display)",
                         fontWeight: 400,
-                        fontSize: "clamp(2.2rem, 3.6vw, 3.2rem)",
-                        lineHeight: 1.02,
+                        fontSize: "clamp(2.2rem, 3.4vw, 3.1rem)",
+                        lineHeight: 1.04,
                         letterSpacing: "-.028em",
                         color: "var(--color-text)",
                         margin: "0 0 28px",
                         textWrap: "balance",
-                        maxWidth: "14ch",
                       }}
                     >
                       {title.normal}
@@ -375,7 +375,7 @@ export function Services() {
                         lineHeight: 1.7,
                         color: "var(--color-text-2)",
                         margin: "0 0 40px",
-                        maxWidth: "36ch",
+                        maxWidth: "42ch",
                       }}
                     >
                       {s.tagline ?? s.brief}
@@ -498,6 +498,7 @@ export function Services() {
 
         {/* Progress dots */}
         <div
+          className="services-progress"
           style={{
             display: "flex",
             justifyContent: "flex-end",
@@ -546,13 +547,13 @@ export function Services() {
         @media (max-width: 900px) {
           .services-grid {
             grid-template-columns: 1fr !important;
-            gap: 40px !important;
+            gap: 32px !important;
           }
           .services-canvas {
             padding-left: 0 !important;
             border-left: none !important;
             border-top: 1px solid rgba(217,179,106,.16) !important;
-            padding-top: 40px !important;
+            padding-top: 32px !important;
             min-height: auto !important;
           }
           .services-canvas-inner {
@@ -561,6 +562,12 @@ export function Services() {
           }
           .services-canvas-inner > div:last-child {
             order: -1;
+          }
+          .services-item {
+            padding: 14px 4px !important;
+          }
+          .services-progress {
+            justify-content: center !important;
           }
           .services-progress-note {
             display: none !important;

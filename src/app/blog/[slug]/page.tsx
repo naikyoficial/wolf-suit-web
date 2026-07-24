@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Reveal } from "@/components/ui/Reveal";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
@@ -50,6 +51,7 @@ export default async function BlogPostRoute({
   if (!post) notFound();
 
   const url = `${SEO.url}/blog/${post.slug}`;
+  const coverSrc = post.cover ?? `/blog-cover/${post.slug}?v=2`;
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -120,6 +122,33 @@ export default async function BlogPostRoute({
             </h1>
           </Reveal>
         </div>
+
+        {/* Cover del artículo — ancho completo */}
+        <Reveal delay={0.1}>
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              aspectRatio: "16 / 9",
+              borderRadius: "clamp(12px, 1.5vw, 20px)",
+              overflow: "hidden",
+              border: "1px solid rgba(217,179,106,.18)",
+              boxShadow: "0 40px 80px -40px rgba(0,0,0,.75)",
+              margin: "0 0 clamp(48px, 7vh, 80px)",
+              background: "#0e0c09",
+            }}
+          >
+            <Image
+              src={coverSrc}
+              alt={post.title}
+              fill
+              unoptimized
+              sizes="(max-width: 900px) 100vw, 1200px"
+              priority
+              style={{ objectFit: "cover", objectPosition: "center center" }}
+            />
+          </div>
+        </Reveal>
 
         {/* Cuerpo — 2 columnas en desktop: contenido + sidebar */}
         <div
