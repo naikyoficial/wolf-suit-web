@@ -170,6 +170,15 @@ export const WORKS: WorkProject[] = [
     tags: ["Conversión", "Copy estratégico", "Performance"],
     cover: "/entre verde proyecto.png",
   },
+  {
+    name: "Marbella Estates",
+    category: "Real Estate · Miami",
+    domain: "marbellaestates.com",
+    description:
+      "Una inmobiliaria premium de South Florida operando en el mercado más competitivo de real estate hispano de Estados Unidos. El sitio anterior no reflejaba el nivel de las propiedades ni el ticket promedio del cliente objetivo. Diseñamos una experiencia bilingüe (inglés y español) donde cada propiedad se presenta como un producto de lujo: buscador con filtros útiles, fichas con fotografía profesional a página completa, contexto de barrio y agente asignado. SEO local pensado para búsquedas de alta intención en Brickell, Coral Gables, Doral y toda Miami-Dade. Resultado: leads mejor calificados, ticket promedio más alto y una marca que compite al nivel que la trayectoria del cliente merece.",
+    tags: ["Real Estate", "Bilingüe EN/ES", "SEO local Miami", "Captación de leads"],
+    cover: "/Sitio web para inmobiliaria.png",
+  },
 ];
 
 export const METHOD_INTRO = {
