@@ -8,13 +8,13 @@
 
 export const LEGAL = {
   /** Nombre y apellido / persona física titular del sitio. */
-  titular: "[COMPLETAR: nombre y apellido del titular]",
-  /** CUIT o identificación fiscal. */
-  cuit: "[COMPLETAR: CUIT/CUIL/identificación fiscal]",
-  /** Domicilio postal donde se pueden dirigir comunicaciones legales. */
-  domicilio: "[COMPLETAR: domicilio postal completo]",
+  titular: "Nicolás Acosta",
+  /** CUIL / identificación fiscal (usar CUIT cuando facture). */
+  cuit: "CUIL 20-43168005-0",
+  /** Domicilio postal — solo provincia y país por privacidad. */
+  domicilio: "Entre Ríos, Argentina",
   /** Email de contacto legal (privacidad, derechos ARCO, etc.). */
-  emailLegal: "[COMPLETAR: email para consultas legales]",
+  emailLegal: "proyectos@suitwolf.com",
   /** País de residencia del titular (para saber qué ley base aplica). */
   pais: "Argentina",
   /** Fecha de última revisión de los textos legales (formato "DD de mes de YYYY"). */
