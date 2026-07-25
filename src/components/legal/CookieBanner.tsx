@@ -30,11 +30,11 @@ export function CookieBanner() {
             marginLeft: "auto",
             padding: "clamp(20px, 2.4vw, 28px)",
             borderRadius: 10,
-            border: "1px solid rgba(217,179,106,.28)",
-            background: "linear-gradient(160deg, rgba(20,17,12,.98) 0%, rgba(10,8,6,.98) 100%)",
-            backdropFilter: "blur(18px)",
-            WebkitBackdropFilter: "blur(18px)",
-            boxShadow: "0 30px 60px -20px rgba(0,0,0,.6)",
+            border: "1px solid rgba(217,179,106,.32)",
+            background: "linear-gradient(160deg, rgba(20,17,12,.42) 0%, rgba(10,8,6,.55) 100%)",
+            backdropFilter: "blur(28px) saturate(1.2)",
+            WebkitBackdropFilter: "blur(28px) saturate(1.2)",
+            boxShadow: "0 30px 60px -20px rgba(0,0,0,.65)",
           }}
         >
           <p
