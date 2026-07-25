@@ -1,17 +1,23 @@
 "use client";
 
 import Script from "next/script";
+import { useConsent } from "@/contexts/ConsentContext";
 
 /**
- * Google Analytics 4 — se activa solo si existe NEXT_PUBLIC_GA_ID.
- * Sin el env var no renderiza nada (cero impacto en performance / privacidad).
+ * Google Analytics 4 — se activa solo si:
+ *   1. Existe NEXT_PUBLIC_GA_ID en el entorno
+ *   2. El usuario aceptó cookies analíticas (consent === "accepted")
  *
- * Setup: definir NEXT_PUBLIC_GA_ID="G-XXXXXXXXXX" en el entorno de producción.
+ * Sin consentimiento, no se carga ni un byte de gtag → cumple RGPD.
+ * Cuando el usuario acepta, el <Script> se monta y comienza el tracking.
  * Los eventos de conversión (generate_lead) se disparan desde el formulario.
  */
 export function Analytics() {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const { consent } = useConsent();
+
   if (!gaId) return null;
+  if (consent !== "accepted") return null;
 
   return (
     <>

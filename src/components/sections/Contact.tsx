@@ -131,6 +131,8 @@ export function Contact() {
   const [company, setCompany] = useState("");
   const [role,    setRole]    = useState("");
   const [vision,  setVision]  = useState("");
+  const [consent, setConsent] = useState(false);
+  const [website, setWebsite] = useState(""); // honeypot invisible
 
   const [submitting, setSubmitting] = useState(false);
 
@@ -164,7 +166,7 @@ export function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, company, role, vision, answers }),
+        body: JSON.stringify({ name, email, company, role, vision, answers, consent, website }),
       });
       if (!res.ok) {
         const body = await res.text();
@@ -504,10 +506,75 @@ export function Contact() {
                 />
               </div>
 
+              {/* Honeypot — invisible al humano, los bots suelen llenarlo */}
+              <div
+                aria-hidden
+                style={{
+                  position: "absolute",
+                  left: "-9999px",
+                  width: 1,
+                  height: 1,
+                  overflow: "hidden",
+                  opacity: 0,
+                }}
+              >
+                <label htmlFor="website">Website (dejar vacío)</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                />
+              </div>
+
+              {/* Consentimiento explícito RGPD */}
+              <label
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: 12,
+                  cursor: "pointer",
+                  fontFamily: "var(--font-body)",
+                  fontSize: 13,
+                  lineHeight: 1.6,
+                  color: "var(--color-text-3)",
+                }}
+              >
+                <input
+                  type="checkbox"
+                  required
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  style={{
+                    marginTop: 3,
+                    width: 16,
+                    height: 16,
+                    accentColor: "#D9B36A",
+                    cursor: "pointer",
+                    flexShrink: 0,
+                  }}
+                />
+                <span>
+                  He leído y acepto la{" "}
+                  <a
+                    href="/privacidad"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "var(--color-gold)", textDecoration: "underline", textUnderlineOffset: 2 }}
+                  >
+                    política de privacidad
+                  </a>
+                  {" "}y consiento el tratamiento de mis datos para responder mi consulta.
+                </span>
+              </label>
+
               <div style={{ paddingTop: 6, display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
                 <button
                   type="submit"
-                  disabled={submitting}
+                  disabled={submitting || !consent}
                   data-cursor-hover
                   className="cta-gold"
                   style={{
@@ -515,8 +582,8 @@ export function Contact() {
                     padding: "16px 40px",
                     fontFamily: "var(--font-mono)", fontWeight: 500,
                     fontSize: 11, letterSpacing: ".22em", textTransform: "uppercase",
-                    cursor: submitting ? "default" : "pointer",
-                    opacity: submitting ? 0.55 : 1,
+                    cursor: submitting || !consent ? "default" : "pointer",
+                    opacity: submitting || !consent ? 0.5 : 1,
                   }}
                 >
                   {submitting ? "Enviando…" : "Enviar solicitud"}

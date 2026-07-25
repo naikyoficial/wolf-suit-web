@@ -160,7 +160,7 @@ export function Footer() {
 
       {/* Fila legal */}
       <div
-        className="flex flex-col md:flex-row items-center justify-between gap-3"
+        className="flex flex-col md:flex-row items-center justify-between gap-4"
         style={{
           maxWidth: "var(--grid-max)",
           margin: "0 auto",
@@ -171,6 +171,43 @@ export function Footer() {
         <p style={{ fontSize: 11, color: "var(--color-text-4)", letterSpacing: ".1em", margin: 0 }}>
           &copy; {year} {SITE.name} &middot; Todos los derechos reservados
         </p>
+
+        {/* Legal links */}
+        <ul
+          style={{
+            listStyle: "none",
+            margin: 0,
+            padding: 0,
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "8px 20px",
+            justifyContent: "center",
+          }}
+        >
+          {[
+            { href: "/privacidad", label: "Privacidad" },
+            { href: "/cookies", label: "Cookies" },
+            { href: "/terminos", label: "Términos" },
+            { href: "/aviso-legal", label: "Aviso legal" },
+          ].map((l) => (
+            <li key={l.href}>
+              <Link
+                href={l.href}
+                data-cursor-hover
+                style={{
+                  fontSize: 11,
+                  color: "var(--color-text-4)",
+                  letterSpacing: ".1em",
+                  textDecoration: "none",
+                  transition: "color .3s",
+                }}
+              >
+                {l.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
         <CraftedBy />
       </div>
 

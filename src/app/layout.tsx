@@ -7,6 +7,8 @@ import { Grain }          from "@/components/ui/Grain";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { AtmosphericBg }  from "@/components/sections/AtmosphericBg";
 import { Analytics }      from "@/components/analytics/Analytics";
+import { ConsentProvider } from "@/contexts/ConsentContext";
+import { CookieBanner }    from "@/components/legal/CookieBanner";
 import { rootGraph }      from "@/config/seo";
 import "./globals.css";
 
@@ -106,15 +108,18 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(rootGraph()) }}
         />
-        <Analytics />
-        <AtmosphericBg />
-        <Grain />
-        <ScrollProgress />
-        <SmoothScroll>
-          <Navbar />
-          <div className="flex-1 pt-[72px]">{children}</div>
-          <Footer />
-        </SmoothScroll>
+        <ConsentProvider>
+          <Analytics />
+          <AtmosphericBg />
+          <Grain />
+          <ScrollProgress />
+          <SmoothScroll>
+            <Navbar />
+            <div className="flex-1 pt-[72px]">{children}</div>
+            <Footer />
+          </SmoothScroll>
+          <CookieBanner />
+        </ConsentProvider>
       </body>
     </html>
   );
