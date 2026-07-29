@@ -26,7 +26,7 @@ export async function GET() {
   if (!session) return Response.json({ error: "Unauthorized" }, { status: 401 });
 
   const { data, error } = await supabase
-    .from("leads")
+    .from("sw_leads")
     .select("*")
     .order("created_at", { ascending: false });
 
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
 
   const body = await req.json();
   const { data, error } = await supabase
-    .from("leads")
+    .from("sw_leads")
     .insert({
       name:             body.name            ?? "",
       company:          body.company         ?? "",

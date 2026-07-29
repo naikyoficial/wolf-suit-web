@@ -13,7 +13,7 @@ export async function PUT(
   const body = await req.json();
 
   const { error } = await supabase
-    .from("stages")
+    .from("sw_stages")
     .update({
       ...(body.name     !== undefined && { name:     body.name     }),
       ...(body.status   !== undefined && { status:   body.status   }),

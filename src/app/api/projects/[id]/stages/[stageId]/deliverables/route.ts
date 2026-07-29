@@ -14,7 +14,7 @@ export async function POST(
 
   // Get current max position
   const { data: existing } = await supabase
-    .from("deliverables")
+    .from("sw_deliverables")
     .select("position")
     .eq("stage_id", stageId)
     .order("position", { ascending: false })
@@ -23,7 +23,7 @@ export async function POST(
   const position = (existing?.[0]?.position ?? -1) + 1;
 
   const { data, error } = await supabase
-    .from("deliverables")
+    .from("sw_deliverables")
     .insert({ stage_id: stageId, name: body.name ?? "", url: body.url ?? "", done: false, position })
     .select()
     .single();

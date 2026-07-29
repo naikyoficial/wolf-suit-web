@@ -9,7 +9,7 @@ function mapDeliverable(r: Record<string, unknown>) {
 }
 
 function mapStage(r: Record<string, unknown>) {
-  const deliverables = (r.deliverables as Record<string, unknown>[] | null) ?? [];
+  const deliverables = (r.sw_deliverables as Record<string, unknown>[] | null) ?? [];
   return {
     id:          r.id,
     name:        r.name,
@@ -22,7 +22,7 @@ function mapStage(r: Record<string, unknown>) {
 }
 
 function mapProject(r: Record<string, unknown>) {
-  const stages = (r.stages as Record<string, unknown>[] | null) ?? [];
+  const stages = (r.sw_stages as Record<string, unknown>[] | null) ?? [];
   return {
     id:                r.id,
     clientName:        r.client_name,
@@ -51,8 +51,8 @@ export async function GET() {
   if (!session) return Response.json({ error: "Unauthorized" }, { status: 401 });
 
   const { data, error } = await supabase
-    .from("projects")
-    .select("*, stages(*, deliverables(*))")
+    .from("sw_projects")
+    .select("*, sw_stages(*, sw_deliverables(*))")
     .order("created_at", { ascending: false });
 
   if (error) return Response.json({ error: error.message }, { status: 500 });
@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
 
   // 1. Create project
   const { data: project, error: projErr } = await supabase
-    .from("projects")
+    .from("sw_projects")
     .insert({
       client_name:         body.clientName         ?? "",
       company:             body.company            ?? "",
@@ -103,7 +103,7 @@ export async function POST(req: NextRequest) {
     });
 
     const { data: insertedStages, error: stagesErr } = await supabase
-      .from("stages")
+      .from("sw_stages")
       .insert(stageRows)
       .select();
 
@@ -120,15 +120,15 @@ export async function POST(req: NextRequest) {
           const deliv = d as Record<string, unknown>;
           return { stage_id: dbStage.id, name: deliv.name ?? "", url: deliv.url ?? "", done: deliv.done ?? false, position: j };
         });
-        await supabase.from("deliverables").insert(delivRows);
+        await supabase.from("sw_deliverables").insert(delivRows);
       }
     }
   }
 
   // Return full project
   const { data: full, error: fullErr } = await supabase
-    .from("projects")
-    .select("*, stages(*, deliverables(*))")
+    .from("sw_projects")
+    .select("*, sw_stages(*, sw_deliverables(*))")
     .eq("id", (project as Record<string, unknown>).id as string)
     .single();
 

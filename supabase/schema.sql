@@ -1,10 +1,10 @@
 -- ══════════════════════════════════════════════════════════
---  SUITWOLF OS — Supabase schema
+--  SUITWOLF OS — Tablas en proyecto Supabase compartido
+--  Prefijo sw_ para separar de otras apps del mismo proyecto
 --  Pegar en: Supabase → SQL Editor → Run
 -- ══════════════════════════════════════════════════════════
 
--- Leads ────────────────────────────────────────────────────
-CREATE TABLE IF NOT EXISTS leads (
+CREATE TABLE IF NOT EXISTS sw_leads (
   id                UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name              TEXT NOT NULL DEFAULT '',
   company           TEXT NOT NULL DEFAULT '',
@@ -21,8 +21,7 @@ CREATE TABLE IF NOT EXISTS leads (
   updated_at        TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- Projects ─────────────────────────────────────────────────
-CREATE TABLE IF NOT EXISTS projects (
+CREATE TABLE IF NOT EXISTS sw_projects (
   id                   UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   client_name          TEXT NOT NULL DEFAULT '',
   company              TEXT NOT NULL DEFAULT '',
@@ -39,10 +38,9 @@ CREATE TABLE IF NOT EXISTS projects (
   updated_at           TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- Stages ───────────────────────────────────────────────────
-CREATE TABLE IF NOT EXISTS stages (
+CREATE TABLE IF NOT EXISTS sw_stages (
   id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  project_id  UUID NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+  project_id  UUID NOT NULL REFERENCES sw_projects(id) ON DELETE CASCADE,
   name        TEXT NOT NULL DEFAULT '',
   status      TEXT NOT NULL DEFAULT 'pendiente',
   due_date    DATE,
@@ -50,13 +48,12 @@ CREATE TABLE IF NOT EXISTS stages (
   created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- Deliverables ─────────────────────────────────────────────
-CREATE TABLE IF NOT EXISTS deliverables (
-  id        UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  stage_id  UUID NOT NULL REFERENCES stages(id) ON DELETE CASCADE,
-  name      TEXT NOT NULL DEFAULT '',
-  url       TEXT NOT NULL DEFAULT '',
-  done      BOOLEAN NOT NULL DEFAULT FALSE,
-  position  INTEGER NOT NULL DEFAULT 0,
+CREATE TABLE IF NOT EXISTS sw_deliverables (
+  id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  stage_id   UUID NOT NULL REFERENCES sw_stages(id) ON DELETE CASCADE,
+  name       TEXT NOT NULL DEFAULT '',
+  url        TEXT NOT NULL DEFAULT '',
+  done       BOOLEAN NOT NULL DEFAULT FALSE,
+  position   INTEGER NOT NULL DEFAULT 0,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );

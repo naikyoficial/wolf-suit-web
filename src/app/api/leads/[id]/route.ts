@@ -29,7 +29,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   const body = await req.json();
 
   const { data, error } = await supabase
-    .from("leads")
+    .from("sw_leads")
     .update({
       name:             body.name,
       company:          body.company,
@@ -57,7 +57,7 @@ export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ 
   if (!session) return Response.json({ error: "Unauthorized" }, { status: 401 });
 
   const { id } = await params;
-  const { error } = await supabase.from("leads").delete().eq("id", id);
+  const { error } = await supabase.from("sw_leads").delete().eq("id", id);
   if (error) return Response.json({ error: error.message }, { status: 500 });
   return new Response(null, { status: 204 });
 }

@@ -7,7 +7,7 @@ function mapDeliverable(r: Record<string, unknown>) {
 }
 
 function mapStage(r: Record<string, unknown>) {
-  const deliverables = (r.deliverables as Record<string, unknown>[] | null) ?? [];
+  const deliverables = (r.sw_deliverables as Record<string, unknown>[] | null) ?? [];
   return {
     id: r.id, name: r.name, status: r.status, dueDate: r.due_date ?? "",
     deliverables: deliverables
@@ -17,7 +17,7 @@ function mapStage(r: Record<string, unknown>) {
 }
 
 function mapProject(r: Record<string, unknown>) {
-  const stages = (r.stages as Record<string, unknown>[] | null) ?? [];
+  const stages = (r.sw_stages as Record<string, unknown>[] | null) ?? [];
   return {
     id: r.id, clientName: r.client_name, company: r.company, email: r.email,
     service: r.service, description: r.description, totalValue: Number(r.total_value),
@@ -34,8 +34,8 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ id:
 
   const { id } = await params;
   const { data, error } = await supabase
-    .from("projects")
-    .select("*, stages(*, deliverables(*))")
+    .from("sw_projects")
+    .select("*, sw_stages(*, sw_deliverables(*))")
     .eq("id", id)
     .single();
 
@@ -51,7 +51,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   const body    = await req.json();
 
   const { error } = await supabase
-    .from("projects")
+    .from("sw_projects")
     .update({
       client_name:        body.clientName,
       company:            body.company,
@@ -71,8 +71,8 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   if (error) return Response.json({ error: error.message }, { status: 500 });
 
   const { data: full } = await supabase
-    .from("projects")
-    .select("*, stages(*, deliverables(*))")
+    .from("sw_projects")
+    .select("*, sw_stages(*, sw_deliverables(*))")
     .eq("id", id)
     .single();
 
@@ -84,7 +84,7 @@ export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ 
   if (!session) return Response.json({ error: "Unauthorized" }, { status: 401 });
 
   const { id } = await params;
-  const { error } = await supabase.from("projects").delete().eq("id", id);
+  const { error } = await supabase.from("sw_projects").delete().eq("id", id);
   if (error) return Response.json({ error: error.message }, { status: 500 });
   return new Response(null, { status: 204 });
 }
