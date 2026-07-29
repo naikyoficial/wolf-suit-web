@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 
-/* ── Types ───────────────────────────────────────────────── */
+/* ── Types (unchanged interface) ─────────────────────────── */
 
 export type ProjectStatus = "activo" | "pausado" | "entregado" | "cancelado";
 export type StageStatus   = "pendiente" | "en-progreso" | "revision" | "aprobado";
@@ -40,98 +40,134 @@ export interface Project {
   updatedAt: string;
 }
 
-/* ── Stage templates ─────────────────────────────────────── */
+/* ── Stage templates (unchanged) ────────────────────────── */
 
 export const STAGE_TEMPLATES: Record<string, string[]> = {
-  "Sitio Web Corporativo":  ["Briefing", "Wireframes", "Diseño", "Desarrollo", "Revisión", "Entrega"],
-  "Landing Page de Impacto":["Briefing", "Diseño", "Desarrollo", "Revisión", "Entrega"],
-  "Tienda Online Premium":  ["Briefing", "Arquitectura", "Diseño", "Desarrollo", "Testing", "Entrega"],
-  "Presencia Personal":     ["Briefing", "Concepto", "Diseño", "Desarrollo", "Revisión", "Entrega"],
-  "Aplicación Web":         ["Briefing & UX", "Diseño UI", "Frontend", "Backend", "Testing", "Deploy"],
-  "SEO & Visibilidad Web":  ["Auditoría", "Estrategia", "Implementación", "Monitoreo"],
+  "Sitio Web Corporativo":   ["Briefing", "Wireframes", "Diseño", "Desarrollo", "Revisión", "Entrega"],
+  "Landing Page de Impacto": ["Briefing", "Diseño", "Desarrollo", "Revisión", "Entrega"],
+  "Tienda Online Premium":   ["Briefing", "Arquitectura", "Diseño", "Desarrollo", "Testing", "Entrega"],
+  "Presencia Personal":      ["Briefing", "Concepto", "Diseño", "Desarrollo", "Revisión", "Entrega"],
+  "Aplicación Web":          ["Briefing & UX", "Diseño UI", "Frontend", "Backend", "Testing", "Deploy"],
+  "SEO & Visibilidad Web":   ["Auditoría", "Estrategia", "Implementación", "Monitoreo"],
 };
 
 export const DEFAULT_STAGES = ["Briefing", "Diseño", "Desarrollo", "Entrega"];
 
 export function makeStages(names: string[]): Stage[] {
   return names.map(name => ({
-    id: crypto.randomUUID(),
+    id:           crypto.randomUUID(),
     name,
-    status: "pendiente" as StageStatus,
+    status:       "pendiente" as StageStatus,
     deliverables: [],
-    dueDate: "",
+    dueDate:      "",
   }));
 }
 
-/* ── Hook ────────────────────────────────────────────────── */
-
-const KEY = "sw_projects_v1";
-
 function now() { return new Date().toISOString(); }
+
+/* ── Hook ────────────────────────────────────────────────── */
 
 export function useProjects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loaded,   setLoaded]   = useState(false);
 
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(KEY);
-      if (raw) setProjects(JSON.parse(raw) as Project[]);
-    } catch {}
-    setLoaded(true);
+    fetch("/api/projects")
+      .then(r => r.json())
+      .then((data: Project[]) => { setProjects(data); setLoaded(true); })
+      .catch(() => setLoaded(true));
   }, []);
 
-  const persist = useCallback((next: Project[]) => {
-    setProjects(next);
-    try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
-  }, []);
+  /* ── Project CRUD ──────────────────────────────────────── */
 
   const addProject = useCallback((data: Omit<Project, "id" | "createdAt" | "updatedAt">) => {
-    const p: Project = { ...data, id: crypto.randomUUID(), createdAt: now(), updatedAt: now() };
-    persist([...projects, p]);
-    return p;
-  }, [projects, persist]);
+    const optimistic: Project = { ...data, id: crypto.randomUUID(), createdAt: now(), updatedAt: now() };
+    setProjects(prev => [optimistic, ...prev]);
+
+    fetch("/api/projects", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then(r => r.json())
+      .then((saved: Project) => setProjects(prev => prev.map(p => p.id === optimistic.id ? saved : p)))
+      .catch(console.error);
+
+    return optimistic;
+  }, []);
 
   const updateProject = useCallback((id: string, patch: Partial<Omit<Project, "id" | "createdAt">>) => {
-    persist(projects.map(p => p.id === id ? { ...p, ...patch, updatedAt: now() } : p));
-  }, [projects, persist]);
+    setProjects(prev => prev.map(p => p.id === id ? { ...p, ...patch, updatedAt: now() } : p));
+
+    fetch(`/api/projects/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(patch),
+    }).catch(console.error);
+  }, []);
 
   const deleteProject = useCallback((id: string) => {
-    persist(projects.filter(p => p.id !== id));
-  }, [projects, persist]);
+    setProjects(prev => prev.filter(p => p.id !== id));
+    fetch(`/api/projects/${id}`, { method: "DELETE" }).catch(console.error);
+  }, []);
 
-  // Stage operations
+  /* ── Stage operations ──────────────────────────────────── */
+
   const updateStage = useCallback((projectId: string, stageId: string, patch: Partial<Omit<Stage, "id">>) => {
-    persist(projects.map(p => {
+    setProjects(prev => prev.map(p => {
       if (p.id !== projectId) return p;
-      return {
-        ...p,
-        updatedAt: now(),
-        stages: p.stages.map(s => s.id === stageId ? { ...s, ...patch } : s),
-      };
+      return { ...p, updatedAt: now(), stages: p.stages.map(s => s.id === stageId ? { ...s, ...patch } : s) };
     }));
-  }, [projects, persist]);
+
+    fetch(`/api/projects/${projectId}/stages/${stageId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(patch),
+    }).catch(console.error);
+  }, []);
+
+  /* ── Deliverable operations ────────────────────────────── */
 
   const addDeliverable = useCallback((projectId: string, stageId: string, name: string) => {
-    const d: Deliverable = { id: crypto.randomUUID(), name, url: "", done: false };
-    persist(projects.map(p => {
+    const optimistic: Deliverable = { id: crypto.randomUUID(), name, url: "", done: false };
+
+    setProjects(prev => prev.map(p => {
       if (p.id !== projectId) return p;
       return {
-        ...p,
-        updatedAt: now(),
+        ...p, updatedAt: now(),
         stages: p.stages.map(s =>
-          s.id === stageId ? { ...s, deliverables: [...s.deliverables, d] } : s
+          s.id === stageId ? { ...s, deliverables: [...s.deliverables, optimistic] } : s
         ),
       };
     }));
-  }, [projects, persist]);
+
+    fetch(`/api/projects/${projectId}/stages/${stageId}/deliverables`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name }),
+    })
+      .then(r => r.json())
+      .then((saved: Deliverable) => {
+        setProjects(prev => prev.map(p => {
+          if (p.id !== projectId) return p;
+          return {
+            ...p,
+            stages: p.stages.map(s =>
+              s.id === stageId
+                ? { ...s, deliverables: s.deliverables.map(d => d.id === optimistic.id ? saved : d) }
+                : s
+            ),
+          };
+        }));
+      })
+      .catch(console.error);
+  }, []);
 
   const updateDeliverable = useCallback((projectId: string, stageId: string, delivId: string, patch: Partial<Omit<Deliverable, "id">>) => {
-    persist(projects.map(p => {
+    setProjects(prev => prev.map(p => {
       if (p.id !== projectId) return p;
       return {
-        ...p,
-        updatedAt: now(),
+        ...p, updatedAt: now(),
         stages: p.stages.map(s =>
           s.id === stageId
             ? { ...s, deliverables: s.deliverables.map(d => d.id === delivId ? { ...d, ...patch } : d) }
@@ -139,14 +175,19 @@ export function useProjects() {
         ),
       };
     }));
-  }, [projects, persist]);
+
+    fetch(`/api/projects/${projectId}/stages/${stageId}/deliverables/${delivId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(patch),
+    }).catch(console.error);
+  }, []);
 
   const deleteDeliverable = useCallback((projectId: string, stageId: string, delivId: string) => {
-    persist(projects.map(p => {
+    setProjects(prev => prev.map(p => {
       if (p.id !== projectId) return p;
       return {
-        ...p,
-        updatedAt: now(),
+        ...p, updatedAt: now(),
         stages: p.stages.map(s =>
           s.id === stageId
             ? { ...s, deliverables: s.deliverables.filter(d => d.id !== delivId) }
@@ -154,7 +195,11 @@ export function useProjects() {
         ),
       };
     }));
-  }, [projects, persist]);
+
+    fetch(`/api/projects/${projectId}/stages/${stageId}/deliverables/${delivId}`, {
+      method: "DELETE",
+    }).catch(console.error);
+  }, []);
 
   const exportJSON = useCallback(() => {
     const blob = new Blob([JSON.stringify(projects, null, 2)], { type: "application/json" });

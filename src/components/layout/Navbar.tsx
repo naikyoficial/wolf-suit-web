@@ -51,7 +51,7 @@ export function Navbar() {
 
   // La evaluación es un funnel enfocado con su propia navegación (Volver /
   // Volver al inicio). El navbar global se oculta para no colisionar ni distraer.
-  if (pathname === "/evaluacion" || pathname === "/propuesta") return null;
+  if (pathname === "/evaluacion" || pathname === "/propuesta" || pathname === "/login") return null;
 
   return (
     <>
