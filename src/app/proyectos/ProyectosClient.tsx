@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import Link from "next/link";
 import {
   useProjects,
   STAGE_TEMPLATES, DEFAULT_STAGES, makeStages,
@@ -124,9 +125,31 @@ function ProjectList({
   onOpen: (id: string) => void;
   onExport: () => void;
 }) {
+  const qp = useSearchParams();
+  const fromCrm = qp.get("from") === "crm";
+  const didPrefill = useRef(false);
+
   const [modal, setModal] = useState(false);
   const [filter, setFilter] = useState<ProjectStatus | "todos">("todos");
   const [form, setForm] = useState({ ...BLANK_PROJECT });
+
+  useEffect(() => {
+    if (!fromCrm || didPrefill.current) return;
+    didPrefill.current = true;
+    const service = qp.get("service") ?? SERVICES[0]!;
+    const stages = makeStages(STAGE_TEMPLATES[service] ?? DEFAULT_STAGES);
+    setForm({
+      ...BLANK_PROJECT,
+      clientName:  qp.get("name") ?? "",
+      company:     qp.get("company") ?? "",
+      email:       qp.get("email") ?? "",
+      service,
+      description: qp.get("desc") ?? "",
+      totalValue:  Number(qp.get("value")) || 0,
+      stages,
+    });
+    setModal(true);
+  }, [fromCrm, qp]);
 
   const stats = useMemo(() => {
     const activos    = projects.filter(p => p.status === "activo");
@@ -162,13 +185,23 @@ function ProjectList({
         {/* Header */}
         <div className="flex items-end justify-between mb-10 gap-4 flex-wrap">
           <div>
+            <div className="flex gap-3 mb-3">
+              <Link href="/crm"
+                className="text-xs text-text-4 hover:text-text transition-colors font-mono flex items-center gap-1.5">
+                ← CRM
+              </Link>
+              <Link href="/cotizador"
+                className="text-xs text-text-4 hover:text-text transition-colors font-mono flex items-center gap-1.5">
+                Cotizador →
+              </Link>
+            </div>
             <p className="text-xs tracking-[0.2em] text-gold uppercase mb-2 font-mono">Herramienta interna</p>
             <h1 className="text-4xl font-display text-text">Proyectos</h1>
           </div>
           <div className="flex gap-2">
             <button onClick={onExport}
               className="px-3 py-2 text-xs rounded border border-line-2 text-text-3 hover:text-text hover:border-line transition-colors font-mono">
-              Exportar JSON
+              Exportar
             </button>
             <button onClick={() => { setForm({ ...BLANK_PROJECT }); setModal(true); }}
               className="px-4 py-2 text-sm rounded bg-gold text-surface font-medium hover:bg-gold-peak transition-colors">

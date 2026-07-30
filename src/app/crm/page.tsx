@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useLeads, type Lead, type LeadStatus } from "@/hooks/useLeads";
 
 /* ── Constants ───────────────────────────────────────────── */
@@ -54,9 +56,18 @@ function isOverdue(dateStr: string) {
   return new Date(dateStr) < new Date(new Date().toDateString());
 }
 
+const SERVICE_TO_COTIZADOR: Record<string, string> = {
+  "Sitio Web Corporativo":  "corporativo",
+  "Landing Page de Impacto": "landing",
+  "Tienda Online Premium":  "ecommerce",
+  "Presencia Personal":     "personal",
+  "Aplicación Web":         "aplicacion",
+};
+
 /* ── Main Component ──────────────────────────────────────── */
 
 export default function CrmPage() {
+  const router = useRouter();
   const { leads, loaded, addLead, updateLead, deleteLead, exportJSON } = useLeads();
 
   const [filter,    setFilter]    = useState<LeadStatus | "todos">("todos");
@@ -130,6 +141,38 @@ export default function CrmPage() {
     closeModal();
   }
 
+  function goToCotizador() {
+    if (!selected) return;
+    const lead = selected;
+    const params = new URLSearchParams();
+    params.set("name", lead.name);
+    if (lead.company) params.set("company", lead.company);
+    if (lead.email)   params.set("email", lead.email);
+    if (lead.service) {
+      const sid = SERVICE_TO_COTIZADOR[lead.service];
+      if (sid) params.set("service", sid);
+    }
+    if (lead.notes) params.set("project", lead.notes);
+    closeModal();
+    router.push(`/cotizador?${params.toString()}`);
+  }
+
+  function convertToProject() {
+    if (!selected) return;
+    const lead = selected;
+    updateLead(lead.id, { status: "ganado" });
+    const params = new URLSearchParams();
+    params.set("from", "crm");
+    params.set("name", lead.name);
+    if (lead.company) params.set("company", lead.company);
+    if (lead.email)   params.set("email", lead.email);
+    if (lead.service) params.set("service", lead.service);
+    if (lead.estimatedValue) params.set("value", String(lead.estimatedValue));
+    if (lead.notes) params.set("desc", lead.notes);
+    closeModal();
+    router.push(`/proyectos?${params.toString()}`);
+  }
+
   function patch<K extends keyof typeof form>(key: K, val: (typeof form)[K]) {
     setForm(f => ({ ...f, [key]: val }));
   }
@@ -153,10 +196,18 @@ export default function CrmPage() {
             <p className="text-xs tracking-[0.2em] text-gold uppercase mb-2 font-mono">Herramienta interna</p>
             <h1 className="text-4xl font-display text-text">CRM de Leads</h1>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
+            <Link href="/cotizador"
+              className="px-3 py-2 text-xs rounded border border-line-2 text-text-3 hover:text-gold hover:border-gold/40 transition-colors font-mono">
+              Cotizador
+            </Link>
+            <Link href="/proyectos"
+              className="px-3 py-2 text-xs rounded border border-line-2 text-text-3 hover:text-emerald-400 hover:border-emerald-500/40 transition-colors font-mono">
+              Proyectos
+            </Link>
             <button onClick={exportJSON}
               className="px-3 py-2 text-xs rounded border border-line-2 text-text-3 hover:text-text hover:border-line transition-colors font-mono">
-              Exportar JSON
+              Exportar
             </button>
             <button onClick={openAdd}
               className="px-4 py-2 text-sm rounded bg-gold text-surface font-medium hover:bg-gold-peak transition-colors">
@@ -313,6 +364,23 @@ export default function CrmPage() {
                     className={inputCls + " font-mono"} />
                 </FormField>
               </div>
+
+              {/* Actions — only in edit mode */}
+              {modal === "edit" && selected && (
+                <div className="border-t border-line pt-4">
+                  <p className="text-xs text-text-4 mb-3 uppercase tracking-wide font-mono">Acciones</p>
+                  <div className="flex gap-2 flex-wrap">
+                    <button onClick={goToCotizador}
+                      className="flex items-center gap-2 px-4 py-2 text-xs rounded border border-gold/40 text-gold hover:bg-gold/10 transition-colors font-mono">
+                      <span aria-hidden>◈</span> Cotizar
+                    </button>
+                    <button onClick={convertToProject}
+                      className="flex items-center gap-2 px-4 py-2 text-xs rounded border border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 transition-colors font-mono">
+                      <span aria-hidden>→</span> Convertir a proyecto
+                    </button>
+                  </div>
+                </div>
+              )}
 
             </div>
 
