@@ -11,6 +11,7 @@ export function LoginForm({ callbackUrl }: { callbackUrl: string }) {
       position: "fixed",
       inset: 0,
       zIndex: 9999,
+      background: "#0D0D0D",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
