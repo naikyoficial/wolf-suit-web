@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useState, useMemo } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 /* ── Pricing catalogue ─────────────────────────────────────── */
 
@@ -44,16 +45,32 @@ type Level       = typeof LEVELS[number]["id"];
 /* ── Component ─────────────────────────────────────────────── */
 
 export default function CotizadorPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-text-4 text-sm font-mono">Cargando…</p>
+      </div>
+    }>
+      <CotizadorContent />
+    </Suspense>
+  );
+}
+
+function CotizadorContent() {
   const router = useRouter();
+  const params = useSearchParams();
 
-  // Client
-  const [clientName,    setClientName]    = useState("");
-  const [clientCompany, setClientCompany] = useState("");
-  const [clientEmail,   setClientEmail]   = useState("");
-  const [projectDesc,   setProjectDesc]   = useState("");
+  // Client — prefill from CRM if coming via query params
+  const [clientName,    setClientName]    = useState(params.get("name") ?? "");
+  const [clientCompany, setClientCompany] = useState(params.get("company") ?? "");
+  const [clientEmail,   setClientEmail]   = useState(params.get("email") ?? "");
+  const [projectDesc,   setProjectDesc]   = useState(params.get("project") ?? "");
 
-  // Services
-  const [selectedServices, setSelectedServices] = useState<ServiceId[]>([]);
+  // Services — prefill from CRM service param
+  const initialService = params.get("service") as ServiceId | null;
+  const [selectedServices, setSelectedServices] = useState<ServiceId[]>(
+    initialService && SERVICES.some(s => s.id === initialService) ? [initialService] : []
+  );
   const [level,            setLevel]            = useState<Level>("standard");
 
   // Add-ons
@@ -125,6 +142,16 @@ export default function CotizadorPage() {
 
         {/* Header */}
         <div className="mb-12">
+          <div className="flex gap-3 mb-4">
+            <Link href="/crm"
+              className="text-xs text-text-4 hover:text-text transition-colors font-mono flex items-center gap-1.5">
+              ← CRM
+            </Link>
+            <Link href="/proyectos"
+              className="text-xs text-text-4 hover:text-text transition-colors font-mono flex items-center gap-1.5">
+              Proyectos →
+            </Link>
+          </div>
           <p className="text-xs tracking-[0.2em] text-gold uppercase mb-3 font-mono">Herramienta interna</p>
           <h1 className="text-4xl font-display text-text mb-2">Cotizador</h1>
           <p className="text-text-2 text-sm">Generá una propuesta comercial lista para enviar al cliente.</p>
