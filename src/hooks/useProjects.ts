@@ -91,7 +91,7 @@ export function useProjects() {
     })
       .then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
       .then((saved: Project) => setProjects(prev => prev.map(p => p.id === optimistic.id ? saved : p)))
-      .catch(() => setProjects(prev => prev.filter(p => p.id !== optimistic.id)));
+      .catch(console.error);
 
     return optimistic;
   }, []);

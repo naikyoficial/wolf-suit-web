@@ -49,7 +49,7 @@ export function useLeads() {
     })
       .then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
       .then((saved: Lead) => setLeads(prev => prev.map(l => l.id === optimistic.id ? saved : l)))
-      .catch(() => setLeads(prev => prev.filter(l => l.id !== optimistic.id)));
+      .catch(console.error);
 
     return optimistic;
   }, []);
