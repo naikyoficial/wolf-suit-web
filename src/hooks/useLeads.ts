@@ -47,9 +47,9 @@ export function useLeads() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
-      .then(r => r.json())
+      .then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
       .then((saved: Lead) => setLeads(prev => prev.map(l => l.id === optimistic.id ? saved : l)))
-      .catch(console.error);
+      .catch(() => setLeads(prev => prev.filter(l => l.id !== optimistic.id)));
 
     return optimistic;
   }, []);
@@ -62,7 +62,7 @@ export function useLeads() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...leads.find(l => l.id === id), ...patch }),
     })
-      .then(r => r.json())
+      .then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
       .then((saved: Lead) => setLeads(prev => prev.map(l => l.id === id ? saved : l)))
       .catch(console.error);
   }, [leads]);

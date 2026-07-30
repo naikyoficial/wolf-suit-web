@@ -38,8 +38,8 @@ function fmtDate(iso: string) {
   return new Date(iso).toLocaleDateString("es-AR", { day: "2-digit", month: "short", year: "numeric" });
 }
 
-function stageInfo(s: StageStatus) { return STAGE_STATUSES.find(x => x.id === s)!; }
-function projInfo(s: ProjectStatus)  { return PROJECT_STATUSES.find(x => x.id === s)!; }
+function stageInfo(s: StageStatus) { return STAGE_STATUSES.find(x => x.id === s) ?? STAGE_STATUSES[0]!; }
+function projInfo(s: ProjectStatus)  { return PROJECT_STATUSES.find(x => x.id === s) ?? PROJECT_STATUSES[0]!; }
 
 function projectProgress(p: Project) {
   if (!p.stages.length) return 0;
@@ -138,7 +138,7 @@ function ProjectList({
 
   const visible = useMemo(() => {
     const list = filter === "todos" ? projects : projects.filter(p => p.status === filter);
-    return [...list].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+    return [...list].sort((a, b) => (b.createdAt ?? "").localeCompare(a.createdAt ?? ""));
   }, [projects, filter]);
 
   function patchForm<K extends keyof typeof form>(key: K, val: (typeof form)[K]) {

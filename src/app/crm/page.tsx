@@ -36,7 +36,7 @@ const BLANK: Omit<Lead, "id" | "createdAt" | "updatedAt"> = {
 /* ── Helpers ─────────────────────────────────────────────── */
 
 function statusInfo(s: LeadStatus) {
-  return STATUSES.find(x => x.id === s)!;
+  return STATUSES.find(x => x.id === s) ?? STATUSES[0]!;
 }
 
 function fmtUSD(n: number) {
@@ -81,12 +81,12 @@ export default function CrmPage() {
     if (search.trim()) {
       const q = search.toLowerCase();
       list = list.filter(l =>
-        l.name.toLowerCase().includes(q) ||
-        l.company.toLowerCase().includes(q) ||
-        l.notes.toLowerCase().includes(q)
+        (l.name ?? "").toLowerCase().includes(q) ||
+        (l.company ?? "").toLowerCase().includes(q) ||
+        (l.notes ?? "").toLowerCase().includes(q)
       );
     }
-    return [...list].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+    return [...list].sort((a, b) => (b.createdAt ?? "").localeCompare(a.createdAt ?? ""));
   }, [leads, filter, search]);
 
   /* ── Modal helpers ──────────────────────────────────────── */

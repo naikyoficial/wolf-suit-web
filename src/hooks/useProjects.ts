@@ -89,9 +89,9 @@ export function useProjects() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
-      .then(r => r.json())
+      .then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
       .then((saved: Project) => setProjects(prev => prev.map(p => p.id === optimistic.id ? saved : p)))
-      .catch(console.error);
+      .catch(() => setProjects(prev => prev.filter(p => p.id !== optimistic.id)));
 
     return optimistic;
   }, []);
@@ -146,7 +146,7 @@ export function useProjects() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name }),
     })
-      .then(r => r.json())
+      .then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
       .then((saved: Deliverable) => {
         setProjects(prev => prev.map(p => {
           if (p.id !== projectId) return p;
