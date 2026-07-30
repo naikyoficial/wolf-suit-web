@@ -122,29 +122,39 @@ export function PropuestaContent() {
 
   return (
     <>
-      {/* ── Print / PDF styles ──────────────────────────────────── */}
       <style>{`
         @media print {
           nav, footer, .no-print { display: none !important; }
-          body { background: white !important; color: #111 !important; }
-          .print-page {
-            background: white !important;
-            color: #111 !important;
-            padding: 0 !important;
-            margin: 0 !important;
-          }
-          .print-card { border: 1px solid #e5e7eb !important; background: white !important; }
-          .print-th { background: #f9fafb !important; color: #374151 !important; }
-          .print-td { color: #374151 !important; border-bottom: 1px solid #e5e7eb !important; }
-          .print-total-box { background: #111 !important; color: white !important; }
-          .print-gold { color: #b8860b !important; }
-          .print-muted { color: #6b7280 !important; }
-          .print-divider { border-color: #e5e7eb !important; }
-          .print-next-steps { background: #f9fafb !important; border: 1px solid #e5e7eb !important; }
           * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
         }
-
-        @page { size: A4; margin: 18mm 16mm; }
+        @page {
+          size: A4;
+          margin: 0;
+        }
+        .proposal-doc {
+          --gold: #C6A04A;
+          --gold-light: #D4B06A;
+          --dark: #0A0A0A;
+          --dark-2: #111111;
+          --dark-3: #1A1A1A;
+          --text-main: #E8E4DC;
+          --text-dim: #9E9888;
+          --text-muted: #6B6557;
+          --line: #2A2722;
+        }
+        @media print {
+          .proposal-doc {
+            --gold: #B8860B;
+            --gold-light: #C6960B;
+            --dark: #FFFFFF;
+            --dark-2: #FAFAF8;
+            --dark-3: #F4F3F0;
+            --text-main: #1A1A1A;
+            --text-dim: #555555;
+            --text-muted: #888888;
+            --line: #E5E2DC;
+          }
+        }
       `}</style>
 
       {/* ── Screen action bar ───────────────────────────────────── */}
@@ -160,177 +170,358 @@ export function PropuestaContent() {
       </div>
 
       {/* ── Document ────────────────────────────────────────────── */}
-      <div className="print-page max-w-[760px] mx-auto px-4 py-12 md:py-16 text-text">
+      <div className="proposal-doc" style={{ background: "var(--dark)", color: "var(--text-main)", minHeight: "100vh" }}>
+        <div style={{ maxWidth: 760, margin: "0 auto", padding: "48px 32px" }}>
 
-        {/* Header */}
-        <div className="flex justify-between items-start mb-12 print-divider border-b pb-8">
-          <div>
-            {/* Logo text */}
-            <p className="text-2xl font-display tracking-tight text-text print-gold">SUITWOLF</p>
-            <p className="text-xs text-text-4 print-muted mt-0.5 font-mono tracking-wide">Diseño & Desarrollo Web</p>
-          </div>
-          <div className="text-right">
-            <p className="text-xs text-text-4 print-muted font-mono tracking-wide uppercase">Propuesta Comercial</p>
-            <p className="text-sm text-gold print-gold font-mono mt-1">{propNum}</p>
-            <p className="text-xs text-text-4 print-muted mt-1">Emitida: {fmtDate(data.date)}</p>
-            <p className="text-xs text-text-4 print-muted">Válida hasta: {addDays(data.date, data.validity)}</p>
-          </div>
-        </div>
-
-        {/* Client block */}
-        <div className="mb-10">
-          <p className="text-xs tracking-[0.15em] text-text-4 print-muted uppercase font-mono mb-3">Preparada para</p>
-          <div className="print-card border border-line-2 rounded-xl p-5 bg-surface-1">
-            <p className="text-xl font-display text-text">{data.client.name}</p>
-            {data.client.company && <p className="text-text-2 print-muted mt-0.5">{data.client.company}</p>}
-            {data.client.email   && <p className="text-sm text-text-3 print-muted mt-1 font-mono">{data.client.email}</p>}
-            {data.client.project && (
-              <div className="mt-4 pt-4 border-t border-line print-divider">
-                <p className="text-xs text-text-4 print-muted uppercase tracking-wide font-mono mb-1.5">Proyecto</p>
-                <p className="text-sm text-text-2 print-muted leading-relaxed">{data.client.project}</p>
+          {/* ═══ HEADER ═══ */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 56 }}>
+            <div>
+              <p style={{
+                fontFamily: "var(--font-display)",
+                fontSize: 28,
+                letterSpacing: "0.12em",
+                background: "linear-gradient(135deg, #B98A3E 0%, #D9B36A 40%, #F1DCA4 60%, #D9B36A 80%, #B98A3E 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}>
+                SUITWOLF
+              </p>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-muted)", letterSpacing: "0.2em", marginTop: 4, textTransform: "uppercase" }}>
+                Diseño & Desarrollo Web Premium
+              </p>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-muted)", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                Propuesta Comercial
+              </p>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 14, color: "var(--gold)", marginTop: 6, fontWeight: 500 }}>
+                {propNum}
+              </p>
+              <div style={{ marginTop: 8, fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-muted)", lineHeight: 1.8 }}>
+                <p>Emitida: {fmtDate(data.date)}</p>
+                <p>Válida hasta: {addDays(data.date, data.validity)}</p>
               </div>
+            </div>
+          </div>
+
+          {/* Gold divider line */}
+          <div style={{ height: 1, background: "linear-gradient(90deg, var(--gold), transparent)", marginBottom: 48, opacity: 0.4 }} />
+
+          {/* ═══ CLIENT ═══ */}
+          <div style={{ marginBottom: 48 }}>
+            <SectionLabel>Preparada para</SectionLabel>
+            <div style={{
+              background: "var(--dark-2)",
+              border: "1px solid var(--line)",
+              borderRadius: 12,
+              padding: "28px 32px",
+              position: "relative",
+              overflow: "hidden",
+            }}>
+              <div style={{
+                position: "absolute", top: 0, left: 0, width: 3, height: "100%",
+                background: "linear-gradient(180deg, var(--gold), transparent)",
+              }} />
+              <p style={{ fontFamily: "var(--font-display)", fontSize: 24, color: "var(--text-main)" }}>
+                {data.client.name}
+              </p>
+              {data.client.company && (
+                <p style={{ fontSize: 14, color: "var(--text-dim)", marginTop: 4 }}>
+                  {data.client.company}
+                </p>
+              )}
+              {data.client.email && (
+                <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--text-muted)", marginTop: 8 }}>
+                  {data.client.email}
+                </p>
+              )}
+              {data.client.project && (
+                <div style={{ marginTop: 20, paddingTop: 20, borderTop: "1px solid var(--line)" }}>
+                  <p style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-muted)", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 8 }}>
+                    Proyecto
+                  </p>
+                  <p style={{ fontSize: 14, color: "var(--text-dim)", lineHeight: 1.7 }}>
+                    {data.client.project}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* ═══ SERVICES ═══ */}
+          <div style={{ marginBottom: 40 }}>
+            <SectionLabel>Alcance del proyecto</SectionLabel>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {serviceLines.map((s, i) => (
+                <div key={s.id} style={{
+                  background: "var(--dark-2)",
+                  border: "1px solid var(--line)",
+                  borderRadius: 12,
+                  padding: "24px 28px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-start",
+                  gap: 24,
+                }}>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--gold)", opacity: 0.6 }}>
+                        0{i + 1}
+                      </span>
+                      <p style={{ fontSize: 16, fontWeight: 500, color: "var(--text-main)" }}>
+                        {s.label}
+                      </p>
+                    </div>
+                    <p style={{ fontSize: 13, color: "var(--text-muted)", marginTop: 6, lineHeight: 1.6, paddingLeft: 32 }}>
+                      {s.desc}
+                    </p>
+                  </div>
+                  <div style={{ textAlign: "right", flexShrink: 0 }}>
+                    <p style={{ fontFamily: "var(--font-mono)", fontSize: 18, color: "var(--text-main)", fontWeight: 500 }}>
+                      {fmt(s.total)}
+                    </p>
+                    {levelMult !== 1 && (
+                      <p style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-muted)", marginTop: 4 }}>
+                        {fmt(s.price)} × {levelMult.toFixed(1)}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+            {levelInfo.label !== "Estándar" && (
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-muted)", marginTop: 12, paddingLeft: 4 }}>
+                Nivel <span style={{ color: "var(--gold)" }}>{levelInfo.label}</span> — {levelInfo.desc}
+              </p>
             )}
           </div>
-        </div>
 
-        {/* Services table */}
-        <div className="mb-8">
-          <p className="text-xs tracking-[0.15em] text-text-4 print-muted uppercase font-mono mb-4">Servicios</p>
-          <table className="w-full text-sm border-collapse">
-            <thead>
-              <tr className="print-th border-b border-line print-divider">
-                <th className="text-left py-2.5 text-xs text-text-4 print-muted font-mono tracking-wide uppercase">Descripción</th>
-                <th className="text-right py-2.5 text-xs text-text-4 print-muted font-mono tracking-wide uppercase pl-4">Precio base</th>
-                <th className="text-right py-2.5 text-xs text-text-4 print-muted font-mono tracking-wide uppercase pl-4">Nivel</th>
-                <th className="text-right py-2.5 text-xs text-text-4 print-muted font-mono tracking-wide uppercase pl-4">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              {serviceLines.map(s => (
-                <tr key={s.id} className="print-td border-b border-line print-divider">
-                  <td className="py-3.5 pr-4">
-                    <p className="text-text font-medium">{s.label}</p>
-                    <p className="text-xs text-text-3 print-muted mt-0.5 leading-snug">{s.desc}</p>
-                  </td>
-                  <td className="py-3.5 text-right text-text-3 print-muted font-mono pl-4 align-top pt-4">{fmt(s.price)}</td>
-                  <td className="py-3.5 text-right text-text-3 print-muted font-mono pl-4 align-top pt-4">×{levelMult.toFixed(1)}</td>
-                  <td className="py-3.5 text-right font-mono text-text pl-4 align-top pt-4">{fmt(s.total)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {levelInfo.label !== "Estándar" && (
-            <p className="text-xs text-text-4 print-muted mt-2">
-              Nivel <span className="text-gold print-gold">{levelInfo.label}</span> — {levelInfo.desc}
-            </p>
-          )}
-        </div>
-
-        {/* Add-ons */}
-        {addonLines.length > 0 && (
-          <div className="mb-8">
-            <p className="text-xs tracking-[0.15em] text-text-4 print-muted uppercase font-mono mb-4">Add-ons</p>
-            <table className="w-full text-sm border-collapse">
-              <tbody>
-                {addonLines.map(a => (
-                  <tr key={a.id} className="print-td border-b border-line print-divider">
-                    <td className="py-3 text-text-2 print-muted">{a.label}</td>
-                    <td className="py-3 text-right font-mono text-text-3 print-muted">{fmt(a.price)}</td>
-                  </tr>
+          {/* ═══ ADD-ONS ═══ */}
+          {addonLines.length > 0 && (
+            <div style={{ marginBottom: 40 }}>
+              <SectionLabel>Servicios complementarios</SectionLabel>
+              <div style={{
+                background: "var(--dark-2)",
+                border: "1px solid var(--line)",
+                borderRadius: 12,
+                overflow: "hidden",
+              }}>
+                {addonLines.map((a, i) => (
+                  <div key={a.id} style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "16px 28px",
+                    borderBottom: i < addonLines.length - 1 ? "1px solid var(--line)" : "none",
+                  }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                      <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--gold)", opacity: 0.5 }} />
+                      <span style={{ fontSize: 14, color: "var(--text-dim)" }}>{a.label}</span>
+                    </div>
+                    <span style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "var(--text-dim)" }}>
+                      {fmt(a.price)}
+                    </span>
+                  </div>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-
-        {/* Recurring */}
-        {recurringLines.length > 0 && (
-          <div className="mb-8">
-            <p className="text-xs tracking-[0.15em] text-text-4 print-muted uppercase font-mono mb-4">Servicios recurrentes</p>
-            <table className="w-full text-sm border-collapse">
-              <tbody>
-                {recurringLines.map(r => (
-                  <tr key={r.id} className="print-td border-b border-line print-divider">
-                    <td className="py-3 text-text-2 print-muted">
-                      {r.label}
-                      <span className="text-xs text-text-4 print-muted ml-2">{r.months} {r.months === 1 ? "mes" : "meses"}</span>
-                    </td>
-                    <td className="py-3 text-right font-mono text-text-3 print-muted">{fmt(r.price)}/mes</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-
-        {/* Price breakdown */}
-        <div className="mb-10">
-          <div className="print-card border border-line-2 rounded-xl overflow-hidden bg-surface-1">
-            <div className="px-5 py-4 space-y-2.5 text-sm">
-              <SummaryRow label="Subtotal" value={fmt(subtotal)} />
-              {data.urgency    && <SummaryRow label="Urgencia (+25%)" value={`+${fmt(urgencyAmt)}`} dim />}
-              {data.discount > 0 && <SummaryRow label={`Descuento (−${data.discount}%)`} value={`−${fmt(discountAmt)}`} dim />}
+              </div>
             </div>
-            <div className="print-total-box bg-surface-2 px-5 py-5 border-t border-line">
-              <div className="flex justify-between items-center">
+          )}
+
+          {/* ═══ RECURRING ═══ */}
+          {recurringLines.length > 0 && (
+            <div style={{ marginBottom: 40 }}>
+              <SectionLabel>Servicios recurrentes</SectionLabel>
+              <div style={{
+                background: "var(--dark-2)",
+                border: "1px solid var(--line)",
+                borderRadius: 12,
+                overflow: "hidden",
+              }}>
+                {recurringLines.map((r, i) => (
+                  <div key={r.id} style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "16px 28px",
+                    borderBottom: i < recurringLines.length - 1 ? "1px solid var(--line)" : "none",
+                  }}>
+                    <div>
+                      <span style={{ fontSize: 14, color: "var(--text-dim)" }}>{r.label}</span>
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-muted)", marginLeft: 10 }}>
+                        {r.months} {r.months === 1 ? "mes" : "meses"}
+                      </span>
+                    </div>
+                    <span style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "var(--text-dim)" }}>
+                      {fmt(r.price)}/mes
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* ═══ INVESTMENT SUMMARY ═══ */}
+          <div style={{ marginBottom: 48 }}>
+            <SectionLabel>Inversión</SectionLabel>
+            <div style={{
+              border: "1px solid var(--line)",
+              borderRadius: 16,
+              overflow: "hidden",
+            }}>
+              {/* Breakdown rows */}
+              <div style={{ padding: "24px 28px" }}>
+                <InvestmentRow label="Subtotal servicios" value={fmt(subtotal)} />
+                {data.urgency && (
+                  <InvestmentRow label="Urgencia (+25%)" value={`+${fmt(urgencyAmt)}`} dim />
+                )}
+                {data.discount > 0 && (
+                  <InvestmentRow label={`Descuento (−${data.discount}%)`} value={`−${fmt(discountAmt)}`} dim />
+                )}
+              </div>
+
+              {/* Total */}
+              <div style={{
+                background: "linear-gradient(135deg, var(--dark-3), var(--dark-2))",
+                borderTop: "1px solid var(--gold)",
+                padding: "32px 28px",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}>
                 <div>
-                  <p className="text-xs font-mono text-text-4 tracking-wide uppercase">Total del proyecto</p>
+                  <p style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-muted)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                    Total del proyecto
+                  </p>
                   {recurringTotal > 0 && (
-                    <p className="text-sm text-text-3 mt-1">
-                      + <span className="text-gold print-gold">{fmt(recurringTotal)}/mes</span> en servicios recurrentes
+                    <p style={{ fontSize: 13, color: "var(--text-muted)", marginTop: 6 }}>
+                      + <span style={{ color: "var(--gold)" }}>{fmt(recurringTotal)}/mes</span> en recurrentes
                     </p>
                   )}
                 </div>
-                <p className="text-3xl font-display text-gold print-gold">{fmt(total)}</p>
+                <p style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: 36,
+                  color: "var(--gold)",
+                  fontWeight: 400,
+                }}>
+                  {fmt(total)}
+                </p>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Next steps */}
-        <div className="mb-10">
-          <p className="text-xs tracking-[0.15em] text-text-4 print-muted uppercase font-mono mb-4">Próximos pasos</p>
-          <div className="print-next-steps border border-line-2 rounded-xl p-5 bg-surface-1">
-            <ol className="space-y-3">
-              {[
-                "Confirmación de la propuesta por email",
-                "Firma del contrato de servicios",
-                "Pago inicial del 50% del total del proyecto",
-                "Kickoff — sesión de briefing y arranque del proyecto",
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm">
-                  <span className="text-gold print-gold font-mono text-xs mt-0.5 flex-shrink-0">0{i + 1}</span>
-                  <span className="text-text-2 print-muted">{step}</span>
-                </li>
-              ))}
-            </ol>
+          {/* ═══ NEXT STEPS ═══ */}
+          <div style={{ marginBottom: 48 }}>
+            <SectionLabel>Próximos pasos</SectionLabel>
+            <div style={{
+              background: "var(--dark-2)",
+              border: "1px solid var(--line)",
+              borderRadius: 12,
+              padding: "28px 32px",
+            }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+                {[
+                  "Confirmación de la propuesta por email",
+                  "Firma del contrato de servicios",
+                  "Pago inicial del 50% del total del proyecto",
+                  "Kickoff — sesión de briefing y arranque",
+                ].map((step, i) => (
+                  <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
+                    <span style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: 11,
+                      color: "var(--dark-2)",
+                      background: "var(--gold)",
+                      width: 24,
+                      height: 24,
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                      fontWeight: 600,
+                    }}>
+                      {i + 1}
+                    </span>
+                    <p style={{ fontSize: 14, color: "var(--text-dim)", lineHeight: 1.7, paddingTop: 2 }}>
+                      {step}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
 
-        {/* Footer */}
-        <div className="print-divider border-t border-line pt-8 flex flex-col sm:flex-row justify-between gap-4 text-xs text-text-4 print-muted">
-          <div>
-            <p className="text-text-3 print-muted font-medium mb-1">Suitwolf</p>
-            <p>hola@suitwolf.com</p>
-            <p>suitwolf.com</p>
-          </div>
-          <div className="text-sm:text-right">
-            <p>Propuesta válida por {data.validity} días.</p>
-            <p>Los precios están expresados en dólares estadounidenses (USD).</p>
-            <p className="mt-1">Ante cualquier duda, respondé a este email o escribinos directamente.</p>
-          </div>
-        </div>
+          {/* ═══ FOOTER ═══ */}
+          <div style={{ height: 1, background: "linear-gradient(90deg, transparent, var(--gold), transparent)", marginBottom: 32, opacity: 0.3 }} />
 
+          <div style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+            gap: 32,
+            flexWrap: "wrap",
+          }}>
+            <div>
+              <p style={{
+                fontFamily: "var(--font-display)",
+                fontSize: 14,
+                letterSpacing: "0.1em",
+                color: "var(--gold)",
+                marginBottom: 8,
+              }}>
+                SUITWOLF
+              </p>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-muted)" }}>hola@suitwolf.com</p>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-muted)" }}>suitwolf.com</p>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <p style={{ fontSize: 12, color: "var(--text-muted)", lineHeight: 1.8 }}>
+                Propuesta válida por {data.validity} días.
+              </p>
+              <p style={{ fontSize: 12, color: "var(--text-muted)", lineHeight: 1.8 }}>
+                Precios en dólares estadounidenses (USD).
+              </p>
+              <p style={{ fontSize: 12, color: "var(--text-muted)", lineHeight: 1.8, marginTop: 4 }}>
+                Respondé a este email o escribinos directamente.
+              </p>
+            </div>
+          </div>
+
+        </div>
       </div>
     </>
   );
 }
 
-function SummaryRow({ label, value, dim }: { label: string; value: string; dim?: boolean }) {
+/* ── Sub-components ──────────────────────────────────────── */
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex justify-between">
-      <span className={dim ? "text-text-3 print-muted" : "text-text-2 print-muted"}>{label}</span>
-      <span className={`font-mono ${dim ? "text-text-3 print-muted" : "text-text"}`}>{value}</span>
+    <p style={{
+      fontFamily: "var(--font-mono)",
+      fontSize: 10,
+      color: "var(--text-muted)",
+      letterSpacing: "0.2em",
+      textTransform: "uppercase",
+      marginBottom: 16,
+    }}>
+      {children}
+    </p>
+  );
+}
+
+function InvestmentRow({ label, value, dim }: { label: string; value: string; dim?: boolean }) {
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      padding: "8px 0",
+    }}>
+      <span style={{ fontSize: 14, color: dim ? "var(--text-muted)" : "var(--text-dim)" }}>{label}</span>
+      <span style={{ fontFamily: "var(--font-mono)", fontSize: 14, color: dim ? "var(--text-muted)" : "var(--text-main)" }}>{value}</span>
     </div>
   );
 }
