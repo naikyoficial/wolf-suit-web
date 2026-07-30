@@ -33,7 +33,7 @@ export function useLeads() {
 
   useEffect(() => {
     fetch("/api/leads")
-      .then(r => r.json())
+      .then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
       .then((data: Lead[]) => { setLeads(data); setLoaded(true); })
       .catch(() => setLoaded(true));
   }, []);

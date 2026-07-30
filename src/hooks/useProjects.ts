@@ -73,7 +73,7 @@ export function useProjects() {
 
   useEffect(() => {
     fetch("/api/projects")
-      .then(r => r.json())
+      .then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
       .then((data: Project[]) => { setProjects(data); setLoaded(true); })
       .catch(() => setLoaded(true));
   }, []);
