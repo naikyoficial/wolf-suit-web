@@ -51,7 +51,7 @@ export default async function BlogPostRoute({
   if (!post) notFound();
 
   const url = `${SEO.url}/blog/${post.slug}`;
-  const coverSrc = post.cover ?? `/blog-cover/${post.slug}?v=2`;
+  const coverSrc = post.cover ?? `/blog-cover/${post.slug}`;
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -143,8 +143,8 @@ export default async function BlogPostRoute({
               src={coverSrc}
               alt={post.title}
               fill
-              unoptimized
               sizes="(max-width: 900px) 100vw, 880px"
+              quality={80}
               priority
               style={{ objectFit: "cover", objectPosition: "center center" }}
             />

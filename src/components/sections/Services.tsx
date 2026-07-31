@@ -92,6 +92,7 @@ export function Services() {
         alt=""
         fill
         sizes="100vw"
+        quality={75}
         style={{ objectFit: "cover", objectPosition: "center center", zIndex: 0 }}
       />
       {/* Overlay oscuro suave — deja respirar la imagen */}
@@ -468,8 +469,8 @@ export function Services() {
                           src={s.cover}
                           alt={`${s.title} — mockup`}
                           fill
-                          unoptimized
                           sizes="(max-width: 900px) 90vw, 780px"
+                          quality={80}
                           style={{ objectFit: "cover", objectPosition: "center center" }}
                         />
                       </div>
