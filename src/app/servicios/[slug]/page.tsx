@@ -181,8 +181,9 @@ export default async function ServicePageRoute({
                 alt={`${svc.navTitle} — Suitwolf`}
                 width={960}
                 height={720}
-                unoptimized
+                priority
                 sizes="(max-width: 700px) 100vw, 480px"
+                quality={80}
                 style={{
                   width: "100%",
                   height: "auto",
