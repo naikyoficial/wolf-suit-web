@@ -143,8 +143,8 @@ export default async function BlogPostRoute({
               src={coverSrc}
               alt={post.title}
               fill
+              unoptimized
               sizes="(max-width: 900px) 100vw, 880px"
-              quality={80}
               priority
               style={{ objectFit: "cover", objectPosition: "center center" }}
             />
