@@ -31,7 +31,7 @@ export function Duality() {
     >
       {/* Imagen de fondo */}
       <Image
-        src="/background-dualidad.png"
+        src="/background-dualidad.webp"
         alt=""
         fill
         sizes="100vw"

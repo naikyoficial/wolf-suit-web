@@ -40,7 +40,7 @@ export function Hero() {
       <div aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0 }}>
         {/* Foto de fondo — pizarra negra con vetas doradas */}
         <Image
-          src="/background-suitwolf.png"
+          src="/background-suitwolf.webp"
           alt=""
           fill
           priority

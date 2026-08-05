@@ -88,7 +88,7 @@ export function Services() {
     >
       {/* Imagen de fondo — filosofía */}
       <Image
-        src="/background-filosofia.png"
+        src="/background-filosofia.webp"
         alt=""
         fill
         sizes="100vw"

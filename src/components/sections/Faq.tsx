@@ -122,7 +122,7 @@ export function Faq() {
 
       {/* Background image */}
       <Image
-        src="/dualidad-bg.png"
+        src="/dualidad-bg.webp"
         alt=""
         fill
         sizes="100vw"

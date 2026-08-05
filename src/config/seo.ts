@@ -12,7 +12,7 @@ export const SEO = {
   legalName: "Suitwolf",
   url: "https://suitwolf.com",
   email: "proyectos@suitwolf.com",
-  logo: "https://suitwolf.com/isotipo.png",
+  logo: "https://suitwolf.com/isotipo.webp",
   ogImage: "https://suitwolf.com/opengraph-image",
   /** Español neutro / LatAm. Señal de idioma sin comprometer un país. */
   locale: "es",

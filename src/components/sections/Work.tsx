@@ -171,7 +171,7 @@ export function Work() {
     <section id="trabajos" style={{ position: "relative", overflow: "hidden" }}>
       {/* Imagen de fondo */}
       <Image
-        src="/background-trabajos.png"
+        src="/background-trabajos.webp"
         alt=""
         fill
         sizes="100vw"
