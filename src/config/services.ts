@@ -54,7 +54,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     h1: "Diseño web corporativo que posiciona a tu empresa como referente",
     serviceType: "Diseño web corporativo",
     primaryKeyword: "diseño web corporativo",
-    cover: "/Sitio web corporativo 2.0.png",
+    cover: "/Sitio web corporativo 2.0.webp",
     intro:
       "Tu sitio web es el primer filtro que atraviesan tus clientes. Lo que encuentran ahí decide si avanzan o se van. Construimos sitios corporativos a medida —sin plantillas— donde cada decisión de arquitectura, diseño y desarrollo responde a una estrategia: convertir esa primera impresión en leads calificados y autoridad de marca.",
     problem:
@@ -114,7 +114,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     h1: "Tiendas online profesionales diseñadas para vender más",
     serviceType: "Diseño de tienda online / e-commerce",
     primaryKeyword: "tienda online profesional",
-    cover: "/tienda online.png",
+    cover: "/tienda online.webp",
     intro:
       "El 70% de los carritos se abandonan antes del pago —casi siempre por fricción en el flujo o falta de confianza visual. Los e-commerce que construimos atacan ese número desde el diseño: catálogos que exhiben, checkouts que no obstruyen y una integración técnica pensada para maximizar el ticket promedio.",
     problem:
@@ -170,7 +170,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     h1: "Landing pages de alta conversión que captan leads y aceleran ventas",
     serviceType: "Diseño de landing page de alta conversión",
     primaryKeyword: "landing page alta conversión",
-    cover: "/Landing page.png",
+    cover: "/Landing page.webp",
     intro:
       "Una landing mal diseñada drena tu presupuesto publicitario sin devolver resultados. Las nuestras están construidas sobre la psicología de la decisión: jerarquía visual que guía, carga ultrarrápida que retiene la atención y un argumento narrativo que lleva directo a la acción —con copy estratégico incluido en el proceso.",
     problem:
@@ -226,7 +226,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     h1: "Aplicaciones web a medida para empresas que escalan",
     serviceType: "Desarrollo de aplicaciones web a medida",
     primaryKeyword: "aplicaciones web a medida",
-    cover: "/Aplicacion Web.png",
+    cover: "/Aplicacion Web.webp",
     intro:
       "Aplicaciones web a medida para empresas que necesitan más que un sitio: portales de cliente, dashboards, sistemas de gestión y herramientas internas. Diseño UX sumado a un desarrollo frontend y backend robusto, pensado para crecer con tu negocio.",
     problem:
@@ -282,7 +282,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     h1: "SEO que atrae clientes con intención de compra",
     serviceType: "SEO y posicionamiento web",
     primaryKeyword: "SEO técnico",
-    cover: "/SEO.png",
+    cover: "/SEO.webp",
     intro:
       "El SEO que importa no es el que acumula clics: es el que atrae al usuario con intención real de compra. Auditamos tu arquitectura técnica, identificamos dónde perdés visibilidad frente a tu competencia y construimos una estrategia de contenidos y autoridad que convierte búsquedas en ingresos sostenibles.",
     problem:
@@ -338,7 +338,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     h1: "Tu presencia digital como activo estratégico",
     serviceType: "Diseño web de marca personal",
     primaryKeyword: "diseño web marca personal",
-    cover: "/Presencia Personal.png",
+    cover: "/Presencia Personal.webp",
     intro:
       "Para un ejecutivo, consultor o figura pública, el sitio personal es la presentación que ocurre antes de cualquier reunión. Diseñamos más que un portfolio: construimos la narrativa que te posiciona exactamente donde querés estar en la mente de quien importa —y te hace la opción obvia antes de que abras la boca.",
     problem:

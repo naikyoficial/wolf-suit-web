@@ -229,7 +229,7 @@ export function Contact() {
         transform: "translate(-50%, -50%)",
         width: 620, height: 620, opacity: 0.022, pointerEvents: "none",
       }}>
-        <Image src="/isotipo.png" alt="" fill style={{ objectFit: "contain" }} />
+        <Image src="/isotipo.webp" alt="" fill style={{ objectFit: "contain" }} />
       </div>
 
       {/* Gold progress bar */}

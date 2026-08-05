@@ -115,7 +115,7 @@ export function Method() {
     >
       {/* Background image */}
       <Image
-        src="/background2.png"
+        src="/background2.webp"
         alt=""
         fill
         sizes="100vw"

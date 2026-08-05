@@ -38,7 +38,7 @@ export function Apply() {
     >
       {/* Background image */}
       <Image
-        src="/background-trabajos.png"
+        src="/background-trabajos.webp"
         alt=""
         fill
         sizes="100vw"

@@ -126,7 +126,7 @@ export function Standards() {
     >
       {/* Background image */}
       <Image
-        src="/background.png"
+        src="/background.webp"
         alt=""
         fill
         sizes="100vw"

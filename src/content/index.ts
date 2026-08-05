@@ -52,7 +52,7 @@ export const SERVICES: ServiceItem[] = [
     canvasTitle: { normal: "Sitios que ", accent: "instalan", end: " autoridad." },
     tagline: "La primera impresión que decide si tu cliente avanza o se va — construida desde la estrategia, no desde una plantilla.",
     meta: ["A medida", "SEO técnico", "PageSpeed 90+"],
-    cover: "/Sitio web corporativo 2.0.png",
+    cover: "/Sitio web corporativo 2.0.webp",
     slug: "diseno-web-corporativo",
   },
   {
@@ -66,7 +66,7 @@ export const SERVICES: ServiceItem[] = [
     canvasTitle: { normal: "Landings que ", accent: "convierten", end: " tráfico pago." },
     tagline: "Estructura persuasiva, copy incluido y carga en menos de 2 segundos — cada bloque tiene una función en el recorrido hacia la acción.",
     meta: ["Copy incluido", "Ultrarrápida", "A/B ready"],
-    cover: "/Landing page.png",
+    cover: "/Landing page.webp",
     slug: "landing-pages",
   },
   {
@@ -80,7 +80,7 @@ export const SERVICES: ServiceItem[] = [
     canvasTitle: { normal: "E-commerce que ", accent: "exhibe", end: " tu producto." },
     tagline: "Catálogo que vende, checkout sin fricción e integración técnica pensada para maximizar el ticket promedio.",
     meta: ["Sin fricción", "Multi-moneda", "CRM ready"],
-    cover: "/tienda online.png",
+    cover: "/tienda online.webp",
     slug: "tienda-online",
   },
   {
@@ -94,7 +94,7 @@ export const SERVICES: ServiceItem[] = [
     canvasTitle: { normal: "La presentación ", accent: "antes", end: " de la reunión." },
     tagline: "Para consultores y figuras públicas: la narrativa y el diseño que te posicionan como referente antes del primer contacto.",
     meta: ["Narrativa", "SEO personal", "Autoridad"],
-    cover: "/Presencia Personal.png",
+    cover: "/Presencia Personal.webp",
     slug: "presencia-personal",
   },
   {
@@ -108,7 +108,7 @@ export const SERVICES: ServiceItem[] = [
     canvasTitle: { normal: "Aparecer ", accent: "primero", end: " cuando importa." },
     tagline: "Auditoría técnica, arquitectura de contenidos y estrategia de autoridad — tráfico con intención real de compra, no clics vacíos.",
     meta: ["Técnico", "Contenido", "Medible"],
-    cover: "/SEO.png",
+    cover: "/SEO.webp",
     slug: "seo-posicionamiento-web",
   },
   {
@@ -122,7 +122,7 @@ export const SERVICES: ServiceItem[] = [
     canvasTitle: { normal: "Herramientas que ", accent: "escalan", end: " tu operación." },
     tagline: "Portales, dashboards, sistemas internos y productos SaaS — construidos para crecer con tu negocio sin deuda técnica.",
     meta: ["Frontend + backend", "Integraciones", "Escalable"],
-    cover: "/Aplicacion Web.png",
+    cover: "/Aplicacion Web.webp",
     slug: "aplicaciones-web-a-medida",
   },
 ];
@@ -150,7 +150,7 @@ export const WORKS: WorkProject[] = [
     description:
       "Un cliente con una idea concreta y una expectativa alta: un producto serio, no una demo. Desde la primera reunión, cada decisión fue tomada junto a él —sistema visual, arquitectura, flujo de producto— hasta construir una plataforma completa: generación de presupuestos en PDF, automatizaciones, gestión de clientes y equipo, e integración de pagos internacionales. Hoy venden un producto digital propio, con su marca, no la nuestra.",
     tags: ["UX/UI", "Dashboard", "Desarrollo a medida"],
-    cover: "/quantro diseño.png",
+    cover: "/quantro diseño.webp",
   },
   {
     name: "Inoxidables GB",
@@ -159,7 +159,7 @@ export const WORKS: WorkProject[] = [
     description:
       "Años de trayectoria en el rubro industrial, sin presencia digital que lo respaldara. Construimos una identidad visual sólida, un catálogo estructurado y una arquitectura que instaló su autoridad frente a la competencia. El resultado: un aumento significativo en consultas e ingresos, con el nivel que su trayectoria siempre mereció.",
     tags: ["Diseño corporativo", "Catálogo", "SEO"],
-    cover: "/inoxidables gb proyecto.png",
+    cover: "/inoxidables gb proyecto.webp",
   },
   {
     name: "Entre Verde",
@@ -168,7 +168,7 @@ export const WORKS: WorkProject[] = [
     description:
       "Un producto claro, un objetivo concreto: que el visitante convierta. Diseñamos la narrativa, la jerarquía visual y el flujo completo para que cada sección lleve al siguiente paso sin distracciones. Carga inmediata, copy estratégico y un camino sin escape hacia la acción.",
     tags: ["Conversión", "Copy estratégico", "Performance"],
-    cover: "/entre verde proyecto.png",
+    cover: "/entre verde proyecto.webp",
   },
   {
     name: "Marbella Estates",
@@ -177,7 +177,7 @@ export const WORKS: WorkProject[] = [
     description:
       "Una inmobiliaria premium de South Florida operando en el mercado más competitivo de real estate hispano de Estados Unidos. El sitio anterior no reflejaba el nivel de las propiedades ni el ticket promedio del cliente objetivo. Diseñamos una experiencia bilingüe (inglés y español) donde cada propiedad se presenta como un producto de lujo: buscador con filtros útiles, fichas con fotografía profesional a página completa, contexto de barrio y agente asignado. SEO local pensado para búsquedas de alta intención en Brickell, Coral Gables, Doral y toda Miami-Dade. Resultado: leads mejor calificados, ticket promedio más alto y una marca que compite al nivel que la trayectoria del cliente merece.",
     tags: ["Real Estate", "Bilingüe EN/ES", "SEO local Miami", "Captación de leads"],
-    cover: "/Sitio web para inmobiliaria.png",
+    cover: "/Sitio web para inmobiliaria.webp",
   },
 ];
 
