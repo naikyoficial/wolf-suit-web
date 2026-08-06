@@ -5,6 +5,7 @@ import { Footer }         from "@/components/layout/Footer";
 import { SmoothScroll }   from "@/components/layout/SmoothScroll";
 import { Grain }          from "@/components/ui/Grain";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { AtmosphericBg }  from "@/components/sections/AtmosphericBg";
 import { Analytics }      from "@/components/analytics/Analytics";
 import { ConsentProvider } from "@/contexts/ConsentContext";
@@ -119,6 +120,7 @@ export default function RootLayout({
             <Footer />
           </SmoothScroll>
           <CookieBanner />
+          <FloatingWhatsApp />
         </ConsentProvider>
       </body>
     </html>
