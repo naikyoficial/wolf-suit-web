@@ -7,7 +7,7 @@ export const HERO_CONTENT = {
   headlineAccent: "negocio",
   subheadline:
     "Construimos sitios web que transforman visitantes en clientes. Le ponemos a tu negocio o empresa el traje que merece.",
-  cta: "Solicitar evaluación",
+  cta: "Escribime por WhatsApp",
   ctaSecondary: "Ver servicios",
   tags: ["Diseño & desarrollo web", "E-commerce", "SEO técnico"],
 } as const;

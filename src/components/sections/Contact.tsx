@@ -118,8 +118,8 @@ export function Contact() {
                 margin: "0 auto",
                 maxWidth: "38em",
               }}>
-                Escribime por WhatsApp y coordinamos una reunión. Respondo yo personalmente —
-                nada de formularios, filtros ni intermediarios.
+                Escribime por WhatsApp y coordinamos una reunión.<br />
+                Respondo personalmente, sin intermediarios.
               </p>
             </Reveal>
           </div>
