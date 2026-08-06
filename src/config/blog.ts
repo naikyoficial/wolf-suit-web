@@ -212,8 +212,8 @@ export const BLOG_POSTS: BlogPost[] = [
         text: "Al pedir presupuestos, la pregunta útil no es cuánto sale, sino qué incluye y qué resultado esperar. Comparar precios sin comparar alcances es cómo se toman las malas decisiones.",
       },
     ],
-    relatedHref: "/evaluacion",
-    relatedLabel: "Pedir una evaluación sin costo",
+    relatedHref: "/servicios/diseno-web-corporativo",
+    relatedLabel: "Ver detalle del servicio",
   },
 
   {
@@ -433,8 +433,8 @@ export const BLOG_POSTS: BlogPost[] = [
         text: "Los proyectos que se estiran meses más allá de lo previsto casi siempre fallan en uno de esos puntos —del lado de la agencia o del cliente. Con reglas claras desde el día uno, los plazos se cumplen.",
       },
     ],
-    relatedHref: "/evaluacion",
-    relatedLabel: "Empezar una evaluación",
+    relatedHref: "/servicios/diseno-web-corporativo",
+    relatedLabel: "Conocer el proceso completo",
   },
 
   {

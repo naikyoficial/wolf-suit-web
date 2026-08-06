@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Reveal } from "@/components/ui/Reveal";
+import { WhatsAppLink, WhatsAppIcon } from "@/components/ui/WhatsAppLink";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SEO, serviceSchema } from "@/config/seo";
 import { SERVICE_PAGES, getServiceBySlug } from "@/config/services";
@@ -145,12 +146,12 @@ export default async function ServicePageRoute({
               </p>
             </Reveal>
             <Reveal delay={0.14}>
-              <Link
-                href="/evaluacion"
+              <WhatsAppLink
                 className="cta-primary"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
+                  gap: 10,
                   padding: "clamp(14px, 1.4vw, 18px) clamp(28px, 3vw, 44px)",
                   fontFamily: "var(--font-mono)",
                   fontWeight: 600,
@@ -160,8 +161,9 @@ export default async function ServicePageRoute({
                   textDecoration: "none",
                 }}
               >
-                Solicitar evaluación
-              </Link>
+                <WhatsAppIcon size={14} />
+                Escribinos por WhatsApp
+              </WhatsAppLink>
             </Reveal>
           </div>
 
@@ -458,12 +460,12 @@ export default async function ServicePageRoute({
           </p>
         </Reveal>
         <Reveal delay={0.08}>
-          <Link
-            href="/evaluacion"
+          <WhatsAppLink
             className="cta-primary"
             style={{
               display: "inline-flex",
               alignItems: "center",
+              gap: 11,
               padding: "clamp(16px, 1.6vw, 20px) clamp(36px, 4vw, 52px)",
               fontFamily: "var(--font-mono)",
               fontWeight: 600,
@@ -473,8 +475,9 @@ export default async function ServicePageRoute({
               textDecoration: "none",
             }}
           >
-            Solicitar evaluación
-          </Link>
+            <WhatsAppIcon size={16} />
+            Escribinos por WhatsApp
+          </WhatsAppLink>
         </Reveal>
       </section>
     </main>

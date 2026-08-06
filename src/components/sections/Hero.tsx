@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { Magnetic } from "@/components/ui/Magnetic";
+import { WhatsAppLink, WhatsAppIcon } from "@/components/ui/WhatsAppLink";
 import { HERO_CONTENT } from "@/content";
 import { useLenis } from "@/contexts/LenisContext";
 
@@ -211,13 +211,13 @@ export function Hero() {
           style={{ display: "flex", alignItems: "center", gap: "clamp(16px, 2.4vw, 28px)", flexWrap: "wrap", justifyContent: "center", padding: "0 clamp(1.4rem, 5vw, 3rem)" }}
         >
           <Magnetic>
-            <Link
-              href="/evaluacion"
-              data-cursor-hover
+            <WhatsAppLink
+              dataCursorHover
               className="cta-primary"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
+                gap: 11,
                 padding: "clamp(16px, 1.5vw, 20px) clamp(32px, 3.2vw, 46px)",
                 fontFamily: "var(--font-mono)",
                 fontWeight: 600,
@@ -227,8 +227,9 @@ export function Hero() {
                 textDecoration: "none",
               }}
             >
+              <WhatsAppIcon size={16} />
               {HERO_CONTENT.cta}
-            </Link>
+            </WhatsAppLink>
           </Magnetic>
 
           <a
