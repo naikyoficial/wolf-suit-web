@@ -6,6 +6,8 @@ export const SITE = {
   url: "https://suitwolf.com",
   locale: "es-419",
   email: "proyectos@suitwolf.com",
+  // WhatsApp comercial — en formato E.164 sin + ni separadores (para wa.me)
+  whatsapp: "5493435343861",
 } as const;
 
 export const NAV_LINKS = [

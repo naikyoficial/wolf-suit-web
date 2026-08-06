@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
+import { WhatsAppLink, WhatsAppIcon } from "@/components/ui/WhatsAppLink";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SEO } from "@/config/seo";
 import { SERVICE_PAGES } from "@/config/services";
@@ -232,12 +233,12 @@ export default function ServiciosHub() {
           </p>
         </Reveal>
         <Reveal delay={0.08}>
-          <Link
-            href="/evaluacion"
+          <WhatsAppLink
             className="cta-primary"
             style={{
               display: "inline-flex",
               alignItems: "center",
+              gap: 11,
               padding: "clamp(16px, 1.6vw, 20px) clamp(36px, 4vw, 52px)",
               fontFamily: "var(--font-mono)",
               fontWeight: 600,
@@ -247,8 +248,9 @@ export default function ServiciosHub() {
               textDecoration: "none",
             }}
           >
-            Solicitar evaluación
-          </Link>
+            <WhatsAppIcon size={16} />
+            Escribinos por WhatsApp
+          </WhatsAppLink>
         </Reveal>
       </section>
     </main>

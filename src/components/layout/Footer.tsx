@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SITE, NAV_LINKS } from "@/config/site";
+import { WhatsAppLink, WhatsAppIcon } from "@/components/ui/WhatsAppLink";
 import { SERVICE_PAGES } from "@/config/services";
 import { CraftedBy } from "@/components/ui/CraftedBy";
 
@@ -146,13 +147,20 @@ export function Footer() {
               </a>
             </li>
             <li>
-              <Link
-                href="/evaluacion"
-                data-cursor-hover
-                style={{ fontSize: 14, color: "var(--color-gold)", textDecoration: "none" }}
+              <WhatsAppLink
+                dataCursorHover
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  fontSize: 14,
+                  color: "var(--color-gold)",
+                  textDecoration: "none",
+                }}
               >
-                Solicitar evaluación →
-              </Link>
+                <WhatsAppIcon size={14} />
+                Escribinos por WhatsApp
+              </WhatsAppLink>
             </li>
           </ul>
         </div>

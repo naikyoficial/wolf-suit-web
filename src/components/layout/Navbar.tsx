@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS, SITE } from "@/config/site";
+import { WhatsAppLink, WhatsAppIcon } from "@/components/ui/WhatsAppLink";
 import { useLenis } from "@/contexts/LenisContext";
 
 const EASE = [0.16, 1.0, 0.3, 1.0] as const;
@@ -51,7 +52,7 @@ export function Navbar() {
 
   // La evaluación es un funnel enfocado con su propia navegación (Volver /
   // Volver al inicio). El navbar global se oculta para no colisionar ni distraer.
-  if (["/evaluacion", "/propuesta", "/login", "/crm", "/proyectos", "/cotizador"].includes(pathname)) return null;
+  if (["/propuesta", "/login", "/crm", "/proyectos", "/cotizador"].includes(pathname)) return null;
 
   return (
     <>
@@ -161,15 +162,13 @@ export function Navbar() {
 
         {/* Lado derecho — CTA (desktop) + hamburguesa (mobile) */}
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 22 }}>
-          <Link
-            href="/evaluacion"
-            data-cursor-hover
+          <WhatsAppLink
+            dataCursorHover
             className="cta-gold hidden md:inline-flex"
-            onMouseEnter={() => setCtaHov(true)}
-            onMouseLeave={() => setCtaHov(false)}
+            onClick={() => { setCtaHov(false); }}
             style={{
               alignItems: "center",
-              gap: 11,
+              gap: 10,
               padding: "10px 22px",
               fontFamily: "var(--font-mono)",
               fontSize: 10.5,
@@ -178,12 +177,16 @@ export function Navbar() {
               textDecoration: "none",
             }}
           >
-            Evaluación
+            <WhatsAppIcon size={14} />
+            WhatsApp
             <span aria-hidden style={{
               position: "relative", display: "inline-flex", alignItems: "center",
               width: ctaHov ? 20 : 14, height: 1, background: "currentColor", flexShrink: 0,
               transition: "width .35s",
-            }}>
+            }}
+              onMouseEnter={() => setCtaHov(true)}
+              onMouseLeave={() => setCtaHov(false)}
+            >
               <span style={{
                 position: "absolute", right: -1, top: -2.5,
                 width: 5, height: 5,
@@ -192,7 +195,7 @@ export function Navbar() {
                 transform: "rotate(45deg)",
               }} />
             </span>
-          </Link>
+          </WhatsAppLink>
 
           {/* Hamburguesa — solo mobile */}
           <button
@@ -307,14 +310,13 @@ export function Navbar() {
                 transition={{ duration: 0.5, delay: 0.05 + NAV_LINKS.length * 0.08 + 0.1, ease: EASE }}
                 style={{ marginTop: 40 }}
               >
-                <Link
-                  href="/evaluacion"
+                <WhatsAppLink
                   onClick={() => setMenuOpen(false)}
                   className="cta-gold"
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: 14,
+                    gap: 12,
                     padding: "18px 40px",
                     fontFamily: "var(--font-mono)",
                     fontWeight: 500,
@@ -324,8 +326,9 @@ export function Navbar() {
                     textDecoration: "none",
                   }}
                 >
-                  Solicitar evaluación
-                </Link>
+                  <WhatsAppIcon size={16} />
+                  Escribime por WhatsApp
+                </WhatsAppLink>
               </motion.div>
             </nav>
           </motion.div>

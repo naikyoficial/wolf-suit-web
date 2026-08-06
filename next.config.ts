@@ -1,5 +1,12 @@
 import type { NextConfig } from "next";
 
+// Link a WhatsApp con mensaje prellenado — hardcoded para que redirects() no
+// necesite importar de src/. Cambiar acá y en src/config/site.ts si migrás
+// a otro número.
+const WHATSAPP_REDIRECT = `https://wa.me/5493435343861?text=${encodeURIComponent(
+  "Hola! Me interesa coordinar una reunión con Suitwolf."
+)}`;
+
 const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
@@ -8,6 +15,14 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["framer-motion"],
+  },
+  async redirects() {
+    return [
+      // /evaluacion (formulario viejo) y /aplicar → WhatsApp directo.
+      // 301 para preservar SEO acumulado de la ruta.
+      { source: "/evaluacion", destination: WHATSAPP_REDIRECT, permanent: true },
+      { source: "/aplicar",    destination: WHATSAPP_REDIRECT, permanent: true },
+    ];
   },
   async headers() {
     return [

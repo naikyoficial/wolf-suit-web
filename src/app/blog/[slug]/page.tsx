@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Reveal } from "@/components/ui/Reveal";
+import { WhatsAppLink, WhatsAppIcon } from "@/components/ui/WhatsAppLink";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SEO } from "@/config/seo";
 import { BLOG_POSTS, getPostBySlug } from "@/config/blog";
@@ -285,14 +286,14 @@ export default async function BlogPostRoute({
               >
                 ¿Necesitás un sitio web que convierta?
               </p>
-              <Link
-                href="/evaluacion"
+              <WhatsAppLink
                 className="cta-primary"
-                data-cursor-hover
+                dataCursorHover
                 style={{
                   display: "inline-flex",
                   alignSelf: "flex-start",
                   alignItems: "center",
+                  gap: 9,
                   padding: "14px 28px",
                   fontFamily: "var(--font-mono)",
                   fontWeight: 600,
@@ -302,8 +303,9 @@ export default async function BlogPostRoute({
                   textDecoration: "none",
                 }}
               >
-                Solicitar evaluación
-              </Link>
+                <WhatsAppIcon size={14} />
+                Escribinos por WhatsApp
+              </WhatsAppLink>
             </div>
           </aside>
         </div>

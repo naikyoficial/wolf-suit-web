@@ -7,7 +7,7 @@ import { Work }        from "@/components/sections/Work";
 import { Method }      from "@/components/sections/Method";
 import { Standards }   from "@/components/sections/Standards";
 import { Faq }         from "@/components/sections/Faq";
-import { Apply }       from "@/components/sections/Apply";
+import { Contact }     from "@/components/sections/Contact";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://suitwolf.com" },
@@ -24,7 +24,7 @@ export default function HomePage() {
       <Standards />
       <Method />
       <Faq />
-      <Apply />
+      <Contact />
     </main>
   );
 }
