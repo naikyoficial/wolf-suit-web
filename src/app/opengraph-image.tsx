@@ -6,10 +6,29 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 /**
- * Imagen Open Graph / Twitter generada al vuelo (1200×630).
- * Next la inyecta automáticamente como og:image y twitter:image en todo el sitio.
+ * Open Graph / Twitter (1200×630) — replica la estética del hero:
+ * fondo de mármol real, Instrument Serif, headline partido con
+ * acento dorado italic en "y eleva tu negocio."
+ *
+ * Los assets (fonts + background JPG) se bundlean vía
+ * `new URL(..., import.meta.url)` — no depende de fetches externos en
+ * runtime. Satori (motor de next/og) todavía no digiere WebP, por eso
+ * el background es JPG.
  */
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  const [serifRegular, serifItalic, monoMedium, bgBuf] = await Promise.all([
+    fetch(new URL("./_og-assets/InstrumentSerif-Regular.ttf", import.meta.url)).then((r) => r.arrayBuffer()),
+    fetch(new URL("./_og-assets/InstrumentSerif-Italic.ttf", import.meta.url)).then((r) => r.arrayBuffer()),
+    fetch(new URL("./_og-assets/JetBrainsMono-Medium.ttf", import.meta.url)).then((r) => r.arrayBuffer()),
+    fetch(new URL("./_og-assets/bg.jpg", import.meta.url)).then((r) => r.arrayBuffer()),
+  ]);
+
+  // JPG → data URL (edge runtime tiene btoa pero no Buffer).
+  const bytes = new Uint8Array(bgBuf);
+  let bin = "";
+  for (let i = 0; i < bytes.byteLength; i++) bin += String.fromCharCode(bytes[i]!);
+  const bgUrl = `data:image/jpeg;base64,${btoa(bin)}`;
+
   return new ImageResponse(
     (
       <div
@@ -17,78 +36,199 @@ export default function OpengraphImage() {
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          background:
-            "radial-gradient(120% 90% at 50% 32%, #1a140a 0%, #0b0a08 60%, #060504 100%)",
-          color: "#F5F2EC",
-          fontFamily: "serif",
           position: "relative",
+          background:
+            "linear-gradient(180deg, #12100a 0%, #0a0806 60%, #060504 100%)",
         }}
       >
-        <div
+        {/* Fondo de mármol oscuro (mismo que el hero) */}
+        <img
+          src={bgUrl}
+          width={1200}
+          height={630}
           style={{
-            fontSize: 34,
-            letterSpacing: 18,
-            color: "#D9B36A",
-            marginBottom: 34,
-            textTransform: "uppercase",
-            fontWeight: 600,
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            opacity: 0.55,
           }}
-        >
-          Suitwolf
-        </div>
+        />
+
+        {/* Overlay para legibilidad */}
         <div
           style={{
             display: "flex",
-            fontSize: 84,
-            lineHeight: 1.05,
-            textAlign: "center",
-            maxWidth: 960,
-            fontWeight: 500,
-            letterSpacing: -2,
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(180deg, rgba(6,5,4,.35) 0%, rgba(6,5,4,.55) 55%, rgba(6,5,4,.88) 100%)",
+          }}
+        />
+
+        {/* Contenido principal */}
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            padding: "56px 72px 64px 72px",
           }}
         >
-          Diseño web que convierte
+          {/* Top row — wordmark + tag */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                fontFamily: "JetBrains Mono",
+                fontSize: 22,
+                color: "#D9B36A",
+                letterSpacing: 9,
+                textTransform: "uppercase",
+                fontWeight: 500,
+              }}
+            >
+              SUITWOLF
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 14,
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  width: 28,
+                  height: 1,
+                  background: "rgba(217,179,106,0.55)",
+                }}
+              />
+              <div
+                style={{
+                  display: "flex",
+                  fontFamily: "JetBrains Mono",
+                  fontSize: 13,
+                  color: "rgba(217,179,106,0.75)",
+                  letterSpacing: 4,
+                  textTransform: "uppercase",
+                }}
+              >
+                Agencia de Diseño Web Premium
+              </div>
+            </div>
+          </div>
+
+          {/* Headline centrado */}
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "flex-start",
+              marginTop: 8,
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                fontFamily: "Instrument Serif",
+                fontSize: 96,
+                color: "#F5F2EC",
+                lineHeight: 1.04,
+                letterSpacing: -3,
+              }}
+            >
+              Diseño web que convierte
+            </div>
+            <div
+              style={{
+                display: "flex",
+                fontFamily: "Instrument Serif",
+                fontSize: 96,
+                fontStyle: "italic",
+                color: "#D9B36A",
+                lineHeight: 1.04,
+                letterSpacing: -3,
+                marginTop: -4,
+              }}
+            >
+              y eleva tu negocio.
+            </div>
+          </div>
+
+          {/* Bottom — subhead + url */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              width: "100%",
+              gap: 40,
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                fontFamily: "Instrument Serif",
+                fontSize: 26,
+                lineHeight: 1.35,
+                color: "rgba(245,242,236,0.72)",
+                maxWidth: 720,
+              }}
+            >
+              Sitios web a medida que transforman visitantes en clientes.
+            </div>
+            <div
+              style={{
+                display: "flex",
+                fontFamily: "JetBrains Mono",
+                fontSize: 16,
+                color: "#D9B36A",
+                letterSpacing: 5,
+                textTransform: "uppercase",
+                fontWeight: 500,
+              }}
+            >
+              suitwolf.com →
+            </div>
+          </div>
         </div>
+
+        {/* Regla dorada inferior */}
         <div
           style={{
             display: "flex",
-            fontSize: 84,
-            lineHeight: 1.05,
-            marginTop: 4,
-            color: "#D9B36A",
-            fontWeight: 500,
-            letterSpacing: -2,
-          }}
-        >
-          y eleva tu negocio
-        </div>
-        <div
-          style={{
-            marginTop: 44,
-            fontSize: 27,
-            color: "rgba(245,242,236,0.62)",
-            fontFamily: "sans-serif",
-            letterSpacing: 1,
-          }}
-        >
-          Sitios web a medida, sin plantillas · suitwolf.com
-        </div>
-        <div
-          style={{
             position: "absolute",
             bottom: 0,
             left: 0,
             right: 0,
-            height: 8,
+            height: 5,
             background:
-              "linear-gradient(90deg, #B98A3E 0%, #F1DCA4 50%, #B98A3E 100%)",
+              "linear-gradient(90deg, #B98A3E 0%, #D9B36A 30%, #F1DCA4 50%, #D9B36A 70%, #B98A3E 100%)",
           }}
         />
       </div>
     ),
-    { ...size },
+    {
+      ...size,
+      fonts: [
+        { name: "Instrument Serif", data: serifRegular, weight: 400, style: "normal" },
+        { name: "Instrument Serif", data: serifItalic, weight: 400, style: "italic" },
+        { name: "JetBrains Mono", data: monoMedium, weight: 500, style: "normal" },
+      ],
+    },
   );
 }
