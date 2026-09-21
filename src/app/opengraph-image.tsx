@@ -1,6 +1,8 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 export const alt = "Suitwolf — Diseño y desarrollo web premium";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -10,24 +12,26 @@ export const contentType = "image/png";
  * fondo de mármol real, Instrument Serif, headline partido con
  * acento dorado italic en "y eleva tu negocio."
  *
- * Los assets (fonts + background JPG) se bundlean vía
- * `new URL(..., import.meta.url)` — no depende de fetches externos en
- * runtime. Satori (motor de next/og) todavía no digiere WebP, por eso
- * el background es JPG.
+ * Los assets (fonts + background JPG) viven en `src/app/_og-assets/`
+ * y se leen desde disco en runtime. Satori (motor de next/og) todavía
+ * no digiere WebP, por eso el background es JPG.
+ *
+ * Runtime nodejs (no edge): en Vercel Hobby el edge function tiene
+ * límite de 1 MB, y con @vercel/og + fonts + jpg superábamos por 30 KB.
+ * Nodejs serverless en Hobby permite 50 MB uncompressed — sin cambios
+ * visibles para el usuario final.
  */
+const ASSETS_DIR = join(process.cwd(), "src/app/_og-assets");
+
 export default async function OpengraphImage() {
   const [serifRegular, serifItalic, monoMedium, bgBuf] = await Promise.all([
-    fetch(new URL("./_og-assets/InstrumentSerif-Regular.ttf", import.meta.url)).then((r) => r.arrayBuffer()),
-    fetch(new URL("./_og-assets/InstrumentSerif-Italic.ttf", import.meta.url)).then((r) => r.arrayBuffer()),
-    fetch(new URL("./_og-assets/JetBrainsMono-Medium.ttf", import.meta.url)).then((r) => r.arrayBuffer()),
-    fetch(new URL("./_og-assets/bg.jpg", import.meta.url)).then((r) => r.arrayBuffer()),
+    readFile(join(ASSETS_DIR, "InstrumentSerif-Regular.ttf")),
+    readFile(join(ASSETS_DIR, "InstrumentSerif-Italic.ttf")),
+    readFile(join(ASSETS_DIR, "JetBrainsMono-Medium.ttf")),
+    readFile(join(ASSETS_DIR, "bg.jpg")),
   ]);
 
-  // JPG → data URL (edge runtime tiene btoa pero no Buffer).
-  const bytes = new Uint8Array(bgBuf);
-  let bin = "";
-  for (let i = 0; i < bytes.byteLength; i++) bin += String.fromCharCode(bytes[i]!);
-  const bgUrl = `data:image/jpeg;base64,${btoa(bin)}`;
+  const bgUrl = `data:image/jpeg;base64,${bgBuf.toString("base64")}`;
 
   return new ImageResponse(
     (

@@ -38,6 +38,8 @@ const ICONS: Record<string, string> = {
   sparkles: `<path d="M110 20 L125 90 L195 110 L125 130 L110 200 L95 130 L25 110 L95 90 Z M170 30 L178 55 L200 60 L178 65 L170 90 L162 65 L140 60 L162 55 Z"/>`,
   checklist: `<rect x="30" y="30" width="160" height="160" rx="14"/><path d="M60 90 L78 108 L110 76 M60 150 L78 168 L110 136 M130 92 h50 M130 152 h50"/>`,
   code: `<path d="M70 60 L20 110 L70 160 M150 60 L200 110 L150 160 M130 40 L90 180"/>`,
+  pin: `<path d="M110 20 c-40 0 -70 30 -70 70 c0 55 70 120 70 120 s70 -65 70 -120 c0 -40 -30 -70 -70 -70 z"/><circle cx="110" cy="90" r="28"/>`,
+  store: `<path d="M30 90 v100 h160 v-100 M30 90 l16 -50 h128 l16 50 M30 90 h160 M70 190 v-50 h50 v50"/>`,
 };
 
 /** Mapa slug → { hook corto (≤ 18 char/línea), icono }. */
@@ -66,6 +68,13 @@ const COVER_MAP: Record<string, { hook: string[]; icon: string }> = {
   "como-escribir-copy-pagina-web-vende": { hook: ["COPY", "QUE VENDE"], icon: "pen" },
   "seguridad-web-empresas": { hook: ["SEGURIDAD", "WEB"], icon: "shield" },
   "tendencias-diseno-web-empresas-2026": { hook: ["TENDENCIAS", "WEB 2026"], icon: "sparkles" },
+
+  /* ── Contenido local Paraná / Entre Ríos ── */
+  "cuanto-cuesta-pagina-web-parana":       { hook: ["PRECIO WEB", "EN PARANÁ"],    icon: "dollar" },
+  "seo-local-parana-entre-rios":           { hook: ["SEO LOCAL", "EN PARANÁ"],     icon: "pin" },
+  "google-business-profile-negocios-parana": { hook: ["GOOGLE MAPS", "PARA PARANÁ"], icon: "pin" },
+  "agencia-diseno-web-parana":             { hook: ["AGENCIA WEB", "EN PARANÁ"],   icon: "checklist" },
+  "tienda-online-parana-entre-rios":       { hook: ["TIENDA ONLINE", "EN PARANÁ"], icon: "store" },
 };
 
 export async function GET(
