@@ -32,12 +32,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  const locationPages: MetadataRoute.Sitemap = LOCATION_PAGES.map((l) => ({
-    url: `${base}/${l.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
+  const locationPages: MetadataRoute.Sitemap = LOCATION_PAGES
+    // No incluir ubicaciones marcadas noindex — no tiene sentido pedirle
+    // a Google que las rastree si le decimos que no las indexe.
+    .filter((l) => !l.noindex)
+    .map((l) => ({
+      url: `${base}/${l.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    }));
 
   return [...staticPages, ...servicePages, ...blogPages, ...locationPages];
 }

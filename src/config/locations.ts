@@ -25,6 +25,14 @@ export interface LocationPage {
   /** Sección de por qué remoto/nosotros, adaptada al mercado. */
   localAngle: string;
   faqs: { q: string; a: string }[];
+  /**
+   * Bloquea la indexación de la página. Se aplica a ubicaciones cuya
+   * contenido todavía no es lo suficientemente distintivo para superar
+   * el filtro de "thin content" de Google — mejor no indexar que arrastrar
+   * al resto del sitio. Se remueve cuando la página se reescribe con
+   * datos locales genuinos.
+   */
+  noindex?: boolean;
 }
 
 export const LOCATION_PAGES: LocationPage[] = [
@@ -35,31 +43,45 @@ export const LOCATION_PAGES: LocationPage[] = [
     country: "Argentina",
     seoTitle: "Diseño Web en Paraná, Entre Ríos | Suitwolf",
     metaDescription:
-      "Agencia de diseño y desarrollo web en Paraná, Entre Ríos. Sitios a medida, sin plantillas, para empresas, PyMEs y emprendedores paranaenses. Pedí tu presupuesto sin costo.",
+      "Agencia de diseño y desarrollo web en Paraná, Entre Ríos. Sitios a medida —sin plantillas— para empresas, PyMEs y emprendedores paranaenses. Pedí tu presupuesto sin costo.",
     h1: "Diseño web a medida en Paraná, Entre Ríos",
     intro: [
-      "Paraná es mucho más que la capital administrativa de Entre Ríos: es el punto de encuentro de una economía diversa —comercio, servicios profesionales, salud, agroindustria, educación superior, turismo— con miles de PyMEs y emprendedores que compiten al nivel de cualquier ciudad grande del país. En ese contexto, tu página web es el primer filtro por el que atraviesan tus clientes potenciales.",
-      "Diseñamos y desarrollamos sitios web a medida para empresas, negocios y emprendedores de Paraná: sin plantillas, con la estrategia, el diseño y el rendimiento técnico que instalan autoridad frente a una competencia local que todavía sigue anclada al WordPress genérico.",
+      "Paraná es la capital de Entre Ríos, con más de 260.000 habitantes en la ciudad y cerca de 350.000 en el aglomerado. Concentra la administración provincial, la Universidad Nacional de Entre Ríos, dos hospitales de referencia regional y un ecosistema empresarial diverso que va desde el comercio de calle Corrientes y avenida Ramírez hasta las consultoras profesionales de la zona céntrica, pasando por la agroindustria del sur, el turismo del río y una nueva camada de emprendedores digitales que dejaron de mirar solo a Buenos Aires.",
+      "En ese contexto tu página web deja de ser un accesorio: es el primer filtro por el que atraviesan tus clientes. Un consultorio en Belgrano, un estudio contable en el microcentro, una PyME de servicios en Thouars o un e-commerce que envía a toda la región compiten hoy por atención en Google contra decenas de opciones — la mayoría todavía sobre plantillas WordPress genéricas que se ven idénticas entre sí. Ahí se abre la ventana para diferenciarse.",
+      "Diseñamos y desarrollamos sitios web a medida para empresas, negocios y emprendedores de Paraná: sin plantillas, con la estrategia comercial, el sistema visual y el rendimiento técnico que instalan autoridad frente a la competencia local. Cada proyecto arranca desde tu propuesta específica —qué vendés, a quién, por qué te elegirían— y termina en un sitio que trabaja las 24 horas mostrando el nivel real del negocio detrás.",
+      "Trabajamos con rubros muy distintos: consultorios médicos y odontológicos del centro, estudios jurídicos y contables, PyMEs de servicios profesionales, comercios de gastronomía y hospitality del casco céntrico y la costanera, industria y agroindustria de la zona sur, inmobiliarias, empresas constructoras, escuelas privadas y proyectos personales de consultores y profesionales independientes que necesitan presentarse con la seriedad que ganaron.",
     ],
     quoteWord: "presupuesto",
     localAngle:
-      "Somos una firma con base en Paraná trabajando para empresas de toda la ciudad, la provincia y el país. La proximidad se traduce en decisiones rápidas y llamadas cuando hacen falta —y el estándar de diseño, desarrollo y estrategia es el mismo que ofrecemos a clientes en Buenos Aires, España, México o Estados Unidos.",
+      "Somos una firma con base en Paraná trabajando para empresas de toda la ciudad, la provincia y el país. La proximidad se traduce en decisiones rápidas —una llamada corta que resuelve lo que en una agencia grande demoraría una semana de emails—, en reuniones presenciales cuando el proyecto lo pide, y en entender el mercado real que enfrenta tu negocio. Al mismo tiempo, el estándar de diseño, desarrollo y estrategia es el que aplicamos con clientes en Buenos Aires, Madrid, Miami o Ciudad de México: no hay una versión regional del trabajo, hay un solo nivel.",
     faqs: [
       {
         q: "¿Trabajan con empresas y emprendedores de Paraná?",
-        a: "Sí. Somos una agencia con base en Paraná, Entre Ríos: trabajamos con empresas, PyMEs y emprendedores de la ciudad, del interior de la provincia y del resto del país. Reuniones por videollamada o en persona cuando el proyecto lo pide, con procesos claros y entregas por hitos.",
+        a: "Sí. Somos una agencia con base en Paraná, Entre Ríos. Trabajamos con empresas, PyMEs y emprendedores de la ciudad, del interior de la provincia y del resto del país. La modalidad estándar es remota con reuniones por videollamada, pero coordinamos reuniones presenciales cuando el proyecto lo requiere —briefing inicial, revisión de propuesta, kickoff. Somos entrerrianos: si necesitás vernos, estamos.",
       },
       {
         q: "¿Cuánto sale una página web para un negocio en Paraná?",
-        a: "Cada proyecto se presupuesta a medida según su alcance. No vendemos plantillas ni paquetes cerrados: empezamos con una charla sin costo, definimos qué necesita realmente tu negocio, y de ahí sale una propuesta clara con tiempos y valores concretos.",
+        a: "Cada proyecto se presupuesta a medida según su alcance. En Paraná el mercado se divide en tres tramos claros: bajo (USD 400–900, plantillas con retoques), medio (USD 1.500–3.000, plantilla premium con customización real) y premium a medida (USD 3.000–8.000+, diseño y desarrollo desde cero). Nosotros trabajamos en el tramo premium a medida. Empezamos con una charla sin costo para definir qué necesita realmente tu negocio y de ahí sale una propuesta clara.",
       },
       {
         q: "¿Hacen SEO local para posicionar en Paraná y Entre Ríos?",
-        a: "Sí. Todo sitio que construimos arranca con SEO técnico desde el día uno. Si tu foco es Paraná, Entre Ríos o toda LatAm, optimizamos contenido, estructura, schema y velocidad para posicionar en tu mercado real —no en abstracto.",
+        a: "Sí. Todo sitio que construimos arranca con SEO técnico desde el día uno: arquitectura optimizada, schema LocalBusiness, meta geo tags, contenido con señales locales reales. Además configuramos y optimizamos tu Google Business Profile —el músculo principal para aparecer en el 3-pack de Maps— y te dejamos un plan concreto de contenido y reviews para escalar la posición mes a mes.",
       },
       {
-        q: "¿Qué diferencia una web a medida de una plantilla?",
-        a: "Una plantilla es un diseño compartido con miles de sitios: te obliga a competir por precio y a verte como el resto. Una web a medida se construye desde tu estrategia comercial, tu público y tus objetivos concretos —con la performance, el SEO y la estética que hacen que instales autoridad, no ruido.",
+        q: "¿Con qué rubros paranaenses tienen experiencia?",
+        a: "Trabajamos con rubros muy diversos: consultorios médicos y odontológicos, estudios contables y jurídicos, PyMEs de servicios profesionales, gastronomía y hospitality (bares, restaurantes, hoteles), industria y agroindustria, comercios minoristas y mayoristas, inmobiliarias, constructoras, escuelas privadas, y marcas personales de profesionales independientes. La receta no es la misma para todos: cada sector tiene su propio recorrido de decisión y su propia estrategia de contenido.",
+      },
+      {
+        q: "¿Qué diferencia una web a medida de una plantilla comprada?",
+        a: "Una plantilla es un diseño compartido con miles de sitios: te obliga a competir por precio y a verte igual que la competencia local. Una web a medida se construye desde tu estrategia comercial concreta —tu propuesta de valor, tu público real, tus objetivos de negocio— con la performance (PageSpeed 90+), el SEO técnico y la estética exclusiva que hacen que instales autoridad en lugar de sumar ruido. Para un negocio que compite por posicionamiento, no por precio, la diferencia se paga sola.",
+      },
+      {
+        q: "¿Qué pasa después del lanzamiento?",
+        a: "El lanzamiento es el arranque, no el final. Ofrecemos planes de soporte y evolución mensual: mantenimiento técnico, actualizaciones de contenido, monitoreo de métricas reales (tráfico, conversiones, palabras clave que rankean), tests de conversión y mejoras iterativas basadas en cómo se usa realmente el sitio. Tu web es un activo vivo, no un entregable estático.",
+      },
+      {
+        q: "¿Se puede hacer una reunión presencial en Paraná?",
+        a: "Sí. Para proyectos que arrancan en Paraná o alrededores, la reunión inicial de briefing puede ser en persona sin costo — vamos nosotros o coordinamos un café en la zona céntrica. Después del kickoff el trabajo continúa 100% remoto con videollamadas quincenales, pero la puerta queda abierta para vernos cuando haga falta.",
       },
     ],
   },
@@ -70,32 +92,51 @@ export const LOCATION_PAGES: LocationPage[] = [
     country: "Argentina",
     seoTitle: "Diseño Web en Entre Ríos, Argentina | Suitwolf",
     metaDescription:
-      "Diseño y desarrollo web a medida para empresas de Entre Ríos: Paraná, Concordia, Gualeguaychú, Colón, Concepción del Uruguay. Sitios sin plantillas, con SEO desde el arranque.",
+      "Diseño y desarrollo web a medida para empresas de Entre Ríos: Concordia, Gualeguaychú, Colón, Villaguay, Concepción del Uruguay, Federación. Sitios sin plantillas, SEO desde el arranque.",
     h1: "Diseño web a medida para empresas de Entre Ríos",
     intro: [
-      "Entre Ríos combina un tejido empresarial distribuido entre Paraná, Concordia, Gualeguaychú, Colón, Concepción del Uruguay y una decena de ciudades más: agroindustria de exportación, turismo termal, comercio, servicios profesionales y una nueva generación de emprendedores digitales que crecen fuera del eje Buenos Aires. La presencia digital de la provincia todavía no acompaña al nivel real del negocio detrás.",
-      "Construimos sitios web a medida para empresas entrerrianas: diseño 100% original, sin plantillas, con la estrategia y el rendimiento técnico que exige competir en un mercado que ya no es sólo local.",
+      "Entre Ríos no es una economía monolítica: es un tejido distribuido de negocios muy distintos según la zona. La costa del Uruguay concentra el turismo termal —Colón, Federación, Villa Elisa, Chajarí— con hoteles, cabañas, spa y complejos que compiten por reservas contra destinos de otras provincias. El corredor del río Paraná mezcla comercio, servicios y salud —Paraná, Diamante, Victoria—. El interior productivo maneja arroz en Villaguay y San Salvador, avicultura fuerte en Basavilbaso y Concepción del Uruguay, industria naval en el sur, exportadores de miel y cítricos que le venden al mundo desde localidades que en el mapa parecen chicas.",
+      "La particularidad entrerriana: una parte importante del negocio real no está en la capital. Concordia tiene su propia gravedad económica como segunda ciudad de la provincia. Gualeguaychú vive del turismo y del comercio de frontera con Uruguay. Colón y Federación viven del termalismo. Cada mercado local pide su propio recorrido, su propio contenido, su propio posicionamiento — y ninguno se conforma con la web genérica que se ve en la mayoría del interior.",
+      "Construimos sitios web a medida para empresas entrerrianas de toda la provincia: diseño 100% original, sin plantillas, con la estrategia comercial y el rendimiento técnico que exige competir en un mercado que ya no es solo local. Un hotel termal de Colón que compite contra propuestas de Federación y de las termas de Río Hondo. Una arrocera de Villaguay que le vende a molinos de otras provincias. Un estudio profesional de Concordia que atiende a empresas de todo el noreste. Cada uno tiene su propio mapa competitivo, y su web tiene que reflejarlo.",
+      "La presencia digital de la provincia todavía no acompaña al nivel real del negocio detrás. Ese desajuste es una oportunidad concreta: en la mayoría de los rubros entrerrianos, quien primero se profesionaliza en la web se queda con el terreno por 5-10 años.",
     ],
     quoteWord: "presupuesto",
     localAngle:
-      "Somos una firma con base en Paraná que trabaja con empresas de toda la provincia — arroceras del interior, hoteles termales de la costa del Uruguay, consultoras de Concordia, comercios de Gualeguaychú, estudios profesionales de Colón. Sin plantillas, sin agencias satélite: un equipo con arraigo local y estándar internacional.",
+      "Somos una firma con base en Paraná que trabaja con empresas de toda la provincia — arroceras y avícolas del interior, hoteles termales de la costa del Uruguay, consultoras y estudios profesionales de Concordia, comercios de Gualeguaychú, PyMEs de Villaguay, San Salvador y Federación, exportadores y productores agropecuarios de la zona. Modalidad remota estándar con reuniones por videollamada, y coordinación de reuniones presenciales cuando el proyecto lo pide. Sin plantillas, sin subcontratos ni agencias satélite: un equipo con arraigo local y estándar internacional.",
     faqs: [
       {
-        q: "¿Trabajan con empresas de todo Entre Ríos?",
-        a: "Sí. Desde Paraná trabajamos con empresas de toda la provincia —Concordia, Gualeguaychú, Colón, Villaguay, Concepción del Uruguay, Federación y el resto del interior. Modalidad remota con reuniones presenciales cuando el proyecto lo requiere.",
+        q: "¿Trabajan con empresas de toda Entre Ríos, no solo Paraná?",
+        a: "Sí. Desde Paraná trabajamos con empresas de toda la provincia: Concordia, Gualeguaychú, Colón, Villaguay, Concepción del Uruguay, Federación, San Salvador, Chajarí, Victoria, Diamante, Basavilbaso y el resto del interior. La modalidad estándar es remota con reuniones por videollamada, y coordinamos reuniones presenciales cuando el proyecto lo requiere.",
       },
       {
         q: "¿Cuánto sale una web para una empresa en Entre Ríos?",
-        a: "Depende del alcance del proyecto. Cada web se cotiza a medida —sin paquetes cerrados ni licencias que te aten a un sistema. Empezamos con una charla sin costo para entender qué necesita tu empresa antes de hablar de números.",
+        a: "Depende del alcance del proyecto. Cada web se cotiza a medida —sin paquetes cerrados ni licencias que te aten a un sistema. Empezamos con una charla sin costo para entender qué necesita tu empresa antes de hablar de números. Como referencia, nuestros proyectos en la provincia arrancan en el orden de USD 2.500 y escalan según complejidad, contenido y funcionalidad.",
+      },
+      {
+        q: "¿Tienen experiencia con hoteles y complejos termales de Colón o Federación?",
+        a: "Sí. Hemos trabajado con propuestas del rubro hospitality y turismo termal, que tienen una lógica muy propia: alta estacionalidad, competencia interprovincial fuerte, dependencia de reservas online, integración con canales de venta como Booking o Despegar, y necesidad de contar la experiencia (no solo listar servicios). Cada web de complejo termal se piensa desde la conversión de reservas, no desde una plantilla genérica de hotel.",
+      },
+      {
+        q: "¿Hacen webs para arroceras, avícolas o agroindustria entrerriana?",
+        a: "Sí. La agroindustria entrerriana tiene una comunicación muy distinta a la del retail: cliente institucional, ciclos de compra largos, decisiones basadas en confianza y certificaciones. Diseñamos webs que reflejan la escala real de la operación, con presencia clara de instalaciones, procesos, certificaciones (SENASA, orgánico, exportación), y contactos comerciales bien diferenciados por segmento.",
       },
       {
         q: "¿Cubren SEO local para ciudades del interior de la provincia?",
-        a: "Sí. Todo sitio se construye con SEO técnico desde el arranque, con foco en las palabras clave y ubicación real de tu negocio — Paraná, Concordia, Gualeguaychú, Colón o cualquier ciudad de la provincia.",
+        a: "Sí. Todo sitio se construye con SEO técnico desde el arranque, con foco en las palabras clave y ubicación real de tu negocio. Si tu foco es Concordia, Gualeguaychú, Colón o cualquier ciudad de la provincia, optimizamos schema, contenido geo, meta tags y estructura interna para posicionar en tu mercado. También configuramos y optimizamos tu Google Business Profile, que en ciudades chicas del interior es donde se juega el 70% del tráfico local.",
+      },
+      {
+        q: "¿Hay reuniones presenciales fuera de Paraná?",
+        a: "En proyectos que lo requieren, sí. Coordinamos visitas a Concordia, Gualeguaychú, Colón y otras ciudades de la provincia para reuniones de kickoff o sesiones de trabajo específicas. El resto del proyecto continúa remoto con videollamadas quincenales.",
+      },
+      {
+        q: "¿Aceptan proyectos pequeños de emprendedores del interior?",
+        a: "Sí, con un criterio: que haya una propuesta comercial clara y un plan de negocio detrás. Trabajamos con emprendedores serios en cualquier localidad de la provincia. Lo que no hacemos son 'webs de tarjeta personal' de USD 300 — no es el nivel que sostenemos y no serviría a un emprendedor que realmente quiere crecer.",
       },
     ],
   },
   {
     slug: "diseno-web-valencia",
+    noindex: true,
     city: "Valencia",
     region: "Comunidad Valenciana",
     country: "España",
@@ -123,6 +164,7 @@ export const LOCATION_PAGES: LocationPage[] = [
   },
   {
     slug: "diseno-web-monterrey",
+    noindex: true,
     city: "Monterrey",
     region: "Nuevo León",
     country: "México",
@@ -150,6 +192,7 @@ export const LOCATION_PAGES: LocationPage[] = [
   },
   {
     slug: "diseno-web-houston",
+    noindex: true,
     city: "Houston",
     region: "Texas",
     country: "Estados Unidos",
@@ -177,6 +220,7 @@ export const LOCATION_PAGES: LocationPage[] = [
   },
   {
     slug: "diseno-web-miami",
+    noindex: true,
     city: "Miami",
     region: "Florida",
     country: "Estados Unidos",
@@ -208,6 +252,7 @@ export const LOCATION_PAGES: LocationPage[] = [
   },
   {
     slug: "diseno-web-madrid",
+    noindex: true,
     city: "Madrid",
     region: "Comunidad de Madrid",
     country: "España",
@@ -239,6 +284,7 @@ export const LOCATION_PAGES: LocationPage[] = [
   },
   {
     slug: "diseno-web-barcelona",
+    noindex: true,
     city: "Barcelona",
     region: "Cataluña",
     country: "España",
@@ -266,6 +312,7 @@ export const LOCATION_PAGES: LocationPage[] = [
   },
   {
     slug: "diseno-web-ciudad-de-mexico",
+    noindex: true,
     city: "Ciudad de México",
     region: "CDMX",
     country: "México",
@@ -293,6 +340,7 @@ export const LOCATION_PAGES: LocationPage[] = [
   },
   {
     slug: "diseno-web-guadalajara",
+    noindex: true,
     city: "Guadalajara",
     region: "Jalisco",
     country: "México",
@@ -320,6 +368,7 @@ export const LOCATION_PAGES: LocationPage[] = [
   },
   {
     slug: "diseno-web-bogota",
+    noindex: true,
     city: "Bogotá",
     region: "Cundinamarca",
     country: "Colombia",
@@ -348,27 +397,49 @@ export const LOCATION_PAGES: LocationPage[] = [
   {
     slug: "diseno-web-buenos-aires",
     city: "Buenos Aires",
-    region: "Argentina",
+    region: "Ciudad Autónoma de Buenos Aires",
     country: "Argentina",
     seoTitle: "Diseño Web en Buenos Aires a Medida | Suitwolf",
     metaDescription:
-      "Diseño y desarrollo web a medida en Buenos Aires, sin plantillas. Sitios corporativos, tiendas online y landing pages para empresas argentinas. Pedí tu presupuesto.",
+      "Diseño y desarrollo web a medida en Buenos Aires, sin plantillas. Sitios corporativos, e-commerce, landing pages y aplicaciones para empresas porteñas exigentes.",
     h1: "Diseño web a medida para empresas de Buenos Aires",
     intro: [
-      "En Buenos Aires abundan las opciones de diseño web, pero pocas construyen a medida y menos aún piensan cada proyecto desde la estrategia. La mayoría vende plantillas: el mismo diseño que ya tienen miles de sitios, que te obliga a competir por precio.",
-      "Nosotros hacemos lo contrario. Diseñamos y desarrollamos sitios a medida para empresas porteñas —sin plantillas—, con la estrategia, el diseño y el rendimiento técnico que instalan autoridad y generan consultas de mayor valor.",
+      "Buenos Aires concentra la mayor densidad de oferta de diseño web del país hispanohablante: agencias grandes con estructura pesada en Puerto Madero, boutiques creativas en Palermo, estudios técnicos en Colegiales y Villa Crespo, freelancers repartidos por toda la ciudad, y una avalancha de proveedores low-cost que venden plantillas WordPress bajo el rótulo de 'a medida'. En ese contexto, la elección del proveedor pesa tanto como el proyecto en sí — y una decisión errada cuesta seis meses de trabajo perdido y una web que hay que rehacer.",
+      "Al mismo tiempo, el mercado empresarial porteño es exigente por naturaleza: sedes corporativas de compañías regionales, servicios financieros, real estate premium en Puerto Madero, Palermo y Belgrano, consultoras internacionales, marcas de retail que compiten en shoppings de primer nivel, hospitality, y un tejido enorme de empresas medianas que necesitan una presencia digital acorde a su facturación. El nivel visual y de contenido esperado por el cliente porteño está por encima del promedio nacional — una web amateur cuesta reuniones, no solo consultas.",
+      "Diseñamos y desarrollamos sitios web a medida para empresas de CABA y GBA: sin plantillas, con la estrategia comercial, el sistema visual y el rendimiento técnico que exige competir en Buenos Aires. Cada proyecto arranca desde una lectura clara de tu propuesta de valor, tu público real y tu ventaja competitiva concreta —no desde una plantilla comprada que después customizamos.",
+      "Trabajamos con corporativos, consultoras, empresas medianas, PyMEs con propuesta clara y marcas personales de profesionales que compiten en el segmento premium. La ventaja de trabajar con nosotros y no con una agencia porteña con oficinas en Puerto Madero es simple: el mismo estándar de entrega, sin el overhead de una estructura pesada que se cobra en la factura final.",
     ],
     quoteWord: "presupuesto",
     localAngle:
-      "Trabajamos con empresas de Buenos Aires y todo el país de forma remota, y también con clientes de España, México y Estados Unidos. El mismo estándar, estés donde estés.",
+      "Trabajamos con empresas de CABA, Gran Buenos Aires y todo el país en modalidad remota, con procesos claros de entrega. Reuniones por videollamada, entregas por hitos, revisiones documentadas. Para proyectos que requieren presencia, coordinamos reuniones en la ciudad en fechas específicas del proyecto. También atendemos con el mismo estándar a clientes de España, México, Estados Unidos hispano y el resto de LatAm — el proceso está pensado para funcionar sin fricción a distancia.",
     faqs: [
       {
         q: "¿Cuánto sale una página web para una empresa en Buenos Aires?",
-        a: "Cada proyecto se presupuesta a medida según su alcance: no vendemos paquetes genéricos. La evaluación inicial es sin costo y define qué necesita tu empresa antes de hablar de números.",
+        a: "Cada proyecto se presupuesta a medida según su alcance: no vendemos paquetes ni licencias mensuales. En el mercado porteño los rangos van desde USD 500 (plantillas customizadas por freelancers) hasta USD 15.000+ (agencias grandes con estructura). Nuestro sweet spot son proyectos a medida a partir de USD 3.000, con la diferencia de que no cobramos overhead de estructura porteña ni pases de trabajo entre departamentos.",
       },
       {
-        q: "¿Trabajan con empresas de Buenos Aires de forma remota?",
-        a: "Sí. Colaboramos 100% en remoto, con videollamadas y entregas por hitos. El proceso es claro y el estándar de diseño y desarrollo es el mismo que en persona.",
+        q: "¿Trabajan con corporativos y empresas medianas de CABA?",
+        a: "Sí. Trabajamos con empresas medianas y corporativos con procesos formales de aprobación, requerimientos de documentación y hitos claros de entrega. Manejamos ciclos de revisión con multiples stakeholders, presentamos avances de forma estructurada y firmamos los acuerdos formales que requiere una operación seria — sin la burocracia interna que hace que una agencia grande cobre el triple.",
+      },
+      {
+        q: "¿Compiten con las agencias grandes de Puerto Madero o Palermo?",
+        a: "Sí, en calidad de entrega y estándar visual. La diferencia principal es de modelo de negocio: una agencia grande tiene oficinas, cuentas, project managers, arquitectos, diseñadores y desarrolladores separados en departamentos — y todo eso se paga. Nosotros somos un equipo pequeño y senior, cada persona ejecuta lo suyo directamente. El resultado final es del mismo nivel, con el proceso más limpio y sin duplicaciones de rol.",
+      },
+      {
+        q: "¿Trabajan con empresas de Gran Buenos Aires y el conurbano?",
+        a: "Sí. Trabajamos con empresas del oeste (Morón, Ituzaingó, Ramos Mejía, Merlo), del norte (Vicente López, San Isidro, Tigre, Pilar), del sur (Quilmes, Avellaneda, Lomas de Zamora) y del resto del GBA. La modalidad es la misma que con clientes de CABA: remoto con reuniones por videollamada, y coordinación presencial cuando el proyecto lo pide.",
+      },
+      {
+        q: "¿Qué diferencia una web a medida de una plantilla premium?",
+        a: "Una plantilla premium sigue siendo un diseño compartido con miles de sitios: tu presencia se ve como la de miles de otras empresas que compraron la misma. Una web a medida se construye desde tu estrategia comercial específica, tu público real y tus objetivos concretos. En un mercado como Buenos Aires, donde el nivel esperado es alto y la competencia es intensa, la diferencia entre una y otra decide si tu web genera consultas de calidad o si es solo una tarjeta digital que no capta nada.",
+      },
+      {
+        q: "¿Hay reuniones presenciales en Buenos Aires?",
+        a: "Para proyectos que lo justifican, coordinamos reuniones presenciales en la ciudad en fechas específicas —briefing inicial, presentación de propuesta, kickoff, revisión de hitos importantes. El resto del proyecto continúa remoto con videollamadas quincenales. Al no tener oficinas fijas en la ciudad, no hay costo de mantenimiento que se traslade al precio final.",
+      },
+      {
+        q: "¿Cuánto tiempo lleva un proyecto?",
+        a: "Un sitio corporativo mediano de 5-8 secciones lleva entre 6 y 10 semanas de calendario, con hitos quincenales claros: briefing y estrategia, arquitectura y wireframes, diseño visual, desarrollo, revisiones y lanzamiento. Un e-commerce o una aplicación web tienen su propio calendario, típicamente 10-16 semanas. Todo con fechas comprometidas por escrito antes de empezar.",
       },
     ],
   },
