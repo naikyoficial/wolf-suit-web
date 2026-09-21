@@ -1253,6 +1253,422 @@ export const BLOG_POSTS: BlogPost[] = [
     relatedHref: "/servicios",
     relatedLabel: "Ver nuestros servicios",
   },
+
+  /* ─── Contenido local — Paraná / Entre Ríos ──────────────────────────
+   * Serie de artículos con intención local. Apuntan a keywords específicas
+   * del mercado entrerriano (baja competencia, alta conversión) y refuerzan
+   * la señal geo del sitio hacia Paraná.
+   */
+
+  {
+    slug: "cuanto-cuesta-pagina-web-parana",
+    title: "Cuánto sale una página web en Paraná (2026): guía honesta para PyMEs",
+    seoTitle: "Cuánto Cuesta una Página Web en Paraná 2026 | Suitwolf",
+    metaDescription:
+      "Rangos reales de precios para páginas web en Paraná, Entre Ríos. Qué incluye cada tramo, qué esperar por cada dólar invertido y cómo evitar la trampa del 'low-cost'.",
+    date: "2026-08-15",
+    readingMinutes: 7,
+    excerpt:
+      "La pregunta más común de una PyME paranaense antes de contratar una web. Los rangos reales del mercado, qué incluye cada uno y por qué el más barato termina siendo el más caro.",
+    primaryKeyword: "cuánto sale una página web en Paraná",
+    body: [
+      {
+        type: "p",
+        text: "Si tenés un negocio en Paraná y estás pidiendo presupuestos, seguramente viste cotizaciones que van desde 40 mil pesos hasta 3.000 dólares. No es que un proveedor esté loco y otro sea justo: son productos completamente distintos con el mismo nombre. Esta guía te ordena los tramos reales del mercado local y qué obtenés en cada uno.",
+      },
+      { type: "h2", text: "Los tres tramos reales en Paraná (2026)" },
+      {
+        type: "p",
+        text: "El mercado local tiene tres realidades bien distintas. Cada una resuelve un problema diferente y el error más común es contratar una esperando otra.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Bajo (USD 400–900): plantilla WordPress o Wix con retoques mínimos.",
+          "Medio (USD 1.500–3.000): sitio hecho sobre plantilla premium con customización real, contenido armado a medida y SEO básico.",
+          "Premium a medida (USD 3.000–8.000+): diseño y desarrollo desde cero, estrategia, copy, SEO técnico y performance.",
+        ],
+      },
+      { type: "h2", text: "Qué incluye realmente el tramo bajo" },
+      {
+        type: "p",
+        text: "Una plantilla WordPress con tu logo, tus fotos y algún cambio de color. Tres o cuatro secciones estándar, formulario básico, hosting compartido que se cae cuando hay pico. Sirve para 'aparecer' — no para competir. Tu web se ve como la de otros 10.000 negocios que compraron la misma plantilla, y Google lo detecta.",
+      },
+      {
+        type: "p",
+        text: "Cuando el proveedor local te dice '20 mil pesos, entrego en 3 días' está vendiéndote esto. No hay estrategia, no hay diferenciación, y en 12 meses vas a estar pagando por una segunda web porque la primera no aporta clientes.",
+      },
+      { type: "h2", text: "Qué incluye el tramo medio" },
+      {
+        type: "p",
+        text: "Acá aparece la mayoría de agencias locales de Paraná. Trabajan con plantillas premium (Divi, Elementor Pro, Astra) más customización real: estructura pensada para tu rubro, textos propios, algo de SEO on-page. Es el mínimo aceptable si tu negocio depende de la web para captar clientes.",
+      },
+      {
+        type: "p",
+        text: "El problema del tramo medio: seguís sobre una base que compartís con miles de sitios. Cargás plugins que suman peso y bajan tu velocidad. Tu sitio se ve profesional, pero el techo de rendimiento SEO y de conversión está capado por la infraestructura.",
+      },
+      { type: "h2", text: "Qué incluye una web premium a medida" },
+      {
+        type: "p",
+        text: "Diseño 100% original desde cero, arquitectura pensada para tu propuesta comercial específica, copy que convierte, SEO técnico desde el primer día, performance real (PageSpeed 90+), sin plugins ni dependencias externas. Un stack moderno (Next.js, React, headless) que carga en menos de un segundo y se posiciona porque Google lo premia.",
+      },
+      {
+        type: "p",
+        text: "La diferencia no es solo estética. Es que tu web deja de ser 'una tarjeta digital' y pasa a ser el activo comercial más rentable de la empresa —el que trabaja las 24 horas mostrando el nivel real del negocio.",
+      },
+      { type: "h2", text: "La trampa del 'todo por 20 mil pesos'" },
+      {
+        type: "p",
+        text: "Es el error más caro que ves en Paraná. Se contrata una web low-cost pensando 'después escalo', y termina pasando una de estas tres cosas: el proveedor desaparece, la web se cae a los 6 meses porque nadie la mantiene, o hay que rehacerla completa porque nunca estuvo pensada para tu negocio real.",
+      },
+      {
+        type: "p",
+        text: "Sumado a que en el medio perdiste 12 meses de posicionamiento, clientes que llegaron y se fueron, y presupuesto en Google Ads compensando lo que la web no capta orgánicamente.",
+      },
+      { type: "h2", text: "La pregunta correcta no es cuánto sale" },
+      {
+        type: "p",
+        text: "Es qué retorno te tiene que dar. Si tu ticket promedio es de USD 500 y una web premium te trae 3 clientes por mes que no tenías antes, la inversión se recupera en el primer trimestre. Si tu ticket es de 5.000, se recupera con un cliente.",
+      },
+      {
+        type: "p",
+        text: "Para una PyME de Paraná con propuesta comercial clara y un plan de captación digital, el tramo medio-premium es el que tiene sentido económico real. Todo lo que esté por debajo es gasto, no inversión.",
+      },
+    ],
+    relatedHref: "/diseno-web-parana",
+    relatedLabel: "Ver diseño web en Paraná",
+  },
+
+  {
+    slug: "seo-local-parana-entre-rios",
+    title: "SEO local en Paraná: cómo aparecer en Google cuando alguien busca cerca tuyo",
+    seoTitle: "SEO Local Paraná Entre Ríos: Guía 2026 | Suitwolf",
+    metaDescription:
+      "Guía completa de SEO local para Paraná y Entre Ríos: cómo aparecer en el 3-pack de Maps, Google Business Profile, contenido geo y schema. Práctica, para PyMEs.",
+    date: "2026-08-20",
+    readingMinutes: 8,
+    excerpt:
+      "Aparecer arriba cuando alguien en Paraná busca tu servicio no es suerte: es método. Los factores concretos que definen el 3-pack de Google Maps y cómo trabajarlos.",
+    primaryKeyword: "SEO local Paraná",
+    body: [
+      {
+        type: "p",
+        text: "SEO local es distinto al SEO general. No compite por 'quién tiene el mejor contenido del mundo': compite por 'quién resuelve mejor a alguien que está buscando cerca'. Para un negocio de Paraná, es la palanca de mayor retorno —y la que casi nadie trabaja bien.",
+      },
+      { type: "h2", text: "El 3-pack de Google Maps es el objetivo" },
+      {
+        type: "p",
+        text: "Cuando alguien busca 'agencia de diseño web Paraná' o 'consultorio dental cerca', Google muestra un mapa con tres resultados destacados —el famoso 3-pack. El primero se lleva el 40% de los clics, y los tres primeros el 75%. Estar cuarto es prácticamente no existir. Todo el juego del SEO local se reduce a entrar en esos tres.",
+      },
+      { type: "h2", text: "Los 5 factores que definen tu ranking local" },
+      {
+        type: "ul",
+        items: [
+          "Google Business Profile completo y verificado (el músculo #1).",
+          "Proximidad: cuánto más cerca está tu negocio del que busca, mejor.",
+          "Reviews: cantidad, frecuencia y calidad de las reseñas.",
+          "NAP consistency: tu nombre, dirección y teléfono idénticos en todos lados.",
+          "Señales on-page: schema LocalBusiness, contenido con menciones de Paraná/Entre Ríos.",
+        ],
+      },
+      { type: "h2", text: "Google Business Profile: el músculo #1" },
+      {
+        type: "p",
+        text: "Sin GBP verificado no hay 3-pack. Punto. Es gratis, se completa en una hora, y es el primer paso siempre. Categoría principal + secundarias, horarios exactos, fotos reales del negocio, servicios listados con descripción, área de servicio y —crítico— publicaciones semanales.",
+      },
+      {
+        type: "p",
+        text: "En Paraná se ven muchos negocios con GBP creado pero abandonado. Esa negligencia es tu oportunidad: mantener el perfil vivo te pone por encima del 90% de la competencia local sin gastar un peso extra.",
+      },
+      { type: "h2", text: "NAP consistency: el detalle silencioso" },
+      {
+        type: "p",
+        text: "NAP = Name, Address, Phone. Tu negocio tiene que aparecer con exactamente el mismo nombre, dirección y teléfono en Google, tu sitio web, Facebook, Instagram, Páginas Amarillas, la Cámara de Comercio. Cualquier variación —Calle 25 de Mayo vs C. 25 de Mayo— debilita la señal de entidad.",
+      },
+      {
+        type: "p",
+        text: "Auditá ahora mismo: googleá el nombre exacto de tu negocio y revisá cada resultado. Si en tres lugares aparece un teléfono viejo o una dirección con abreviatura distinta, tenés un problema silencioso que te está costando ranking.",
+      },
+      { type: "h2", text: "Contenido local en tu sitio: qué escribir" },
+      {
+        type: "p",
+        text: "Google necesita señales textuales de que servís a Paraná. Eso significa: una página específica para 'servicio X en Paraná', menciones naturales de ciudades entrerrianas donde también atendés, testimonios de clientes locales con nombre real, casos de estudio con referencia a la zona.",
+      },
+      {
+        type: "p",
+        text: "No es keyword stuffing —Google penaliza eso. Es escribir para tu cliente real, que vive en Paraná y quiere saber que entendés su mercado.",
+      },
+      { type: "h2", text: "Reviews: cómo pedirlas sin quemar el vínculo" },
+      {
+        type: "p",
+        text: "Las reviews en GBP son el segundo factor más importante después del perfil mismo. La cantidad importa (10 vs 3), la frecuencia importa (constantes vs todas de golpe), y las respuestas del negocio importan (agradecer las buenas, gestionar las malas con altura).",
+      },
+      {
+        type: "p",
+        text: "El mejor momento para pedir una review es cuando el cliente te dijo 'gracias, quedó espectacular'. Mandale el link directo a tu perfil por WhatsApp. No en un email masivo dos meses después.",
+      },
+      { type: "h2", text: "Errores que te sacan del 3-pack" },
+      {
+        type: "ul",
+        items: [
+          "GBP sin categoría o con categoría equivocada.",
+          "Dirección diferente en tu sitio y en Google.",
+          "Reviews ignoradas (sin responder ninguna en meses).",
+          "Web lenta —Google mide performance como factor de ranking local.",
+          "Cero menciones de tu ciudad en el sitio.",
+        ],
+      },
+      {
+        type: "p",
+        text: "SEO local no es magia ni un truco caro: es constancia y foco. Trabajado bien durante 90 días, es la palanca de captación más rentable para cualquier negocio de Paraná.",
+      },
+    ],
+    relatedHref: "/diseno-web-parana",
+    relatedLabel: "Diseño web en Paraná con SEO local",
+  },
+
+  {
+    slug: "google-business-profile-negocios-parana",
+    title: "Google Business Profile para negocios de Paraná: guía paso a paso",
+    seoTitle: "Google Business Profile Paraná: Guía 2026 | Suitwolf",
+    metaDescription:
+      "Cómo crear y optimizar Google Business Profile en Paraná: verificación, categorías, fotos, publicaciones, reviews. Guía práctica para PyMEs entrerrianas.",
+    date: "2026-08-25",
+    readingMinutes: 7,
+    excerpt:
+      "Google Business Profile es tu primera reunión con el cliente que todavía no te conoce. La guía práctica para armarlo bien —desde la verificación hasta las publicaciones semanales.",
+    primaryKeyword: "Google Business Profile Paraná",
+    body: [
+      {
+        type: "p",
+        text: "Antes de que alguien visite tu sitio, entre a tu Instagram o te llame por teléfono, va a ver tu Google Business Profile. Es la primera reunión con un cliente que todavía no te conoce —y como toda primera reunión, importa cómo llegás vestido. Esta guía te da los pasos concretos para armar y mantener el perfil que necesitás si estás en Paraná.",
+      },
+      { type: "h2", text: "1. Crear el perfil (10 minutos)" },
+      {
+        type: "p",
+        text: "Entrá a business.google.com con la cuenta de Gmail que quieras asociar (idealmente una cuenta de la empresa, no personal). Buscá tu negocio: si ya aparece pero no lo administrás, reclamalo. Si no aparece, creá uno nuevo con el nombre exacto que usás siempre —sin agregar 'Paraná' ni categorías al final, solo el nombre.",
+      },
+      { type: "h2", text: "2. Verificación en Paraná" },
+      {
+        type: "p",
+        text: "Google necesita confirmar que tu negocio existe. En Paraná las opciones habituales son postal (postal enviado a tu dirección, tarda 5-14 días), telefónica (código por SMS o llamada) o video (mostrar tu local o documentación en tiempo real).",
+      },
+      {
+        type: "p",
+        text: "Si trabajás desde tu casa o remoto, la video-verificación es la más rápida. Grabás un video corto mostrando el cartel, tu DNI y algún documento del negocio. Aprobación típica en 48 horas.",
+      },
+      { type: "h2", text: "3. Categoría principal + secundarias" },
+      {
+        type: "p",
+        text: "La categoría principal es la que más pesa para el ranking. Elegí la más específica que describa tu negocio: 'Agencia de diseño gráfico' es mejor que 'Empresa de servicios', 'Consultorio odontológico' mejor que 'Centro médico'. Sumá 3-5 categorías secundarias para cubrir servicios adicionales.",
+      },
+      { type: "h2", text: "4. Fotos: las que sí sirven" },
+      {
+        type: "ul",
+        items: [
+          "Logo — versión cuadrada, fondo transparente o del color de marca.",
+          "Portada — foto real, no stock. Fachada, oficina, producto insignia.",
+          "10-15 fotos de interior/producto/equipo, mínimo.",
+          "Fotos de trabajos reales con permiso del cliente.",
+          "Actualizá cada 2-3 semanas: Google premia perfiles vivos.",
+        ],
+      },
+      { type: "h2", text: "5. Publicaciones semanales (el hack silencioso)" },
+      {
+        type: "p",
+        text: "Casi nadie usa la sección de publicaciones. Es un pecado: Google prioriza perfiles que publican con constancia. Una publicación por semana con foto, texto corto y un CTA (llamar, mensajear, visitar sitio) es suficiente para señalar actividad.",
+      },
+      {
+        type: "p",
+        text: "Ejemplos que funcionan: caso de un cliente reciente, oferta o novedad de la semana, artículo nuevo del blog, evento local en el que participás. No tiene que ser marketing pulido —tiene que ser regular.",
+      },
+      { type: "h2", text: "6. Reviews: cómo pedirlas bien" },
+      {
+        type: "p",
+        text: "Copiate el link directo de tu perfil (Google te lo genera en la sección 'Compartir perfil'). Mandalo por WhatsApp al cliente cuando el trabajo salió bien y expresó satisfacción. Un mensaje corto: 'Fabián, te queda espectacular como quedó, un placer haber trabajado con vos. Si te sale, ¿te animarías a dejarme una reseña en Google? Te dejo el link acá'.",
+      },
+      {
+        type: "p",
+        text: "Objetivo realista: 1-2 reviews por mes. En un año son 15-20, más que la mayoría de tu competencia local. Y siempre responder — cada review sin respuesta le dice a Google que el perfil está semiabandonado.",
+      },
+      { type: "h2", text: "7. Reviews negativas: la altura importa" },
+      {
+        type: "p",
+        text: "Van a llegar. La respuesta correcta no es defenderte: es reconocer el punto (si tiene razón), explicar breve qué pasó y ofrecer resolverlo por privado. Un comentario negativo bien respondido genera más confianza que uno positivo — muestra que gestionás profesionalmente.",
+      },
+      { type: "h2", text: "Chequeo mensual: 15 minutos que valen oro" },
+      {
+        type: "ul",
+        items: [
+          "Nuevas reviews sin responder.",
+          "Fotos que subieron clientes (dejá o pedí quitar).",
+          "Preguntas del público sin responder.",
+          "Cambios de horario o feriados por venir.",
+          "Insights: qué búsquedas te trajeron y cuántos clics/llamadas.",
+        ],
+      },
+      {
+        type: "p",
+        text: "GBP no es 'un lugar donde figuro'. Es un canal de captación gratuito que la mayoría de negocios de Paraná desperdicia. Quince minutos al mes te ponen delante de esa mayoría.",
+      },
+    ],
+    relatedHref: "/diseno-web-parana",
+    relatedLabel: "Diseño web + SEO local en Paraná",
+  },
+
+  {
+    slug: "agencia-diseno-web-parana",
+    title: "Cómo elegir una agencia de diseño web en Paraná (checklist honesta)",
+    seoTitle: "Agencia Diseño Web Paraná: Cómo Elegir 2026 | Suitwolf",
+    metaDescription:
+      "Guía honesta para elegir agencia de diseño web en Paraná: banderas rojas del mercado local, preguntas que sí importan, propiedad del sitio y cómo comparar propuestas.",
+    date: "2026-08-30",
+    readingMinutes: 6,
+    excerpt:
+      "El mercado local de agencias web en Paraná mezcla equipos serios con freelancers que desaparecen a los 3 meses. Los criterios concretos para elegir sin arrepentirte.",
+    primaryKeyword: "agencia diseño web Paraná",
+    body: [
+      {
+        type: "p",
+        text: "Contratar una agencia de diseño web en Paraná parece simple hasta que sale mal. Sitios que se caen a los pocos meses, dominios registrados a nombre del proveedor, plazos que se estiran sin explicación. La mayoría de esos problemas se detectan antes de firmar, si sabés qué preguntar.",
+      },
+      { type: "h2", text: "El panorama local: qué hay realmente" },
+      {
+        type: "p",
+        text: "En Paraná coexisten varias categorías de proveedores: freelancers que arman sobre plantillas, estudios pequeños con 2-3 personas, agencias medianas con estructura, y proveedores remotos que rankean como si fueran locales pero atienden desde otro punto del país. Cada uno tiene su lugar; el problema es contratar uno esperando otro.",
+      },
+      { type: "h2", text: "3 banderas rojas comunes" },
+      {
+        type: "ul",
+        items: [
+          "'Te lo hago por 20 mil pesos, entrego en 3 días'. Plantilla comprada, cero estrategia.",
+          "'Yo te administro el dominio y el hosting'. Tu sitio queda rehén de su cuenta.",
+          "'Después vemos el SEO'. Ese 'después' nunca llega, y tu web nace con techo bajo.",
+        ],
+      },
+      { type: "h2", text: "Preguntas que sí importan antes de firmar" },
+      {
+        type: "ul",
+        items: [
+          "¿Diseño a medida o plantilla premium?",
+          "¿A nombre de quién quedan el dominio y el hosting?",
+          "¿Incluye copywriting o vos aportás los textos?",
+          "¿Qué performance real garantizan (PageSpeed, tiempos de carga)?",
+          "¿Qué pasa después del lanzamiento? ¿Qué incluye el soporte, con qué costo?",
+          "¿Puedo ver 3 sitios reales que hayan hecho, con métricas si las tienen?",
+        ],
+      },
+      { type: "h2", text: "A medida vs plantilla en el mercado local" },
+      {
+        type: "p",
+        text: "La mayoría del mercado paranaense trabaja sobre plantillas —Divi, Elementor Pro, Astra, algunas más caras. No es intrínsecamente malo, es una elección con consecuencias: velocidad de entrega más rápida, techo de performance más bajo, diseño que compartís con otros miles de sitios.",
+      },
+      {
+        type: "p",
+        text: "Un proyecto a medida cuesta más y tarda más, pero rinde distinto: velocidad real, SEO técnico desde el arranque, y una presencia visual que no confundís con la de tu competencia. Para una empresa que compite por posicionamiento y no por precio, la diferencia se paga sola.",
+      },
+      { type: "h2", text: "Cómo comparar propuestas" },
+      {
+        type: "p",
+        text: "No compares el número final —compará qué incluye cada uno. Una propuesta de USD 800 y otra de USD 2.500 no son 'la misma cosa más cara': son productos distintos. Pediles a los proveedores que te desagreguen: cuántas horas de estrategia, cuántas de diseño, cuántas de desarrollo, si el copy está incluido, cómo se maneja el SEO, qué pasa el mes 2 post-lanzamiento.",
+      },
+      { type: "h2", text: "Propiedad y contratos: el detalle silencioso" },
+      {
+        type: "p",
+        text: "Lo más caro que te puede pasar es descubrir a los 8 meses que no sos dueño de tu sitio. Exigí: dominio registrado a nombre de tu empresa (no del proveedor), acceso completo al hosting y al panel de gestión, código fuente entregado al finalizar, y un contrato que aclare qué pasa si querés cambiar de proveedor.",
+      },
+      {
+        type: "p",
+        text: "La agencia correcta en Paraná no es la más barata ni la más grande —es la que te trata la web como un activo estratégico de tu empresa, no como un servicio recurrente que te ata.",
+      },
+    ],
+    relatedHref: "/diseno-web-parana",
+    relatedLabel: "Ver diseño web a medida en Paraná",
+  },
+
+  {
+    slug: "tienda-online-parana-entre-rios",
+    title: "Tienda online en Paraná y Entre Ríos: guía 2026 para vender por internet",
+    seoTitle: "Tienda Online Paraná Entre Ríos 2026 | Suitwolf",
+    metaDescription:
+      "Cómo montar una tienda online en Paraná y Entre Ríos: plataformas, Mercado Pago, envíos con Andreani/OCA, SEO para e-commerce. Guía práctica para PyMEs.",
+    date: "2026-09-05",
+    readingMinutes: 8,
+    excerpt:
+      "Vender por internet desde Paraná ya no es opcional. La guía práctica para armar tu tienda online sin quemar plata: plataformas, medios de pago, envíos y los primeros 90 días.",
+    primaryKeyword: "tienda online Paraná",
+    body: [
+      {
+        type: "p",
+        text: "El mercado entrerriano de e-commerce ya no es una promesa: es una realidad que crece dos dígitos por año. Si tenés un negocio en Paraná y todavía no vendés por internet, cada mes estás cediendo ventas a competidores que sí lo hacen. Esta guía te ordena qué necesitás para empezar bien —sin quemar presupuesto en errores comunes.",
+      },
+      { type: "h2", text: "Los tres caminos para arrancar" },
+      {
+        type: "p",
+        text: "Todo depende de tu volumen, tu capacidad de gestión y tu ambición.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Marketplace (Mercado Libre, Tienda Nube marketplace): rápido, sin sitio propio, comisión alta y sin control de marca.",
+          "Plataforma SaaS (Tienda Nube, Shopify, Empretienda): sitio propio, cuota mensual, personalización media.",
+          "Tienda a medida: control total, mejor SEO, ideal para volumen alto o productos específicos que no encajan en plataformas genéricas.",
+        ],
+      },
+      { type: "h2", text: "Medios de pago que importan en Argentina" },
+      {
+        type: "p",
+        text: "Sin Mercado Pago no arrancás. Es lo que espera el 90% del comprador argentino. Después sumás según el ticket promedio: MODO (viene creciendo fuerte), Getnet, y para tickets altos alguna integración con transferencia bancaria directa.",
+      },
+      {
+        type: "p",
+        text: "El detalle que casi nadie mira: las comisiones acumuladas. Entre Mercado Pago, Tienda Nube y logística, podés estar cediendo 15-20% de cada venta antes de contar tu costo. Modelá esto ANTES de definir precios, no después.",
+      },
+      { type: "h2", text: "Envíos: qué usa realmente Paraná" },
+      {
+        type: "ul",
+        items: [
+          "Andreani — mejor cobertura nacional, tarifas competitivas, sucursales en Paraná.",
+          "OCA — presencia histórica, buenas tarifas para interior de ER.",
+          "Correo Argentino — más barato pero plazos irregulares.",
+          "Envío local propio (moto o cadete) — para ventas dentro de Paraná ciudad, imbatible en tiempo.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Configurá al menos dos opciones en el checkout: envío estándar y envío express (o retiro en el local). El comprador argentino compara costo de envío antes de finalizar la compra —si solo ofrecés una opción cara, abandonan el carrito.",
+      },
+      { type: "h2", text: "SEO para e-commerce local" },
+      {
+        type: "p",
+        text: "Este es el hueco más grande que ves en tiendas de Paraná: aparecen en Instagram, no en Google. Y la mitad de las búsquedas de producto arrancan en Google Search. Trabajá URL amigables por producto, descripciones únicas (no copy-paste del proveedor), schema Product en cada ficha, categorías con contenido real (no dos líneas).",
+      },
+      {
+        type: "p",
+        text: "Si vendés a la ciudad y provincia, cada categoría o producto debería tener alguna mención natural del área de servicio. 'Envíos a toda Paraná, Colón, Concordia y el resto de Entre Ríos' vale más que mil hashtags.",
+      },
+      { type: "h2", text: "Foto de producto sin presupuesto de agencia" },
+      {
+        type: "p",
+        text: "Fondo blanco liso o color plano, luz natural cerca de una ventana grande, celular en trípode o apoyado sobre una pila de libros, misma altura para todas las fotos. Consistencia > perfección. Diez productos con la misma calidad visual convierten más que tres perfectas y siete arruinadas.",
+      },
+      { type: "h2", text: "Los primeros 90 días" },
+      {
+        type: "ul",
+        items: [
+          "Día 1-30: catálogo completo cargado, descripciones únicas, fotos consistentes, un artículo en el blog sobre cómo elegir tu producto estrella.",
+          "Día 31-60: primeras campañas en Instagram Ads y Google Ads con presupuesto contenido. Analizar qué palabras convierten.",
+          "Día 61-90: revisar métricas reales de conversion rate, ticket promedio y CAC. Recién ahí escalás lo que funciona.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Una tienda online no explota de un día para otro. Los primeros meses son de calibración —del producto, del mensaje y de los canales. Pero con la base bien puesta y constancia, en 12 meses estás en otra escala.",
+      },
+    ],
+    relatedHref: "/servicios/tienda-online",
+    relatedLabel: "Ver servicio de tienda online",
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
