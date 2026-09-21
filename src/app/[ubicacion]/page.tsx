@@ -34,6 +34,10 @@ export async function generateMetadata({
       url,
       type: "website",
     },
+    // Ubicaciones con contenido todavía no diferenciado se marcan noindex
+    // para no arrastrar la señal de calidad del sitio. Se remueve al
+    // reescribir cada una con datos locales reales.
+    ...(loc.noindex ? { robots: { index: false, follow: true } } : {}),
   };
 }
 
