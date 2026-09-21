@@ -10,7 +10,7 @@ import { AtmosphericBg }  from "@/components/sections/AtmosphericBg";
 import { Analytics }      from "@/components/analytics/Analytics";
 import { ConsentProvider } from "@/contexts/ConsentContext";
 import { CookieBanner }    from "@/components/legal/CookieBanner";
-import { rootGraph }      from "@/config/seo";
+import { rootGraph, SUITWOLF_BASE }      from "@/config/seo";
 import "./globals.css";
 
 const instrument = Instrument_Serif({
@@ -91,6 +91,16 @@ export const metadata: Metadata = {
   // canonical set on the root layout is inherited by every child page that
   // doesn't override it, which would point /evaluacion, /mockup, etc. at the
   // homepage. Each route declares its own canonical instead.
+
+  // Señales geo para posicionamiento local (Paraná, Entre Ríos, Argentina).
+  // Se usan como refuerzo del schema LocalBusiness — Google, Bing y Yandex
+  // los siguen leyendo, y ayudan al 3-pack de Maps.
+  other: {
+    "geo.region": SUITWOLF_BASE.regionCode,
+    "geo.placename": SUITWOLF_BASE.addressLocality,
+    "geo.position": `${SUITWOLF_BASE.geo.latitude};${SUITWOLF_BASE.geo.longitude}`,
+    ICBM: `${SUITWOLF_BASE.geo.latitude}, ${SUITWOLF_BASE.geo.longitude}`,
+  },
 };
 
 export default function RootLayout({

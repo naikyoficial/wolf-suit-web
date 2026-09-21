@@ -29,6 +29,72 @@ export interface LocationPage {
 
 export const LOCATION_PAGES: LocationPage[] = [
   {
+    slug: "diseno-web-parana",
+    city: "Paraná",
+    region: "Entre Ríos",
+    country: "Argentina",
+    seoTitle: "Diseño Web en Paraná, Entre Ríos | Suitwolf",
+    metaDescription:
+      "Agencia de diseño y desarrollo web en Paraná, Entre Ríos. Sitios a medida, sin plantillas, para empresas, PyMEs y emprendedores paranaenses. Pedí tu presupuesto sin costo.",
+    h1: "Diseño web a medida en Paraná, Entre Ríos",
+    intro: [
+      "Paraná es mucho más que la capital administrativa de Entre Ríos: es el punto de encuentro de una economía diversa —comercio, servicios profesionales, salud, agroindustria, educación superior, turismo— con miles de PyMEs y emprendedores que compiten al nivel de cualquier ciudad grande del país. En ese contexto, tu página web es el primer filtro por el que atraviesan tus clientes potenciales.",
+      "Diseñamos y desarrollamos sitios web a medida para empresas, negocios y emprendedores de Paraná: sin plantillas, con la estrategia, el diseño y el rendimiento técnico que instalan autoridad frente a una competencia local que todavía sigue anclada al WordPress genérico.",
+    ],
+    quoteWord: "presupuesto",
+    localAngle:
+      "Somos una firma con base en Paraná trabajando para empresas de toda la ciudad, la provincia y el país. La proximidad se traduce en decisiones rápidas y llamadas cuando hacen falta —y el estándar de diseño, desarrollo y estrategia es el mismo que ofrecemos a clientes en Buenos Aires, España, México o Estados Unidos.",
+    faqs: [
+      {
+        q: "¿Trabajan con empresas y emprendedores de Paraná?",
+        a: "Sí. Somos una agencia con base en Paraná, Entre Ríos: trabajamos con empresas, PyMEs y emprendedores de la ciudad, del interior de la provincia y del resto del país. Reuniones por videollamada o en persona cuando el proyecto lo pide, con procesos claros y entregas por hitos.",
+      },
+      {
+        q: "¿Cuánto sale una página web para un negocio en Paraná?",
+        a: "Cada proyecto se presupuesta a medida según su alcance. No vendemos plantillas ni paquetes cerrados: empezamos con una charla sin costo, definimos qué necesita realmente tu negocio, y de ahí sale una propuesta clara con tiempos y valores concretos.",
+      },
+      {
+        q: "¿Hacen SEO local para posicionar en Paraná y Entre Ríos?",
+        a: "Sí. Todo sitio que construimos arranca con SEO técnico desde el día uno. Si tu foco es Paraná, Entre Ríos o toda LatAm, optimizamos contenido, estructura, schema y velocidad para posicionar en tu mercado real —no en abstracto.",
+      },
+      {
+        q: "¿Qué diferencia una web a medida de una plantilla?",
+        a: "Una plantilla es un diseño compartido con miles de sitios: te obliga a competir por precio y a verte como el resto. Una web a medida se construye desde tu estrategia comercial, tu público y tus objetivos concretos —con la performance, el SEO y la estética que hacen que instales autoridad, no ruido.",
+      },
+    ],
+  },
+  {
+    slug: "diseno-web-entre-rios",
+    city: "Entre Ríos",
+    region: "Entre Ríos",
+    country: "Argentina",
+    seoTitle: "Diseño Web en Entre Ríos, Argentina | Suitwolf",
+    metaDescription:
+      "Diseño y desarrollo web a medida para empresas de Entre Ríos: Paraná, Concordia, Gualeguaychú, Colón, Concepción del Uruguay. Sitios sin plantillas, con SEO desde el arranque.",
+    h1: "Diseño web a medida para empresas de Entre Ríos",
+    intro: [
+      "Entre Ríos combina un tejido empresarial distribuido entre Paraná, Concordia, Gualeguaychú, Colón, Concepción del Uruguay y una decena de ciudades más: agroindustria de exportación, turismo termal, comercio, servicios profesionales y una nueva generación de emprendedores digitales que crecen fuera del eje Buenos Aires. La presencia digital de la provincia todavía no acompaña al nivel real del negocio detrás.",
+      "Construimos sitios web a medida para empresas entrerrianas: diseño 100% original, sin plantillas, con la estrategia y el rendimiento técnico que exige competir en un mercado que ya no es sólo local.",
+    ],
+    quoteWord: "presupuesto",
+    localAngle:
+      "Somos una firma con base en Paraná que trabaja con empresas de toda la provincia — arroceras del interior, hoteles termales de la costa del Uruguay, consultoras de Concordia, comercios de Gualeguaychú, estudios profesionales de Colón. Sin plantillas, sin agencias satélite: un equipo con arraigo local y estándar internacional.",
+    faqs: [
+      {
+        q: "¿Trabajan con empresas de todo Entre Ríos?",
+        a: "Sí. Desde Paraná trabajamos con empresas de toda la provincia —Concordia, Gualeguaychú, Colón, Villaguay, Concepción del Uruguay, Federación y el resto del interior. Modalidad remota con reuniones presenciales cuando el proyecto lo requiere.",
+      },
+      {
+        q: "¿Cuánto sale una web para una empresa en Entre Ríos?",
+        a: "Depende del alcance del proyecto. Cada web se cotiza a medida —sin paquetes cerrados ni licencias que te aten a un sistema. Empezamos con una charla sin costo para entender qué necesita tu empresa antes de hablar de números.",
+      },
+      {
+        q: "¿Cubren SEO local para ciudades del interior de la provincia?",
+        a: "Sí. Todo sitio se construye con SEO técnico desde el arranque, con foco en las palabras clave y ubicación real de tu negocio — Paraná, Concordia, Gualeguaychú, Colón o cualquier ciudad de la provincia.",
+      },
+    ],
+  },
+  {
     slug: "diseno-web-valencia",
     city: "Valencia",
     region: "Comunidad Valenciana",

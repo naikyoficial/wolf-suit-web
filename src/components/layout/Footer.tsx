@@ -162,6 +162,31 @@ export function Footer() {
                 Escribinos por WhatsApp
               </WhatsAppLink>
             </li>
+            <li style={{ marginTop: 6 }}>
+              <p
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  margin: 0,
+                  fontSize: 13,
+                  color: "var(--color-text-3)",
+                  letterSpacing: ".01em",
+                }}
+              >
+                <span aria-hidden style={{ color: "var(--color-gold)", opacity: 0.75 }}>◈</span>
+                <span>
+                  <Link
+                    href="/diseno-web-parana"
+                    data-cursor-hover
+                    style={{ color: "var(--color-text-3)", textDecoration: "none", borderBottom: "1px solid rgba(217,179,106,.2)" }}
+                  >
+                    Paraná, Entre Ríos
+                  </Link>
+                  {" — Argentina"}
+                </span>
+              </p>
+            </li>
           </ul>
         </div>
       </div>

@@ -2,9 +2,10 @@
  * Configuración central de SEO — fuente única de verdad para señales de
  * entidad, geo-targeting y datos estructurados (JSON-LD).
  *
- * Estrategia: un solo sitio en español neutro que compite en España, México,
- * Argentina, el mercado hispano de EE.UU. y LatAm. Sin variantes regionales ni
- * hreflang (una sola URL por página), señalando cobertura con `areaServed`.
+ * Estrategia: un solo sitio en español neutro con base declarada en Paraná
+ * (Entre Ríos, Argentina) para maximizar SEO local, sirviendo también a
+ * España, México, el mercado hispano de EE.UU. y LatAm vía `areaServed`.
+ * Sin variantes regionales ni hreflang (una sola URL por página).
  */
 
 export const SEO = {
@@ -21,14 +22,35 @@ export const SEO = {
 } as const;
 
 /**
- * Mercados donde ofrecemos servicio. Se expresa en el schema como `areaServed`
- * — la forma correcta de comunicar cobertura para un negocio de área de
- * servicio (sin local físico de cara al público).
+ * Base física de la firma — Paraná, Entre Ríos, Argentina.
+ * Se expone como `address` + `geo` en el schema LocalBusiness para que
+ * Google pueda anclar la entidad a Paraná (ranking local + 3-pack).
+ * El teléfono en formato E.164 (mismo que WhatsApp comercial).
  */
+export const SUITWOLF_BASE = {
+  addressLocality: "Paraná",
+  addressRegion: "Entre Ríos",
+  addressCountry: "AR",
+  /** ISO 3166-2 code — Entre Ríos = AR-E. Usado en meta geo.region. */
+  regionCode: "AR-E",
+  /** Coordenadas aproximadas del centro de Paraná. */
+  geo: { latitude: -31.7319, longitude: -60.5238 },
+  telephone: "+5493435343861",
+} as const;
+
+/**
+ * Cobertura declarada. Entre Ríos primero (State) para reforzar señal
+ * local; después países servidos vía remoto. Se expresa como `areaServed`
+ * en el schema LocalBusiness.
+ */
+export const AREA_SERVED_STATES = [
+  { name: "Entre Ríos", country: "AR" },
+] as const;
+
 export const AREA_SERVED = [
+  "Argentina",
   "España",
   "México",
-  "Argentina",
   "Estados Unidos",
   "Colombia",
   "Chile",
@@ -48,7 +70,10 @@ export const SAME_AS: string[] = [];
 const ORG_ID = `${SEO.url}/#organization`;
 const WEBSITE_ID = `${SEO.url}/#website`;
 
-/** Organization + ProfessionalService (subtipo de LocalBusiness válido). */
+/**
+ * Organization + ProfessionalService (subtipo de LocalBusiness válido).
+ * Incluye address + geo + telephone para señal local fuerte hacia Paraná.
+ */
 export function organizationSchema() {
   return {
     "@type": ["Organization", "ProfessionalService"],
@@ -57,18 +82,56 @@ export function organizationSchema() {
     legalName: SEO.legalName,
     url: SEO.url,
     email: SEO.email,
+    telephone: SUITWOLF_BASE.telephone,
     logo: SEO.logo,
     image: SEO.ogImage,
     description: SEO.description,
     priceRange: "$$$$",
-    areaServed: AREA_SERVED.map((name) => ({ "@type": "Country", name })),
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: SUITWOLF_BASE.addressLocality,
+      addressRegion: SUITWOLF_BASE.addressRegion,
+      addressCountry: SUITWOLF_BASE.addressCountry,
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: SUITWOLF_BASE.geo.latitude,
+      longitude: SUITWOLF_BASE.geo.longitude,
+    },
+    // 24/7 online — servicios y comunicación siempre disponibles vía WhatsApp/email
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "00:00",
+        closes: "23:59",
+      },
+    ],
+    areaServed: [
+      ...AREA_SERVED_STATES.map((s) => ({
+        "@type": "State",
+        name: s.name,
+        containedInPlace: { "@type": "Country", name: "Argentina" },
+      })),
+      ...AREA_SERVED.map((name) => ({ "@type": "Country", name })),
+    ],
     knowsLanguage: ["es", "en"],
     ...(SAME_AS.length ? { sameAs: SAME_AS } : {}),
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",
       email: SEO.email,
+      telephone: SUITWOLF_BASE.telephone,
       availableLanguage: ["Spanish", "English"],
+      areaServed: SUITWOLF_BASE.addressCountry,
     },
     knowsAbout: [
       "Diseño web",
@@ -78,6 +141,7 @@ export function organizationSchema() {
       "Landing pages de alta conversión",
       "Aplicaciones web a medida",
       "SEO técnico",
+      "SEO local",
       "Branding digital",
     ],
     hasOfferCatalog: {
@@ -139,7 +203,14 @@ export function serviceSchema(opts: {
     description: opts.description,
     url: opts.url,
     provider: { "@id": ORG_ID },
-    areaServed: AREA_SERVED.map((name) => ({ "@type": "Country", name })),
+    areaServed: [
+      ...AREA_SERVED_STATES.map((s) => ({
+        "@type": "State",
+        name: s.name,
+        containedInPlace: { "@type": "Country", name: "Argentina" },
+      })),
+      ...AREA_SERVED.map((name) => ({ "@type": "Country", name })),
+    ],
     inLanguage: "es",
   };
 }

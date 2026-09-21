@@ -230,6 +230,26 @@ export function Contact() {
               ))}
             </div>
           </Reveal>
+
+          {/* Arraigo local — señal de origen sin bloquear alcance internacional */}
+          <Reveal delay={0.28}>
+            <p
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 10.5,
+                letterSpacing: ".22em",
+                textTransform: "uppercase",
+                color: "var(--color-text-4)",
+                textAlign: "center",
+                margin: "clamp(28px, 4vh, 40px) 0 0",
+              }}
+            >
+              <span aria-hidden style={{ color: "var(--color-gold)", opacity: 0.7, marginRight: 10 }}>◈</span>
+              Basados en Paraná, Entre Ríos
+              <span aria-hidden style={{ margin: "0 10px", color: "rgba(217,179,106,.3)" }}>·</span>
+              Trabajamos para toda Argentina y LatAm
+            </p>
+          </Reveal>
         </div>
       </div>
     </section>
